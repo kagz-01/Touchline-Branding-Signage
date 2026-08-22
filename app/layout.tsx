@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { headers } from 'next/headers';
-import { Anton, Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
+import { Anton, Space_Grotesk, Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google';
 import { getBrandFromHeaders } from '@/lib/get-brand-server';
 import { getBrand } from '@/config/brands';
 import { BrandProvider } from '@/components/BrandProvider';
@@ -13,6 +13,7 @@ const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-anton
 const grotesk = Space_Grotesk({ subsets: ['latin'], weight: ['500', '700'], variable: '--font-grotesk' });
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains' });
+const playfair = Playfair_Display({ subsets: ['latin'], style: ['normal', 'italic'], weight: ['400', '600', '700'], variable: '--font-playfair' });
 
 export const viewport: Viewport = {
   themeColor: '#17141f'
@@ -89,7 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   const body = (
     <body
-      className={`${anton.variable} ${grotesk.variable} ${inter.variable} ${jetbrains.variable} font-body bg-[var(--bg)] text-[var(--text)] antialiased ${isAdmin ? '' : 'pb-16 md:pb-0'}`}
+      className={`${anton.variable} ${grotesk.variable} ${inter.variable} ${jetbrains.variable} ${playfair.variable} font-body bg-[var(--bg)] text-[var(--text)] antialiased ${isAdmin ? '' : 'pb-16 md:pb-0'}`}
     >
       {isAdmin ? (
         children

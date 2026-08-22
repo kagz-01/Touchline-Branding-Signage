@@ -44,12 +44,9 @@ export function Header({ brand }: { brand: BrandConfig | null }) {
         </nav>
         <Link
           href="/book"
-          className="group relative px-6 py-3 overflow-hidden border border-[var(--accent)] bg-transparent flex items-center justify-center"
+          className="inline-flex items-center gap-2 bg-[var(--accent)] text-[var(--accent-ink)] px-5 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity rounded-[var(--radius-sm)]"
         >
-          <span className="relative z-10 font-mono text-xs uppercase tracking-widest text-[var(--text)] group-hover:text-[var(--bg)] font-bold transition-colors duration-300">
-            INITIATE PROJECT
-          </span>
-          <div className="absolute inset-0 bg-[var(--accent)] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out z-0"></div>
+          Get a Quote →
         </Link>
       </div>
     </header>

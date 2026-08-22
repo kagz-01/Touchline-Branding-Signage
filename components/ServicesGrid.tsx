@@ -1,33 +1,85 @@
+import Link from 'next/link';
 import type { BrandConfig } from '@/config/brands';
 import { Reveal } from './Reveal';
+
+// Simple icon map — kept inline so we avoid adding an icon library dependency
+const ICONS: Record<string, string> = {
+  // Branding
+  'Apparel & Uniforms': '👕',
+  'Promotional Products': '🎁',
+  'Branded Packaging': '📦',
+  'Event Merchandise': '🎪',
+  'Corporate Gifts': '🏷️',
+  // Signage
+  'LED & Illuminated Signs': '💡',
+  'Vehicle Branding': '🚐',
+  'Building Fascia': '🏢',
+  'Wayfinding & Interior': '🗺️',
+  'Outdoor Billboards': '🪧',
+  // Fallback
+  default: '✦',
+};
 
 export function ServicesGrid({ brand, limit }: { brand: BrandConfig; limit?: number }) {
   const services = limit ? brand.services.slice(0, limit) : brand.services;
 
   return (
-    <section className="max-w-content mx-auto px-6 py-24">
-      <Reveal>
-        <div className="flex items-end justify-between mb-12 border-b border-[var(--border)] pb-4">
-          <h2 className="font-display text-4xl md:text-5xl uppercase tracking-wider">CAPABILITIES</h2>
-          <span className="font-mono text-xs text-[var(--accent)] hidden md:block">01 // WHAT WE DO</span>
+    <section className="bg-[var(--bg-soft)]">
+      <div className="max-w-content mx-auto px-6 py-24">
+        <Reveal>
+          <div className="text-center mb-16">
+            <p className="text-sm font-medium text-[var(--accent)] uppercase tracking-widest mb-4">
+              What We Do
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl text-[var(--text)] mb-4">
+              Our <span className="accent-word">Capabilities</span>
+            </h2>
+            <p className="text-[var(--text-muted)] text-lg max-w-xl mx-auto">
+              Every service is handled in-house from sourcing to delivery — no middlemen, no surprises.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, i) => {
+            const icon = ICONS[service.name] || ICONS.default;
+            const encodedService = encodeURIComponent(service.name);
+            return (
+              <Reveal key={service.name} delay={i * 80}>
+                <div className="card-editorial group p-8 h-full flex flex-col">
+                  {/* Icon */}
+                  <span className="text-3xl mb-5 block" role="img" aria-label={service.name}>
+                    {icon}
+                  </span>
+
+                  {/* Title — editorial italic serif */}
+                  <h3 className="font-editorial italic text-xl text-[var(--text)] mb-3 group-hover:text-[var(--accent)] transition-colors duration-300">
+                    {service.name}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-[var(--text-muted)] text-sm leading-relaxed flex-1">
+                    {service.description}
+                  </p>
+
+                  {/* CTA */}
+                  <Link
+                    href={`/book?service=${encodedService}`}
+                    className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)] hover:gap-3 transition-all duration-200"
+                  >
+                    Get a quote <span>→</span>
+                  </Link>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
-      </Reveal>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.map((service, i) => (
-          <Reveal key={service.name} delay={i * 100}>
-            <div className="card-theme group p-8 h-full flex flex-col relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--accent)]/5 rounded-full blur-2xl group-hover:bg-[var(--accent)]/20 transition-colors duration-500"></div>
-              <span className="font-mono text-sm text-[var(--accent)] mb-4 block">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 className="font-display text-2xl mt-2 mb-4 group-hover:text-[var(--accent)] transition-colors duration-300 relative z-10">
-                {service.name}
-              </h3>
-              <p className="text-theme-body text-base flex-1 relative z-10">{service.description}</p>
-            </div>
-          </Reveal>
-        ))}
       </div>
     </section>
   );
 }
+
+
+export function ServicesGrid({ brand, limit }: { brand: BrandConfig; limit?: number }) {
+  const services = limit ? brand.services.slice(0, limit) : brand.services;
+

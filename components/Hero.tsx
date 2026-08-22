@@ -1,118 +1,98 @@
 import Link from 'next/link';
 import type { BrandConfig } from '@/config/brands';
 
-const STAMP_ITEMS = [
-  { label: 'TOTE BAGS', rot: -8 },
-  { label: 'CAPS', rot: 6 },
-  { label: 'MUGS', rot: -4 },
-  { label: 'TEES', rot: 12 }
-];
-
 export function Hero({ brand }: { brand: BrandConfig }) {
   const isBranding = brand.id === 'branding';
 
+  // Split headline so we can italicize the last/key word
+  const words = brand.heroHeadline.split(' ');
+  const keyWord = words[words.length - 1];
+  const leadWords = words.slice(0, -1).join(' ');
+
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden border-b border-[var(--border)]">
-      {/* Massive Background Typography Layer */}
-      <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none opacity-5 overflow-hidden">
-        <h1 className="font-display text-[25vw] leading-none text-center select-none whitespace-nowrap">
-          {brand.id.toUpperCase()}
-        </h1>
+    <section className="relative bg-[var(--bg)] border-b border-[var(--border)] overflow-hidden">
+      {/* Subtle warm background accent */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full bg-[var(--accent)]/5 blur-[80px]" />
+        <div className="absolute bottom-0 left-0 w-[30vw] h-[30vw] rounded-full bg-[var(--accent2)]/5 blur-[60px]" />
       </div>
 
-      <div className="relative z-10 w-full max-w-content mx-auto px-6 py-24 grid md:grid-cols-12 gap-12 items-center">
-        
-        {/* Left/Content (7 columns) */}
-        <div className="md:col-span-7 relative z-20">
-          <p className="font-mono text-sm uppercase tracking-[0.2em] text-[var(--accent)] mb-6 flex items-center gap-4">
-            <span className="w-8 h-px bg-[var(--accent)]"></span>
+      <div className="relative z-10 max-w-content mx-auto px-6 py-20 md:py-28 grid md:grid-cols-12 gap-12 items-center">
+        {/* Left column */}
+        <div className="md:col-span-7">
+          <p className="text-sm font-medium text-[var(--accent)] mb-5 flex items-center gap-3 uppercase tracking-widest">
+            <span className="w-6 h-px bg-[var(--accent)]" />
             {brand.heroKicker}
           </p>
-          <h1
-            className={`font-display text-5xl md:text-7xl leading-[0.95] mb-8 ${
-              brand.id === 'signage' ? 'led-text text-[var(--accent)]' : 'text-[var(--text)]'
-            }`}
-          >
-            {brand.heroHeadline.split(' ').map((word, i) => (
-              <span key={i} className="block">{word}</span>
-            ))}
+
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-6 text-[var(--text)]">
+            {leadWords}{' '}
+            <span className="accent-word">{keyWord}</span>
           </h1>
-          <p className="text-theme-body text-xl max-w-lg mb-12 border-l-2 border-[var(--border)] pl-6 py-2">
+
+          <p className="text-[var(--text-muted)] text-lg md:text-xl max-w-lg mb-10 leading-relaxed">
             {brand.heroSub}
           </p>
-          
-          <div className="flex flex-wrap gap-6 font-mono text-sm uppercase tracking-wider">
+
+          <div className="flex flex-wrap gap-4">
             <Link
               href="/book"
-              className="card-theme group px-8 py-4 relative overflow-hidden inline-block"
+              className="inline-flex items-center gap-3 bg-[var(--accent)] text-[var(--accent-ink)] px-7 py-4 font-semibold text-sm tracking-wide hover:opacity-90 transition-opacity rounded-[var(--radius-sm)]"
             >
-              <span className="relative z-10 group-hover:text-[var(--bg)] transition-colors duration-300 font-bold">
-                Initiate Project
-              </span>
-              <div className="absolute inset-0 bg-[var(--accent)] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out z-0"></div>
+              Request a Quote
+              <span>→</span>
             </Link>
             <Link
               href="/portfolio"
-              className="px-8 py-4 border border-[var(--border)] hover:border-[var(--text)] hover:text-[var(--text)] transition-colors duration-300 flex items-center gap-3 group"
+              className="inline-flex items-center gap-3 border border-[var(--border)] text-[var(--text)] px-7 py-4 font-medium text-sm tracking-wide hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors rounded-[var(--radius-sm)]"
             >
-              View Archives
-              <span className="group-hover:translate-x-2 transition-transform">&rarr;</span>
+              See Our Work
+            </Link>
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-[var(--text-muted)] text-sm font-medium hover:text-[var(--accent)] transition-colors py-4"
+            >
+              Our Services <span>→</span>
             </Link>
           </div>
         </div>
 
-        {/* Right/Visual Layer (5 columns) */}
-        <div className="md:col-span-5 relative h-full min-h-[400px] flex items-center justify-center z-10">
-          
-          {/* Ambient Glow */}
-          <div className="absolute inset-0 bg-[var(--accent)]/10 blur-[100px] rounded-full animate-pulse-soft z-0 pointer-events-none"></div>
-
+        {/* Right visual column */}
+        <div className="md:col-span-5 flex items-center justify-center relative min-h-[320px]">
           {isBranding ? (
-            <div className="relative z-10 flex flex-col gap-4 w-full max-w-[280px]">
-              {STAMP_ITEMS.map((item, i) => (
+            <div className="relative w-full max-w-[320px] grid grid-cols-2 gap-4">
+              {[
+                { label: 'Apparel', sub: 'Tees, Polos, Hoodies', rot: '-2deg' },
+                { label: 'Bags', sub: 'Totes, Laptops, Events', rot: '1.5deg' },
+                { label: 'Drinkware', sub: 'Mugs, Flasks', rot: '-1deg' },
+                { label: 'Headwear', sub: 'Caps & Visors', rot: '2deg' },
+              ].map((item) => (
                 <div
                   key={item.label}
-                  style={{ ['--rot' as string]: `${item.rot}deg` }}
-                  className="stamp-tag card-theme relative p-6 text-center font-display text-2xl tracking-widest text-[var(--text)] overflow-hidden"
+                  style={{ '--rot': item.rot } as React.CSSProperties}
+                  className="stamp-tag card-editorial p-5 text-center"
                 >
-                  <div className="absolute inset-0 bg-[var(--accent)]/5 opacity-0 hover:opacity-100 transition-opacity"></div>
-                  {item.label}
+                  <p className="font-display text-lg text-[var(--text)]">{item.label}</p>
+                  <p className="text-xs text-[var(--text-muted)] mt-1">{item.sub}</p>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="relative z-10 card-theme p-8 w-full max-w-[340px] transform rotate-2 hover:rotate-0 transition-transform duration-700">
-              <svg viewBox="0 0 320 200" className="w-full h-auto drop-shadow-2xl" aria-hidden="true">
-                {/* Tech Grid Background */}
-                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--border)" strokeWidth="0.5" />
-                </pattern>
-                <rect width="100%" height="100%" fill="url(#grid)" />
-                
-                {/* Main Frame */}
-                <rect x="4" y="4" width="312" height="192" rx="0" fill="transparent" stroke="var(--accent)" strokeWidth="2" />
-                
-                {/* Crosshairs */}
-                <path d="M 160 10 L 160 30 M 160 170 L 160 190 M 10 100 L 30 100 M 290 100 L 310 100" stroke="var(--border)" strokeWidth="1" />
-                
-                <text
-                  x="160"
-                  y="110"
-                  textAnchor="middle"
-                  className="led-text"
-                  style={{ fontFamily: 'var(--font-display)', fontSize: '48px', fill: 'var(--accent)', letterSpacing: '0.1em' }}
-                >
-                  FABRICATE
-                </text>
-                <text
-                  x="160"
-                  y="160"
-                  textAnchor="middle"
-                  style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', fill: 'var(--text-muted)', letterSpacing: '0.2em' }}
-                >
-                  ACRYLIC // LED // METAL
-                </text>
-              </svg>
+            <div className="relative w-full max-w-[340px]">
+              <div className="card-editorial p-8 rotate-1 hover:rotate-0 transition-transform duration-500">
+                <p className="font-mono text-xs text-[var(--accent)] uppercase tracking-widest mb-4">// FABRICATION SPEC</p>
+                <div className="space-y-3">
+                  {['Aluminium Composite Panel', 'LED Channel Letters', 'Cast Vinyl Wraps', 'Acrylic 3D Lettering'].map((m) => (
+                    <div key={m} className="flex items-center gap-3 text-sm text-[var(--text)]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] flex-shrink-0" />
+                      {m}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-4 border-t border-[var(--border)] font-mono text-xs text-[var(--text-muted)]">
+                  SITE VISIT → FABRICATION → INSTALL
+                </div>
+              </div>
             </div>
           )}
         </div>
@@ -120,3 +100,4 @@ export function Hero({ brand }: { brand: BrandConfig }) {
     </section>
   );
 }
+

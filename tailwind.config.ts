@@ -7,7 +7,8 @@ const config: Config = {
       fontFamily: {
         display: ['var(--font-display)', 'sans-serif'],
         body: ['var(--font-body)', 'sans-serif'],
-        mono: ['var(--font-mono)', 'monospace']
+        mono: ['var(--font-mono)', 'monospace'],
+        editorial: ['var(--font-playfair)', 'Georgia', 'serif']
       },
       fontSize: {
         'massive': ['clamp(4rem, 15vw, 12rem)', '0.85'],
