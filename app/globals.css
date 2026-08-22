@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius-sm: 0px; /* Sharp edges mandate */
+  --radius-md: 2px;
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Touchline Branding — The Screen-Print Vibe (Industrial, Deep Crimson)  */
+/* ---------------------------------------------------------------------- */
+[data-brand='branding'] {
+  --bg: #140d0d;
+  --bg-soft: #1f1414;
+  --surface: rgba(43, 28, 28, 0.4);
+  --text: #f3efe6;
+  --text-muted: #c2a3a3;
+  --accent: #e5ff00; /* Acid Green */
+  --accent-ink: #140d0d;
+  --accent2: #ff3333; /* Crimson */
+  --border: rgba(255, 51, 51, 0.2);
+  --font-display: var(--font-anton);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Touchline Signage — The Fabrication Vibe (Technical, Graphite)         */
+/* ---------------------------------------------------------------------- */
+[data-brand='signage'] {
+  --bg: #090c0d;
+  --bg-soft: #101518;
+  --surface: rgba(20, 27, 31, 0.4);
+  --text: #edeae2;
+  --text-muted: #798d96;
+  --accent: #33e1ed; /* LED Cyan */
+  --accent-ink: #090c0d;
+  --accent2: #ff4d00; /* Signal Orange */
+  --border: rgba(51, 225, 237, 0.2);
+  --font-display: var(--font-grotesk);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Hub — Neutral dark, extreme asymmetry base                             */
+/* ---------------------------------------------------------------------- */
+[data-brand='hub'] {
+  --bg: #050505;
+  --bg-soft: #0a0a0a;
+  --surface: rgba(20, 20, 20, 0.4);
+  --text: #f3efe6;
+  --text-muted: #888888;
+  --accent: #e5ff00;
+  --accent-ink: #050505;
+  --accent2: #33e1ed;
+  --border: rgba(255, 255, 255, 0.1);
+  --font-display: var(--font-grotesk);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+}
+
+body {
+  background-color: transparent;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Glassmorphism & Themes (Depth & Material)                              */
+/* ---------------------------------------------------------------------- */
+@layer components {
+  .card-theme {
+    background-color: var(--surface);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .card-theme:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 40px color-mix(in srgb, var(--accent) 15%, transparent);
+  }
+
+  .text-theme-heading {
+    font-family: var(--font-display);
+    color: var(--text);
+  }
+
+  .text-theme-body {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Ambient Motion & Signatures                                            */
+/* ---------------------------------------------------------------------- */
+@keyframes led-flicker {
+  0%, 19%, 21%, 23%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 55% { opacity: 0.72; }
+}
+
+.led-text {
+  text-shadow:
+    0 0 4px color-mix(in srgb, var(--accent) 90%, transparent),
+    0 0 16px color-mix(in srgb, var(--accent) 60%, transparent),
+    0 0 32px color-mix(in srgb, var(--accent) 30%, transparent);
+  animation: led-flicker 6s infinite;
+}
+
+.stamp-tag {
+  transform: rotate(var(--rot, -4deg));
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stamp-tag:hover {
+  transform: rotate(0deg) scale(1.05) translateY(-8px);
+  z-index: 10;
+  box-shadow: 0 20px 40px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 8s ease-in-out infinite;
+}
