@@ -10,7 +10,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen">
       {session?.user ? <AdminNav userEmail={session.user.email || ""} /> : null}
-      <main className={session?.user ? "max-w-5xl mx-auto px-6 py-8" : ""}>{children}</main>
+      <main className={session?.user ? "pb-16" : ""}>{children}</main>
     </div>
   );
 }
