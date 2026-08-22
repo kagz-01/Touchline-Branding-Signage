@@ -2,6 +2,7 @@ import { getBrandFromHeaders } from '@/lib/get-brand-server';
 import { getBrand } from '@/config/brands';
 import { HubHome } from '@/components/HubHome';
 import { Hero } from '@/components/Hero';
+import { ProcessScroll } from '@/components/ProcessScroll';
 import { ServicesGrid } from '@/components/ServicesGrid';
 import { PortfolioGallery } from '@/components/PortfolioGallery';
 import { Testimonials } from '@/components/Testimonials';
@@ -34,6 +35,7 @@ export default function HomePage() {
       {/* eslint-disable-next-line react/no-danger */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero brand={brand} />
+      <ProcessScroll brand={brand} />
       <ServicesGrid brand={brand} limit={6} />
       <PortfolioGallery brand={brand} limit={4} />
       <Testimonials brand={brand} />
