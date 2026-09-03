@@ -16,8 +16,8 @@ export default function manifest(): MetadataRoute.Manifest {
       description: 'Sourcing, branding and signage \u2014 one company, two doors.',
       start_url: '/',
       display: 'standalone',
-      background_color: '#121014',
-      theme_color: '#121014',
+      background_color: '#0b0a0a',
+      theme_color: '#0b0a0a',
       icons: [
         { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
         { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
@@ -34,8 +34,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: brand.tagline,
     start_url: '/',
     display: 'standalone',
-    background_color: brand.id === 'branding' ? '#17141f' : '#0e1417',
-    theme_color: brand.id === 'branding' ? '#17141f' : '#0e1417',
+    background_color: brand.id === 'branding' ? '#1a1510' : '#141415',
+    theme_color: brand.id === 'branding' ? '#1a1510' : '#141415',
     icons: [
       { src: `/icons/${brand.id}-192.png`, sizes: '192x192', type: 'image/png' },
       { src: `/icons/${brand.id}-512.png`, sizes: '512x512', type: 'image/png' },

@@ -12,101 +12,101 @@
 }
 
 /* ---------------------------------------------------------------------- */
-/* Touchline Branding — Warm Cream & Deep Crimson                         */
+/* Touchline Branding — Light Mode                                         */
 /* ---------------------------------------------------------------------- */
 [data-brand='branding'] {
-  --bg:          #fdf8f2;
-  --bg-soft:     #f5ede0;
+  --bg:          #faf7f2;
+  --bg-soft:     #f0ebe3;
   --surface:     #ffffff;
-  --text:        #1c0d08;
-  --text-muted:  #7a5f55;
-  --accent:      #b8341b;
-  --accent-warm: #e8a020;
+  --text:        #1a1510;
+  --text-muted:  #6b5d4f;
+  --accent:      #8c6a39;
+  --accent-warm: #c7983a;
   --accent-ink:  #ffffff;
-  --accent2:     #e8a020;
-  --border:      rgba(184, 52, 27, 0.12);
-  --shadow:      rgba(28, 13, 8, 0.06);
+  --accent2:     #c7983a;
+  --border:      rgba(140, 106, 57, 0.12);
+  --shadow:      rgba(26, 21, 16, 0.06);
   --font-display: var(--font-anton);
 }
 
 /* ---------------------------------------------------------------------- */
-/* Touchline Signage — Cool White & Deep Steel Teal                       */
+/* Touchline Signage — Light Mode                                          */
 /* ---------------------------------------------------------------------- */
 [data-brand='signage'] {
-  --bg:          #f4f7f9;
-  --bg-soft:     #e8eef2;
+  --bg:          #f8f6f2;
+  --bg-soft:     #ede9e2;
   --surface:     #ffffff;
-  --text:        #0d1a23;
-  --text-muted:  #4d6878;
-  --accent:      #0e7a8a;
-  --accent-warm: #f07030;
+  --text:        #141415;
+  --text-muted:  #6b6560;
+  --accent:      #916f35;
+  --accent-warm: #bd9f5d;
   --accent-ink:  #ffffff;
-  --accent2:     #f07030;
-  --border:      rgba(14, 122, 138, 0.12);
-  --shadow:      rgba(13, 26, 35, 0.06);
+  --accent2:     #bd9f5d;
+  --border:      rgba(145, 111, 53, 0.12);
+  --shadow:      rgba(20, 20, 21, 0.06);
   --font-display: var(--font-grotesk);
 }
 
 /* ---------------------------------------------------------------------- */
-/* Hub — Warm Neutral, Minimal                                            */
+/* Hub — Light Mode                                                        */
 /* ---------------------------------------------------------------------- */
 [data-brand='hub'] {
-  --bg:          #faf8f5;
-  --bg-soft:     #f0ece6;
+  --bg:          #faf8f4;
+  --bg-soft:     #f0ece5;
   --surface:     #ffffff;
-  --text:        #1a1410;
-  --text-muted:  #7a7068;
-  --accent:      #b8341b;
-  --accent-warm: #0e7a8a;
+  --text:        #0b0a0a;
+  --text-muted:  #6b6258;
+  --accent:      #976b1d;
+  --accent-warm: #5f4c2a;
   --accent-ink:  #ffffff;
-  --accent2:     #0e7a8a;
-  --border:      rgba(26, 20, 16, 0.08);
-  --shadow:      rgba(26, 20, 16, 0.04);
+  --accent2:     #5f4c2a;
+  --border:      rgba(11, 10, 10, 0.08);
+  --shadow:      rgba(11, 10, 10, 0.04);
   --font-display: var(--font-grotesk);
 }
 
 /* ---------------------------------------------------------------------- */
-/* Dark Mode — All Brands                                                 */
+/* Dark Mode — All Brands                                                  */
 /* ---------------------------------------------------------------------- */
 .dark [data-brand='branding'] {
-  --bg:          #1a1210;
-  --bg-soft:     #231c18;
-  --surface:     #2a2220;
-  --text:        #f5ede0;
-  --text-muted:  #a89080;
-  --accent:      #e84a30;
-  --accent-warm: #f0b840;
-  --accent-ink:  #ffffff;
-  --accent2:     #f0b840;
-  --border:      rgba(232, 74, 48, 0.15);
+  --bg:          #12100d;
+  --bg-soft:     #1a1713;
+  --surface:     #211e19;
+  --text:        #f0ebe3;
+  --text-muted:  #a89880;
+  --accent:      #c7983a;
+  --accent-warm: #e8b84a;
+  --accent-ink:  #1a1510;
+  --accent2:     #e8b84a;
+  --border:      rgba(199, 152, 58, 0.15);
   --shadow:      rgba(0, 0, 0, 0.3);
 }
 
 .dark [data-brand='signage'] {
-  --bg:          #0d1418;
-  --bg-soft:     #152028;
-  --surface:     #1a2830;
-  --text:        #e0eaf0;
-  --text-muted:  #7a98a8;
-  --accent:      #20c8d8;
-  --accent-warm: #f88050;
-  --accent-ink:  #ffffff;
-  --accent2:     #f88050;
-  --border:      rgba(32, 200, 216, 0.15);
+  --bg:          #0f0e0d;
+  --bg-soft:     #181614;
+  --surface:     #1f1d1a;
+  --text:        #ede9e2;
+  --text-muted:  #a09888;
+  --accent:      #bd9f5d;
+  --accent-warm: #d4b870;
+  --accent-ink:  #141415;
+  --accent2:     #d4b870;
+  --border:      rgba(189, 159, 93, 0.15);
   --shadow:      rgba(0, 0, 0, 0.3);
 }
 
 .dark [data-brand='hub'] {
-  --bg:          #141210;
-  --bg-soft:     #1e1c18;
-  --surface:     #242220;
-  --text:        #f0ece6;
-  --text-muted:  #9a9088;
-  --accent:      #e84a30;
-  --accent-warm: #20c8d8;
-  --accent-ink:  #ffffff;
-  --accent2:     #20c8d8;
-  --border:      rgba(240, 236, 230, 0.08);
+  --bg:          #0d0c0a;
+  --bg-soft:     #161412;
+  --surface:     #1c1a17;
+  --text:        #f0ece5;
+  --text-muted:  #9a9080;
+  --accent:      #c7983a;
+  --accent-warm: #976b1d;
+  --accent-ink:  #0b0a0a;
+  --accent2:     #976b1d;
+  --border:      rgba(199, 152, 58, 0.12);
   --shadow:      rgba(0, 0, 0, 0.3);
 }
 
