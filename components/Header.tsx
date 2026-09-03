@@ -16,7 +16,7 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
       <header className="glass-nav sticky top-0 z-50">
         <div className="max-w-content mx-auto px-6 py-5 flex items-center justify-between">
           <Link href="/" data-brand="hub">
-            <Logo brand="hub" className="text-xl md:text-2xl" />
+            <Logo brand="hub" className="text-2xl md:text-3xl" />
           </Link>
           <nav className="hidden lg:flex items-center gap-6">
             <a href={brandingUrl} className="text-overline hover:text-[var(--accent)] transition-colors">
@@ -46,7 +46,7 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
     <header className="glass-nav sticky top-0 z-50">
       <div className="max-w-content mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/">
-          <Logo brand={brand.id} className="text-lg md:text-xl" />
+          <Logo brand={brand.id} className="text-xl md:text-2xl" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">

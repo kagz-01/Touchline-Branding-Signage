@@ -8,9 +8,9 @@ export function Logo({ brand, className = '' }: { brand: BrandId; className?: st
         <Image
           src="/Logos/Tb-logo.png"
           alt="Touchline Branding"
-          width={48}
-          height={48}
-          className="h-auto w-auto max-h-[1.5em]"
+          width={64}
+          height={64}
+          className="h-auto w-auto max-h-[2.2em]"
           priority
         />
       </span>
@@ -23,9 +23,9 @@ export function Logo({ brand, className = '' }: { brand: BrandId; className?: st
         <Image
           src="/Logos/Ts-logo.jpeg"
           alt="Touchline Signage"
-          width={48}
-          height={48}
-          className="h-auto w-auto max-h-[1.5em]"
+          width={64}
+          height={64}
+          className="h-auto w-auto max-h-[2.2em]"
           priority
         />
       </span>
@@ -37,9 +37,9 @@ export function Logo({ brand, className = '' }: { brand: BrandId; className?: st
       <Image
         src="/Logos/T-logo.png"
         alt="Touchline"
-        width={48}
-        height={48}
-        className="h-auto w-auto max-h-[1.5em]"
+        width={64}
+        height={64}
+        className="h-auto w-auto max-h-[2.2em]"
         priority
       />
     </span>
