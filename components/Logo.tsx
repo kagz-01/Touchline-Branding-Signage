@@ -21,7 +21,7 @@ export function Logo({ brand, className = '' }: { brand: BrandId; className?: st
     return (
       <span className={`inline-flex items-center ${className}`}>
         <Image
-          src="/Logos/Ts-logo.png"
+          src="/Logos/Ts-logo.jpeg"
           alt="Touchline Signage"
           width={48}
           height={48}
