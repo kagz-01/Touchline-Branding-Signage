@@ -4,9 +4,11 @@ import { Anton, Space_Grotesk, Inter, JetBrains_Mono, Playfair_Display } from 'n
 import { getBrandFromHeaders } from '@/lib/get-brand-server';
 import { getBrand } from '@/config/brands';
 import { BrandProvider } from '@/components/BrandProvider';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { BottomNav } from '@/components/BottomNav';
+import { CommandPalette } from '@/components/CommandPalette';
 import './globals.css';
 
 const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-anton' });
@@ -24,18 +26,22 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (brandId === 'hub') {
     const description =
-      'Touchline sources branded merchandise and fabricates signage \u2014 two specialisms, one company.';
+      'Touchline sources branded merchandise and fabricates signage — two specialisms, one company.';
     return {
       metadataBase: new URL('https://touchline.co.ke'),
-      title: 'Touchline \u2014 Branding & Signage',
+      title: 'Touchline — Branding & Signage',
       description,
       manifest: '/manifest.webmanifest',
       icons: {
-        icon: '/icons/icon-192.png',
-        apple: '/icons/icon-apple-touch.png'
+        icon: [
+          { url: '/icons/favicon.ico', sizes: 'any' },
+          { url: '/icons/favicon-32.png', sizes: '32x32', type: 'image/png' },
+          { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+        ],
+        apple: '/icons/apple-touch-icon.png'
       },
       openGraph: {
-        title: 'Touchline \u2014 Branding & Signage',
+        title: 'Touchline — Branding & Signage',
         description,
         url: 'https://touchline.co.ke',
         siteName: 'Touchline',
@@ -43,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Touchline \u2014 Branding & Signage',
+        title: 'Touchline — Branding & Signage',
         description
       },
       robots: { index: true, follow: true }
@@ -51,7 +57,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   const brand = getBrand(brandId);
-  const title = `${brand.name} \u2014 ${brand.tagline}`;
+  const title = `${brand.name} — ${brand.tagline}`;
 
   return {
     metadataBase: new URL(`https://${brand.domain}`),
@@ -59,7 +65,11 @@ export async function generateMetadata(): Promise<Metadata> {
     description: brand.heroSub,
     manifest: '/manifest.webmanifest',
     icons: {
-      icon: `/icons/${brand.id}-192.png`,
+      icon: [
+        { url: `/icons/${brand.id}-favicon.ico`, sizes: 'any' },
+        { url: `/icons/${brand.id}-favicon-32.png`, sizes: '32x32', type: 'image/png' },
+        { url: `/icons/${brand.id}-192.png`, sizes: '192x192', type: 'image/png' },
+      ],
       apple: `/icons/${brand.id}-apple-touch.png`
     },
     openGraph: {
@@ -100,14 +110,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main>{children}</main>
           <Footer brand={brand} />
           <BottomNav brand={brand} />
+          <CommandPalette />
         </>
       )}
     </body>
   );
 
   return (
-    <html lang="en" data-brand={isAdmin ? 'hub' : brandId}>
-      {brand ? <BrandProvider brand={brand}>{body}</BrandProvider> : body}
+    <html lang="en" data-brand={isAdmin ? 'hub' : brandId} suppressHydrationWarning>
+      <ThemeProvider>
+        {brand ? <BrandProvider brand={brand}>{body}</BrandProvider> : body}
+      </ThemeProvider>
     </html>
   );
 }

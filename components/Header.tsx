@@ -1,53 +1,75 @@
 import Link from 'next/link';
+import { headers } from 'next/headers';
 import type { BrandConfig } from '@/config/brands';
+import { getCrossBrandUrl } from '@/lib/brand';
 import { Logo } from './Logo';
 
-export function Header({ brand }: { brand: BrandConfig | null }) {
+export async function Header({ brand }: { brand: BrandConfig | null }) {
+  const headersList = await headers();
+  const host = headersList.get('host') || '';
+
   if (!brand) {
-    // Hub header: minimal, no nav to fight the two-tile choice below.
+    const brandingUrl = getCrossBrandUrl('branding', host);
+    const signageUrl = getCrossBrandUrl('signage', host);
+
     return (
       <header className="border-b border-[var(--border)] relative z-50">
-        <div className="max-w-content mx-auto px-6 py-6 flex items-center justify-between">
+        <div className="max-w-content mx-auto px-6 py-5 flex items-center justify-between">
           <Link href="/" data-brand="hub">
             <Logo brand="hub" className="text-xl md:text-2xl" />
           </Link>
-          <span className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)] hidden sm:block">
-            SOURCING // BRANDING // SIGNAGE
-          </span>
+          <nav className="hidden lg:flex items-center gap-6">
+            <a href={brandingUrl} className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
+              Branding
+            </a>
+            <a href={signageUrl} className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
+              Signage
+            </a>
+            <span className="w-px h-4 bg-[var(--border)]" />
+            <Link href="/book" className="btn-primary text-sm py-2 px-4">
+              Get a Quote
+            </Link>
+          </nav>
+          <Link href="/book" className="btn-primary text-sm py-2 px-4 lg:hidden">
+            Get a Quote
+          </Link>
         </div>
       </header>
     );
   }
 
-  const otherHref =
-    brand.id === 'branding'
-      ? '/signage'
-      : '/branding';
+  const otherBrand = brand.id === 'branding' ? 'signage' : 'branding';
+  const otherLabel = brand.id === 'branding' ? 'Signage' : 'Branding';
+  const otherHref = getCrossBrandUrl(otherBrand, host);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/70 backdrop-blur-2xl supports-[backdrop-filter]:bg-[var(--bg)]/40">
-      <div className="max-w-content mx-auto px-6 py-5 flex items-center justify-between">
+    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[var(--bg)]/60">
+      <div className="max-w-content mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/">
-          <Logo brand={brand.id} className="text-xl md:text-2xl" />
+          <Logo brand={brand.id} className="text-lg md:text-xl" />
         </Link>
-        <nav className="hidden lg:flex items-center gap-12">
-          <Link href="/services" className="font-mono text-xs uppercase tracking-widest hover:text-[var(--accent)] transition-colors">
+
+        <nav className="hidden lg:flex items-center gap-8">
+          <Link href="/services" className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
             Services
           </Link>
-          <Link href="/portfolio" className="font-mono text-xs uppercase tracking-widest hover:text-[var(--accent)] transition-colors">
+          <Link href="/portfolio" className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
             Portfolio
           </Link>
-          <a href={otherHref} className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--text)] transition-colors flex items-center gap-3 group">
-            <span className="w-2 h-2 bg-[var(--border)] group-hover:bg-[var(--accent)] transition-colors animate-pulse-soft"></span>
-            SWITCH TO {brand.id === 'branding' ? 'SIGNAGE' : 'BRANDING'}
+          <span className="w-px h-4 bg-[var(--border)]" />
+          <a href={otherHref} className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">
+            {otherLabel} <span className="text-[var(--accent)]">→</span>
           </a>
         </nav>
-        <Link
-          href="/book"
-          className="inline-flex items-center gap-2 bg-[var(--accent)] text-[var(--accent-ink)] px-5 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity rounded-[var(--radius-sm)]"
-        >
-          Get a Quote →
-        </Link>
+
+        <div className="flex items-center gap-3">
+          <Link
+            href="/book"
+            className="btn-primary text-sm py-2 px-5"
+          >
+            Get a Quote <span className="hidden sm:inline">→</span>
+          </Link>
+        </div>
       </div>
     </header>
   );

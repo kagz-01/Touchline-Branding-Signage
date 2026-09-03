@@ -17,26 +17,11 @@ type Lead = {
   converted_task_id: string | null;
 };
 
-// Terminal-style left-border color per status
-const STATUS_BORDER: Record<string, string> = {
-  new: "border-l-[var(--accent)]",
-  contacted: "border-l-amber-400",
-  converted: "border-l-emerald-400",
-  closed: "border-l-[var(--border)]",
-};
-
-const STATUS_LABEL: Record<string, string> = {
-  new: "NEW",
-  contacted: "CONTACTED",
-  converted: "CONVERTED",
-  closed: "CLOSED",
-};
-
-const STATUS_COLOR: Record<string, string> = {
-  new: "text-[var(--accent)]",
-  contacted: "text-amber-400",
-  converted: "text-emerald-400",
-  closed: "text-[var(--text-muted)]",
+const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string }> = {
+  new: { label: "New", color: "var(--accent)", bg: "var(--accent)" },
+  contacted: { label: "Contacted", color: "#f59e0b", bg: "#f59e0b" },
+  converted: { label: "Converted", color: "#10b981", bg: "#10b981" },
+  closed: { label: "Closed", color: "var(--text-muted)", bg: "var(--text-muted)" },
 };
 
 export default function AdminLeadsPage() {
@@ -46,6 +31,7 @@ export default function AdminLeadsPage() {
   const [brandFilter, setBrandFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [converting, setConverting] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
   const [inventoryBaseUrl, setInventoryBaseUrl] = useState<string | null>(null);
 
   async function load() {
@@ -71,7 +57,6 @@ export default function AdminLeadsPage() {
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => d && setInventoryBaseUrl(d.inventoryPlatformPublicUrl || null))
       .catch(() => {});
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [brandFilter, statusFilter]);
 
   async function updateStatus(id: string, status: string) {
@@ -96,192 +81,189 @@ export default function AdminLeadsPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12 space-y-10">
-
-      {/* Page Header */}
-      <div className="flex items-end justify-between flex-wrap gap-4 pb-6 border-b border-[var(--border)]">
+    <div className="max-w-7xl mx-auto px-6 py-10 space-y-8">
+      <div className="flex items-end justify-between flex-wrap gap-4">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-2">// OPERATIONS CENTER</p>
-          <h1 className="font-display text-4xl md:text-5xl uppercase">ENQUIRIES</h1>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-2">// Leads</p>
+          <h1 className="font-display text-3xl md:text-4xl text-[var(--text)]">Enquiries</h1>
         </div>
-        <div className="flex gap-2">
-          {leads.length > 0 && (
-            <div className="flex items-center gap-2 border border-[var(--border)] px-4 py-2">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]"></span>
-              </span>
-              <span className="font-mono text-xs text-[var(--text-muted)]">{leads.length} RECORD{leads.length !== 1 ? "S" : ""}</span>
-            </div>
-          )}
-        </div>
+        {leads.length > 0 && (
+          <span className="font-mono text-xs text-[var(--text-muted)]">{leads.length} records</span>
+        )}
       </div>
 
       {/* Filters */}
       <div className="flex gap-3 flex-wrap">
-        <div className="flex flex-col gap-1">
-          <label className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)]">BRAND</label>
-          <select
-            value={brandFilter}
-            onChange={(e) => setBrandFilter(e.target.value)}
-            className="appearance-none bg-[var(--surface)] border border-[var(--border)] px-4 py-2 font-mono text-sm text-[var(--text)] focus:border-[var(--accent)] focus:outline-none rounded-none min-w-[160px]"
-          >
-            <option value="">ALL BRANDS</option>
-            <option value="branding">BRANDING</option>
-            <option value="signage">SIGNAGE</option>
-          </select>
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)]">STATUS</label>
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="appearance-none bg-[var(--surface)] border border-[var(--border)] px-4 py-2 font-mono text-sm text-[var(--text)] focus:border-[var(--accent)] focus:outline-none rounded-none min-w-[160px]"
-          >
-            <option value="">ALL STATUSES</option>
-            <option value="new">NEW</option>
-            <option value="contacted">CONTACTED</option>
-            <option value="converted">CONVERTED</option>
-            <option value="closed">CLOSED</option>
-          </select>
-        </div>
+        <select
+          value={brandFilter}
+          onChange={(e) => setBrandFilter(e.target.value)}
+          className="appearance-none bg-[var(--surface)] border border-[var(--border)] px-4 py-2 text-sm text-[var(--text)] focus:border-[var(--accent)] focus:outline-none rounded-[var(--radius-sm)] min-w-[140px]"
+        >
+          <option value="">All brands</option>
+          <option value="branding">Branding</option>
+          <option value="signage">Signage</option>
+        </select>
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="appearance-none bg-[var(--surface)] border border-[var(--border)] px-4 py-2 text-sm text-[var(--text)] focus:border-[var(--accent)] focus:outline-none rounded-[var(--radius-sm)] min-w-[140px]"
+        >
+          <option value="">All statuses</option>
+          <option value="new">New</option>
+          <option value="contacted">Contacted</option>
+          <option value="converted">Converted</option>
+          <option value="closed">Closed</option>
+        </select>
       </div>
 
-      {/* Error state */}
       {error && (
-        <div className="border-l-2 border-[var(--accent2)] pl-4 py-2">
-          <span className="font-mono text-xs text-[var(--accent2)] uppercase tracking-widest block mb-1">// SYSTEM ERROR</span>
-          <p className="font-mono text-sm text-[var(--text-muted)]">{error}</p>
+        <div className="bg-[var(--accent)]/5 border border-[var(--accent)]/20 p-4 rounded-[var(--radius-sm)]">
+          <p className="text-sm text-[var(--accent)]">{error}</p>
         </div>
       )}
 
-      {/* Loading state */}
       {loading && (
-        <div className="flex items-center gap-3 py-8">
-          <span className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest animate-pulse">LOADING RECORDS...</span>
+        <div className="py-12 text-center text-[var(--text-muted)] text-sm">Loading leads...</div>
+      )}
+
+      {!loading && leads.length === 0 && (
+        <div className="card-surface p-12 text-center">
+          <p className="font-display text-xl text-[var(--text-muted)] mb-2">No leads found</p>
+          <p className="text-sm text-[var(--text-muted)]">
+            {brandFilter || statusFilter ? "Try adjusting your filters." : "Enquiries from the public forms will appear here."}
+          </p>
         </div>
       )}
 
-      {/* Empty state */}
-      {!loading && !error && leads.length === 0 && (
-        <div className="border border-[var(--border)] p-12 text-center">
-          <p className="font-display text-3xl text-[var(--text-muted)] mb-3">NO RECORDS FOUND</p>
-          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest">Enquiries submitted via the public forms will appear here.</p>
-        </div>
-      )}
-
-      {/* Lead Cards */}
       {!loading && leads.length > 0 && (
-        <div className="space-y-4">
-          {leads.map((lead, index) => (
-            <div
-              key={lead.id}
-              className={`border border-[var(--border)] border-l-4 ${STATUS_BORDER[lead.status]} bg-[var(--surface)] p-6 transition-colors hover:bg-[var(--bg)]`}
-            >
-              {/* Card Header */}
-              <div className="flex flex-wrap items-start justify-between gap-4 mb-5 pb-5 border-b border-[var(--border)]">
-                <div className="flex items-center gap-4 flex-wrap">
-                  <span className="font-mono text-xs text-[var(--text-muted)]">#{String(index + 1).padStart(3, '0')}</span>
-                  <h3 className="font-display text-2xl">{lead.full_name}</h3>
-                  <span className={`font-mono text-xs uppercase tracking-widest ${STATUS_COLOR[lead.status]}`}>
-                    [ STATUS: {STATUS_LABEL[lead.status]} ]
-                  </span>
-                  <span className="font-mono text-xs uppercase tracking-widest border border-[var(--border)] px-2 py-0.5 text-[var(--text-muted)]">
-                    {lead.brand}
-                  </span>
-                </div>
+        <div className="space-y-3">
+          {leads.map((lead) => {
+            const isExpanded = expandedId === lead.id;
+            const config = STATUS_CONFIG[lead.status];
 
-                {/* Actions */}
-                <div className="flex flex-col items-end gap-3 shrink-0">
-                  <div className="flex flex-col gap-1">
-                    <label className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)]">UPDATE STATUS</label>
-                    <select
-                      value={lead.status}
-                      onChange={(e) => updateStatus(lead.id, e.target.value)}
-                      className="appearance-none bg-[var(--bg)] border border-[var(--border)] px-3 py-1.5 font-mono text-xs text-[var(--text)] focus:border-[var(--accent)] focus:outline-none rounded-none"
-                    >
-                      <option value="new">NEW</option>
-                      <option value="contacted">CONTACTED</option>
-                      <option value="converted">CONVERTED</option>
-                      <option value="closed">CLOSED</option>
-                    </select>
-                  </div>
+            return (
+              <div
+                key={lead.id}
+                className="card-surface overflow-hidden"
+              >
+                {/* Row */}
+                <button
+                  onClick={() => setExpandedId(isExpanded ? null : lead.id)}
+                  className="w-full text-left p-5 flex items-center gap-4 hover:bg-[var(--bg-soft)] transition-colors"
+                >
+                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: config.bg }} />
 
-                  {lead.converted_task_id ? (
-                    inventoryBaseUrl ? (
-                      <a
-                        href={`${inventoryBaseUrl.replace(/\/$/, "")}/tasks/${lead.converted_task_id}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] hover:underline flex items-center gap-1"
-                      >
-                        VIEW TASK IN SOURCING BOARD →
-                      </a>
-                    ) : (
-                      <span className="font-mono text-xs text-emerald-400 uppercase tracking-widest">[ TASK CREATED ]</span>
-                    )
-                  ) : (
-                    <button
-                      onClick={() => convertToTask(lead.id)}
-                      disabled={converting === lead.id}
-                      className="group relative overflow-hidden border border-[var(--border)] bg-transparent px-5 py-2.5 font-mono text-xs uppercase tracking-widest text-[var(--text)] disabled:opacity-50 disabled:cursor-wait"
-                    >
-                      <div className="absolute inset-0 bg-[var(--accent)] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out z-0"></div>
-                      <span className="relative z-10 group-hover:text-[var(--bg)] transition-colors duration-300">
-                        {converting === lead.id ? "CONVERTING..." : "→ CONVERT TO TASK"}
+                  <div className="flex-1 min-w-0 grid grid-cols-2 md:grid-cols-4 gap-4 items-center">
+                    <div className="truncate">
+                      <p className="font-medium text-[var(--text)] truncate">{lead.full_name}</p>
+                    </div>
+                    <div className="hidden md:block">
+                      <span className="font-mono text-xs px-2 py-0.5 border border-[var(--border)] text-[var(--text-muted)]">
+                        {lead.brand}
                       </span>
-                    </button>
-                  )}
-                </div>
-              </div>
+                    </div>
+                    <div className="hidden md:block">
+                      <span className="font-mono text-xs" style={{ color: config.color }}>
+                        {config.label}
+                      </span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs text-[var(--text-muted)]">
+                        {new Date(lead.created_at).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
 
-              {/* Card Body — Metadata grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div>
-                  <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">PHONE</span>
-                  <span className="font-mono text-sm text-[var(--text)]">{lead.phone}</span>
-                </div>
-                {lead.email && (
-                  <div>
-                    <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">EMAIL</span>
-                    <span className="font-mono text-sm text-[var(--text)] break-all">{lead.email}</span>
-                  </div>
-                )}
-                {lead.service && (
-                  <div>
-                    <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">SERVICE REQ.</span>
-                    <span className="font-mono text-sm text-[var(--text)]">{lead.service}</span>
-                  </div>
-                )}
-                {lead.location && (
-                  <div>
-                    <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">LOCATION</span>
-                    <span className="font-mono text-sm text-[var(--text)]">{lead.location}</span>
-                  </div>
-                )}
-                {lead.preferred_date && (
-                  <div>
-                    <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">PREFERRED DATE</span>
-                    <span className="font-mono text-sm text-[var(--text)]">{lead.preferred_date}</span>
-                  </div>
-                )}
-                <div>
-                  <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">RECEIVED</span>
-                  <span className="font-mono text-sm text-[var(--text-muted)]">{new Date(lead.created_at).toLocaleString()}</span>
-                </div>
-              </div>
+                  <svg
+                    className={`w-4 h-4 text-[var(--text-muted)] transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
 
-              {lead.message && (
-                <div className="mt-5 pt-5 border-t border-[var(--border)]">
-                  <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-2">// SPECIFICATIONS</span>
-                  <p className="font-mono text-sm text-[var(--text-muted)] leading-relaxed max-w-3xl">{lead.message}</p>
-                </div>
-              )}
-            </div>
-          ))}
+                {/* Expanded */}
+                {isExpanded && (
+                  <div className="px-5 pb-5 border-t border-[var(--border)] pt-5 space-y-5 animate-fade-in">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div>
+                        <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">Phone</span>
+                        <span className="text-sm text-[var(--text)]">{lead.phone}</span>
+                      </div>
+                      {lead.email && (
+                        <div>
+                          <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">Email</span>
+                          <span className="text-sm text-[var(--text)] break-all">{lead.email}</span>
+                        </div>
+                      )}
+                      {lead.service && (
+                        <div>
+                          <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">Service</span>
+                          <span className="text-sm text-[var(--text)]">{lead.service}</span>
+                        </div>
+                      )}
+                      {lead.location && (
+                        <div>
+                          <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">Location</span>
+                          <span className="text-sm text-[var(--text)]">{lead.location}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {lead.message && (
+                      <div>
+                        <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-2">Specifications</span>
+                        <p className="text-sm text-[var(--text-muted)] leading-relaxed bg-[var(--bg-soft)] p-3 rounded-[var(--radius-sm)]">
+                          {lead.message}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-3 pt-3 border-t border-[var(--border)]">
+                      <select
+                        value={lead.status}
+                        onChange={(e) => updateStatus(lead.id, e.target.value)}
+                        className="appearance-none bg-[var(--bg)] border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--text)] focus:border-[var(--accent)] focus:outline-none rounded-[var(--radius-sm)]"
+                      >
+                        <option value="new">New</option>
+                        <option value="contacted">Contacted</option>
+                        <option value="converted">Converted</option>
+                        <option value="closed">Closed</option>
+                      </select>
+
+                      {lead.converted_task_id ? (
+                        inventoryBaseUrl ? (
+                          <a
+                            href={`${inventoryBaseUrl.replace(/\/$/, "")}/tasks/${lead.converted_task_id}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-xs text-[var(--accent)] hover:underline"
+                          >
+                            View task →
+                          </a>
+                        ) : (
+                          <span className="text-xs text-emerald-500">Task created</span>
+                        )
+                      ) : (
+                        <button
+                          onClick={() => convertToTask(lead.id)}
+                          disabled={converting === lead.id}
+                          className="text-xs border border-[var(--border)] px-3 py-1.5 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors disabled:opacity-50 rounded-[var(--radius-sm)]"
+                        >
+                          {converting === lead.id ? "Converting..." : "Convert to task"}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
   );
 }
-

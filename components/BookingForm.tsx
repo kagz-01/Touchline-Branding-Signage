@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useBrand } from './BrandProvider';
 
 export function BookingForm() {
@@ -8,8 +8,6 @@ export function BookingForm() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'sent' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const renderedAt = useRef(Date.now());
-  
-  // Live Tracker State
   const [formProgress, setFormProgress] = useState(0);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -67,20 +65,25 @@ export function BookingForm() {
 
   if (status === 'sent') {
     return (
-      <div className="py-24 text-center animate-fade-in-up">
-        <h3 className="font-display text-4xl md:text-6xl mb-6 text-[var(--accent)] tracking-wider">PROJECT INITIATED</h3>
-        <p className="text-theme-body text-xl max-w-2xl mx-auto mb-12">
-          Specifications logged successfully. Operations team notified.
+      <div className="section-py text-center animate-fade-in-up">
+        <div className="w-16 h-16 rounded-full bg-[var(--accent)]/10 flex items-center justify-center mx-auto mb-6">
+          <svg className="w-8 h-8 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 className="font-display text-3xl md:text-4xl mb-4 text-[var(--text)]">Quote request sent.</h3>
+        <p className="text-[var(--text-muted)] text-lg max-w-xl mx-auto mb-8">
+          We&apos;ve received your specifications. Our team will reach out within 24 hours to schedule a site visit or call.
         </p>
-        <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-          <div className="card-theme p-6 w-full max-w-xs border border-[var(--accent)]">
-            <span className="font-mono text-[var(--accent)] mb-2 block">STATUS: COMPLETE</span>
-            <span className="font-display text-2xl">Specifications Logged</span>
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="card-surface p-5 w-full max-w-xs border border-[var(--accent)]/30">
+            <span className="font-mono text-[var(--accent)] text-xs mb-1 block">STATUS: RECEIVED</span>
+            <span className="font-display text-lg text-[var(--text)]">Specifications logged</span>
           </div>
-          <div className="w-8 h-px bg-[var(--border)] hidden md:block"></div>
-          <div className="card-theme p-6 w-full max-w-xs border border-[var(--border)] animate-pulse">
-            <span className="font-mono text-[var(--text-muted)] mb-2 block">STATUS: PENDING</span>
-            <span className="font-display text-2xl text-[var(--text-muted)]">Site Visit / Call (ETA: 24h)</span>
+          <div className="w-px h-8 bg-[var(--border)] hidden sm:block" />
+          <div className="card-surface p-5 w-full max-w-xs animate-pulse-subtle">
+            <span className="font-mono text-[var(--text-muted)] text-xs mb-1 block">STATUS: NEXT</span>
+            <span className="font-display text-lg text-[var(--text-muted)]">Site visit / call (ETA: 24h)</span>
           </div>
         </div>
       </div>
@@ -88,9 +91,8 @@ export function BookingForm() {
   }
 
   return (
-    <div className="grid md:grid-cols-12 gap-16 w-full max-w-7xl mx-auto">
-      {/* Form Section */}
-      <form ref={formRef} onSubmit={handleSubmit} onChange={checkProgress} className="md:col-span-8 flex flex-col gap-12">
+    <div className="grid md:grid-cols-12 gap-12 w-full max-w-7xl mx-auto">
+      <form ref={formRef} onSubmit={handleSubmit} onChange={checkProgress} className="md:col-span-8 flex flex-col gap-10">
         <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
           <label>
             Website
@@ -98,116 +100,134 @@ export function BookingForm() {
           </label>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          <Field label="FULL NAME // POINT OF CONTACT" name="fullName" required placeholder="Jane Wanjiru" />
-          <Field label="PHONE NUMBER" name="phone" required placeholder="07XX XXX XXX" type="tel" />
+        <div className="grid md:grid-cols-2 gap-10">
+          <Field label="Full name" name="fullName" required placeholder="Jane Wanjiru" />
+          <Field label="Phone number" name="phone" required placeholder="07XX XXX XXX" type="tel" />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          <Field label="EMAIL ADDRESS" name="email" type="email" placeholder="jane@company.co.ke" />
-          <Field label="PREFERRED TIMELINE" name="preferredDate" type="date" />
+        <div className="grid md:grid-cols-2 gap-10">
+          <Field label="Email address" name="email" type="email" placeholder="jane@company.co.ke" />
+          <Field label="Preferred timeline" name="preferredDate" type="date" />
         </div>
 
-        <label className="flex flex-col gap-4 group">
-          <span className="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)] group-focus-within:text-[var(--accent)] transition-colors">
-            REQUIRED SERVICE
+        <label className="flex flex-col gap-3 group">
+          <span className="text-sm font-medium text-[var(--text-muted)] group-focus-within:text-[var(--accent)] transition-colors">
+            Required service <span className="text-[var(--accent)]">*</span>
           </span>
           <select
             name="service"
-            className="appearance-none bg-transparent border-0 border-b border-[var(--border)] pb-4 text-xl md:text-2xl text-[var(--text)] font-display tracking-wide focus:border-[var(--accent)] focus:outline-none transition-colors rounded-none"
+            required
+            className="appearance-none bg-transparent border-b border-[var(--border)] pb-3 text-[var(--text)] focus:border-[var(--accent)] focus:outline-none transition-colors rounded-none"
           >
             <option value="" className="bg-[var(--bg)]">Select a service</option>
-            {brand.services.map((s) => (
-              <option key={s.name} value={s.name} className="bg-[var(--bg)]">
-                {s.name}
-              </option>
+            {brand.serviceCategories.map((cat) => (
+              <optgroup key={cat.name} label={cat.name}>
+                {cat.services.map((s) => (
+                  <option key={s.name} value={s.name} className="bg-[var(--bg)]">
+                    {s.name}
+                  </option>
+                ))}
+              </optgroup>
             ))}
             <option value="Not sure / other" className="bg-[var(--bg)]">Not sure / other</option>
           </select>
         </label>
 
         <Field
-          label="SITE / DELIVERY LOCATION"
+          label="Site / delivery location"
           name="location"
           placeholder="e.g. Westlands, Nairobi — or a building name"
         />
 
-        <label className="flex flex-col gap-4 group">
-          <span className="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)] group-focus-within:text-[var(--accent)] transition-colors">
-            SPECIFICATIONS (OPTIONAL)
+        <label className="flex flex-col gap-3 group">
+          <span className="text-sm font-medium text-[var(--text-muted)] group-focus-within:text-[var(--accent)] transition-colors">
+            Specifications (optional)
           </span>
           <textarea
             name="message"
             rows={3}
             placeholder="Quantities, sizes, deadline, tender reference..."
-            className="bg-transparent border-0 border-b border-[var(--border)] pb-4 text-xl text-[var(--text)] placeholder:text-[var(--border)] focus:border-[var(--accent)] focus:outline-none transition-colors resize-none rounded-none"
+            className="bg-transparent border-b border-[var(--border)] pb-3 text-[var(--text)] placeholder:text-[var(--border)] focus:border-[var(--accent)] focus:outline-none transition-colors resize-none rounded-none"
           />
         </label>
 
         {status === 'error' && (
-          <p role="alert" className="text-sm font-mono text-[var(--accent2)]">
-            // ERROR: {errorMsg}
+          <p role="alert" className="text-sm text-[var(--accent)] bg-[var(--accent)]/5 p-3 rounded-[var(--radius-sm)]">
+            {errorMsg}
           </p>
         )}
+
+        {/* Progress */}
+        <div className="flex items-center gap-3">
+          {[1, 2, 3].map((step) => (
+            <div key={step} className="flex items-center gap-2">
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono transition-all duration-300 ${
+                formProgress >= step
+                  ? 'bg-[var(--accent)] text-[var(--accent-ink)]'
+                  : 'bg-[var(--bg-soft)] text-[var(--text-muted)] border border-[var(--border)]'
+              }`}>
+                {formProgress >= step ? '✓' : step}
+              </div>
+              {step < 3 && (
+                <div className={`w-8 h-px transition-colors duration-300 ${
+                  formProgress >= step ? 'bg-[var(--accent)]' : 'bg-[var(--border)]'
+                }`} />
+              )}
+            </div>
+          ))}
+          <span className="font-mono text-[10px] text-[var(--text-muted)] ml-2">
+            {formProgress === 0 ? 'Get started' : formProgress < 3 ? 'Keep going' : 'Ready to send'}
+          </span>
+        </div>
 
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="self-start mt-8 card-theme group px-12 py-6 relative overflow-hidden"
+          className="self-start btn-primary group relative overflow-hidden"
         >
-          <span className="relative z-10 font-mono text-sm uppercase tracking-widest group-hover:text-[var(--bg)] transition-colors duration-300 font-bold">
-            {status === 'submitting' ? 'TRANSMITTING...' : 'TRANSMIT SPECIFICATIONS'}
+          <span className="relative z-10">
+            {status === 'submitting' ? (
+              <span className="flex items-center gap-2">
+                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>
+                Sending...
+              </span>
+            ) : (
+              'Send Quote Request'
+            )}
           </span>
-          <div className="absolute inset-0 bg-[var(--accent)] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out z-0"></div>
         </button>
       </form>
 
-      {/* Live Operations Tracker */}
+      {/* Sidebar */}
       <div className="md:col-span-4 hidden md:block">
-        <div className="sticky top-32 card-theme p-8 border-t border-[var(--accent)] bg-[var(--surface)]">
-          <h4 className="font-display text-xl mb-8 tracking-wider">OPERATIONS TRACKER</h4>
-          
-          <div className="flex flex-col gap-8 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
-            
-            {/* Step 1 */}
-            <div className="relative flex items-start gap-6">
-              <div className={`w-4 h-4 rounded-full border-2 mt-1 flex-shrink-0 transition-colors duration-500 ${formProgress > 0 ? 'bg-[var(--accent)] border-[var(--accent)] shadow-[0_0_10px_var(--accent)]' : 'bg-[var(--bg)] border-[var(--border)]'}`}></div>
-              <div>
-                <span className={`font-mono text-xs uppercase tracking-widest block mb-1 transition-colors duration-500 ${formProgress > 0 ? 'text-[var(--accent)]' : 'text-[var(--text-muted)]'}`}>
-                  {formProgress > 0 ? (status === 'submitting' ? 'TRANSMITTING' : 'LOGGING') : 'PENDING'}
-                </span>
-                <span className={`font-display text-lg transition-colors duration-500 ${formProgress > 0 ? 'text-[var(--text)]' : 'text-[var(--text-muted)]'}`}>
-                  Specifications Received
-                </span>
-              </div>
-            </div>
+        <div className="sticky top-32 card-surface p-8">
+          <h4 className="font-display text-lg mb-6 text-[var(--text)]">What happens next</h4>
 
-            {/* Step 2 */}
-            <div className="relative flex items-start gap-6">
-              <div className={`w-4 h-4 rounded-full border-2 mt-1 flex-shrink-0 transition-colors duration-500 ${status === 'submitting' ? 'border-[var(--accent)] animate-pulse' : 'bg-[var(--bg)] border-[var(--border)]'}`}></div>
-              <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)] block mb-1">
-                  PENDING
-                </span>
-                <span className="font-display text-lg text-[var(--text-muted)]">
-                  Site Visit / Call Scheduled (ETA: 24h)
-                </span>
-              </div>
-            </div>
+          <div className="space-y-6 relative">
+            <div className="absolute left-[11px] top-4 bottom-4 w-px bg-[var(--border)]" />
 
-            {/* Step 3 */}
-            <div className="relative flex items-start gap-6">
-              <div className="w-4 h-4 rounded-full bg-[var(--bg)] border-2 border-[var(--border)] mt-1 flex-shrink-0"></div>
-              <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)] block mb-1">
-                  PENDING
-                </span>
-                <span className="font-display text-lg text-[var(--text-muted)]">
-                  Quotation Generated
-                </span>
+            {[
+              { step: 1, title: 'Specifications received', desc: 'We review your requirements and confirm receipt.' },
+              { step: 2, title: 'Site visit or call', desc: 'Our team reaches out within 24 hours to schedule.' },
+              { step: 3, title: 'Quotation delivered', desc: 'You receive a detailed quote with timeline and pricing.' },
+            ].map((item) => (
+              <div key={item.step} className="relative flex items-start gap-4">
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 z-10 transition-colors duration-300 ${
+                  formProgress >= item.step
+                    ? 'bg-[var(--accent)] text-[var(--accent-ink)]'
+                    : 'bg-[var(--bg)] text-[var(--text-muted)] border border-[var(--border)]'
+                }`}>
+                  <span className="font-mono text-[10px]">{item.step}</span>
+                </div>
+                <div>
+                  <span className="text-sm font-semibold text-[var(--text)] block">{item.title}</span>
+                  <span className="text-xs text-[var(--text-muted)]">{item.desc}</span>
+                </div>
               </div>
-            </div>
-
+            ))}
           </div>
         </div>
       </div>
@@ -229,17 +249,17 @@ function Field({
   placeholder?: string;
 }) {
   return (
-    <label className="flex flex-col gap-4 group">
-      <span className="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)] group-focus-within:text-[var(--accent)] transition-colors">
+    <label className="flex flex-col gap-3 group">
+      <span className="text-sm font-medium text-[var(--text-muted)] group-focus-within:text-[var(--accent)] transition-colors">
         {label}
-        {required && <span className="text-[var(--accent2)]"> *</span>}
+        {required && <span className="text-[var(--accent)]"> *</span>}
       </span>
       <input
         name={name}
         type={type}
         required={required}
         placeholder={placeholder}
-        className="bg-transparent border-0 border-b border-[var(--border)] pb-4 text-xl md:text-2xl text-[var(--text)] font-display tracking-wide placeholder:text-[var(--border)] placeholder:font-sans focus:border-[var(--accent)] focus:outline-none transition-colors rounded-none"
+        className="bg-transparent border-b border-[var(--border)] pb-3 text-[var(--text)] placeholder:text-[var(--border)] focus:border-[var(--accent)] focus:outline-none transition-colors rounded-none"
       />
     </label>
   );

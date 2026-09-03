@@ -3,32 +3,34 @@ import type { BrandConfig } from '@/config/brands';
 
 export function CTASection({ brand }: { brand: BrandConfig }) {
   return (
-    <section className="border-t border-[var(--border)] bg-[var(--bg)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[var(--accent)]/5 pattern-grid-lg opacity-20"></div>
-      <div className="max-w-content mx-auto px-6 py-32 md:py-48 text-center relative z-10 flex flex-col items-center">
-        <span className="font-mono text-sm uppercase tracking-[0.3em] text-[var(--accent)] mb-8 flex items-center justify-center gap-4">
-          <span className="w-12 h-px bg-[var(--accent)]"></span>
-          READY FOR DEPLOYMENT
-          <span className="w-12 h-px bg-[var(--accent)]"></span>
+    <section className="section-py-lg bg-[var(--bg)] border-t border-[var(--border)]">
+      <div className="max-w-content mx-auto px-6 text-center">
+        <span className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-8 flex items-center justify-center gap-4">
+          <span className="w-8 h-px bg-[var(--accent)]" />
+          Ready to start?
+          <span className="w-8 h-px bg-[var(--accent)]" />
         </span>
-        
-        <h2 className="font-display text-6xl md:text-[8rem] leading-none tracking-tight mb-12 uppercase mix-blend-difference text-transparent bg-clip-text bg-gradient-to-b from-[var(--text)] to-[var(--text-muted)]">
-          INITIATE<br />PROJECT
+
+        <h2 className="font-display text-4xl md:text-5xl leading-tight mb-6 text-[var(--text)]">
+          Let&apos;s make it <span className="accent-word">happen.</span>
         </h2>
-        
-        <Link
-          href="/book"
-          className="group relative px-12 py-6 overflow-hidden border border-[var(--accent)] bg-transparent inline-flex items-center justify-center mb-12"
-        >
-          <span className="relative z-10 font-mono text-lg uppercase tracking-widest text-[var(--text)] group-hover:text-[var(--bg)] font-bold transition-colors duration-300">
-            TRANSMIT SPECIFICATIONS
-          </span>
-          <div className="absolute inset-0 bg-[var(--accent)] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out z-0"></div>
-        </Link>
-        
-        <div className="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)] flex flex-col md:flex-row items-center gap-4 md:gap-8">
-          <span>COMMS: {brand.contactPhone}</span>
-          <span className="hidden md:block w-1 h-1 bg-[var(--border)]"></span>
+
+        <p className="text-lg text-[var(--text-muted)] max-w-xl mx-auto mb-10">
+          Tell us what you need. We&apos;ll handle the sourcing, the build, and the delivery — so you can focus on running your business.
+        </p>
+
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
+          <Link href="/book" className="btn-primary">
+            Get a Quote <span>→</span>
+          </Link>
+          <a href={`tel:${brand.contactPhone}`} className="btn-secondary">
+            Call {brand.contactPhone}
+          </a>
+        </div>
+
+        <div className="font-mono text-xs text-[var(--text-muted)] flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6">
+          <span>{brand.contactPhone}</span>
+          <span className="hidden md:block w-1 h-1 bg-[var(--border)] rounded-full" />
           <a href={`mailto:${brand.contactEmail}`} className="hover:text-[var(--accent)] transition-colors">
             {brand.contactEmail}
           </a>

@@ -3,26 +3,25 @@ import { Reveal } from './Reveal';
 
 export function Testimonials({ brand }: { brand: BrandConfig }) {
   return (
-    <section className="bg-[var(--bg)] border-t border-[var(--border)]">
-      <div className="max-w-content mx-auto px-6 py-24">
+    <section className="section-py bg-[var(--bg-soft)]">
+      <div className="max-w-content mx-auto px-6">
         <Reveal>
           <div className="text-center mb-16">
-            <p className="text-sm font-medium text-[var(--accent)] uppercase tracking-widest mb-4">
-              Client Stories
+            <p className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4">
+              // Client stories
             </p>
-            <h2 className="font-display text-4xl md:text-5xl text-[var(--text)]">
+            <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
               What clients <span className="accent-word">say</span>
             </h2>
           </div>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {brand.testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 100}>
-              <blockquote className="card-editorial p-8 relative">
-                {/* Big decorative quotation mark */}
+              <blockquote className="card-surface p-8 relative">
                 <span
-                  className="absolute top-6 right-8 font-editorial text-8xl text-[var(--accent)]/10 leading-none select-none pointer-events-none"
+                  className="absolute top-4 right-6 font-editorial text-6xl text-[var(--accent)]/10 leading-none select-none pointer-events-none"
                   aria-hidden="true"
                 >
                   &ldquo;
@@ -33,7 +32,11 @@ export function Testimonials({ brand }: { brand: BrandConfig }) {
                 </p>
 
                 <footer className="flex items-center gap-3">
-                  <div className="w-8 h-px bg-[var(--accent)]" />
+                  <div className="w-8 h-8 rounded-full bg-[var(--accent)]/10 flex items-center justify-center flex-shrink-0">
+                    <span className="font-mono text-xs text-[var(--accent)] font-semibold">
+                      {t.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  </div>
                   <div>
                     <p className="text-sm font-semibold text-[var(--text)]">{t.name}</p>
                     <p className="text-xs text-[var(--text-muted)]">{t.role}</p>
@@ -47,4 +50,3 @@ export function Testimonials({ brand }: { brand: BrandConfig }) {
     </section>
   );
 }
-

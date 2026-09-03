@@ -8,6 +8,8 @@ import { PortfolioGallery } from '@/components/PortfolioGallery';
 import { Testimonials } from '@/components/Testimonials';
 import { CrossSellBanner } from '@/components/CrossSellBanner';
 import { CTASection } from '@/components/CTASection';
+import { TrustStrip } from '@/components/TrustStrip';
+import { ProblemSection } from '@/components/ProblemSection';
 
 export default function HomePage() {
   const brandId = getBrandFromHeaders();
@@ -17,6 +19,7 @@ export default function HomePage() {
   }
 
   const brand = getBrand(brandId);
+  const isBranding = brand.id === 'branding';
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -34,13 +37,83 @@ export default function HomePage() {
     <>
       {/* eslint-disable-next-line react/no-danger */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Hero brand={brand} />
-      <ProcessScroll brand={brand} />
-      <ServicesGrid brand={brand} limit={6} />
-      <PortfolioGallery brand={brand} limit={4} />
-      <Testimonials brand={brand} />
-      <CrossSellBanner brand={brand} />
-      <CTASection brand={brand} />
+
+      <section className="section-py-lg">
+        <Hero brand={brand} />
+      </section>
+
+      <div className="section-divider" />
+
+      <section className="section-py section-alt">
+        <TrustStrip
+          items={
+            isBranding
+              ? [
+                  { value: '10K+', label: 'Items sourced & branded' },
+                  { value: '4-Day', label: 'Average turnaround' },
+                  { value: '500+', label: 'Projects delivered' },
+                ]
+              : [
+                  { value: '200+', label: 'Sites installed' },
+                  { value: '5-Year', label: 'Material warranty' },
+                  { value: '98%', label: 'On-time delivery' },
+                ]
+          }
+        />
+      </section>
+
+      <div className="section-divider" />
+
+      <section className="section-py">
+        <ProblemSection
+          headline={
+            isBranding
+              ? 'The promo industry is full of middlemen.'
+              : 'Most signs look great on day one.'
+          }
+          body={
+            isBranding
+              ? 'You brief one vendor, chase another, and pray the embroidery matches the proof. We own the entire chain — from digitizing your logo to the final stitch. One partner. One timeline. One invoice.'
+              : "Ours look great in year five. We don't cut corners to win a quote. We engineer signage using weather-resistant acrylics, UV-stabilized vinyl, and commercial-grade LEDs — so your brand doesn't fade into the background."
+          }
+        />
+      </section>
+
+      <div className="section-divider" />
+
+      <section className="section-py section-alt">
+        <ProcessScroll brand={brand} />
+      </section>
+
+      <div className="section-divider" />
+
+      <section className="section-py">
+        <ServicesGrid brand={brand} limit={6} />
+      </section>
+
+      <div className="section-divider" />
+
+      <section className="section-py section-alt">
+        <PortfolioGallery brand={brand} limit={4} />
+      </section>
+
+      <div className="section-divider" />
+
+      <section className="section-py">
+        <Testimonials brand={brand} />
+      </section>
+
+      <div className="section-divider" />
+
+      <section className="section-py section-alt">
+        <CrossSellBanner brand={brand} />
+      </section>
+
+      <div className="section-divider" />
+
+      <section className="section-py">
+        <CTASection brand={brand} />
+      </section>
     </>
   );
 }
