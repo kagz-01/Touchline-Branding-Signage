@@ -3,6 +3,8 @@ import { headers } from 'next/headers';
 import type { BrandConfig } from '@/config/brands';
 import { getCrossBrandUrl } from '@/lib/brand';
 import { Logo } from './Logo';
+import { ThemeToggle } from './ThemeToggle';
+import { HeaderActions } from './HeaderActions';
 
 export async function Header({ brand }: { brand: BrandConfig | null }) {
   const headersList = await headers();
@@ -30,9 +32,12 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
               Get a Quote
             </Link>
           </nav>
-          <Link href="/book" className="btn-primary text-sm py-2 px-4 lg:hidden">
-            Get a Quote
-          </Link>
+          <div className="flex lg:hidden items-center gap-3">
+            <ThemeToggle />
+            <Link href="/book" className="btn-primary text-sm py-2 px-4">
+              Get a Quote
+            </Link>
+          </div>
         </div>
       </header>
     );
@@ -62,14 +67,7 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
           </a>
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Link
-            href="/book"
-            className="btn-primary text-sm py-2 px-5"
-          >
-            Get a Quote <span className="hidden sm:inline">→</span>
-          </Link>
-        </div>
+        <HeaderActions brand={brand.id} />
       </div>
     </header>
   );
