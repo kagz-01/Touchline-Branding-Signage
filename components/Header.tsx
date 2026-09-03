@@ -28,6 +28,7 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
               Signage
             </a>
             <span className="w-px h-4 bg-[var(--border)]" />
+            <ThemeToggle />
             <Link href="/book" className="btn-primary text-sm py-2 px-4">
               Get a Quote
             </Link>
