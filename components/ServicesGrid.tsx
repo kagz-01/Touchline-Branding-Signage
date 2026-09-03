@@ -9,13 +9,11 @@ export function ServicesGrid({ brand, limit }: { brand: BrandConfig; limit?: num
     <div className="max-w-content mx-auto px-6">
       <Reveal>
         <div className="text-center mb-16">
-          <p className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4">
-            // What we do
-          </p>
-          <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
+          <span className="text-mono-label block mb-4">// What we do</span>
+          <h2 className="text-display text-3xl md:text-4xl mb-4">
             Our <span className="accent-word">capabilities</span>
           </h2>
-          <p className="text-[var(--text-muted)] text-lg max-w-xl mx-auto">
+          <p className="text-lead max-w-xl mx-auto">
             Every service is handled in-house from sourcing to delivery — no middlemen, no surprises.
           </p>
         </div>
@@ -30,17 +28,17 @@ export function ServicesGrid({ brand, limit }: { brand: BrandConfig; limit?: num
                 <h3 className="font-display text-2xl text-[var(--text)] mb-2">
                   {category.name}
                 </h3>
-                <p className="text-[var(--text-muted)] text-sm">
+                <p className="text-editorial-lg text-sm">
                   {category.description}
                 </p>
               </div>
 
-              {/* Services Grid */}
+              {/* Services Grid with Glass Cards */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {category.services.map((service, i) => (
                   <div
                     key={service.name}
-                    className="card-surface p-6 group"
+                    className={`glass rounded-[var(--radius-md)] p-6 group tilt-card stagger-${Math.min(i + 1, 6)}`}
                   >
                     <h4 className="font-display text-base text-[var(--text)] mb-2 group-hover:text-[var(--accent)] transition-colors">
                       {service.name}
@@ -49,9 +47,9 @@ export function ServicesGrid({ brand, limit }: { brand: BrandConfig; limit?: num
                       {service.description}
                     </p>
                     {service.bestFor && (
-                      <p className="text-[10px] font-mono text-[var(--accent)] uppercase tracking-wider">
+                      <span className="text-mono-label text-[9px]">
                         Best for: {service.bestFor}
-                      </p>
+                      </span>
                     )}
                   </div>
                 ))}

@@ -13,16 +13,16 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
     const signageUrl = getCrossBrandUrl('signage', host);
 
     return (
-      <header className="border-b border-[var(--border)] relative z-50">
+      <header className="glass-nav sticky top-0 z-50">
         <div className="max-w-content mx-auto px-6 py-5 flex items-center justify-between">
           <Link href="/" data-brand="hub">
             <Logo brand="hub" className="text-xl md:text-2xl" />
           </Link>
           <nav className="hidden lg:flex items-center gap-6">
-            <a href={brandingUrl} className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
+            <a href={brandingUrl} className="text-overline hover:text-[var(--accent)] transition-colors">
               Branding
             </a>
-            <a href={signageUrl} className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
+            <a href={signageUrl} className="text-overline hover:text-[var(--accent)] transition-colors">
               Signage
             </a>
             <span className="w-px h-4 bg-[var(--border)]" />
@@ -43,21 +43,21 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
   const otherHref = getCrossBrandUrl(otherBrand, host);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[var(--bg)]/60">
+    <header className="glass-nav sticky top-0 z-50">
       <div className="max-w-content mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/">
           <Logo brand={brand.id} className="text-lg md:text-xl" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
-          <Link href="/services" className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
+          <Link href="/services" className="text-overline hover:text-[var(--accent)] transition-colors">
             Services
           </Link>
-          <Link href="/portfolio" className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
+          <Link href="/portfolio" className="text-overline hover:text-[var(--accent)] transition-colors">
             Portfolio
           </Link>
           <span className="w-px h-4 bg-[var(--border)]" />
-          <a href={otherHref} className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">
+          <a href={otherHref} className="text-overline hover:text-[var(--text)] transition-colors">
             {otherLabel} <span className="text-[var(--accent)]">→</span>
           </a>
         </nav>

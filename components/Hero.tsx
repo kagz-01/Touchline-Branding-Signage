@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { BrandConfig } from '@/config/brands';
+import { Parallax } from './Parallax';
 
 export function Hero({ brand }: { brand: BrandConfig }) {
   const words = brand.heroHeadline.split(' ');
@@ -7,37 +8,45 @@ export function Hero({ brand }: { brand: BrandConfig }) {
   const leadWords = words.slice(0, -1).join(' ');
 
   return (
-    <section className="relative bg-[var(--bg)] overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full bg-[var(--accent)]/5 blur-[80px]" />
-        <div className="absolute bottom-0 left-0 w-[30vw] h-[30vw] rounded-full bg-[var(--accent2)]/5 blur-[60px]" />
+    <section className="relative overflow-hidden">
+      {/* Decorative gradient orbs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="gradient-orb gradient-orb-accent w-[50vw] h-[50vw] -top-[20vw] -right-[10vw] animate-pulse-soft" />
+        <div className="gradient-orb gradient-orb-warm w-[35vw] h-[35vw] -bottom-[15vw] -left-[10vw] animate-float" />
+        <div className="absolute top-1/4 left-1/3 w-[20vw] h-[20vw] rounded-full bg-[var(--accent)]/3 blur-[100px]" />
       </div>
 
       <div className="relative z-10 max-w-content mx-auto px-6 section-py-lg">
-        <div className="max-w-3xl">
-          <p className="text-sm font-medium text-[var(--accent)] mb-5 flex items-center gap-3 uppercase tracking-widest">
-            <span className="w-6 h-px bg-[var(--accent)]" />
-            {brand.heroKicker}
-          </p>
+        <Parallax speed={0.3}>
+          <div className="max-w-3xl">
+            {/* Kicker with line accent */}
+            <div className="flex items-center gap-3 mb-6">
+              <span className="line-accent" />
+              <span className="text-mono-label">{brand.heroKicker}</span>
+            </div>
 
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-6 text-[var(--text)]">
-            {leadWords}{' '}
-            <span className="accent-word">{keyWord}</span>
-          </h1>
+            {/* Display headline */}
+            <h1 className="text-display text-5xl md:text-6xl lg:text-7xl mb-6 text-balance">
+              {leadWords}{' '}
+              <span className="accent-word">{keyWord}</span>
+            </h1>
 
-          <p className="text-[var(--text-muted)] text-lg md:text-xl max-w-lg mb-10 leading-relaxed">
-            {brand.heroSub}
-          </p>
+            {/* Editorial subtitle */}
+            <p className="text-editorial-lg max-w-lg mb-10">
+              {brand.heroSub}
+            </p>
 
-          <div className="flex flex-wrap gap-4">
-            <Link href="/book" className="btn-primary">
-              Request a Quote <span>→</span>
-            </Link>
-            <Link href="/portfolio" className="btn-secondary">
-              See Our Work
-            </Link>
+            {/* CTA buttons with glass effect */}
+            <div className="flex flex-wrap gap-4">
+              <Link href="/book" className="btn-primary glow-accent">
+                Request a Quote <span>→</span>
+              </Link>
+              <Link href="/portfolio" className="btn-secondary glass-subtle">
+                See Our Work
+              </Link>
+            </div>
           </div>
-        </div>
+        </Parallax>
       </div>
     </section>
   );

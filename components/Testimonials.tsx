@@ -3,14 +3,12 @@ import { Reveal } from './Reveal';
 
 export function Testimonials({ brand }: { brand: BrandConfig }) {
   return (
-    <section className="section-py bg-[var(--bg-soft)]">
+    <section className="section-py">
       <div className="max-w-content mx-auto px-6">
         <Reveal>
           <div className="text-center mb-16">
-            <p className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4">
-              // Client stories
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
+            <span className="text-mono-label block mb-4">// Client stories</span>
+            <h2 className="text-display text-3xl md:text-4xl">
               What clients <span className="accent-word">say</span>
             </h2>
           </div>
@@ -19,7 +17,7 @@ export function Testimonials({ brand }: { brand: BrandConfig }) {
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {brand.testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 100}>
-              <blockquote className="card-surface p-8 relative">
+              <blockquote className="glass rounded-[var(--radius-md)] p-8 relative group">
                 <span
                   className="absolute top-4 right-6 font-editorial text-6xl text-[var(--accent)]/10 leading-none select-none pointer-events-none"
                   aria-hidden="true"
@@ -32,14 +30,14 @@ export function Testimonials({ brand }: { brand: BrandConfig }) {
                 </p>
 
                 <footer className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[var(--accent)]/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-[var(--accent)]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--accent)]/20 transition-colors">
                     <span className="font-mono text-xs text-[var(--accent)] font-semibold">
                       {t.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-[var(--text)]">{t.name}</p>
-                    <p className="text-xs text-[var(--text-muted)]">{t.role}</p>
+                    <p className="text-mono-label text-[9px]">{t.role}</p>
                   </div>
                 </footer>
               </blockquote>

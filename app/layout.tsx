@@ -102,6 +102,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <body
       className={`${anton.variable} ${grotesk.variable} ${inter.variable} ${jetbrains.variable} ${playfair.variable} font-body bg-[var(--bg)] text-[var(--text)] antialiased ${isAdmin ? '' : 'pb-16 md:pb-0'}`}
     >
+      {!isAdmin && (
+        <>
+          <div className="gradient-bg" aria-hidden="true" />
+          <div className="noise-overlay" aria-hidden="true" />
+        </>
+      )}
       {isAdmin ? (
         children
       ) : (
