@@ -12,43 +12,45 @@
 }
 
 /* ---------------------------------------------------------------------- */
-/* Touchline Branding — Light Mode                                         */
+/* Touchline Branding — Warm Terracotta & Coral                            */
+/* Creative, warm, approachable — merchandise & craft                      */
 /* ---------------------------------------------------------------------- */
 [data-brand='branding'] {
-  --bg:          #faf7f2;
-  --bg-soft:     #f0ebe3;
+  --bg:          #faf6f3;
+  --bg-soft:     #f2ebe5;
   --surface:     #ffffff;
-  --text:        #1a1510;
-  --text-muted:  #6b5d4f;
-  --accent:      #8c6a39;
-  --accent-warm: #c7983a;
+  --text:        #1c1210;
+  --text-muted:  #7a6558;
+  --accent:      #c4654a;
+  --accent-warm: #e07850;
   --accent-ink:  #ffffff;
-  --accent2:     #c7983a;
-  --border:      rgba(140, 106, 57, 0.12);
-  --shadow:      rgba(26, 21, 16, 0.06);
+  --accent2:     #d4915a;
+  --border:      rgba(196, 101, 74, 0.12);
+  --shadow:      rgba(28, 18, 16, 0.06);
   --font-display: var(--font-anton);
 }
 
 /* ---------------------------------------------------------------------- */
-/* Touchline Signage — Light Mode                                          */
+/* Touchline Signage — Cool Steel Teal & Slate                             */
+/* Precise, industrial, modern — fabrication & LED                         */
 /* ---------------------------------------------------------------------- */
 [data-brand='signage'] {
-  --bg:          #f8f6f2;
-  --bg-soft:     #ede9e2;
+  --bg:          #f3f6f8;
+  --bg-soft:     #e6ecf0;
   --surface:     #ffffff;
-  --text:        #141415;
-  --text-muted:  #6b6560;
-  --accent:      #916f35;
-  --accent-warm: #bd9f5d;
+  --text:        #0f1a22;
+  --text-muted:  #5a7080;
+  --accent:      #1a7a8c;
+  --accent-warm: #2ca0b0;
   --accent-ink:  #ffffff;
-  --accent2:     #bd9f5d;
-  --border:      rgba(145, 111, 53, 0.12);
-  --shadow:      rgba(20, 20, 21, 0.06);
+  --accent2:     #b87333;
+  --border:      rgba(26, 122, 140, 0.12);
+  --shadow:      rgba(15, 26, 34, 0.06);
   --font-display: var(--font-grotesk);
 }
 
 /* ---------------------------------------------------------------------- */
-/* Hub — Light Mode                                                        */
+/* Hub — Warm Gold (unifying parent brand)                                 */
 /* ---------------------------------------------------------------------- */
 [data-brand='hub'] {
   --bg:          #faf8f4;
@@ -66,33 +68,33 @@
 }
 
 /* ---------------------------------------------------------------------- */
-/* Dark Mode — All Brands                                                  */
+/* Dark Mode — Distinct per brand                                          */
 /* ---------------------------------------------------------------------- */
 .dark [data-brand='branding'] {
-  --bg:          #12100d;
-  --bg-soft:     #1a1713;
-  --surface:     #211e19;
-  --text:        #f0ebe3;
-  --text-muted:  #a89880;
-  --accent:      #c7983a;
-  --accent-warm: #e8b84a;
-  --accent-ink:  #1a1510;
-  --accent2:     #e8b84a;
-  --border:      rgba(199, 152, 58, 0.15);
+  --bg:          #14100e;
+  --bg-soft:     #1c1614;
+  --surface:     #241e1b;
+  --text:        #f2ebe5;
+  --text-muted:  #b09484;
+  --accent:      #e07850;
+  --accent-warm: #f09060;
+  --accent-ink:  #1c1210;
+  --accent2:     #f0a868;
+  --border:      rgba(224, 120, 80, 0.15);
   --shadow:      rgba(0, 0, 0, 0.3);
 }
 
 .dark [data-brand='signage'] {
-  --bg:          #0f0e0d;
-  --bg-soft:     #181614;
-  --surface:     #1f1d1a;
-  --text:        #ede9e2;
-  --text-muted:  #a09888;
-  --accent:      #bd9f5d;
-  --accent-warm: #d4b870;
-  --accent-ink:  #141415;
-  --accent2:     #d4b870;
-  --border:      rgba(189, 159, 93, 0.15);
+  --bg:          #0c1115;
+  --bg-soft:     #141e24;
+  --surface:     #1a2830;
+  --text:        #e6ecf0;
+  --text-muted:  #7a98a8;
+  --accent:      #2cc0d0;
+  --accent-warm: #40d0e0;
+  --accent-ink:  #0f1a22;
+  --accent2:     #d08840;
+  --border:      rgba(44, 192, 208, 0.15);
   --shadow:      rgba(0, 0, 0, 0.3);
 }
 
