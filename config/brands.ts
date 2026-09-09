@@ -130,7 +130,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
       ctaLabel: 'See Touchline Signage',
       targetBrand: 'signage'
     },
-    contactPhone: '+254 700 000 000',
+    contactPhone: '+254722668696',
     contactEmail: 'branding@touchlineltd.co.ke',
     themeClass: 'branding'
   },
@@ -224,7 +224,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
       ctaLabel: 'See Touchline Branding',
       targetBrand: 'branding'
     },
-    contactPhone: '+254 700 000 001',
+    contactPhone: '+254722668696',
     contactEmail: 'signage@touchlineltd.co.ke',
     themeClass: 'signage'
   }

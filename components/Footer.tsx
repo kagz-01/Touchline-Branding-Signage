@@ -128,7 +128,7 @@ export async function Footer({ brand }: { brand: BrandConfig | null }) {
             </ul>
           ) : (
             <ul className="space-y-3 text-sm text-[var(--text-muted)]">
-              <li><a href="tel:+254700000000" className="hover:text-[var(--accent)] transition-colors">+254 700 000 000</a></li>
+              <li><a href="tel:+254722668696" className="hover:text-[var(--accent)] transition-colors">+254 722 668 696</a></li>
               <li><a href="mailto:hello@touchlineltd.co.ke" className="hover:text-[var(--accent)] transition-colors">hello@touchlineltd.co.ke</a></li>
               <li>
                 <a

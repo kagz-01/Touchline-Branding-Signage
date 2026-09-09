@@ -621,7 +621,7 @@ export function SignageHome() {
               <Link href="/book" className="btn-primary glow-accent">
                 Get a Quote <span>→</span>
               </Link>
-              <a href="tel:+254700000001" className="btn-secondary glass-subtle">
+              <a href="tel:+254722668696" className="btn-secondary glass-subtle">
                 Call Us
               </a>
             </div>
