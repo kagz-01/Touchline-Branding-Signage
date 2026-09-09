@@ -348,7 +348,7 @@ export function BrandingHome() {
               </div>
 
               <div className="mt-8 pt-6 border-t border-[var(--border)]">
-                <Link href="/book" className="btn-primary text-sm">
+                <Link href={`/book?service=${encodeURIComponent(COMPARISON_DATA[activeComparison].method)}`} className="btn-primary text-sm">
                   Get a Quote for {COMPARISON_DATA[activeComparison].method} <span>→</span>
                 </Link>
               </div>

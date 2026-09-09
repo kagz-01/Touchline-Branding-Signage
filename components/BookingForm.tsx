@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import type { BrandConfig } from '@/config/brands';
 
 type Step = 1 | 2 | 3;
@@ -12,7 +13,19 @@ const STEPS = [
   { id: 3, label: 'Details', description: 'Specs & timeline' },
 ] as const;
 
+const QUANTITY_OPTIONS = [
+  '1-10 units',
+  '11-50 units',
+  '51-100 units',
+  '101-500 units',
+  '500+ units',
+  'Not sure yet',
+];
+
 export function BookingForm({ brand }: { brand: BrandConfig }) {
+  const searchParams = useSearchParams();
+  const preselectedService = searchParams.get('service') || '';
+
   const [step, setStep] = useState<Step>(1);
   const [status, setStatus] = useState<Status>('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -24,11 +37,19 @@ export function BookingForm({ brand }: { brand: BrandConfig }) {
     fullName: '',
     phone: '',
     email: '',
-    service: '',
+    service: preselectedService,
+    quantity: '',
     preferredDate: '',
     location: '',
     message: '',
   });
+
+  // Update service if query param changes
+  useEffect(() => {
+    if (preselectedService && !formData.service) {
+      setFormData((prev) => ({ ...prev, service: preselectedService }));
+    }
+  }, [preselectedService, formData.service]);
 
   const updateField = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -91,7 +112,7 @@ export function BookingForm({ brand }: { brand: BrandConfig }) {
   }
 
   if (status === 'sent') {
-    return <SuccessState brand={brand} />;
+    return <SuccessState brand={brand} formData={formData} />;
   }
 
   return (
@@ -233,6 +254,29 @@ export function BookingForm({ brand }: { brand: BrandConfig }) {
               </div>
             </a>
           </div>
+
+          {/* WhatsApp card */}
+          <div className="glass rounded-[var(--radius-lg)] p-6">
+            <p className="text-mono-label text-[9px] mb-3">Quick chat?</p>
+            <a
+              href={`https://wa.me/${brand.contactPhone.replace(/\D/g, '')}?text=${encodeURIComponent(`Hi ${brand.name}, I'd like to get a quote.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 group"
+            >
+              <div className="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
+                <svg className="w-4 h-4 text-green-500" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+              </div>
+              <div>
+                <span className="text-sm font-semibold text-[var(--text)] block group-hover:text-green-500 transition-colors">
+                  WhatsApp Us
+                </span>
+                <span className="text-xs text-[var(--text-muted)]">Instant response</span>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -318,6 +362,25 @@ function StepTwo({ formData, updateField, brand }: { formData: Record<string, st
         </select>
       </label>
 
+      <label className="flex flex-col gap-3 group">
+        <span className="text-sm font-medium text-[var(--text-muted)] group-focus-within:text-[var(--accent)] transition-colors">
+          Estimated quantity
+        </span>
+        <select
+          name="quantity"
+          value={formData.quantity}
+          onChange={(e) => updateField('quantity', e.target.value)}
+          className="appearance-none bg-transparent border-b border-[var(--border)] pb-3 text-[var(--text)] focus:border-[var(--accent)] focus:outline-none transition-colors rounded-none"
+        >
+          <option value="" className="bg-[var(--bg)]">Select quantity range</option>
+          {QUANTITY_OPTIONS.map((opt) => (
+            <option key={opt} value={opt} className="bg-[var(--bg)]">
+              {opt}
+            </option>
+          ))}
+        </select>
+      </label>
+
       <Field
         label="Site / delivery location"
         name="location"
@@ -355,7 +418,7 @@ function StepThree({ formData, updateField }: { formData: Record<string, string>
           rows={4}
           value={formData.message}
           onChange={(e) => updateField('message', e.target.value)}
-          placeholder="Quantities, sizes, colours, deadline, tender reference — anything that helps us quote accurately."
+          placeholder="Colours, sizes, deadline, logo file, tender reference — anything that helps us quote accurately."
           className="bg-transparent border-b border-[var(--border)] pb-3 text-[var(--text)] placeholder:text-[var(--border)] focus:border-[var(--accent)] focus:outline-none transition-colors resize-none rounded-none"
         />
       </label>
@@ -374,6 +437,12 @@ function StepThree({ formData, updateField }: { formData: Record<string, string>
             <div className="flex justify-between">
               <span className="text-[var(--text-muted)]">Service</span>
               <span className="text-[var(--text)] font-medium">{formData.service}</span>
+            </div>
+          )}
+          {formData.quantity && (
+            <div className="flex justify-between">
+              <span className="text-[var(--text-muted)]">Quantity</span>
+              <span className="text-[var(--text)] font-medium">{formData.quantity}</span>
             </div>
           )}
           {formData.location && (
@@ -398,7 +467,12 @@ function StepThree({ formData, updateField }: { formData: Record<string, string>
 /* Success State                                                        */
 /* ------------------------------------------------------------------ */
 
-function SuccessState({ brand }: { brand: BrandConfig }) {
+function SuccessState({ brand, formData }: { brand: BrandConfig; formData: Record<string, string> }) {
+  const whatsappMessage = encodeURIComponent(
+    `Hi ${brand.name}, I just submitted a quote request.\n\nService: ${formData.service}\nQuantity: ${formData.quantity || 'Not specified'}\nLocation: ${formData.location || 'Not specified'}\n\nLooking forward to hearing from you!`
+  );
+  const whatsappUrl = `https://wa.me/${brand.contactPhone.replace(/\D/g, '')}?text=${whatsappMessage}`;
+
   return (
     <div className="max-w-2xl mx-auto text-center py-12 animate-fade-in-up">
       {/* Checkmark */}
@@ -485,6 +559,9 @@ function SuccessState({ brand }: { brand: BrandConfig }) {
       <div className="flex flex-wrap justify-center gap-4">
         <a href="/" className="btn-secondary glass-subtle">
           ← Back to {brand.name}
+        </a>
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-medium transition-colors">
+          Confirm on WhatsApp →
         </a>
         <a href={`tel:${brand.contactPhone}`} className="btn-primary">
           Call Us Now →

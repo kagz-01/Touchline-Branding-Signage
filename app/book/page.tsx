@@ -1,8 +1,21 @@
+import { Suspense } from 'react';
 import { getBrandFromHeaders } from '@/lib/get-brand-server';
 import { getBrand } from '@/config/brands';
 import { redirect } from 'next/navigation';
 import { BookingForm } from '@/components/BookingForm';
 import { Parallax } from '@/components/Parallax';
+
+function BookingFormWrapper({ brand }: { brand: ReturnType<typeof getBrand> }) {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center py-24">
+        <div className="w-8 h-8 border-2 border-[var(--accent)] border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <BookingForm brand={brand} />
+    </Suspense>
+  );
+}
 
 export default function BookPage() {
   const brandId = getBrandFromHeaders();
@@ -53,7 +66,7 @@ export default function BookPage() {
         </div>
 
         {/* Form */}
-        <BookingForm brand={brand} />
+        <BookingFormWrapper brand={brand} />
       </div>
     </section>
   );
