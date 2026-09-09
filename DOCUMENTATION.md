@@ -11,9 +11,9 @@ Touchline is a **single Next.js codebase** that serves three experiences, split 
 
 | Domain | Experience |
 |--------|-----------|
-| `touchline.ac.ke` | **Hub** — The front door. Introduces Touchline as one company with two specialisms. |
-| `branding.touchline.ac.ke` | **Branding** — Merchandise, apparel, promotional products, tender-scale sourcing. |
-| `signage.touchline.ac.ke` | **Signage** — Signage design, fabrication, LED installations, vehicle wraps. |
+| `touchlineltd.co.ke` | **Hub** — The front door. Introduces Touchline as one company with two specialisms. |
+| `branding.touchlineltd.co.ke` | **Branding** — Merchandise, apparel, promotional products, tender-scale sourcing. |
+| `signage.touchlineltd.co.ke` | **Signage** — Signage design, fabrication, LED installations, vehicle wraps. |
 
 One codebase. Three experiences. One admin dashboard. One leads database.
 
@@ -22,9 +22,9 @@ One codebase. Three experiences. One admin dashboard. One leads database.
 ## Platform Architecture
 
 ```
-touchline.ac.ke (Hub)
-├── branding.touchline.ac.ke (Branding specialism)
-├── signage.touchline.ac.ke (Signage specialism)
+touchlineltd.co.ke (Hub)
+├── branding.touchlineltd.co.ke (Branding specialism)
+├── signage.touchlineltd.co.ke (Signage specialism)
 └── /admin (Internal leads dashboard)
 ```
 
@@ -32,7 +32,7 @@ touchline.ac.ke (Hub)
 
 ---
 
-## The Hub (touchline.ac.ke)
+## The Hub (touchlineltd.co.ke)
 
 The hub is the **front door** of the platform. It establishes Touchline as one company before introducing the two specialisms.
 
@@ -70,7 +70,7 @@ The hub is the **front door** of the platform. It establishes Touchline as one c
 
 ---
 
-## Branding Specialism (branding.touchline.ac.ke)
+## Branding Specialism (branding.touchlineltd.co.ke)
 
 The branding vertical handles **merchandise, apparel, and promotional products**.
 
@@ -102,7 +102,7 @@ The branding vertical handles **merchandise, apparel, and promotional products**
 
 ---
 
-## Signage Specialism (signage.touchline.ac.ke)
+## Signage Specialism (signage.touchlineltd.co.ke)
 
 The signage vertical handles **signage design, fabrication, and installation**.
 
@@ -321,9 +321,9 @@ touchline-platform/
 1. Push repo to GitHub
 2. Import into Vercel as one project
 3. Add three domains in Vercel Settings → Domains:
-   - `touchline.ac.ke`
-   - `branding.touchline.ac.ke`
-   - `signage.touchline.ac.ke`
+   - `touchlineltd.co.ke`
+   - `branding.touchlineltd.co.ke`
+   - `signage.touchlineltd.co.ke`
 4. Point DNS to Vercel (A/CNAME records)
 5. Add environment variables in Vercel Settings → Environment Variables
 

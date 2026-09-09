@@ -65,7 +65,7 @@ function LoginCard() {
 
         {/* Footer */}
         <div className="flex items-center justify-between px-6 py-3 border border-[var(--border)] border-t-0 bg-[var(--bg)]">
-          <span className="font-mono text-xs text-[var(--text-muted)]">touchline.ac.ke</span>
+          <span className="font-mono text-xs text-[var(--text-muted)]">touchlineltd.co.ke</span>
           <span className="font-mono text-xs text-[var(--text-muted)]">ADMIN PORTAL</span>
         </div>
       </div>

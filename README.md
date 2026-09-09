@@ -4,9 +4,9 @@ One Next.js codebase serving three experiences, split by subdomain:
 
 | Domain                        | Experience                                   |
 |--------------------------------|-----------------------------------------------|
-| `touchline.ac.ke`             | Hub \u2014 two doors: Branding & Signage, plus a link to TouchGiftShop |
-| `branding.touchline.ac.ke`    | Touchline Branding \u2014 merch/apparel/promo sourcing |
-| `signage.touchline.ac.ke`     | Touchline Signage \u2014 signage design, fabrication & install |
+| `touchlineltd.co.ke`             | Hub \u2014 two doors: Branding & Signage, plus a link to TouchGiftShop |
+| `branding.touchlineltd.co.ke`    | Touchline Branding \u2014 merch/apparel/promo sourcing |
+| `signage.touchlineltd.co.ke`     | Touchline Signage \u2014 signage design, fabrication & install |
 
 No visitor-facing redirects happen \u2014 `middleware.ts` reads the hostname on
 every request and resolves it to a brand, then the rest of the app renders
@@ -124,7 +124,7 @@ branches for `<img src="/logos/branding.svg" ... />` and
 
 1. Push this repo, import it into Vercel as one project.
 2. In Vercel \u2192 Settings \u2192 Domains, add all three:
-   `touchline.ac.ke`, `branding.touchline.ac.ke`, `signage.touchline.ac.ke`
+   `touchlineltd.co.ke`, `branding.touchlineltd.co.ke`, `signage.touchlineltd.co.ke`
    \u2014 all pointing at the same deployment. `middleware.ts` handles the split,
    no separate Vercel projects needed.
 3. Point your DNS (A/CNAME per Vercel's instructions) for all three at Vercel.

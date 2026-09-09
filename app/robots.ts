@@ -5,7 +5,7 @@ import { getBrandFromHeaders } from '@/lib/get-brand-server';
 // Admin routes are kept out of the index on every brand.
 export default function robots(): MetadataRoute.Robots {
   const brandId = getBrandFromHeaders();
-  const host = brandId === 'hub' ? 'touchline.ac.ke' : `${brandId}.touchline.ac.ke`;
+  const host = brandId === 'hub' ? 'touchlineltd.co.ke' : `${brandId}.touchlineltd.co.ke`;
 
   return {
     rules: {

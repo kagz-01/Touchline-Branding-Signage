@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   if (brandId === 'hub') {
     return [
       {
-        url: 'https://touchline.ac.ke/',
+        url: 'https://touchlineltd.co.ke/',
         lastModified: now,
         changeFrequency: 'monthly',
         priority: 1,
@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
   }
 
-  const base = `https://${brandId}.touchline.ac.ke`;
+  const base = `https://${brandId}.touchlineltd.co.ke`;
   return [
     { url: `${base}/`,           lastModified: now, changeFrequency: 'weekly',  priority: 1.0 },
     { url: `${base}/services`,   lastModified: now, changeFrequency: 'monthly', priority: 0.9 },

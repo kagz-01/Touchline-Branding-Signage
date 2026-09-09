@@ -91,7 +91,7 @@ export default function OGImage() {
 
           {/* Bottom bar */}
           <div style={{ position: 'absolute', bottom: 40, left: 80, right: 80, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ display: 'flex', fontSize: 14, color: theme.muted }}>touchline.ac.ke</div>
+            <div style={{ display: 'flex', fontSize: 14, color: theme.muted }}>touchlineltd.co.ke</div>
             <div style={{ display: 'flex', gap: 8 }}>
               <div style={{ width: 8, height: 8, borderRadius: 4, background: theme.accent, display: 'flex' }} />
               <div style={{ width: 8, height: 8, borderRadius: 4, background: theme.accent2, display: 'flex' }} />

@@ -45,7 +45,7 @@ async function sendLeadEmail(body: LeadPayload) {
   });
 
   await transporter.sendMail({
-    from: process.env.EMAIL_FROM ?? '"Touchline Website" <no-reply@touchline.ac.ke>',
+    from: process.env.EMAIL_FROM ?? '"Touchline Website" <no-reply@touchlineltd.co.ke>',
     to: process.env.ADMIN_EMAILS?.split(',')[0] ?? user,
     subject: `New Lead: ${body.brand.toUpperCase()} — ${body.fullName}`,
     text: [
