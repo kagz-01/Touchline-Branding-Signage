@@ -8,6 +8,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { BottomNav } from '@/components/BottomNav';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { CommandPalette } from '@/components/CommandPalette';
 import { ClientBrandUpdater } from '@/components/ClientBrandUpdater';
 import './globals.css';
@@ -179,6 +180,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main>{children}</main>
           <Footer brand={brand} />
           <BottomNav brand={brand} />
+          <WhatsAppButton brand={brand} />
           <CommandPalette />
         </>
       )}

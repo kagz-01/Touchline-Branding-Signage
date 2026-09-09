@@ -1,6 +1,7 @@
 import { getBrandFromHeaders } from '@/lib/get-brand-server';
 import { getBrand } from '@/config/brands';
 import { HubHome } from '@/components/HubHome';
+import { BrandingHome } from '@/components/BrandingHome';
 import { Hero } from '@/components/Hero';
 import { ProcessScroll } from '@/components/ProcessScroll';
 import { ServicesGrid } from '@/components/ServicesGrid';
@@ -16,6 +17,10 @@ export default function HomePage() {
 
   if (brandId === 'hub') {
     return <HubHome />;
+  }
+
+  if (brandId === 'branding') {
+    return <BrandingHome />;
   }
 
   const brand = getBrand(brandId);
