@@ -3,15 +3,15 @@
 import { useState } from 'react';
 import { Reveal } from './Reveal';
 
-const PRODUCTS = [
-  { name: 'Branded T-Shirt', cost: 500, impressionsPerDay: 3000, lifespanDays: 365, icon: '👕' },
-  { name: 'Branded Pen', cost: 30, impressionsPerDay: 2000, lifespanDays: 730, icon: '🖊️' },
-  { name: 'Branded Mug', cost: 250, impressionsPerDay: 1500, lifespanDays: 1825, icon: '☕' },
-  { name: 'Branded Tote Bag', cost: 200, impressionsPerDay: 5000, lifespanDays: 365, icon: '👜' },
-  { name: 'Branded Water Bottle', cost: 400, impressionsPerDay: 2500, lifespanDays: 1095, icon: '🧴' },
-  { name: 'Branded Cap', cost: 250, impressionsPerDay: 3500, lifespanDays: 365, icon: '🧢' },
-  { name: 'Branded Notebook', cost: 200, impressionsPerDay: 1000, lifespanDays: 365, icon: '📓' },
-  { name: 'Branded Power Bank', cost: 800, impressionsPerDay: 4000, lifespanDays: 730, icon: '🔋' },
+const PRODUCTS: { name: string; cost: number; impressionsPerDay: number; lifespanDays: number; icon: React.ReactNode }[] = [
+  { name: 'Branded T-Shirt', cost: 500, impressionsPerDay: 3000, lifespanDays: 365, icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z" /></svg> },
+  { name: 'Branded Pen', cost: 30, impressionsPerDay: 2000, lifespanDays: 730, icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path d="M17 3a2.83 2.83 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z" /></svg> },
+  { name: 'Branded Mug', cost: 250, impressionsPerDay: 1500, lifespanDays: 1825, icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path d="M17 8h1a4 4 0 110 8h-1" /><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z" /><line x1="6" y1="2" x2="6" y2="4" /><line x1="10" y1="2" x2="10" y2="4" /><line x1="14" y1="2" x2="14" y2="4" /></svg> },
+  { name: 'Branded Tote Bag', cost: 200, impressionsPerDay: 5000, lifespanDays: 365, icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 01-8 0" /></svg> },
+  { name: 'Branded Water Bottle', cost: 400, impressionsPerDay: 2500, lifespanDays: 1095, icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path d="M8 2h8v4H8z" /><path d="M6 6h12l-1 16H7L6 6z" /><path d="M10 2v2" /><path d="M14 2v2" /></svg> },
+  { name: 'Branded Cap', cost: 250, impressionsPerDay: 3500, lifespanDays: 365, icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path d="M4 18V12a8 8 0 0116 0v6" /><path d="M4 18h16" /><path d="M2 14h20" /></svg> },
+  { name: 'Branded Notebook', cost: 200, impressionsPerDay: 1000, lifespanDays: 365, icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z" /><line x1="8" y1="2" x2="8" y2="22" /><line x1="12" y1="8" x2="18" y2="8" /><line x1="12" y1="12" x2="18" y2="12" /></svg> },
+  { name: 'Branded Power Bank', cost: 800, impressionsPerDay: 4000, lifespanDays: 730, icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><rect x="2" y="7" width="16" height="10" rx="2" /><line x1="22" y1="11" x2="22" y2="13" /><line x1="6" y1="11" x2="6" y2="13" /><line x1="10" y1="11" x2="10" y2="13" /></svg> },
 ];
 
 export function BrandingROICalculator() {
@@ -45,7 +45,7 @@ export function BrandingROICalculator() {
                   : 'bg-[var(--bg-soft)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--accent)]'
               }`}
             >
-              <span className="text-2xl block mb-2">{p.icon}</span>
+              <span className="block mb-2">{p.icon}</span>
               <span className="text-xs font-medium block">{p.name}</span>
             </button>
           ))}

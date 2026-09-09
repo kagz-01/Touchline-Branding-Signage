@@ -10,12 +10,12 @@ import {
   type ClimateZone,
 } from '@/config/branding-knowledge';
 
-const ZONE_ICONS: Record<ClimateZone, string> = {
-  coastal: '🌊',
-  highland: '🏔️',
-  lake: '🏞️',
-  arid: '🏜️',
-  urban: '🏙️',
+const ZONE_ICONS: Record<ClimateZone, React.ReactNode> = {
+  coastal: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5"><path d="M2 16c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" /><path d="M2 20c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" /><path d="M8 10l4-6 4 6" /></svg>,
+  highland: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5"><path d="M12 2L2 22h20L12 2z" /><path d="M8 14l4-6 4 6" /></svg>,
+  lake: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5"><path d="M2 16c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" /><path d="M2 20c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" /><path d="M8 10l4-6 4 6" /></svg>,
+  arid: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5"><path d="M2 20h20" /><circle cx="12" cy="8" r="4" /><path d="M4 16c1-2 3-3 5-3s3 1 5 3" /><path d="M14 14c1-1 2-2 4-2" /></svg>,
+  urban: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5"><rect x="1" y="6" width="6" height="16" rx="1" /><rect x="9" y="2" width="6" height="20" rx="1" /><rect x="17" y="8" width="6" height="14" rx="1" /><line x1="4" y1="10" x2="4" y2="10.01" /><line x1="4" y1="14" x2="4" y2="14.01" /><line x1="12" y1="6" x2="12" y2="6.01" /><line x1="12" y1="10" x2="12" y2="10.01" /><line x1="20" y1="12" x2="20" y2="12.01" /><line x1="20" y1="16" x2="20" y2="16.01" /></svg>,
 };
 
 const ZONE_DESCRIPTIONS: Record<ClimateZone, string> = {
@@ -60,7 +60,7 @@ export function ZoneDetector() {
           />
           {detectedZone && (
             <div className="absolute right-0 top-0 flex items-center gap-2">
-              <span className="text-2xl">{ZONE_ICONS[detectedZone]}</span>
+              <span className="text-[var(--accent)]">{ZONE_ICONS[detectedZone]}</span>
               <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-widest">
                 {detectedZone} zone
               </span>

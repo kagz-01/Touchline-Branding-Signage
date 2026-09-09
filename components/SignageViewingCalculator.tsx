@@ -10,12 +10,71 @@ const VIEWING_SCENARIOS = [
   { name: 'Highway', distance: 100, description: 'Expressway, major highway' },
 ];
 
-const SIGN_TYPES = [
-  { name: 'Channel Letters', multiplier: 1.0, icon: '🔤' },
-  { name: 'Dimensional Letters', multiplier: 0.9, icon: '🔤' },
-  { name: 'Lightbox', multiplier: 1.2, icon: '💡' },
-  { name: 'Monument', multiplier: 1.3, icon: '🏛️' },
-  { name: 'Pylon', multiplier: 1.5, icon: '🗼' },
+const SIGN_TYPES: { name: string; multiplier: number; icon: React.ReactNode }[] = [
+  {
+    name: 'Channel Letters',
+    multiplier: 1.0,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
+        <polyline points="4 7 4 4 20 4 20 7" />
+        <line x1="9" y1="20" x2="15" y2="20" />
+        <line x1="12" y1="4" x2="12" y2="20" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Dimensional Letters',
+    multiplier: 0.9,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
+        <path d="M12 3v18" />
+        <path d="M8 7l4-4 4 4" />
+        <rect x="4" y="14" width="16" height="7" rx="1" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Lightbox',
+    multiplier: 1.2,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <circle cx="12" cy="12" r="3" />
+        <line x1="12" y1="3" x2="12" y2="6" />
+        <line x1="12" y1="18" x2="12" y2="21" />
+        <line x1="3" y1="12" x2="6" y2="12" />
+        <line x1="18" y1="12" x2="21" y2="12" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Monument',
+    multiplier: 1.3,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
+        <path d="M3 21h18" />
+        <path d="M5 21V7l7-4 7 4v14" />
+        <path d="M9 21v-4h6v4" />
+        <line x1="9" y1="10" x2="9" y2="10.01" />
+        <line x1="15" y1="10" x2="15" y2="10.01" />
+        <line x1="9" y1="14" x2="9" y2="14.01" />
+        <line x1="15" y1="14" x2="15" y2="14.01" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Pylon',
+    multiplier: 1.5,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
+        <path d="M12 2v4" />
+        <path d="M8 6h8l-1 16H9L8 6z" />
+        <path d="M6 22h12" />
+        <line x1="10" y1="10" x2="14" y2="10" />
+        <line x1="10" y1="14" x2="14" y2="14" />
+      </svg>
+    ),
+  },
 ];
 
 const ILLUMINATION_BONUS = {
@@ -132,7 +191,7 @@ export function SignageViewingCalculator() {
                     : 'bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] border border-[var(--border)]'
                 }`}
               >
-                <span className="mr-1">{type.icon}</span> {type.name}
+                <span className="inline-flex items-center justify-center mr-1">{type.icon}</span> {type.name}
               </button>
             ))}
           </div>

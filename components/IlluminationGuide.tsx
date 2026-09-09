@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import Link from 'next/link';
 import { Reveal } from './Reveal';
 
@@ -11,7 +11,19 @@ const BUSINESS_HOURS = [
   { id: '24-7', label: '24/7 Operation', hours: '24/7', nightHours: 12 },
 ];
 
-const ILLUMINATION_OPTIONS = [
+type IlluminationOption = {
+  name: string;
+  description: string;
+  bestFor: string[];
+  visibility: string;
+  energyCost: string;
+  lifespan: string;
+  priceRange: string;
+  nightScore: number;
+  icon: ReactNode;
+};
+
+const ILLUMINATION_OPTIONS: IlluminationOption[] = [
   {
     name: 'Front-Lit Channel Letters',
     description: 'LED modules inside each letter shine forward. Most common, cost-effective, maximum visibility.',
@@ -21,7 +33,7 @@ const ILLUMINATION_OPTIONS = [
     lifespan: '7-10 years',
     priceRange: 'KES 8,000-15,000/letter',
     nightScore: 9,
-    icon: '💡',
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z" /></svg>,
   },
   {
     name: 'Back-Lit / Halo Letters',
@@ -32,7 +44,7 @@ const ILLUMINATION_OPTIONS = [
     lifespan: '7-10 years',
     priceRange: 'KES 12,000-25,000/letter',
     nightScore: 8,
-    icon: '✨',
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z" /></svg>,
   },
   {
     name: 'LED Neon Flex',
@@ -43,7 +55,7 @@ const ILLUMINATION_OPTIONS = [
     lifespan: '5-7 years',
     priceRange: 'KES 5,000-15,000/metre',
     nightScore: 10,
-    icon: '🌈',
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><rect x="2" y="12" width="20" height="8" rx="2" /><path d="M6 12V8a6 6 0 0112 0v4" /><line x1="6" y1="16" x2="6" y2="16.01" /><line x1="10" y1="16" x2="10" y2="16.01" /><line x1="14" y1="16" x2="14" y2="16.01" /><line x1="18" y1="16" x2="18" y2="16.01" /></svg>,
   },
   {
     name: 'Edge-Lit Panels',
@@ -54,7 +66,7 @@ const ILLUMINATION_OPTIONS = [
     lifespan: '5-7 years',
     priceRange: 'KES 10,000-30,000',
     nightScore: 7,
-    icon: '🔲',
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><rect x="3" y="3" width="18" height="18" rx="2" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="12" y1="3" x2="12" y2="21" /></svg>,
   },
   {
     name: 'Lightbox',
@@ -65,7 +77,7 @@ const ILLUMINATION_OPTIONS = [
     lifespan: '5-7 years',
     priceRange: 'KES 15,000-60,000',
     nightScore: 9,
-    icon: '📦',
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="12" cy="12" r="3" /><line x1="12" y1="3" x2="12" y2="6" /><line x1="12" y1="18" x2="12" y2="21" /><line x1="3" y1="12" x2="6" y2="12" /><line x1="18" y1="12" x2="21" y2="12" /></svg>,
   },
   {
     name: 'No Illumination',
@@ -76,7 +88,7 @@ const ILLUMINATION_OPTIONS = [
     lifespan: '5-10 years',
     priceRange: 'KES 3,000-15,000',
     nightScore: 2,
-    icon: '🔇',
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><line x1="1" y1="1" x2="23" y2="23" /><path d="M9 9v3a3 3 0 005.12 2.12M15 9.34V4a3 3 0 00-5.94-.6" /><path d="M17 16.95A7 7 0 015 12v-2m14 0v2c0 .76-.13 1.49-.35 2.17" /><line x1="12" y1="19" x2="12" y2="23" /><line x1="8" y1="23" x2="16" y2="23" /></svg>,
   },
 ];
 
