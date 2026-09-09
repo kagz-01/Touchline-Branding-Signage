@@ -3,9 +3,11 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { getBrand } from '@/config/brands';
+import { HOT_PRODUCTS_KE, GLOBAL_TRENDS_2026, getSeasonalRecommendations, MARKET_DATA } from '@/config/branding-knowledge';
 import { Logo } from './Logo';
 import { Reveal } from './Reveal';
 import { HowItWorks } from './HowItWorks';
+import { ZoneDetector } from './ZoneDetector';
 
 const brand = getBrand('branding');
 
@@ -443,7 +445,101 @@ export function BrandingHome() {
         </div>
       </section>
 
-      {/* ── 8. CTA ───────────────────────────────────────────────── */}
+      {/* ── 8. HOT PRODUCTS IN KENYA ────────────────────────────── */}
+      <section className="section-py bg-[var(--bg-soft)]">
+        <div className="max-w-content mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-16">
+              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+                // What&apos;s trending
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
+                Hot products in <span className="accent-word">Kenya 2026</span>
+              </h2>
+              <p className="text-lead max-w-xl mx-auto">
+                Based on sales data across {MARKET_DATA.kenya.totalSuppliers} suppliers nationwide.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {HOT_PRODUCTS_KE.map((product, i) => (
+              <Reveal key={product.name} delay={i * 60}>
+                <div className="card-theme rounded-[var(--radius-md)] p-4 text-center h-full">
+                  <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-2">
+                    #{product.rank}
+                  </span>
+                  <h4 className="font-display text-sm text-[var(--text)] mb-2">{product.name}</h4>
+                  <span className="font-mono text-[10px] text-[var(--accent)] block mb-2">{product.priceRange}</span>
+                  <p className="text-[10px] text-[var(--text-muted)] leading-tight">{product.reason}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 9. GLOBAL TRENDS ────────────────────────────────────── */}
+      <section className="section-py bg-[var(--bg)]">
+        <div className="max-w-content mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-16">
+              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+                // 2026 global trends
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
+                What&apos;s shaping <span className="accent-word">corporate gifting</span>
+              </h2>
+              <p className="text-lead max-w-xl mx-auto">
+                The global corporate gifting market hit $822B in 2024. Here&apos;s what&apos;s driving growth.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {GLOBAL_TRENDS_2026.map((trend, i) => (
+              <Reveal key={trend.name} delay={i * 80}>
+                <div className="card-theme rounded-[var(--radius-lg)] p-6 h-full">
+                  <h4 className="font-display text-lg text-[var(--text)] mb-2">{trend.name}</h4>
+                  <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-4">{trend.description}</p>
+                  <div className="flex flex-wrap gap-1">
+                    {trend.methods.slice(0, 2).map((m) => (
+                      <span key={m} className="px-2 py-0.5 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-[9px] font-mono uppercase">
+                        {m.replace(/-/g, ' ')}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 10. ZONE DETECTOR ────────────────────────────────────── */}
+      <section className="section-py bg-[var(--bg-soft)]">
+        <div className="max-w-content mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-12">
+              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+                // Zone-aware branding
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
+                Get recommendations for <span className="accent-word">your location</span>
+              </h2>
+              <p className="text-lead max-w-xl mx-auto">
+                Kenya&apos;s climate varies from coastal humidity to highland frost. Your materials should match.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <ZoneDetector />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── 11. CTA ───────────────────────────────────────────────── */}
       <section className="section-py bg-[var(--bg-soft)] border-t border-[var(--border)]">
         <div className="max-w-content mx-auto px-6 text-center">
           <Reveal>
