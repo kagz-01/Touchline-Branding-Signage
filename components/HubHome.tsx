@@ -105,50 +105,122 @@ export function HubHome() {
   return (
     <div className="relative">
       {/* ── 1. HERO ──────────────────────────────────────────────── */}
-      <section className="relative section-py-lg overflow-hidden grad-hero-subtle">
-        {/* Subtle gradient accent — purposeful, not decorative */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[var(--accent)] opacity-[0.03] blur-[150px]" />
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* Background — split: left warm, right visual */}
+        <div className="absolute inset-0" aria-hidden="true">
+          {/* Left side warm gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg)] via-[var(--bg)] to-transparent z-10 w-full md:w-1/2" />
+          {/* Right side — branded visual area */}
+          <div className="absolute inset-0 hidden md:block">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1a1408] via-[#2a2010] to-[#0d0b08]" />
+            {/* Gold accent glow */}
+            <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-[var(--accent)] opacity-[0.08] blur-[120px]" />
+            <div className="absolute bottom-1/4 right-1/3 w-[300px] h-[300px] rounded-full bg-[var(--accent2)] opacity-[0.06] blur-[100px]" />
+            {/* Decorative grid lines */}
+            <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'repeating-linear-gradient(0deg, rgba(200,150,12,0.3) 0px, rgba(200,150,12,0.3) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, rgba(200,150,12,0.3) 0px, rgba(200,150,12,0.3) 1px, transparent 1px, transparent 60px)' }} />
+            {/* Touchline branding overlay */}
+            <div className="absolute bottom-12 right-12 opacity-[0.12]">
+              <Logo brand="hub" className="text-[120px] leading-none" />
+            </div>
+            {/* Tagline overlay */}
+            <div className="absolute bottom-20 right-32 text-right">
+              <p className="font-mono text-xs tracking-[0.4em] text-[var(--accent)] opacity-40 uppercase">Brands · Signs · Impact</p>
+            </div>
+          </div>
         </div>
 
-        <div className="relative z-10 max-w-content mx-auto px-6 text-center">
-          <Reveal>
-            <p className="grad-kicker mb-6">
-              One company. Two specialisms.
-            </p>
-          </Reveal>
+        <div className="relative z-20 max-w-content mx-auto px-6 w-full">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left — text content */}
+            <div className="py-16">
+              <Reveal>
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="grad-underline" />
+                  <span className="grad-kicker">Premium Signage &amp; Branding Solutions</span>
+                </div>
+              </Reveal>
 
-          <Reveal delay={80}>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-8 text-[var(--text)]">
-              Your Brand,
-              <br />
-              Built <span className="grad-text">Visible.</span>
-            </h1>
-          </Reveal>
+              <Reveal delay={80}>
+                <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] mb-6 text-[var(--text)]">
+                  Your Brand,
+                  <br />
+                  Built <span className="grad-text">Visible.</span>
+                </h1>
+              </Reveal>
 
-          <Reveal delay={160}>
-            <p className="text-lg md:text-xl text-[var(--text-muted)] max-w-2xl mx-auto mb-10 leading-relaxed">
-              From merchandise that travels with people, to signage that stands in place — Touchline
-              makes sure your name is seen, worn, and remembered.
-            </p>
-          </Reveal>
+              <Reveal delay={160}>
+                <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-8 max-w-lg">
+                  From eye-catching signs to full vehicle branding, we help
+                  businesses stand out, make an impact, and get noticed.
+                </p>
+              </Reveal>
 
-          <Reveal delay={240}>
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
-              <a href="#what-we-offer" className="btn-grad glow-accent">
-                See What We Do <span>→</span>
-              </a>
-              <Link href="/book" className="btn-secondary glass-subtle">
-                Get a Quote
-              </Link>
+              <Reveal delay={240}>
+                <div className="flex flex-wrap gap-4 mb-12">
+                  <a href="#what-we-offer" className="btn-grad">
+                    Explore Our Services <span>→</span>
+                  </a>
+                  <Link href="/portfolio" className="btn-secondary">
+                    View Our Portfolio
+                  </Link>
+                </div>
+              </Reveal>
+
+              {/* Trust signals */}
+              <Reveal delay={320}>
+                <div className="flex flex-wrap gap-8">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
+                        <path d="M9 12l2 2 4-4" />
+                        <circle cx="12" cy="12" r="10" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[var(--text)]">Premium</p>
+                      <p className="text-xs text-[var(--text-muted)]">Quality</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[var(--text)]">On-Time</p>
+                      <p className="text-xs text-[var(--text-muted)]">Delivery</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[var(--text)]">Trusted</p>
+                      <p className="text-xs text-[var(--text-muted)]">by Leading Brands</p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
             </div>
-          </Reveal>
 
-          {/* Trust signal — right in the hero (Authority bias) */}
-          <Reveal delay={320}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/50 text-sm text-[var(--text-muted)]">
-              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse-soft" />
-              500+ projects delivered across Kenya
+            {/* Right — visual spacer for the image area */}
+            <div className="hidden md:block" />
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+          <Reveal delay={400}>
+            <div className="flex flex-col items-center gap-2 text-[var(--text-muted)]">
+              <span className="font-mono text-[10px] uppercase tracking-[0.3em]">Scroll to explore</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 animate-bounce">
+                <path d="M12 5v14M19 12l-7 7-7-7" />
+              </svg>
             </div>
           </Reveal>
         </div>
