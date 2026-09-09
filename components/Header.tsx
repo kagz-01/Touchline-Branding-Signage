@@ -49,6 +49,7 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
   const otherBrand = brand.id === 'branding' ? 'signage' : 'branding';
   const otherLabel = brand.id === 'branding' ? 'Signage' : 'Branding';
   const otherHref = getCrossBrandUrl(otherBrand, host);
+  const hubHref = getCrossBrandUrl('hub', host);
 
   return (
     <header className="glass-nav sticky top-0 z-50">
@@ -64,6 +65,7 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
           otherBrand={otherBrand}
           otherLabel={otherLabel}
           otherHref={otherHref}
+          hubHref={hubHref}
         />
 
         {/* Mobile menu button */}

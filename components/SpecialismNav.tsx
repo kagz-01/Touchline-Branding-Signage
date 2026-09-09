@@ -56,11 +56,13 @@ export function SpecialismNav({
   otherBrand,
   otherLabel,
   otherHref,
+  hubHref,
 }: {
   brandId: BrandId;
   otherBrand: string;
   otherLabel: string;
   otherHref: string;
+  hubHref: string;
 }) {
   const pathname = usePathname();
 
@@ -93,6 +95,15 @@ export function SpecialismNav({
 
       {/* Divider */}
       <span className="w-px h-5 bg-[var(--border)] mx-2" />
+
+      {/* Back to Hub */}
+      <a
+        href={hubHref}
+        className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors rounded-[var(--radius-md)] hover:bg-[var(--accent)]/5"
+      >
+        <HomeIcon />
+        <span>Hub</span>
+      </a>
 
       {/* Cross-sell link */}
       <a
