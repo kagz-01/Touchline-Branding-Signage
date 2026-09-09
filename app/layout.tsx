@@ -9,13 +9,45 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { BottomNav } from '@/components/BottomNav';
 import { CommandPalette } from '@/components/CommandPalette';
+import { ClientBrandUpdater } from '@/components/ClientBrandUpdater';
 import './globals.css';
 
-const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-anton' });
-const grotesk = Space_Grotesk({ subsets: ['latin'], weight: ['500', '700'], variable: '--font-grotesk' });
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains' });
-const playfair = Playfair_Display({ subsets: ['latin'], style: ['normal', 'italic'], weight: ['400', '600', '700'], variable: '--font-playfair' });
+// display:'swap' ensures text is visible immediately with system fonts while
+// the web fonts download — prevents blank text when Google Fonts is slow.
+const anton = Anton({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-anton',
+  display: 'swap',
+  fallback: ['Impact', 'Arial Black', 'sans-serif'],
+});
+const grotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+  variable: '--font-grotesk',
+  display: 'swap',
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+});
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+});
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains',
+  display: 'swap',
+  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+});
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  weight: ['400', '600', '700'],
+  variable: '--font-playfair',
+  display: 'swap',
+  fallback: ['Georgia', 'Times New Roman', 'serif'],
+});
 
 export const viewport: Viewport = {
   themeColor: '#17141f'
@@ -26,10 +58,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (brandId === 'hub') {
     const description =
-      'Touchline sources branded merchandise and fabricates signage — two specialisms, one company.';
+      'Touchline makes your brand physical — branded merchandise and signage fabrication, delivered across Kenya. One company, two specialisms.';
     return {
       metadataBase: new URL('https://touchline.co.ke'),
-      title: 'Touchline — Branding & Signage',
+      title: 'Touchline — Branding & Signage | One Company, Two Specialisms',
       description,
       manifest: '/manifest.webmanifest',
       icons: {
@@ -41,7 +73,7 @@ export async function generateMetadata(): Promise<Metadata> {
         apple: '/icons/apple-touch-icon.png'
       },
       openGraph: {
-        title: 'Touchline — Branding & Signage',
+        title: 'Touchline — Branding & Signage | One Company, Two Specialisms',
         description,
         url: 'https://touchline.co.ke',
         siteName: 'Touchline',
@@ -49,9 +81,10 @@ export async function generateMetadata(): Promise<Metadata> {
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Touchline — Branding & Signage',
+        title: 'Touchline — Branding & Signage | One Company, Two Specialisms',
         description
       },
+      keywords: ['branded merchandise Kenya', 'signage Kenya', 'promotional products Nairobi', 'signboards Nairobi', 'vehicle branding Kenya', 'corporate gifts Kenya'],
       robots: { index: true, follow: true }
     };
   }
@@ -98,6 +131,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const pathname = headers().get('x-pathname') || '';
   const isAdmin = pathname.startsWith('/admin');
 
+  // JSON-LD LocalBusiness structured data for Google local search
+  const jsonLd = brand
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        name: brand.name,
+        description: brand.tagline,
+        url: `https://${brand.domain}`,
+        telephone: brand.contactPhone,
+        email: brand.contactEmail,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Nairobi',
+          addressCountry: 'KE',
+        },
+        areaServed: 'Kenya',
+        priceRange: '$$',
+      }
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Touchline',
+        url: 'https://touchline.co.ke',
+        description: 'Touchline sources branded merchandise and fabricates signage — two specialisms, one company.',
+        sameAs: [
+          'https://instagram.com/touchlinekenya',
+          'https://linkedin.com/company/touchlinekenya',
+        ],
+      };
+
   const body = (
     <body
       className={`${anton.variable} ${grotesk.variable} ${inter.variable} ${jetbrains.variable} ${playfair.variable} font-body bg-[var(--bg)] text-[var(--text)] antialiased ${isAdmin ? '' : 'pb-16 md:pb-0'}`}
@@ -125,6 +188,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" data-brand={isAdmin ? 'hub' : brandId} suppressHydrationWarning>
       <head>
+        {/* Preconnect to speed up Google Fonts loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Anti-FOUC theme script */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -139,8 +206,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <ThemeProvider>
+        <ClientBrandUpdater />
         {brand ? <BrandProvider brand={brand}>{body}</BrandProvider> : body}
       </ThemeProvider>
     </html>
