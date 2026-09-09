@@ -37,6 +37,16 @@ html {
   --border:      rgba(200, 150, 12, 0.12);
   --shadow:      rgba(26, 20, 8, 0.06);
   --font-display: var(--font-anton);
+  /* Gradients */
+  --grad-hero-from:  #c8960c;
+  --grad-hero-via:   #d4a820;
+  --grad-hero-to:    #e8c84a;
+  --grad-section:    linear-gradient(135deg, #c8960c, #d4a820);
+  --grad-text-from:  #c8960c;
+  --grad-text-to:    #d4a820;
+  --grad-subtle:     linear-gradient(135deg, rgba(200,150,12,0.06), rgba(212,168,32,0.03));
+  --grad-card:       linear-gradient(160deg, rgba(200,150,12,0.04), transparent);
+  --grad-glow:       rgba(200, 150, 12, 0.15);
 }
 
 /* ---------------------------------------------------------------------- */
@@ -56,6 +66,16 @@ html {
   --border:      rgba(26, 122, 181, 0.12);
   --shadow:      rgba(10, 22, 40, 0.06);
   --font-display: var(--font-grotesk);
+  /* Gradients */
+  --grad-hero-from:  #1a7ab5;
+  --grad-hero-via:   #2088c8;
+  --grad-hero-to:    #40b0e0;
+  --grad-section:    linear-gradient(135deg, #1a7ab5, #2088c8);
+  --grad-text-from:  #1a7ab5;
+  --grad-text-to:    #40b0e0;
+  --grad-subtle:     linear-gradient(135deg, rgba(26,122,181,0.06), rgba(64,176,224,0.03));
+  --grad-card:       linear-gradient(160deg, rgba(26,122,181,0.04), transparent);
+  --grad-glow:       rgba(26, 122, 181, 0.15);
 }
 
 /* ---------------------------------------------------------------------- */
@@ -74,6 +94,16 @@ html {
   --border:      rgba(184, 134, 11, 0.10);
   --shadow:      rgba(13, 11, 8, 0.05);
   --font-display: var(--font-grotesk);
+  /* Gradients — blends gold + blue */
+  --grad-hero-from:  #b8860b;
+  --grad-hero-via:   #1a7ab5;
+  --grad-hero-to:    #d4a017;
+  --grad-section:    linear-gradient(135deg, #b8860b, #1a7ab5);
+  --grad-text-from:  #b8860b;
+  --grad-text-to:    #1a7ab5;
+  --grad-subtle:     linear-gradient(135deg, rgba(184,134,11,0.05), rgba(26,122,181,0.04));
+  --grad-card:       linear-gradient(160deg, rgba(184,134,11,0.04), rgba(26,122,181,0.03));
+  --grad-glow:       rgba(184, 134, 11, 0.12);
 }
 
 /* ---------------------------------------------------------------------- */
@@ -91,6 +121,15 @@ html {
   --accent2:     #c8960c;
   --border:      rgba(212, 168, 32, 0.15);
   --shadow:      rgba(0, 0, 0, 0.3);
+  --grad-hero-from:  #d4a820;
+  --grad-hero-via:   #c8960c;
+  --grad-hero-to:    #8b6914;
+  --grad-section:    linear-gradient(135deg, #d4a820, #8b6914);
+  --grad-text-from:  #d4a820;
+  --grad-text-to:    #e8bc30;
+  --grad-subtle:     linear-gradient(135deg, rgba(212,168,32,0.08), rgba(200,150,12,0.04));
+  --grad-card:       linear-gradient(160deg, rgba(212,168,32,0.06), transparent);
+  --grad-glow:       rgba(212, 168, 32, 0.2);
 }
 
 .dark [data-brand='signage'] {
@@ -105,6 +144,15 @@ html {
   --accent2:     #1a7ab5;
   --border:      rgba(32, 136, 200, 0.15);
   --shadow:      rgba(0, 0, 0, 0.3);
+  --grad-hero-from:  #2088c8;
+  --grad-hero-via:   #1a7ab5;
+  --grad-hero-to:    #0d5a8a;
+  --grad-section:    linear-gradient(135deg, #2088c8, #0d5a8a);
+  --grad-text-from:  #2088c8;
+  --grad-text-to:    #40b0e0;
+  --grad-subtle:     linear-gradient(135deg, rgba(32,136,200,0.08), rgba(26,122,181,0.04));
+  --grad-card:       linear-gradient(160deg, rgba(32,136,200,0.06), transparent);
+  --grad-glow:       rgba(32, 136, 200, 0.2);
 }
 
 .dark [data-brand='hub'] {
@@ -119,6 +167,15 @@ html {
   --accent2:     #2088c8;
   --border:      rgba(212, 160, 23, 0.12);
   --shadow:      rgba(0, 0, 0, 0.3);
+  --grad-hero-from:  #d4a017;
+  --grad-hero-via:   #2088c8;
+  --grad-hero-to:    #b8860b;
+  --grad-section:    linear-gradient(135deg, #d4a017, #2088c8);
+  --grad-text-from:  #d4a017;
+  --grad-text-to:    #2088c8;
+  --grad-subtle:     linear-gradient(135deg, rgba(212,160,23,0.06), rgba(32,136,200,0.05));
+  --grad-card:       linear-gradient(160deg, rgba(212,160,23,0.05), rgba(32,136,200,0.04));
+  --grad-glow:       rgba(212, 160, 23, 0.15);
 }
 
 html {
@@ -451,6 +508,135 @@ body {
     width: 1px;
     height: 2rem;
     background: var(--border);
+  }
+
+  /* ── Gradient Utilities (brand-aware) ─────────────────────────────── */
+  /* Hero section backgrounds */
+  .grad-hero {
+    background: linear-gradient(
+      135deg,
+      var(--grad-hero-from) 0%,
+      var(--grad-hero-via) 50%,
+      var(--grad-hero-to) 100%
+    );
+  }
+
+  .grad-hero-subtle {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--grad-hero-from) 8%, var(--bg)) 0%,
+      color-mix(in srgb, var(--grad-hero-via) 5%, var(--bg)) 50%,
+      color-mix(in srgb, var(--grad-hero-to) 8%, var(--bg)) 100%
+    );
+  }
+
+  /* Section alternating backgrounds */
+  .grad-section-alt {
+    background: var(--grad-subtle);
+  }
+
+  /* Card backgrounds with brand gradient tint */
+  .grad-card {
+    background: var(--grad-card);
+  }
+
+  /* Gradient text (accent headings) */
+  .grad-text {
+    background: linear-gradient(135deg, var(--grad-text-from), var(--grad-text-to));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gradient text on dark backgrounds */
+  .grad-text-light {
+    background: linear-gradient(135deg, var(--grad-hero-from), var(--grad-hero-to));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subtitle / kicker overlines */
+  .grad-kicker {
+    background: linear-gradient(90deg, var(--grad-text-from), var(--grad-text-to));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+
+  /* Gradient underline accent */
+  .grad-underline {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--grad-text-from), var(--grad-text-to));
+    border-radius: 2px;
+  }
+
+  /* Gradient border accent (for cards, dividers) */
+  .grad-border {
+    border: none;
+    background: linear-gradient(var(--surface), var(--padding-box, var(--surface))) padding-box,
+                linear-gradient(135deg, var(--grad-text-from), var(--grad-text-to)) border-box;
+  }
+
+  /* Glow effect using brand gradient */
+  .grad-glow {
+    box-shadow: 0 0 30px var(--grad-glow), 0 0 60px var(--grad-glow);
+  }
+
+  .grad-glow-sm {
+    box-shadow: 0 0 15px var(--grad-glow);
+  }
+
+  /* Gradient dot / pill accent */
+  .grad-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--grad-text-from), var(--grad-text-to));
+  }
+
+  /* Section hero with gradient overlay */
+  .grad-overlay {
+    position: relative;
+  }
+
+  .grad-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--grad-hero-from) 12%, transparent),
+      color-mix(in srgb, var(--grad-hero-via) 6%, transparent),
+      color-mix(in srgb, var(--grad-hero-to) 12%, transparent)
+    );
+    pointer-events: none;
+  }
+
+  /* CTA button with gradient */
+  .btn-grad {
+    background: linear-gradient(135deg, var(--grad-text-from), var(--grad-text-to));
+    color: var(--accent-ink);
+    padding: 0.875rem 1.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-grad:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--grad-glow);
   }
 }
 
