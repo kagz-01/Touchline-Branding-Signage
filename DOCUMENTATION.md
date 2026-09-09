@@ -85,10 +85,17 @@ The branding vertical handles **merchandise, apparel, and promotional products**
 
 ### Branding Pages
 
-- **Home** — Hero, trust strip, services grid, portfolio gallery, testimonials, CTA
+- **Home** — 8-section storytelling flow: Hero → Problem → What We Do → How It Works → Service Comparison → Proof → Sustainability → CTA
 - **Services** — Full service catalogue with descriptions and "best for" recommendations
 - **Portfolio** — Past projects with images, volumes, deadlines, and materials used
-- **Book** — Quote request form (leads go to Supabase + admin dashboard)
+- **Book** — 3-step quote request form with spam protection
+
+### Branding Unique Features
+
+- **Service Comparison Tool** — Interactive comparison of printing methods (Screen Print vs Embroidery vs DTF vs Sublimation) with best-for, durability, cost, turnaround, and min quantity
+- **Sustainability Section** — Eco-friendly product messaging (organic cotton, recycled polyester, water-based inks)
+- **WhatsApp Click-to-Chat** — Floating WhatsApp button on all pages
+- **Branding-Specific How It Works** — 4-step process: Raw Materials → Digitization → Branding → Quality & Delivery
 
 ---
 
@@ -199,9 +206,11 @@ touchline-platform/
 │   └── globals.css         # Brand theme tokens + utilities
 ├── components/             # Reusable UI components
 │   ├── HubHome.tsx         # Hub landing page
+│   ├── BrandingHome.tsx    # Branding specialism home page
 │   ├── Hero.tsx            # Brand-specific hero
 │   ├── HowItWorks.tsx      # 3-step process (reusable)
 │   ├── BookingForm.tsx     # Quote request form
+│   ├── WhatsAppButton.tsx  # Floating WhatsApp click-to-chat
 │   ├── Header.tsx          # Brand-aware navigation
 │   ├── Footer.tsx          # Brand-aware footer
 │   └── ...                 # 20+ more components
