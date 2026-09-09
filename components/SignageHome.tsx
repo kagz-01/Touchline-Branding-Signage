@@ -15,6 +15,8 @@ import { Logo } from './Logo';
 import { Reveal } from './Reveal';
 import { HowItWorks } from './HowItWorks';
 import { SignageZoneDetector } from './SignageZoneDetector';
+import { SignageViewingCalculator } from './SignageViewingCalculator';
+import { IlluminationGuide } from './IlluminationGuide';
 
 const brand = getBrand('signage');
 
@@ -547,7 +549,53 @@ export function SignageHome() {
         </div>
       </section>
 
-      {/* ── 11. CTA ───────────────────────────────────────────────── */}
+      {/* ── 11. VIEWING DISTANCE CALCULATOR ─────────────────────── */}
+      <section className="section-py bg-[var(--bg)]">
+        <div className="max-w-content mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-12">
+              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+                // Get the size right
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
+                What size sign <span className="accent-word">do you need?</span>
+              </h2>
+              <p className="text-lead max-w-xl mx-auto">
+                Too small = invisible. Too big = waste. Find the perfect letter height for your viewing distance.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <SignageViewingCalculator />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── 12. ILLUMINATION GUIDE ──────────────────────────────── */}
+      <section className="section-py bg-[var(--bg-soft)]">
+        <div className="max-w-content mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-12">
+              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+                // Light it up
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
+                Which <span className="accent-word">illumination</span> type is right?
+              </h2>
+              <p className="text-lead max-w-xl mx-auto">
+                Your business hours determine your lighting needs. Front-lit, halo, neon, or none?
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <IlluminationGuide />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── 13. CTA ───────────────────────────────────────────────── */}
       <section className="section-py bg-[var(--bg-soft)] border-t border-[var(--border)]">
         <div className="max-w-content mx-auto px-6 text-center">
           <Reveal>

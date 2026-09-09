@@ -8,6 +8,8 @@ import { Logo } from './Logo';
 import { Reveal } from './Reveal';
 import { HowItWorks } from './HowItWorks';
 import { ZoneDetector } from './ZoneDetector';
+import { BrandingROICalculator } from './BrandingROICalculator';
+import { TenderComplianceChecker } from './TenderComplianceChecker';
 
 const brand = getBrand('branding');
 
@@ -539,7 +541,53 @@ export function BrandingHome() {
         </div>
       </section>
 
-      {/* ── 11. CTA ───────────────────────────────────────────────── */}
+      {/* ── 11. ROI CALCULATOR ─────────────────────────────────────── */}
+      <section className="section-py bg-[var(--bg)]">
+        <div className="max-w-content mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-12">
+              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+                // The numbers
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
+                How many <span className="accent-word">impressions</span> per KES?
+              </h2>
+              <p className="text-lead max-w-xl mx-auto">
+                Branded merchandise costs up to 90% less per impression than digital ads. See for yourself.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <BrandingROICalculator />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── 12. TENDER COMPLIANCE ─────────────────────────────────── */}
+      <section className="section-py bg-[var(--bg-soft)]">
+        <div className="max-w-content mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-12">
+              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+                // Government & county tenders
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
+                Tender <span className="accent-word">compliance</span> checker
+              </h2>
+              <p className="text-lead max-w-xl mx-auto">
+                County and government tenders have strict requirements. Check if you&apos;re ready to submit.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <TenderComplianceChecker />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── 13. CTA ───────────────────────────────────────────────── */}
       <section className="section-py bg-[var(--bg-soft)] border-t border-[var(--border)]">
         <div className="max-w-content mx-auto px-6 text-center">
           <Reveal>
