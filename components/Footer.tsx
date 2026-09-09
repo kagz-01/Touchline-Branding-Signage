@@ -85,7 +85,7 @@ export async function Footer({ brand }: { brand: BrandConfig | null }) {
           <ul className="space-y-2 text-sm text-[var(--text-muted)]">
             <li><a href={brandingUrl} className="hover:text-[var(--accent)] transition-colors">Branding — Merchandise &amp; apparel</a></li>
             <li><a href={signageUrl} className="hover:text-[var(--accent)] transition-colors">Signage — Fabrication &amp; LED</a></li>
-            <li><a href="https://giftshop.touchline.ac.ke" className="hover:text-[var(--accent)] transition-colors" target="_blank" rel="noopener noreferrer">TouchGiftShop — Corporate gifting</a></li>
+            <li><a href="https://touchgiftshop.co.ke" className="hover:text-[var(--accent)] transition-colors" target="_blank" rel="noopener noreferrer">TouchGiftShop — Corporate gifting</a></li>
           </ul>
         </div>
 
