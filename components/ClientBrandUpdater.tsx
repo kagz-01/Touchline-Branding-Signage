@@ -19,17 +19,22 @@ export function ClientBrandUpdater() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Only run this logic on the client
     if (typeof window === 'undefined') return;
 
-    // Check if we are on localhost
     const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     
     if (isLocalhost) {
+      const params = new URLSearchParams(window.location.search);
+      const brandParam = params.get('brand');
+      if (brandParam === 'branding' || brandParam === 'signage' || brandParam === 'hub') {
+        document.documentElement.setAttribute('data-brand', brandParam);
+        return;
+      }
+
       let brand = 'hub';
       if (pathname.startsWith('/branding')) brand = 'branding';
       else if (pathname.startsWith('/signage')) brand = 'signage';
-      else if (pathname.startsWith('/admin')) brand = 'hub'; // Admin is always hub
+      else if (pathname.startsWith('/admin')) brand = 'hub';
 
       document.documentElement.setAttribute('data-brand', brand);
     }
