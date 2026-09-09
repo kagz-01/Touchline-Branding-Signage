@@ -85,17 +85,20 @@ The branding vertical handles **merchandise, apparel, and promotional products**
 
 ### Branding Pages
 
-- **Home** — 8-section storytelling flow: Hero → Problem → What We Do → How It Works → Service Comparison → Proof → Sustainability → CTA
-- **Services** — Full service catalogue with descriptions and "best for" recommendations
+- **Home** — 13-section storytelling flow: Hero → Problem → What We Do → How It Works → Service Comparison → Proof → Sustainability → Hot Products → Global Trends → Zone Detector → **ROI Calculator** → **Tender Compliance** → CTA
+- **Services** — Full service catalogue with zone-aware recommendations, printing methods comparison, industry guides
 - **Portfolio** — Past projects with images, volumes, deadlines, and materials used
 - **Book** — 3-step quote request form with spam protection
 
 ### Branding Unique Features
 
 - **Service Comparison Tool** — Interactive comparison of printing methods (Screen Print vs Embroidery vs DTF vs Sublimation) with best-for, durability, cost, turnaround, and min quantity
+- **ROI Calculator** — Cost-per-impression calculator for 8 product types (T-shirt, Pen, Mug, Tote Bag, Water Bottle, Cap, Notebook, Power Bank). Shows branded merch costs up to 90% less per impression than Facebook/Google/Billboard ads
+- **Tender Compliance Checker** — 16-item checklist for county/government tenders across 4 categories (Documentation, Product Requirements, Delivery & Pricing, Compliance). Tracks required vs optional items with compliance score
 - **Sustainability Section** — Eco-friendly product messaging (organic cotton, recycled polyester, water-based inks)
 - **WhatsApp Click-to-Chat** — Floating WhatsApp button on all pages
 - **Branding-Specific How It Works** — 4-step process: Raw Materials → Digitization → Branding → Quality & Delivery
+- **Zone-Aware Branding** — Location-based climate zone detection with material and branding method recommendations
 
 ---
 
@@ -117,7 +120,7 @@ The signage vertical handles **signage design, fabrication, and installation**.
 
 ### Signage Pages
 
-- **Home** — 11-section storytelling flow: Hero → Problem → What We Do → How It Works → Vehicle Branding → Proof → Safety Compliance → Hot Products → Global Trends → Zone Detector → CTA
+- **Home** — 13-section storytelling flow: Hero → Problem → What We Do → How It Works → Vehicle Branding → Proof → Safety Compliance → Hot Products → Global Trends → Zone Detector → **Viewing Calculator** → **Illumination Guide** → CTA
 - **Services** — Full service catalogue with zone-aware recommendations, signage types comparison, industry guides, OSHA compliance section
 - **Portfolio** — Past projects with images, volumes, deadlines, and materials
 - **Book** — Quote/site-visit request form
@@ -125,6 +128,8 @@ The signage vertical handles **signage design, fabrication, and installation**.
 ### Signage Unique Features
 
 - **Vehicle Branding Tool** — Interactive comparison of vehicle wrap options (Saloon/SUV/Lorry/Bus) with pricing, daily impressions, lifespan, and best-for recommendations
+- **Sign Size Calculator** — Letter height calculator based on viewing distance (5 scenarios: Pedestrian 10m, Parking 30m, Roadside 50m, Highway 100m). Includes 5 sign type multipliers, illumination toggle, estimated price, and quick reference table
+- **Illumination Guide** — LED type selector based on business hours (Daytime, Evening, Late Night, 24/7). Compares 6 illumination types (Front-Lit, Halo, LED Neon, Edge-Lit, Lightbox, None) with night visibility scores, energy cost, and lifespan
 - **OSHA 2007 Compliance Section** — Safety signage requirements, ISO 7010 standards, bilingual English/Kiswahili, photoluminescent options
 - **Signage Types Comparison** — Compare 18 signage types with specs, pricing, materials, lifespan, and installation time
 - **Zone-Aware Signage** — Location-based climate zone detection with material and signage type recommendations
@@ -267,8 +272,8 @@ touchline-platform/
 ## What's Built
 
 - [x] Hub landing page with storytelling flow
-- [x] Branding specialism: Home, Services, Portfolio, Book pages
-- [x] Signage specialism: Home (11 sections), Services (zone-aware), Portfolio, Book pages
+- [x] Branding specialism: Home (13 sections), Services (zone-aware), Portfolio, Book pages
+- [x] Signage specialism: Home (13 sections), Services (zone-aware), Portfolio, Book pages
 - [x] Brand-aware Header, Footer, Mobile Bottom Nav
 - [x] Quote/booking form with spam protection
 - [x] Admin dashboard with Google sign-in
@@ -288,6 +293,10 @@ touchline-platform/
 - [x] OSHA 2007 compliance section (Signage)
 - [x] Hot products in Kenya 2026 for both specialisms
 - [x] Global trends 2026 for both specialisms
+- [x] **Branding ROI Calculator** — Cost-per-impression for 8 product types vs digital ads
+- [x] **Tender Compliance Checker** — 16-item checklist for county/government tenders
+- [x] **Sign Size Calculator** — Letter height by viewing distance (5 scenarios, 5 sign types)
+- [x] **Illumination Guide** — LED type by business hours (6 types, night visibility scores)
 
 ## What's Planned
 
