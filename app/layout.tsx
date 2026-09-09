@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { headers } from 'next/headers';
-import { Anton, Space_Grotesk, Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google';
+import localFont from 'next/font/local';
 import { getBrandFromHeaders } from '@/lib/get-brand-server';
 import { getBrand } from '@/config/brands';
 import { BrandProvider } from '@/components/BrandProvider';
@@ -13,38 +13,46 @@ import { CommandPalette } from '@/components/CommandPalette';
 import { ClientBrandUpdater } from '@/components/ClientBrandUpdater';
 import './globals.css';
 
-// display:'swap' ensures text is visible immediately with system fonts while
-// the web fonts download — prevents blank text when Google Fonts is slow.
-const anton = Anton({
-  subsets: ['latin'],
-  weight: '400',
+// Self-hosted fonts — no Google Fonts dependency, works offline
+const anton = localFont({
+  src: '../public/fonts/Anton-Regular.ttf',
   variable: '--font-anton',
   display: 'swap',
   fallback: ['Impact', 'Arial Black', 'sans-serif'],
 });
-const grotesk = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['500', '700'],
+const grotesk = localFont({
+  src: [
+    { path: '../public/fonts/SpaceGrotesk-Medium.ttf', weight: '500' },
+    { path: '../public/fonts/SpaceGrotesk-Bold.ttf', weight: '700' },
+  ],
   variable: '--font-grotesk',
   display: 'swap',
-  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+  fallback: ['system-ui', '-apple-system', 'sans-serif'],
 });
-const inter = Inter({
-  subsets: ['latin'],
+const inter = localFont({
+  src: [
+    { path: '../public/fonts/Inter-Regular.ttf', weight: '400' },
+    { path: '../public/fonts/Inter-Medium.ttf', weight: '500' },
+  ],
   variable: '--font-inter',
   display: 'swap',
-  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+  fallback: ['system-ui', '-apple-system', 'sans-serif'],
 });
-const jetbrains = JetBrains_Mono({
-  subsets: ['latin'],
+const jetbrains = localFont({
+  src: '../public/fonts/JetBrainsMono-Regular.ttf',
   variable: '--font-jetbrains',
   display: 'swap',
-  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+  fallback: ['ui-monospace', 'Consolas', 'monospace'],
 });
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  style: ['normal', 'italic'],
-  weight: ['400', '600', '700'],
+const playfair = localFont({
+  src: [
+    { path: '../public/fonts/PlayfairDisplay-Regular.ttf', weight: '400' },
+    { path: '../public/fonts/PlayfairDisplay-SemiBold.ttf', weight: '600' },
+    { path: '../public/fonts/PlayfairDisplay-Bold.ttf', weight: '700' },
+    { path: '../public/fonts/PlayfairDisplay-Italic.ttf', weight: '400', style: 'italic' },
+    { path: '../public/fonts/PlayfairDisplay-SemiBoldItalic.ttf', weight: '600', style: 'italic' },
+    { path: '../public/fonts/PlayfairDisplay-BoldItalic.ttf', weight: '700', style: 'italic' },
+  ],
   variable: '--font-playfair',
   display: 'swap',
   fallback: ['Georgia', 'Times New Roman', 'serif'],
