@@ -1,14 +1,12 @@
-import { headers } from 'next/headers';
+'use client';
+
 import type { BrandConfig } from '@/config/brands';
 import { getCrossBrandUrl } from '@/lib/brand';
 import { Logo } from './Logo';
 
-export async function CrossSellBanner({ brand }: { brand: BrandConfig }) {
-  const headersList = await headers();
-  const host = headersList.get('host') || '';
-
+export function CrossSellBanner({ brand }: { brand: BrandConfig }) {
   const targetBrand = brand.crossSell.targetBrand as 'branding' | 'signage';
-  const targetHref = getCrossBrandUrl(targetBrand, host);
+  const targetHref = getCrossBrandUrl(targetBrand, typeof window !== 'undefined' ? window.location.host : '');
 
   return (
     <section className="w-full border-y border-[var(--border)] overflow-hidden bg-[var(--surface)] group hover:bg-[var(--accent)] transition-colors duration-700">
