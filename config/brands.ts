@@ -60,7 +60,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
     id: 'branding',
     name: 'Touchline Branding',
     tagline: 'Merchandise that carries your brand into the world.',
-    domain: 'branding.touchline.co.ke',
+    domain: 'branding.touchline.ac.ke',
     heroKicker: 'Promotional products & brand merchandise',
     heroHeadline: 'Put your brand in their hands.',
     heroSub:
@@ -131,14 +131,14 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
       targetBrand: 'signage'
     },
     contactPhone: '+254 700 000 000',
-    contactEmail: 'branding@touchline.co.ke',
+    contactEmail: 'branding@touchline.ac.ke',
     themeClass: 'branding'
   },
   signage: {
     id: 'signage',
     name: 'Touchline Signage',
     tagline: 'Signage that gets specified once and works for years.',
-    domain: 'signage.touchline.co.ke',
+    domain: 'signage.touchline.ac.ke',
     heroKicker: 'Signage, fabrication & LED installations',
     heroHeadline: 'Signs that speak before you do.',
     heroSub:
@@ -225,7 +225,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
       targetBrand: 'branding'
     },
     contactPhone: '+254 700 000 001',
-    contactEmail: 'signage@touchline.co.ke',
+    contactEmail: 'signage@touchline.ac.ke',
     themeClass: 'signage'
   }
 };

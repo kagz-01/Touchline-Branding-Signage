@@ -61,7 +61,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const description =
       'Touchline makes your brand physical — branded merchandise and signage fabrication, delivered across Kenya. One company, two specialisms.';
     return {
-      metadataBase: new URL('https://touchline.co.ke'),
+      metadataBase: new URL('https://touchline.ac.ke'),
       title: 'Touchline — Branding & Signage | One Company, Two Specialisms',
       description,
       manifest: '/manifest.webmanifest',
@@ -76,7 +76,7 @@ export async function generateMetadata(): Promise<Metadata> {
       openGraph: {
         title: 'Touchline — Branding & Signage | One Company, Two Specialisms',
         description,
-        url: 'https://touchline.co.ke',
+        url: 'https://touchline.ac.ke',
         siteName: 'Touchline',
         type: 'website'
       },
@@ -154,7 +154,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         '@context': 'https://schema.org',
         '@type': 'Organization',
         name: 'Touchline',
-        url: 'https://touchline.co.ke',
+        url: 'https://touchline.ac.ke',
         description: 'Touchline sources branded merchandise and fabricates signage — two specialisms, one company.',
         sameAs: [
           'https://instagram.com/touchlinekenya',

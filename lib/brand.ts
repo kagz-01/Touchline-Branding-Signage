@@ -28,15 +28,15 @@ export function resolveBrandFromHost(host: string | null | undefined): BrandId {
  * Brand domains — read from env vars if set, fall back to the canonical
  * .co.ke domains. Override in .env.local for staging/custom deployments:
  *
- *   BRANDING_DOMAIN=branding.touchline.co.ke
- *   SIGNAGE_DOMAIN=signage.touchline.co.ke
- *   HUB_DOMAIN=touchline.co.ke
+ *   BRANDING_DOMAIN=branding.touchline.ac.ke
+ *   SIGNAGE_DOMAIN=signage.touchline.ac.ke
+ *   HUB_DOMAIN=touchline.ac.ke
  */
 function getBrandDomains(): Record<BrandId, string> {
   return {
-    hub:      process.env.HUB_DOMAIN      ?? 'touchline.co.ke',
-    branding: process.env.BRANDING_DOMAIN ?? 'branding.touchline.co.ke',
-    signage:  process.env.SIGNAGE_DOMAIN  ?? 'signage.touchline.co.ke',
+    hub:      process.env.HUB_DOMAIN      ?? 'touchline.ac.ke',
+    branding: process.env.BRANDING_DOMAIN ?? 'branding.touchline.ac.ke',
+    signage:  process.env.SIGNAGE_DOMAIN  ?? 'signage.touchline.ac.ke',
   };
 }
 
