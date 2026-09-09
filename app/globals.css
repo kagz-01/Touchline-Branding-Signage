@@ -21,58 +21,58 @@ html {
 }
 
 /* ---------------------------------------------------------------------- */
-/* Touchline Branding — Warm Terracotta & Coral                            */
-/* Creative, warm, approachable — merchandise & craft                      */
+/* Touchline Branding — Rich Gold & Amber                                  */
+/* Premium, warm, creative — merchandise & craft                           */
 /* ---------------------------------------------------------------------- */
 [data-brand='branding'] {
-  --bg:          #faf6f3;
-  --bg-soft:     #f2ebe5;
+  --bg:          #faf8f3;
+  --bg-soft:     #f5f0e5;
   --surface:     #ffffff;
-  --text:        #1c1210;
-  --text-muted:  #7a6558;
-  --accent:      #c4654a;
-  --accent-warm: #e07850;
+  --text:        #1a1408;
+  --text-muted:  #6b5a3a;
+  --accent:      #c8960c;
+  --accent-warm: #d4a820;
   --accent-ink:  #ffffff;
-  --accent2:     #d4915a;
-  --border:      rgba(196, 101, 74, 0.12);
-  --shadow:      rgba(28, 18, 16, 0.06);
+  --accent2:     #8b6914;
+  --border:      rgba(200, 150, 12, 0.12);
+  --shadow:      rgba(26, 20, 8, 0.06);
   --font-display: var(--font-anton);
 }
 
 /* ---------------------------------------------------------------------- */
-/* Touchline Signage — Cool Steel Teal & Slate                             */
+/* Touchline Signage — Strong Blue & Steel                                 */
 /* Precise, industrial, modern — fabrication & LED                         */
 /* ---------------------------------------------------------------------- */
 [data-brand='signage'] {
-  --bg:          #f3f6f8;
-  --bg-soft:     #e6ecf0;
+  --bg:          #f4f7fa;
+  --bg-soft:     #e8eef5;
   --surface:     #ffffff;
-  --text:        #0f1a22;
-  --text-muted:  #5a7080;
-  --accent:      #1a7a8c;
-  --accent-warm: #2ca0b0;
+  --text:        #0a1628;
+  --text-muted:  #4a6078;
+  --accent:      #1a7ab5;
+  --accent-warm: #2088c8;
   --accent-ink:  #ffffff;
-  --accent2:     #b87333;
-  --border:      rgba(26, 122, 140, 0.12);
-  --shadow:      rgba(15, 26, 34, 0.06);
+  --accent2:     #0d5a8a;
+  --border:      rgba(26, 122, 181, 0.12);
+  --shadow:      rgba(10, 22, 40, 0.06);
   --font-display: var(--font-grotesk);
 }
 
 /* ---------------------------------------------------------------------- */
-/* Hub — Warm Gold (unifying parent brand)                                 */
+/* Hub — Gold & Blue Blend (unifying parent brand)                         */
 /* ---------------------------------------------------------------------- */
 [data-brand='hub'] {
-  --bg:          #faf8f4;
-  --bg-soft:     #f0ece5;
+  --bg:          #faf9f6;
+  --bg-soft:     #f2f0ea;
   --surface:     #ffffff;
-  --text:        #0b0a0a;
-  --text-muted:  #6b6258;
-  --accent:      #976b1d;
-  --accent-warm: #5f4c2a;
+  --text:        #0d0b08;
+  --text-muted:  #5c5347;
+  --accent:      #b8860b;
+  --accent-warm: #d4a017;
   --accent-ink:  #ffffff;
-  --accent2:     #5f4c2a;
-  --border:      rgba(11, 10, 10, 0.08);
-  --shadow:      rgba(11, 10, 10, 0.04);
+  --accent2:     #1a7ab5;
+  --border:      rgba(184, 134, 11, 0.10);
+  --shadow:      rgba(13, 11, 8, 0.05);
   --font-display: var(--font-grotesk);
 }
 
@@ -80,44 +80,44 @@ html {
 /* Dark Mode — Distinct per brand                                          */
 /* ---------------------------------------------------------------------- */
 .dark [data-brand='branding'] {
-  --bg:          #14100e;
-  --bg-soft:     #1c1614;
-  --surface:     #241e1b;
-  --text:        #f2ebe5;
-  --text-muted:  #b09484;
-  --accent:      #e07850;
-  --accent-warm: #f09060;
-  --accent-ink:  #1c1210;
-  --accent2:     #f0a868;
-  --border:      rgba(224, 120, 80, 0.15);
+  --bg:          #12100a;
+  --bg-soft:     #1a1710;
+  --surface:     #201c14;
+  --text:        #f5f0e5;
+  --text-muted:  #b8a878;
+  --accent:      #d4a820;
+  --accent-warm: #e8bc30;
+  --accent-ink:  #1a1408;
+  --accent2:     #c8960c;
+  --border:      rgba(212, 168, 32, 0.15);
   --shadow:      rgba(0, 0, 0, 0.3);
 }
 
 .dark [data-brand='signage'] {
-  --bg:          #0c1115;
-  --bg-soft:     #141e24;
-  --surface:     #1a2830;
-  --text:        #e6ecf0;
-  --text-muted:  #7a98a8;
-  --accent:      #2cc0d0;
-  --accent-warm: #40d0e0;
-  --accent-ink:  #0f1a22;
-  --accent2:     #d08840;
-  --border:      rgba(44, 192, 208, 0.15);
+  --bg:          #0a0f14;
+  --bg-soft:     #101820;
+  --surface:     #162028;
+  --text:        #e8eef5;
+  --text-muted:  #7090a8;
+  --accent:      #2088c8;
+  --accent-warm: #30a0e0;
+  --accent-ink:  #0a1628;
+  --accent2:     #1a7ab5;
+  --border:      rgba(32, 136, 200, 0.15);
   --shadow:      rgba(0, 0, 0, 0.3);
 }
 
 .dark [data-brand='hub'] {
-  --bg:          #0d0c0a;
-  --bg-soft:     #161412;
-  --surface:     #1c1a17;
-  --text:        #f0ece5;
+  --bg:          #0e0d0a;
+  --bg-soft:     #161410;
+  --surface:     #1e1b16;
+  --text:        #f2f0ea;
   --text-muted:  #9a9080;
-  --accent:      #c7983a;
-  --accent-warm: #976b1d;
-  --accent-ink:  #0b0a0a;
-  --accent2:     #976b1d;
-  --border:      rgba(199, 152, 58, 0.12);
+  --accent:      #d4a017;
+  --accent-warm: #b8860b;
+  --accent-ink:  #0d0b08;
+  --accent2:     #2088c8;
+  --border:      rgba(212, 160, 23, 0.12);
   --shadow:      rgba(0, 0, 0, 0.3);
 }
 
