@@ -107,19 +107,31 @@ The signage vertical handles **signage design, fabrication, and installation**.
 
 | Category | Services |
 |----------|----------|
-| **Illuminated Signs** | Channel Letters (3D), LED Neon Flex, Traditional Neon, Backlit/Halo Signs |
+| **Illuminated Signs** | Channel Letters (3D), LED Neon Flex, Traditional Neon, Backlit/Halo Signs, Edge-Lit Panels |
 | **Lightbox & Cabinet** | Front-Lit, Backlit, Ultra-Thin, Blade Sign, Push-Through Acrylic |
 | **Dimensional & Non-Illuminated** | Dimensional Letters, Acrylic Lettering, Foam Board Letters |
 | **Vinyl & Graphics** | Vehicle Wraps, Window Graphics, Wall Murals, Floor Graphics, Banners |
 | **Monument & Wayfinding** | Monument Signs, Pylon Signs, Wayfinding Systems, Directory Signs |
 | **Fascia & Shopfront** | Illuminated Fascia, Non-Illuminated Fascia, Awning/Canopy Signs |
+| **Safety & Compliance** | OSHA 2007 compliant signs, ISO 7010 safety pictograms, Bilingual English/Kiswahili |
 
 ### Signage Pages
 
-- **Home** — Hero, trust strip, services grid, portfolio gallery, testimonials, CTA
-- **Services** — Full service catalogue organized by sign type
+- **Home** — 11-section storytelling flow: Hero → Problem → What We Do → How It Works → Vehicle Branding → Proof → Safety Compliance → Hot Products → Global Trends → Zone Detector → CTA
+- **Services** — Full service catalogue with zone-aware recommendations, signage types comparison, industry guides, OSHA compliance section
 - **Portfolio** — Past projects with images, volumes, deadlines, and materials
 - **Book** — Quote/site-visit request form
+
+### Signage Unique Features
+
+- **Vehicle Branding Tool** — Interactive comparison of vehicle wrap options (Saloon/SUV/Lorry/Bus) with pricing, daily impressions, lifespan, and best-for recommendations
+- **OSHA 2007 Compliance Section** — Safety signage requirements, ISO 7010 standards, bilingual English/Kiswahili, photoluminescent options
+- **Signage Types Comparison** — Compare 18 signage types with specs, pricing, materials, lifespan, and installation time
+- **Zone-Aware Signage** — Location-based climate zone detection with material and signage type recommendations
+- **Hot Products in Kenya 2026** — Top 10 signage products ranked by demand with pricing
+- **Global Trends 2026** — Smart Digital Signage, Sustainable Materials, Halo-Lit Premium, Interactive Wayfinding, Vehicle Wraps, 3D Printing
+- **Industry Guides** — Tailored signage recommendations for retail, hospitality, healthcare, corporate, industrial, and government sectors
+- **Signage-Specific How It Works** — 4-step process: Site Survey → Design & Engineering → Fabrication → Installation
 
 ---
 
@@ -207,6 +219,9 @@ touchline-platform/
 ├── components/             # Reusable UI components
 │   ├── HubHome.tsx         # Hub landing page
 │   ├── BrandingHome.tsx    # Branding specialism home page
+│   ├── SignageHome.tsx     # Signage specialism home page
+│   ├── SignageContent.tsx  # Signage services page content
+│   ├── SignageZoneDetector.tsx # Location-based signage recommendations
 │   ├── Hero.tsx            # Brand-specific hero
 │   ├── HowItWorks.tsx      # 3-step process (reusable)
 │   ├── BookingForm.tsx     # Quote request form
@@ -215,7 +230,9 @@ touchline-platform/
 │   ├── Footer.tsx          # Brand-aware footer
 │   └── ...                 # 20+ more components
 ├── config/
-│   └── brands.ts           # Brand configs (content, services, portfolio)
+│   ├── brands.ts           # Brand configs (content, services, portfolio)
+│   ├── branding-knowledge.ts # Branding industry knowledge base (686 lines)
+│   └── signage-knowledge.ts  # Signage industry knowledge base (814 lines)
 ├── db/
 │   ├── leads.sql           # Leads table schema
 │   └── schema.sql          # Full database schema
@@ -251,7 +268,7 @@ touchline-platform/
 
 - [x] Hub landing page with storytelling flow
 - [x] Branding specialism: Home, Services, Portfolio, Book pages
-- [x] Signage specialism: Home, Services, Portfolio, Book pages
+- [x] Signage specialism: Home (11 sections), Services (zone-aware), Portfolio, Book pages
 - [x] Brand-aware Header, Footer, Mobile Bottom Nav
 - [x] Quote/booking form with spam protection
 - [x] Admin dashboard with Google sign-in
@@ -264,6 +281,13 @@ touchline-platform/
 - [x] Sitemap and robots.txt
 - [x] Cross-sell banner between brands
 - [x] Security headers (HSTS, X-Frame-Options, etc.)
+- [x] Knowledge bases: Branding (686 lines), Signage (814 lines)
+- [x] Zone-aware recommendations for both specialisms
+- [x] Industry-specific guides for both specialisms
+- [x] Vehicle branding comparison tool (Signage)
+- [x] OSHA 2007 compliance section (Signage)
+- [x] Hot products in Kenya 2026 for both specialisms
+- [x] Global trends 2026 for both specialisms
 
 ## What's Planned
 
