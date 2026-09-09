@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { getBrand } from '@/config/brands';
 import {
@@ -15,8 +16,15 @@ import { Logo } from './Logo';
 import { Reveal } from './Reveal';
 import { HowItWorks } from './HowItWorks';
 import { SignageZoneDetector } from './SignageZoneDetector';
-import { SignageViewingCalculator } from './SignageViewingCalculator';
-import { IlluminationGuide } from './IlluminationGuide';
+
+const SignageViewingCalculator = dynamic(
+  () => import('./SignageViewingCalculator').then(m => m.SignageViewingCalculator),
+  { ssr: false }
+);
+const IlluminationGuide = dynamic(
+  () => import('./IlluminationGuide').then(m => m.IlluminationGuide),
+  { ssr: false }
+);
 
 const brand = getBrand('signage');
 
@@ -100,7 +108,7 @@ export function SignageHome() {
   return (
     <div className="relative">
       {/* ── 1. HERO ──────────────────────────────────────────────── */}
-      <section className="relative section-py-lg overflow-hidden">
+      <section className="relative section-py-lg overflow-hidden grad-hero-subtle">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[var(--accent)] opacity-[0.03] blur-[150px]" />
         </div>
@@ -111,7 +119,7 @@ export function SignageHome() {
               <Reveal>
                 <div className="flex items-center gap-3 mb-6">
                   <span className="line-accent" />
-                  <span className="text-mono-label">{brand.heroKicker}</span>
+                  <span className="grad-kicker">{brand.heroKicker}</span>
                 </div>
               </Reveal>
 
@@ -119,7 +127,7 @@ export function SignageHome() {
                 <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] mb-6 text-[var(--text)]">
                   Signs that speak
                   <br />
-                  <span className="accent-word">before you do.</span>
+                  <span className="grad-text">before you do.</span>
                 </h1>
               </Reveal>
 
@@ -131,7 +139,7 @@ export function SignageHome() {
 
               <Reveal delay={240}>
                 <div className="flex flex-wrap gap-4 mb-10">
-                  <Link href="/book" className="btn-primary glow-accent">
+                  <Link href="/book" className="btn-grad glow-accent">
                     Get a Quote <span>→</span>
                   </Link>
                   <a href="#what-we-do" className="btn-secondary glass-subtle">
@@ -185,13 +193,13 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <div className="max-w-3xl">
             <Reveal>
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-6 block">
+              <span className="grad-kicker mb-6 block">
                 // The problem
               </span>
               <h2 className="font-display text-3xl md:text-5xl leading-tight mb-6 text-[var(--text)]">
                 Bad signage costs you
                 <br />
-                <span className="accent-word">customers you never meet.</span>
+                <span className="grad-text">customers you never meet.</span>
               </h2>
             </Reveal>
             <Reveal delay={100}>
@@ -210,11 +218,11 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // What we do
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
-                Four ways to <span className="accent-word">sign</span> your world
+                Four ways to <span className="grad-text">sign</span> your world
               </h2>
               <p className="text-lead max-w-xl mx-auto">
                 Every sign is designed, fabricated and installed in-house — no subcontractors, no guesswork.
@@ -227,7 +235,7 @@ export function SignageHome() {
               <Reveal key={cat.name} delay={i * 100}>
                 <a href="/services" className="card-theme group p-8 rounded-[var(--radius-lg)] block h-full">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-[var(--radius-md)] bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-[var(--accent-ink)] transition-all duration-300">
+                    <div className="w-12 h-12 rounded-[var(--radius-md)] bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-[var(--accent-ink)] group-hover:shadow-lg transition-all duration-300">
                       {cat.icon}
                     </div>
                     <div className="flex-1">
@@ -265,11 +273,11 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // How it works
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
-                From site survey to <span className="accent-word">installed sign</span>
+                From site survey to <span className="grad-text">installed sign</span>
               </h2>
             </div>
           </Reveal>
@@ -298,11 +306,11 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // Mobile billboards
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
-                Vehicle branding that <span className="accent-word">moves people</span>
+                Vehicle branding that <span className="grad-text">moves people</span>
               </h2>
               <p className="text-lead max-w-xl mx-auto">
                 A branded vehicle generates 30,000-100,000 impressions per day. That&apos;s the highest ROI of any signage investment.
@@ -369,7 +377,7 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           {/* Stats */}
           <Reveal>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 mb-20 py-8 border-y border-[var(--border)]">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 mb-20 py-8 border-y border-[var(--border)] grad-section-alt">
               {[
                 { value: '500+', label: 'Signs installed' },
                 { value: '3-Day', label: 'Average turnaround' },
@@ -386,11 +394,11 @@ export function SignageHome() {
           {/* Testimonials */}
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // What clients say
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
-                Trusted by <span className="accent-word">facility managers</span>
+                Trusted by <span className="grad-text">facility managers</span>
               </h2>
             </div>
           </Reveal>
@@ -421,7 +429,7 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="card-theme rounded-[var(--radius-lg)] p-8 md:p-12 max-w-3xl mx-auto">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // Safety & Compliance
               </span>
               <h2 className="font-display text-2xl md:text-3xl text-[var(--text)] mb-4">
@@ -460,11 +468,11 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // What&apos;s trending
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
-                Hot signage in <span className="accent-word">Kenya 2026</span>
+                Hot signage in <span className="grad-text">Kenya 2026</span>
               </h2>
               <p className="text-lead max-w-xl mx-auto">
                 Based on demand data across {MARKET_DATA.kenya.totalSuppliers} suppliers nationwide.
@@ -494,11 +502,11 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // 2026 global trends
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
-                What&apos;s shaping <span className="accent-word">signage</span>
+                What&apos;s shaping <span className="grad-text">signage</span>
               </h2>
               <p className="text-lead max-w-xl mx-auto">
                 The global signage market hit $52.8B in 2025. Here&apos;s what&apos;s driving growth.
@@ -531,11 +539,11 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // Zone-aware signage
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
-                Get recommendations for <span className="accent-word">your location</span>
+                Get recommendations for <span className="grad-text">your location</span>
               </h2>
               <p className="text-lead max-w-xl mx-auto">
                 Kenya&apos;s climate varies from coastal humidity to highland frost. Your signage materials should match.
@@ -554,11 +562,11 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // Get the size right
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
-                What size sign <span className="accent-word">do you need?</span>
+                What size sign <span className="grad-text">do you need?</span>
               </h2>
               <p className="text-lead max-w-xl mx-auto">
                 Too small = invisible. Too big = waste. Find the perfect letter height for your viewing distance.
@@ -577,11 +585,11 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // Light it up
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
-                Which <span className="accent-word">illumination</span> type is right?
+                Which <span className="grad-text">illumination</span> type is right?
               </h2>
               <p className="text-lead max-w-xl mx-auto">
                 Your business hours determine your lighting needs. Front-lit, halo, neon, or none?
@@ -600,7 +608,7 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6 text-center">
           <Reveal>
             <h2 className="font-display text-4xl md:text-5xl text-[var(--text)] mb-6">
-              Ready to make your brand <span className="accent-word">impossible to miss?</span>
+              Ready to make your brand <span className="grad-text">impossible to miss?</span>
             </h2>
           </Reveal>
           <Reveal delay={80}>

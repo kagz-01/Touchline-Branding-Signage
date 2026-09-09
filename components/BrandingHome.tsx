@@ -95,7 +95,7 @@ export function BrandingHome() {
   return (
     <div className="relative">
       {/* ── 1. HERO ──────────────────────────────────────────────── */}
-      <section className="relative section-py-lg overflow-hidden">
+      <section className="relative section-py-lg overflow-hidden grad-hero-subtle">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[var(--accent)] opacity-[0.03] blur-[150px]" />
         </div>
@@ -106,7 +106,7 @@ export function BrandingHome() {
               <Reveal>
                 <div className="flex items-center gap-3 mb-6">
                   <span className="line-accent" />
-                  <span className="text-mono-label">{brand.heroKicker}</span>
+                  <span className="grad-kicker">{brand.heroKicker}</span>
                 </div>
               </Reveal>
 
@@ -114,7 +114,7 @@ export function BrandingHome() {
                 <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] mb-6 text-[var(--text)]">
                   Put your brand
                   <br />
-                  in their <span className="accent-word">hands.</span>
+                  in their <span className="grad-text">hands.</span>
                 </h1>
               </Reveal>
 
@@ -126,7 +126,7 @@ export function BrandingHome() {
 
               <Reveal delay={240}>
                 <div className="flex flex-wrap gap-4 mb-10">
-                  <Link href="/book" className="btn-primary glow-accent">
+                  <Link href="/book" className="btn-grad">
                     Get a Quote <span>→</span>
                   </Link>
                   <a href="#what-we-do" className="btn-secondary glass-subtle">
@@ -180,13 +180,13 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <div className="max-w-3xl">
             <Reveal>
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-6 block">
+              <span className="grad-kicker mb-6 block">
                 // The problem
               </span>
               <h2 className="font-display text-3xl md:text-5xl leading-tight mb-6 text-[var(--text)]">
                 The promo industry is full
                 <br />
-                of <span className="accent-word">middlemen.</span>
+                of <span className="grad-text">middlemen.</span>
               </h2>
             </Reveal>
             <Reveal delay={100}>
@@ -205,11 +205,11 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // What we do
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
-                Four ways to <span className="accent-word">brand</span> your world
+                Four ways to <span className="grad-text">brand</span> your world
               </h2>
               <p className="text-lead max-w-xl mx-auto">
                 Every service is handled in-house from sourcing to delivery — no middlemen, no surprises.
@@ -222,7 +222,7 @@ export function BrandingHome() {
               <Reveal key={cat.name} delay={i * 100}>
                 <a href="/services" className="card-theme group p-8 rounded-[var(--radius-lg)] block h-full">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-[var(--radius-md)] bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-[var(--accent-ink)] transition-all duration-300">
+                    <div className="w-12 h-12 rounded-[var(--radius-md)] bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-[var(--accent-ink)] group-hover:shadow-lg transition-all duration-300">
                       {cat.icon}
                     </div>
                     <div className="flex-1">
@@ -260,11 +260,11 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // How it works
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
-                From raw material to <span className="accent-word">delivered brand</span>
+                From raw material to <span className="grad-text">delivered brand</span>
               </h2>
             </div>
           </Reveal>
@@ -293,11 +293,11 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // Not sure what you need?
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
-                Compare our <span className="accent-word">printing methods</span>
+                Compare our <span className="grad-text">printing methods</span>
               </h2>
               <p className="text-lead max-w-xl mx-auto">
                 Every method has its strengths. Here&apos;s how to choose.
@@ -366,7 +366,7 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           {/* Stats */}
           <Reveal>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 mb-20 py-8 border-y border-[var(--border)]">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 mb-20 py-8 border-y border-[var(--border)] grad-section-alt">
               {[
                 { value: '10K+', label: 'Items sourced & branded' },
                 { value: '4-Day', label: 'Average turnaround' },
@@ -383,11 +383,11 @@ export function BrandingHome() {
           {/* Testimonials */}
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // What clients say
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
-                Trusted by <span className="accent-word">procurement teams</span>
+                Trusted by <span className="grad-text">procurement teams</span>
               </h2>
             </div>
           </Reveal>
@@ -418,7 +418,7 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="card-theme rounded-[var(--radius-lg)] p-8 md:p-12 text-center max-w-3xl mx-auto">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // Sustainability
               </span>
               <h2 className="font-display text-2xl md:text-3xl text-[var(--text)] mb-4">

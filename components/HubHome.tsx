@@ -105,7 +105,7 @@ export function HubHome() {
   return (
     <div className="relative">
       {/* ── 1. HERO ──────────────────────────────────────────────── */}
-      <section className="relative section-py-lg overflow-hidden">
+      <section className="relative section-py-lg overflow-hidden grad-hero-subtle">
         {/* Subtle gradient accent — purposeful, not decorative */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[var(--accent)] opacity-[0.03] blur-[150px]" />
@@ -113,7 +113,7 @@ export function HubHome() {
 
         <div className="relative z-10 max-w-content mx-auto px-6 text-center">
           <Reveal>
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[var(--accent)] mb-6">
+            <p className="grad-kicker mb-6">
               One company. Two specialisms.
             </p>
           </Reveal>
@@ -122,7 +122,7 @@ export function HubHome() {
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-8 text-[var(--text)]">
               Your Brand,
               <br />
-              Built <span className="accent-word">Visible.</span>
+              Built <span className="grad-text">Visible.</span>
             </h1>
           </Reveal>
 
@@ -135,7 +135,7 @@ export function HubHome() {
 
           <Reveal delay={240}>
             <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
-              <a href="#what-we-offer" className="btn-primary glow-accent">
+              <a href="#what-we-offer" className="btn-grad glow-accent">
                 See What We Do <span>→</span>
               </a>
               <Link href="/book" className="btn-secondary glass-subtle">
@@ -159,13 +159,13 @@ export function HubHome() {
         <div className="max-w-content mx-auto px-6">
           <div className="max-w-3xl">
             <Reveal>
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-6 block">
+              <span className="grad-kicker mb-6 block">
                 // The challenge
               </span>
               <h2 className="font-display text-3xl md:text-5xl leading-tight mb-6 text-[var(--text)]">
                 Most brands have a logo.
                 <br />
-                Few have a <span className="accent-word">presence.</span>
+                Few have a <span className="grad-text">presence.</span>
               </h2>
             </Reveal>
             <Reveal delay={100}>
@@ -184,7 +184,7 @@ export function HubHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // What we do
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
@@ -258,7 +258,7 @@ export function HubHome() {
         <div className="max-w-content mx-auto px-6">
           {/* Animated counters */}
           <Reveal>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 mb-20 py-8 border-y border-[var(--border)]">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 mb-20 py-8 border-y border-[var(--border)] grad-section-alt">
               {TRUST_STATS.map((item, i) => (
                 <div key={item.label} className="flex items-center gap-3">
                   <span className="font-display text-2xl md:text-3xl text-[var(--accent)]">
@@ -275,7 +275,7 @@ export function HubHome() {
           {/* Testimonials */}
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
+              <span className="grad-kicker mb-4 block">
                 // What clients say
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
@@ -310,7 +310,7 @@ export function HubHome() {
         <div className="max-w-content mx-auto px-6 text-center">
           <Reveal>
             <h2 className="font-display text-4xl md:text-5xl text-[var(--text)] mb-6">
-              Ready to make your brand <span className="accent-word">physical?</span>
+              Ready to make your brand <span className="grad-text">physical?</span>
             </h2>
           </Reveal>
           <Reveal delay={80}>
