@@ -136,7 +136,7 @@ export function HubHome() {
               <Reveal>
                 <div className="flex items-center gap-3 mb-6">
                   <span className="grad-underline" />
-                  <span className="grad-kicker">Premium Signage &amp; Branding Solutions</span>
+                  <span className="grad-kicker">One company. Two specialisms.</span>
                 </div>
               </Reveal>
 
@@ -150,18 +150,18 @@ export function HubHome() {
 
               <Reveal delay={160}>
                 <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-8 max-w-lg">
-                  From eye-catching signs to full vehicle branding, we help
-                  businesses stand out, make an impact, and get noticed.
+                  From merchandise that travels with people, to signage that stands in place — Touchline
+                  makes sure your name is seen, worn, and remembered.
                 </p>
               </Reveal>
 
               <Reveal delay={240}>
                 <div className="flex flex-wrap gap-4 mb-12">
                   <a href="#what-we-offer" className="btn-grad">
-                    Explore Our Services <span>→</span>
+                    See What We Do <span>→</span>
                   </a>
-                  <Link href="/portfolio" className="btn-secondary">
-                    View Our Portfolio
+                  <Link href="/book" className="btn-secondary">
+                    Get a Quote
                   </Link>
                 </div>
               </Reveal>
