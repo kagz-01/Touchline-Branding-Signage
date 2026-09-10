@@ -17,7 +17,7 @@ const BRAND_COOKIE = 'tb-brand';
  * a brand while you're developing, or visit with ?brand=signage.
  */
 export async function middleware(req: NextRequest) {
-  const host = req.headers.get('host');
+  const host = req.headers.get('host') ?? '';
   const devBrandParam = req.nextUrl.searchParams.get('brand');
 
   let brand = resolveBrandFromHost(host);
@@ -55,8 +55,17 @@ export async function middleware(req: NextRequest) {
   const isLoginRoute = req.nextUrl.pathname.startsWith('/admin/login');
 
   if (isAdminRoute && !isLoginRoute) {
-    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-    if (!token) {
+    try {
+      const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+      if (!token) {
+        if (req.nextUrl.pathname.startsWith('/api/admin')) {
+          return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+        const loginUrl = new URL('/admin/login', req.url);
+        return NextResponse.redirect(loginUrl);
+      }
+    } catch {
+      // NEXTAUTH_SECRET not configured — redirect to login
       if (req.nextUrl.pathname.startsWith('/api/admin')) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
