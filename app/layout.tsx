@@ -11,6 +11,7 @@ import { BottomNav } from '@/components/BottomNav';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { CommandPalette } from '@/components/CommandPalette';
 import { ClientBrandUpdater } from '@/components/ClientBrandUpdater';
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
 // Self-hosted fonts — no Google Fonts dependency, works offline
@@ -189,6 +190,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CommandPalette />
         </>
       )}
+      <Analytics />
     </body>
   );
 
