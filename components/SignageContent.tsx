@@ -16,7 +16,6 @@ export function SignageContent({ brand }: { brand: BrandConfig }) {
       <section className="section-py-lg">
         <div className="max-w-content mx-auto px-6">
           <Reveal>
-            <p className="text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-3 font-mono">// Services</p>
             <h1 className="font-display text-3xl md:text-4xl max-w-2xl mb-4">{brand.about}</h1>
             <p className="text-lg text-[var(--text-muted)] max-w-2xl">
               From site survey to installation — we handle design, fabrication, and professional mounting across Kenya.
@@ -39,9 +38,6 @@ export function SignageContent({ brand }: { brand: BrandConfig }) {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
-                // Location matters
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Zone-aware <span className="accent-word">recommendations</span>
               </h2>
@@ -63,9 +59,6 @@ export function SignageContent({ brand }: { brand: BrandConfig }) {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
-                // Signage types
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 <span className="accent-word">Signage types</span> compared
               </h2>
@@ -111,9 +104,6 @@ export function SignageContent({ brand }: { brand: BrandConfig }) {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
-                // By industry
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Tailored for <span className="accent-word">your sector</span>
               </h2>
@@ -160,9 +150,6 @@ export function SignageContent({ brand }: { brand: BrandConfig }) {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="card-theme rounded-[var(--radius-lg)] p-8 md:p-12 max-w-3xl mx-auto">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
-                // Safety & Compliance
-              </span>
               <h2 className="font-display text-2xl md:text-3xl text-[var(--text)] mb-4">
                 OSHA 2007 compliant signage
               </h2>
@@ -201,9 +188,6 @@ export function SignageContent({ brand }: { brand: BrandConfig }) {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
-                // What&apos;s popular
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Top signage in <span className="accent-word">Kenya 2026</span>
               </h2>

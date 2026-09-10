@@ -134,13 +134,6 @@ export function HubHome() {
             {/* Left — text content */}
             <div className="py-16">
               <Reveal>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="grad-underline" />
-                  <span className="grad-kicker">One company. Two specialisms.</span>
-                </div>
-              </Reveal>
-
-              <Reveal delay={80}>
                 <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] mb-6 text-[var(--text)]">
                   Your Brand,
                   <br />
@@ -231,9 +224,6 @@ export function HubHome() {
         <div className="max-w-content mx-auto px-6">
           <div className="max-w-3xl">
             <Reveal>
-              <span className="grad-kicker mb-6 block">
-                // The challenge
-              </span>
               <h2 className="font-display text-3xl md:text-5xl leading-tight mb-6 text-[var(--text)]">
                 Most brands have a logo.
                 <br />
@@ -256,9 +246,6 @@ export function HubHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="grad-kicker mb-4 block">
-                // What we do
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
                 Two ways we bring your brand to life
               </h2>
@@ -347,9 +334,6 @@ export function HubHome() {
           {/* Testimonials */}
           <Reveal>
             <div className="text-center mb-12">
-              <span className="grad-kicker mb-4 block">
-                // What clients say
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
                 Trusted across industries
               </h2>

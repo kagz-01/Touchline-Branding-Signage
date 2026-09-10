@@ -15,9 +15,6 @@ export function CrossSellBanner({ brand }: { brand: BrandConfig }) {
           <div className="flex items-center gap-6">
             <Logo brand={targetBrand} className="text-2xl text-[var(--accent)] group-hover:text-[var(--bg)] transition-colors duration-700 hidden md:block" />
             <div className="max-w-2xl">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] group-hover:text-[var(--bg)] transition-colors duration-700 block mb-3">
-                // Also from Touchline
-              </span>
               <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wide group-hover:text-[var(--bg)] transition-colors duration-700 mb-2">
                 {brand.crossSell.headline}
               </h3>

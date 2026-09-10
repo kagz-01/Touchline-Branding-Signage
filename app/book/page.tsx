@@ -36,7 +36,6 @@ export default function BookPage() {
           <div className="mb-16 max-w-3xl">
             <div className="flex items-center gap-3 mb-6">
               <span className="line-accent" />
-              <span className="text-mono-label">// Start a project</span>
             </div>
 
             <h1 className="text-display text-4xl md:text-6xl mb-6 text-balance">

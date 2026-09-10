@@ -60,9 +60,6 @@ export function ProcessScroll({ brand }: { brand: BrandConfig }) {
       <div className="max-w-content mx-auto px-6 section-py border-b border-[var(--border)]">
         <Reveal>
           <div className="max-w-3xl">
-            <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-6 block">
-              // The problem
-            </span>
             <h2 className="font-display text-3xl md:text-5xl max-w-4xl mb-8 leading-tight uppercase text-[var(--text)]">
               {tensionHeadline}
             </h2>
@@ -112,12 +109,6 @@ export function ProcessScroll({ brand }: { brand: BrandConfig }) {
 
         {/* Scrolling Content */}
         <div className="py-32 px-6 md:px-12 flex flex-col justify-center">
-          <Reveal>
-            <span className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-12 block">
-              // How it works
-            </span>
-          </Reveal>
-
           <div className="space-y-24">
             {steps.map((step, i) => (
               <div key={step.num} style={getStepStyle(0.2 * (i + 1), 0.1 * i)} className="transition-all duration-300">

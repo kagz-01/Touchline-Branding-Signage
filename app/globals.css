@@ -556,19 +556,6 @@ body {
     background-clip: text;
   }
 
-  /* Subtitle / kicker overlines */
-  .grad-kicker {
-    background: linear-gradient(90deg, var(--grad-text-from), var(--grad-text-to));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-family: var(--font-mono);
-    font-size: 0.625rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-weight: 600;
-  }
-
   /* Gradient underline accent */
   .grad-underline {
     width: 60px;

@@ -9,7 +9,6 @@ export function ServicesGrid({ brand, limit }: { brand: BrandConfig; limit?: num
     <div className="max-w-content mx-auto px-6">
       <Reveal>
         <div className="text-center mb-16">
-          <span className="text-mono-label block mb-4">// What we do</span>
           <h2 className="text-display text-3xl md:text-4xl mb-4">
             Our <span className="accent-word">capabilities</span>
           </h2>

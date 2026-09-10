@@ -19,19 +19,10 @@ export function Hero({ brand }: { brand: BrandConfig }) {
       <div className="relative z-10 max-w-content mx-auto px-6 section-py-lg">
         <Parallax speed={0.3}>
           <div className="max-w-3xl">
-            {/* Kicker with line accent */}
-            <div className="flex items-center gap-3 mb-6">
-              <span className="line-accent" />
-              <span className="text-mono-label">{brand.heroKicker}</span>
-            </div>
-
-            {/* Display headline */}
-            <h1 className="text-display text-5xl md:text-6xl lg:text-7xl mb-6 text-balance">
-              {leadWords}{' '}
-              <span className="accent-word">{keyWord}</span>
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] mb-6 text-[var(--text)]">
+              {leadWords} <span className="grad-text">{keyWord}</span>
             </h1>
 
-            {/* Editorial subtitle */}
             <p className="text-editorial-lg max-w-lg mb-10">
               {brand.heroSub}
             </p>

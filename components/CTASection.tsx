@@ -12,14 +12,8 @@ export function CTASection({ brand }: { brand: BrandConfig }) {
 
       <div className="relative z-10 max-w-content mx-auto px-6 text-center">
         <Parallax speed={0.2}>
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <span className="line-accent" />
-            <span className="text-mono-label">Ready to start?</span>
-            <span className="line-accent rotate-180" />
-          </div>
-
-          <h2 className="text-display text-4xl md:text-5xl leading-tight mb-6 text-balance">
-            Let&apos;s make it <span className="accent-word">happen.</span>
+          <h2 className="font-display text-3xl md:text-5xl text-[var(--text)] mb-6">
+            Ready to make your brand <span className="grad-text">visible?</span>
           </h2>
 
           <p className="text-editorial-lg max-w-xl mx-auto mb-10">

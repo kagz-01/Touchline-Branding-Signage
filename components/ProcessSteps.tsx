@@ -18,9 +18,6 @@ export function ProcessSteps({
       <div className="max-w-content mx-auto px-6">
         <Reveal>
           <div className="text-center mb-16">
-            <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
-              // {kicker}
-            </span>
             <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
               From brief to <span className="accent-word">deployment</span>
             </h2>

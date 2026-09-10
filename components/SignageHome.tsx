@@ -117,13 +117,6 @@ export function SignageHome() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <Reveal>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="line-accent" />
-                  <span className="grad-kicker">{brand.heroKicker}</span>
-                </div>
-              </Reveal>
-
-              <Reveal delay={80}>
                 <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] mb-6 text-[var(--text)]">
                   Signs that speak
                   <br />
@@ -193,9 +186,6 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <div className="max-w-3xl">
             <Reveal>
-              <span className="grad-kicker mb-6 block">
-                // The problem
-              </span>
               <h2 className="font-display text-3xl md:text-5xl leading-tight mb-6 text-[var(--text)]">
                 Bad signage costs you
                 <br />
@@ -218,9 +208,6 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="grad-kicker mb-4 block">
-                // What we do
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Four ways to <span className="grad-text">sign</span> your world
               </h2>
@@ -273,9 +260,6 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="grad-kicker mb-4 block">
-                // How it works
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
                 From site survey to <span className="grad-text">installed sign</span>
               </h2>
@@ -306,9 +290,6 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="grad-kicker mb-4 block">
-                // Mobile billboards
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Vehicle branding that <span className="grad-text">moves people</span>
               </h2>
@@ -394,9 +375,6 @@ export function SignageHome() {
           {/* Testimonials */}
           <Reveal>
             <div className="text-center mb-12">
-              <span className="grad-kicker mb-4 block">
-                // What clients say
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
                 Trusted by <span className="grad-text">facility managers</span>
               </h2>
@@ -429,9 +407,6 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="card-theme rounded-[var(--radius-lg)] p-8 md:p-12 max-w-3xl mx-auto">
-              <span className="grad-kicker mb-4 block">
-                // Safety & Compliance
-              </span>
               <h2 className="font-display text-2xl md:text-3xl text-[var(--text)] mb-4">
                 OSHA 2007 compliant signage
               </h2>
@@ -468,9 +443,6 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="grad-kicker mb-4 block">
-                // What&apos;s trending
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Hot signage in <span className="grad-text">Kenya 2026</span>
               </h2>
@@ -502,9 +474,6 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="grad-kicker mb-4 block">
-                // 2026 global trends
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 What&apos;s shaping <span className="grad-text">signage</span>
               </h2>
@@ -539,9 +508,6 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="grad-kicker mb-4 block">
-                // Zone-aware signage
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Get recommendations for <span className="grad-text">your location</span>
               </h2>
@@ -562,9 +528,6 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="grad-kicker mb-4 block">
-                // Get the size right
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 What size sign <span className="grad-text">do you need?</span>
               </h2>
@@ -585,9 +548,6 @@ export function SignageHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="grad-kicker mb-4 block">
-                // Light it up
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Which <span className="grad-text">illumination</span> type is right?
               </h2>

@@ -51,7 +51,6 @@ export default function AdminDashboardPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-10 space-y-10">
       <div>
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-2">// Dashboard</p>
         <h1 className="font-display text-3xl md:text-4xl text-[var(--text)]">Welcome back</h1>
       </div>
 

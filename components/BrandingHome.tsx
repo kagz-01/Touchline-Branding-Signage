@@ -104,13 +104,6 @@ export function BrandingHome() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <Reveal>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="line-accent" />
-                  <span className="grad-kicker">{brand.heroKicker}</span>
-                </div>
-              </Reveal>
-
-              <Reveal delay={80}>
                 <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] mb-6 text-[var(--text)]">
                   Put your brand
                   <br />
@@ -180,9 +173,6 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <div className="max-w-3xl">
             <Reveal>
-              <span className="grad-kicker mb-6 block">
-                // The problem
-              </span>
               <h2 className="font-display text-3xl md:text-5xl leading-tight mb-6 text-[var(--text)]">
                 The promo industry is full
                 <br />
@@ -205,9 +195,6 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="grad-kicker mb-4 block">
-                // What we do
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Four ways to <span className="grad-text">brand</span> your world
               </h2>
@@ -260,9 +247,6 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="grad-kicker mb-4 block">
-                // How it works
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
                 From raw material to <span className="grad-text">delivered brand</span>
               </h2>
@@ -293,9 +277,6 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="grad-kicker mb-4 block">
-                // Not sure what you need?
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Compare our <span className="grad-text">printing methods</span>
               </h2>
@@ -383,9 +364,6 @@ export function BrandingHome() {
           {/* Testimonials */}
           <Reveal>
             <div className="text-center mb-12">
-              <span className="grad-kicker mb-4 block">
-                // What clients say
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
                 Trusted by <span className="grad-text">procurement teams</span>
               </h2>
@@ -418,9 +396,6 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="card-theme rounded-[var(--radius-lg)] p-8 md:p-12 text-center max-w-3xl mx-auto">
-              <span className="grad-kicker mb-4 block">
-                // Sustainability
-              </span>
               <h2 className="font-display text-2xl md:text-3xl text-[var(--text)] mb-4">
                 Branding that doesn&apos;t cost the earth
               </h2>
@@ -452,9 +427,6 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
-                // What&apos;s trending
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Hot products in <span className="accent-word">Kenya 2026</span>
               </h2>
@@ -486,9 +458,6 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
-                // 2026 global trends
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 What&apos;s shaping <span className="accent-word">corporate gifting</span>
               </h2>
@@ -523,9 +492,6 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
-                // Zone-aware branding
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Get recommendations for <span className="accent-word">your location</span>
               </h2>
@@ -546,9 +512,6 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
-                // The numbers
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 How many <span className="accent-word">impressions</span> per KES?
               </h2>
@@ -569,9 +532,6 @@ export function BrandingHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <span className="font-mono text-xs text-[var(--accent)] uppercase tracking-[0.2em] mb-4 block">
-                // Government & county tenders
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
                 Tender <span className="accent-word">compliance</span> checker
               </h2>

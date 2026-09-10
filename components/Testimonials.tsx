@@ -53,7 +53,6 @@ export function Testimonials({ brand }: { brand: BrandConfig }) {
       <div className="max-w-content mx-auto px-6">
         <Reveal>
           <div className="text-center mb-16">
-            <span className="text-mono-label block mb-4">// Client stories</span>
             <h2 className="text-display text-3xl md:text-4xl">
               What clients <span className="accent-word">say</span>
             </h2>
