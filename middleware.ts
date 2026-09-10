@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { BRAND_HEADER, resolveBrandFromHost } from '@/lib/brand';
 
 const BRAND_COOKIE = 'tb-brand';
+const BRAND_HEADER = 'x-touchline-brand';
+
+function resolveBrand(host: string): string {
+  if (!host) return 'hub';
+  const h = host.toLowerCase();
+  if (h.startsWith('branding.')) return 'branding';
+  if (h.startsWith('signage.')) return 'signage';
+  return 'hub';
+}
 
 export function middleware(req: NextRequest) {
   const host = req.headers.get('host') ?? '';
   const devBrandParam = req.nextUrl.searchParams.get('brand');
 
-  let brand = resolveBrandFromHost(host);
+  let brand = resolveBrand(host);
 
   if (brand === 'hub') {
     if (req.nextUrl.pathname.startsWith('/branding')) brand = 'branding';
@@ -16,11 +24,6 @@ export function middleware(req: NextRequest) {
 
   if (devBrandParam === 'branding' || devBrandParam === 'signage' || devBrandParam === 'hub') {
     brand = devBrandParam;
-  } else if (
-    (host.includes('localhost') || host.includes('127.0.0.1')) &&
-    (process.env.NEXT_PUBLIC_DEV_BRAND === 'branding' || process.env.NEXT_PUBLIC_DEV_BRAND === 'signage')
-  ) {
-    brand = process.env.NEXT_PUBLIC_DEV_BRAND;
   }
 
   if (brand === 'hub') {
