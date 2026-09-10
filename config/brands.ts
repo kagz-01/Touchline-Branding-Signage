@@ -131,7 +131,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
       targetBrand: 'signage'
     },
     contactPhone: '+254722668696',
-    contactEmail: 'branding@touchlineltd.co.ke',
+    contactEmail: 'info@touchlineltd.co.ke',
     themeClass: 'branding'
   },
   signage: {
@@ -225,7 +225,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
       targetBrand: 'branding'
     },
     contactPhone: '+254722668696',
-    contactEmail: 'signage@touchlineltd.co.ke',
+    contactEmail: 'info@touchlineltd.co.ke',
     themeClass: 'signage'
   }
 };

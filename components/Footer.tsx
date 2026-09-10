@@ -33,7 +33,7 @@ export async function Footer({ brand }: { brand: BrandConfig | null }) {
   const brandingUrl = getCrossBrandUrl('branding', host);
   const signageUrl = getCrossBrandUrl('signage', host);
 
-  const whatsappNumber = brand?.contactPhone.replace(/\D/g, '') || '254700000000';
+  const whatsappNumber = brand?.contactPhone.replace(/\D/g, '') || '254722668696';
   const whatsappMsg = encodeURIComponent(`Hi Touchline${brand ? ` ${brand.id === 'branding' ? 'Branding' : 'Signage'}` : ''}, I'd like to get a quote.`);
 
   return (
@@ -129,10 +129,10 @@ export async function Footer({ brand }: { brand: BrandConfig | null }) {
           ) : (
             <ul className="space-y-3 text-sm text-[var(--text-muted)]">
               <li><a href="tel:+254722668696" className="hover:text-[var(--accent)] transition-colors">+254 722 668 696</a></li>
-              <li><a href="mailto:hello@touchlineltd.co.ke" className="hover:text-[var(--accent)] transition-colors">hello@touchlineltd.co.ke</a></li>
+              <li><a href="mailto:info@touchlineltd.co.ke" className="hover:text-[var(--accent)] transition-colors">info@touchlineltd.co.ke</a></li>
               <li>
                 <a
-                  href={`https://wa.me/254700000000?text=${whatsappMsg}`}
+                  href={`https://wa.me/254722668696?text=${whatsappMsg}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 hover:text-[var(--accent)] transition-colors"

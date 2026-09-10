@@ -131,7 +131,7 @@ export default function TermsPage() {
               For questions about these terms, contact us at:
             </p>
             <ul className="list-disc pl-6 space-y-2 mt-2">
-              <li>Email: hello@touchlineltd.co.ke</li>
+              <li>Email: info@touchlineltd.co.ke</li>
               <li>Phone: +254 722 668 696</li>
             </ul>
           </section>

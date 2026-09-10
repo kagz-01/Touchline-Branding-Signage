@@ -3,7 +3,7 @@
 import type { BrandConfig } from '@/config/brands';
 
 export function WhatsAppButton({ brand }: { brand: BrandConfig | null }) {
-  const phoneNumber = brand?.contactPhone.replace(/\D/g, '') || '254700000000';
+  const phoneNumber = brand?.contactPhone.replace(/\D/g, '') || '254722668696';
   const message = encodeURIComponent(
     `Hi Touchline${brand ? ` ${brand.id === 'branding' ? 'Branding' : 'Signage'}` : ''}, I'd like to get a quote.`
   );

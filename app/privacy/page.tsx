@@ -92,7 +92,7 @@ export default function PrivacyPage() {
               <li>Opt out of marketing communications</li>
             </ul>
             <p className="mt-2">
-              To exercise these rights, email us at hello@touchlineltd.co.ke.
+              To exercise these rights, email us at info@touchlineltd.co.ke.
             </p>
           </section>
 
@@ -119,7 +119,7 @@ export default function PrivacyPage() {
               For privacy-related enquiries, contact us at:
             </p>
             <ul className="list-disc pl-6 space-y-2 mt-2">
-              <li>Email: hello@touchlineltd.co.ke</li>
+              <li>Email: info@touchlineltd.co.ke</li>
               <li>Phone: +254 722 668 696</li>
               <li>Location: Nairobi, Kenya</li>
             </ul>

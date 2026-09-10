@@ -76,7 +76,7 @@ export default function RefundsPage() {
           <section>
             <h2 className="font-display text-2xl mb-4">How to request a refund</h2>
             <ol className="list-decimal pl-6 space-y-2">
-              <li>Email hello@touchlineltd.co.ke with your order number and reason</li>
+              <li>Email info@touchlineltd.co.ke with your order number and reason</li>
               <li>Include photos if the issue is product-related</li>
               <li>We will respond within 3 business days</li>
               <li>Approved refunds are processed within 14 business days via your original payment method</li>
@@ -86,7 +86,7 @@ export default function RefundsPage() {
           <section>
             <h2 className="font-display text-2xl mb-4">Contact</h2>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Email: hello@touchlineltd.co.ke</li>
+              <li>Email: info@touchlineltd.co.ke</li>
               <li>Phone: +254 722 668 696</li>
             </ul>
           </section>
