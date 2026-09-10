@@ -1,64 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const BRAND_COOKIE = 'tb-brand';
-const BRAND_HEADER = 'x-touchline-brand';
-
-function resolveBrand(host: string): string {
-  if (!host) return 'hub';
-  const h = host.toLowerCase();
-  if (h.startsWith('branding.')) return 'branding';
-  if (h.startsWith('signage.')) return 'signage';
-  return 'hub';
-}
-
 export function middleware(req: NextRequest) {
-  const host = req.headers.get('host') ?? '';
-  const devBrandParam = req.nextUrl.searchParams.get('brand');
-
-  let brand = resolveBrand(host);
-
-  if (brand === 'hub') {
-    if (req.nextUrl.pathname.startsWith('/branding')) brand = 'branding';
-    else if (req.nextUrl.pathname.startsWith('/signage')) brand = 'signage';
-  }
-
-  if (devBrandParam === 'branding' || devBrandParam === 'signage' || devBrandParam === 'hub') {
-    brand = devBrandParam;
-  }
-
-  if (brand === 'hub') {
-    const sharedRoutes = ['/services', '/portfolio', '/book'];
-    if (sharedRoutes.includes(req.nextUrl.pathname)) {
-      const brandCookie = req.cookies.get(BRAND_COOKIE)?.value;
-      if (brandCookie === 'branding' || brandCookie === 'signage') {
-        brand = brandCookie;
-      }
-    }
-  }
-
-  const requestHeaders = new Headers(req.headers);
-  requestHeaders.set(BRAND_HEADER, brand);
-  requestHeaders.set('x-pathname', req.nextUrl.pathname);
-
-  const response = NextResponse.next({
-    request: { headers: requestHeaders },
-  });
-
-  if (brand === 'branding' || brand === 'signage') {
-    response.cookies.set(BRAND_COOKIE, brand, {
-      path: '/',
-      maxAge: 60 * 60 * 24 * 30,
-      sameSite: 'lax',
-    });
-  }
-
-  response.headers.set('X-Frame-Options', 'SAMEORIGIN');
-  response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-  response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
-  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
-
-  return response;
+  return NextResponse.next();
 }
 
 export const config = {
