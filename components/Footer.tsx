@@ -155,9 +155,13 @@ export async function Footer({ brand }: { brand: BrandConfig | null }) {
             <span className="hidden sm:inline">Nairobi, Kenya</span>
           </div>
           <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
-            <span>500+ projects delivered</span>
+            <Link href="/privacy" className="hover:text-[var(--accent)] transition-colors">Privacy</Link>
             <span>·</span>
-            <span>98% on-time</span>
+            <Link href="/terms" className="hover:text-[var(--accent)] transition-colors">Terms</Link>
+            <span>·</span>
+            <Link href="/refunds" className="hover:text-[var(--accent)] transition-colors">Refunds</Link>
+            <span>·</span>
+            <Link href="/cookies" className="hover:text-[var(--accent)] transition-colors">Cookies</Link>
           </div>
         </div>
       </div>
