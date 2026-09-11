@@ -19,18 +19,11 @@ export function getBrandFromHeaders(): BrandId {
     return headerBrand;
   }
 
-  // 2. Resolve from hostname
-  const host = h.get('host') || '';
+  // 2. Resolve from hostname (check both host and x-forwarded-host for Vercel)
+  const host = h.get('x-forwarded-host') || h.get('host') || '';
   let brand = resolveBrandFromHost(host);
 
-  // 3. Path-based brand on hub domain
-  const pathname = h.get('x-pathname') || h.get('referer') || '';
-  if (brand === 'hub') {
-    if (pathname.startsWith('/branding')) brand = 'branding';
-    else if (pathname.startsWith('/signage')) brand = 'signage';
-  }
-
-  // 4. Cookie fallback for shared routes on hub
+  // 3. Cookie fallback for shared routes on hub
   if (brand === 'hub') {
     const cookieStore = cookies();
     const brandCookie = cookieStore.get('tb-brand')?.value;
