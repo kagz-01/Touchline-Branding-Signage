@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { headers } from 'next/headers';
 import type { BrandConfig } from '@/config/brands';
+import { getBrand } from '@/config/brands';
 import { getCrossBrandUrl } from '@/lib/brand';
 import { Logo } from './Logo';
 
@@ -25,26 +26,38 @@ const LinkedInIcon = () => (
   </svg>
 );
 
+function resolveBrandFromHost(host: string): 'branding' | 'signage' | 'hub' {
+  if (!host) return 'hub';
+  const h = host.toLowerCase();
+  if (h.startsWith('branding.')) return 'branding';
+  if (h.startsWith('signage.')) return 'signage';
+  return 'hub';
+}
+
 export async function Footer({ brand }: { brand: BrandConfig | null }) {
   const headersList = await headers();
-  const host = headersList.get('host') || '';
+  const host = headersList.get('x-forwarded-host') || headersList.get('host') || '';
   const year = new Date().getFullYear();
+
+  // Also resolve brand from hostname directly
+  const hostBrand = resolveBrandFromHost(host);
+  const effectiveBrand = brand || (hostBrand !== 'hub' ? getBrand(hostBrand as 'branding' | 'signage') : null);
 
   const brandingUrl = getCrossBrandUrl('branding', host);
   const signageUrl = getCrossBrandUrl('signage', host);
 
-  const whatsappNumber = brand?.contactPhone.replace(/\D/g, '') || '254722668696';
-  const whatsappMsg = encodeURIComponent(`Hi Touchline${brand ? ` ${brand.id === 'branding' ? 'Branding' : 'Signage'}` : ''}, I'd like to get a quote.`);
+  const whatsappNumber = effectiveBrand?.contactPhone.replace(/\D/g, '') || '254722668696';
+  const whatsappMsg = encodeURIComponent(`Hi Touchline${effectiveBrand ? ` ${effectiveBrand.id === 'branding' ? 'Branding' : 'Signage'}` : ''}, I'd like to get a quote.`);
 
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--bg-soft)]">
       <div className="max-w-content mx-auto px-6 py-16 grid gap-10 md:grid-cols-4">
         {/* Brand */}
         <div className="md:col-span-1 flex flex-col gap-4">
-          <Logo brand={brand?.id ?? 'hub'} className="text-lg" />
+          <Logo brand={effectiveBrand?.id ?? 'hub'} className="text-lg" />
           <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-            {brand
-              ? brand.tagline
+            {effectiveBrand
+              ? effectiveBrand.tagline
               : 'One company, two specialisms: branded merchandise and structural signage.'}
           </p>
           {/* Social links */}
@@ -102,16 +115,16 @@ export async function Footer({ brand }: { brand: BrandConfig | null }) {
         {/* Contact */}
         <div>
           <p className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] mb-4">Get in touch</p>
-          {brand ? (
+          {effectiveBrand ? (
             <ul className="space-y-3 text-sm text-[var(--text-muted)]">
               <li>
-                <a href={`tel:${brand.contactPhone}`} className="hover:text-[var(--accent)] transition-colors">
-                  {brand.contactPhone}
+                <a href={`tel:${effectiveBrand.contactPhone}`} className="hover:text-[var(--accent)] transition-colors">
+                  {effectiveBrand.contactPhone}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${brand.contactEmail}`} className="hover:text-[var(--accent)] transition-colors">
-                  {brand.contactEmail}
+                <a href={`mailto:${effectiveBrand.contactEmail}`} className="hover:text-[var(--accent)] transition-colors">
+                  {effectiveBrand.contactEmail}
                 </a>
               </li>
               <li>

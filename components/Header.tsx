@@ -6,12 +6,24 @@ import { Logo } from './Logo';
 import { ThemeToggle } from './ThemeToggle';
 import { SpecialismNav } from './SpecialismNav';
 
+function resolveBrandFromHost(host: string): 'branding' | 'signage' | 'hub' {
+  if (!host) return 'hub';
+  const h = host.toLowerCase();
+  if (h.startsWith('branding.')) return 'branding';
+  if (h.startsWith('signage.')) return 'signage';
+  return 'hub';
+}
+
 export async function Header({ brand }: { brand: BrandConfig | null }) {
   const headersList = await headers();
-  const host = headersList.get('host') || '';
+  const host = headersList.get('x-forwarded-host') || headersList.get('host') || '';
+
+  // Also resolve brand from hostname directly
+  const hostBrand = resolveBrandFromHost(host);
+  const effectiveBrand = brand || (hostBrand !== 'hub' ? hostBrand : null);
 
   /* ── HUB HEADER ─────────────────────────────────────────────── */
-  if (!brand) {
+  if (!effectiveBrand) {
     const brandingUrl = getCrossBrandUrl('branding', host);
     const signageUrl = getCrossBrandUrl('signage', host);
 
@@ -46,9 +58,10 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
   }
 
   /* ── SPECIALISM HEADER (Branding / Signage) ──────────────────── */
-  const otherBrand = brand.id === 'branding' ? 'signage' : 'branding';
-  const otherLabel = brand.id === 'branding' ? 'Signage' : 'Branding';
-  const otherHref = getCrossBrandUrl(otherBrand, host);
+  const brandId = typeof effectiveBrand === 'string' ? effectiveBrand : effectiveBrand.id;
+  const otherBrandId = brandId === 'branding' ? 'signage' : 'branding';
+  const otherLabel = brandId === 'branding' ? 'Signage' : 'Branding';
+  const otherHref = getCrossBrandUrl(otherBrandId, host);
   const hubHref = getCrossBrandUrl('hub', host);
 
   return (
@@ -56,13 +69,13 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
       <div className="max-w-content mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
-          <Logo brand={brand.id} className="text-xl md:text-2xl" />
+          <Logo brand={brandId} className="text-xl md:text-2xl" />
         </Link>
 
         {/* Desktop nav with active states */}
         <SpecialismNav
-          brandId={brand.id}
-          otherBrand={otherBrand}
+          brandId={brandId}
+          otherBrand={otherBrandId}
           otherLabel={otherLabel}
           otherHref={otherHref}
           hubHref={hubHref}
