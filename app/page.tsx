@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 import { getBrandFromHeaders } from '@/lib/get-brand-server';
 import { getBrand } from '@/config/brands';
 import { HubHome } from '@/components/HubHome';
@@ -16,11 +17,11 @@ import { ProblemSection } from '@/components/ProblemSection';
 export default function HomePage({ searchParams }: { searchParams?: { brand?: string } }) {
   let brandId = getBrandFromHeaders();
 
-  // Allow ?brand= query param override (hub domain only)
+  // When hub domain has ?brand= param, redirect to the subdomain
   if (brandId === 'hub' && searchParams?.brand) {
     const param = searchParams.brand;
     if (param === 'branding' || param === 'signage') {
-      brandId = param;
+      redirect(`https://${param}.touchlineltd.co.ke/`);
     }
   }
 
