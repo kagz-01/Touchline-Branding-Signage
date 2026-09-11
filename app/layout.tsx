@@ -133,8 +133,17 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const brandId = getBrandFromHeaders();
+export default function RootLayout({ children, searchParams }: { children: React.ReactNode; searchParams?: { brand?: string } }) {
+  let brandId = getBrandFromHeaders();
+
+  // Allow ?brand= query param override (hub domain only)
+  if (brandId === 'hub' && searchParams?.brand) {
+    const param = searchParams.brand;
+    if (param === 'branding' || param === 'signage') {
+      brandId = param;
+    }
+  }
+
   const brand = brandId === 'hub' ? null : getBrand(brandId);
   const pathname = headers().get('x-pathname') || '';
   const isAdmin = pathname.startsWith('/admin');

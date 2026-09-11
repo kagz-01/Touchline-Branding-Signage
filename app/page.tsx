@@ -13,8 +13,16 @@ import { CTASection } from '@/components/CTASection';
 import { TrustStrip } from '@/components/TrustStrip';
 import { ProblemSection } from '@/components/ProblemSection';
 
-export default function HomePage() {
-  const brandId = getBrandFromHeaders();
+export default function HomePage({ searchParams }: { searchParams?: { brand?: string } }) {
+  let brandId = getBrandFromHeaders();
+
+  // Allow ?brand= query param override (hub domain only)
+  if (brandId === 'hub' && searchParams?.brand) {
+    const param = searchParams.brand;
+    if (param === 'branding' || param === 'signage') {
+      brandId = param;
+    }
+  }
 
   if (brandId === 'hub') {
     return <HubHome />;
