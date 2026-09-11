@@ -21,16 +21,16 @@ export function ClientBrandUpdater() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
+    const params = new URLSearchParams(window.location.search);
+    const brandParam = params.get('brand');
+    if (brandParam === 'branding' || brandParam === 'signage' || brandParam === 'hub') {
+      document.documentElement.setAttribute('data-brand', brandParam);
+      return;
+    }
+
     const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     
     if (isLocalhost) {
-      const params = new URLSearchParams(window.location.search);
-      const brandParam = params.get('brand');
-      if (brandParam === 'branding' || brandParam === 'signage' || brandParam === 'hub') {
-        document.documentElement.setAttribute('data-brand', brandParam);
-        return;
-      }
-
       let brand = 'hub';
       if (pathname.startsWith('/branding')) brand = 'branding';
       else if (pathname.startsWith('/signage')) brand = 'signage';
