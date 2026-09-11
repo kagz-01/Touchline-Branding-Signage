@@ -6,6 +6,13 @@ import { Logo } from './Logo';
 import { Reveal } from './Reveal';
 import { HowItWorks } from './HowItWorks';
 
+function getBrandUrl(brandId: 'branding' | 'signage'): string {
+  if (typeof window === 'undefined') return `/?brand=${brandId}`;
+  const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  if (isDev) return `/?brand=${brandId}`;
+  return `https://${brandId}.touchlineltd.co.ke/`;
+}
+
 /* ------------------------------------------------------------------ */
 /* Data                                                                */
 /* ------------------------------------------------------------------ */
@@ -256,7 +263,7 @@ export function HubHome() {
             {BRANDS_DATA.map((b, i) => (
               <Reveal key={b.id} delay={i * 120}>
                 <a
-                  href={b.href}
+                  href={getBrandUrl(b.id)}
                   className="card-theme group p-10 relative overflow-hidden block rounded-[var(--radius-lg)] h-full"
                 >
                   {/* Brand accent stripe */}
