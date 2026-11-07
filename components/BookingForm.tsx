@@ -25,7 +25,7 @@ const QUANTITY_OPTIONS = [
 
 export function BookingForm({ brand }: { brand: BrandConfig }) {
   const searchParams = useSearchParams();
-  const preselectedService = searchParams.get('service') || '';
+  const preselectedService = searchParams?.get('service') || '';
 
   const initialDivision = (brand.id === 'signage' ? 'signage' : 'branding') as 'branding' | 'signage';
   const [division, setDivision] = useState<'branding' | 'signage'>(initialDivision);

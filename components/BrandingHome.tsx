@@ -132,7 +132,7 @@ export function BrandingHome() {
       <section className="relative min-h-[85vh] flex items-center overflow-hidden pt-12 pb-20 border-b border-[var(--border)]">
         {/* Warm Gold Background Ambiance */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/4 -right-32 w-[600px] h-[600px] rounded-full bg-[#c8960c] opacity-[0.08] blur-[160px]" />
+          <div className="parallax-slow absolute top-1/4 -right-32 w-[600px] h-[600px] rounded-full bg-[#c8960c] opacity-[0.08] blur-[160px]" data-speed="0.14" />
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
@@ -209,7 +209,7 @@ export function BrandingHome() {
                     className="shadow-2xl"
                   />
                   {/* Floating TouchDesk Operations Badge */}
-                  <div className="absolute -bottom-4 -left-4 glass rounded-[var(--radius-md)] p-4 border border-amber-900/30 shadow-xl max-w-[220px]">
+                  <div className="absolute -bottom-4 -left-4 glass rounded-[var(--radius-md)] p-4 border border-amber-900/30 shadow-xl max-w-[220px] animate-float glass-interactive">
                     <span className="font-mono text-[9px] uppercase tracking-widest text-[#c8960c] block mb-1">
                       Operations Engine
                     </span>

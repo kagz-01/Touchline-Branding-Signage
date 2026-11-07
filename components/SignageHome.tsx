@@ -216,8 +216,8 @@ export function SignageHome() {
       <section className="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden grad-hero-subtle border-b border-[var(--border)]">
         {/* Glow ambient background (Precision Blue #0070f3) */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-0 right-1/4 w-[700px] h-[700px] rounded-full bg-[#0070f3] opacity-[0.04] blur-[160px]" />
-          <div className="absolute -bottom-20 left-10 w-[500px] h-[500px] rounded-full bg-[#00a8ff] opacity-[0.03] blur-[140px]" />
+          <div className="parallax-slow absolute top-0 right-1/4 w-[700px] h-[700px] rounded-full bg-[#0070f3] opacity-[0.04] blur-[160px]" data-speed="0.1" />
+          <div className="parallax-slow absolute -bottom-20 left-10 w-[500px] h-[500px] rounded-full bg-[#00a8ff] opacity-[0.03] blur-[140px]" data-speed="-0.06" />
           <div
             className="absolute inset-0 opacity-[0.02]"
             style={{

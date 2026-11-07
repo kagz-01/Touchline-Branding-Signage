@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 function LoginCard() {
   const params = useSearchParams();
-  const denied = params.get("error") === "AccessDenied";
+  const denied = params?.get("error") === "AccessDenied";
   const googleConfigured = Boolean(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID);
 
   return (

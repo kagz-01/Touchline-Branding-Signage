@@ -40,7 +40,8 @@ const QuoteIcon = () => (
 export function BottomNav({ brand }: { brand: BrandConfig | null }) {
   const pathname = usePathname();
 
-  if (!brand) return null;
+  // Show BottomNav across the whole public platform (Hub, Branding, Signage), hiding only on admin or dashboard pages
+  if (pathname?.startsWith('/admin') || pathname?.startsWith('/client-dashboard')) return null;
 
   const items = [
     { href: '/', label: 'Home', Icon: HomeIcon },

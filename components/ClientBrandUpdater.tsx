@@ -32,9 +32,9 @@ export function ClientBrandUpdater() {
     
     if (isLocalhost) {
       let brand = 'hub';
-      if (pathname.startsWith('/branding')) brand = 'branding';
-      else if (pathname.startsWith('/signage')) brand = 'signage';
-      else if (pathname.startsWith('/admin')) brand = 'hub';
+      if (pathname?.startsWith('/branding')) brand = 'branding';
+      else if (pathname?.startsWith('/signage')) brand = 'signage';
+      else if (pathname?.startsWith('/admin')) brand = 'hub';
 
       document.documentElement.setAttribute('data-brand', brand);
     }

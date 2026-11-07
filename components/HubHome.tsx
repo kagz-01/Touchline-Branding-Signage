@@ -107,8 +107,8 @@ export function HubHome() {
       <section className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden pt-12 pb-16 border-b border-[var(--border)]">
         {/* Subtle Ambient Background Gradients */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] rounded-full bg-[#c8960c] opacity-[0.07] blur-[150px]" />
-          <div className="absolute top-1/3 -right-32 w-[600px] h-[600px] rounded-full bg-[#0070f3] opacity-[0.06] blur-[150px]" />
+          <div className="parallax-slow absolute top-1/4 -left-32 w-[600px] h-[600px] rounded-full bg-[#c8960c] opacity-[0.07] blur-[150px]" data-speed="0.12" />
+          <div className="parallax-slow absolute top-1/3 -right-32 w-[600px] h-[600px] rounded-full bg-[#0070f3] opacity-[0.06] blur-[150px]" data-speed="-0.08" />
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
@@ -167,7 +167,7 @@ export function HubHome() {
             <Reveal delay={280}>
               <a
                 href={getBrandUrl('branding')}
-                className="group relative flex flex-col justify-between p-8 sm:p-10 rounded-[var(--radius-lg)] bg-gradient-to-b from-[#18140b] to-[#0e0c08] border border-amber-900/30 hover:border-[#c8960c]/60 transition-all duration-500 shadow-xl overflow-hidden min-h-[380px]"
+                className="group relative flex flex-col justify-between p-8 sm:p-10 rounded-[var(--radius-lg)] bg-gradient-to-b from-[#18140b] to-[#0e0c08] border border-amber-900/30 hover:border-[#c8960c]/60 transition-all duration-500 shadow-xl overflow-hidden min-h-[380px] tilt-card glass-interactive"
               >
                 <div className="absolute -top-24 -left-24 w-64 h-64 rounded-full bg-[#c8960c]/15 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
 
@@ -218,7 +218,7 @@ export function HubHome() {
             <Reveal delay={340}>
               <a
                 href={getBrandUrl('signage')}
-                className="group relative flex flex-col justify-between p-8 sm:p-10 rounded-[var(--radius-lg)] bg-gradient-to-b from-[#0b131f] to-[#060b12] border border-blue-900/30 hover:border-[#0070f3]/60 transition-all duration-500 shadow-xl overflow-hidden min-h-[380px]"
+                className="group relative flex flex-col justify-between p-8 sm:p-10 rounded-[var(--radius-lg)] bg-gradient-to-b from-[#0b131f] to-[#060b12] border border-blue-900/30 hover:border-[#0070f3]/60 transition-all duration-500 shadow-xl overflow-hidden min-h-[380px] tilt-card glass-interactive"
               >
                 <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-[#0070f3]/15 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
 
@@ -311,7 +311,7 @@ export function HubHome() {
             </div>
 
             <div className="lg:col-span-5 grid sm:grid-cols-2 gap-4">
-              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)]">
+              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
                 <span className="font-mono text-xs text-[var(--accent)] block mb-2 font-semibold">01 / MERCHANDISE</span>
                 <h4 className="font-display text-xl text-[var(--text)] mb-2">Carried &amp; Worn</h4>
                 <p className="text-xs text-[var(--text-muted)] leading-relaxed">
@@ -319,7 +319,7 @@ export function HubHome() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)]">
+              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
                 <span className="font-mono text-xs text-[#0070f3] block mb-2 font-semibold">02 / STRUCTURES</span>
                 <h4 className="font-display text-xl text-[var(--text)] mb-2">Built &amp; Seen</h4>
                 <p className="text-xs text-[var(--text-muted)] leading-relaxed">
@@ -327,9 +327,9 @@ export function HubHome() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] sm:col-span-2">
+              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] sm:col-span-2 tilt-card glass-interactive">
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="font-mono text-xs uppercase tracking-wider text-[var(--text)] font-semibold">
                     TouchDesk Operations Engine
                   </span>

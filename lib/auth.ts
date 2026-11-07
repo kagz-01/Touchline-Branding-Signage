@@ -1,11 +1,7 @@
 import { type NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-// This is a small internal tool (view/manage public-site enquiries), not the
-// full multi-tenant inventory-platform, so it deliberately skips a database
-// adapter and an invite system: access is a plain email allowlist checked on
-// every sign-in. Add/remove admins by editing ADMIN_EMAILS \u2014 no invite flow
-// to run first.
+// Admin email allowlist
 function getAdminEmails(): string[] {
   return (process.env.ADMIN_EMAILS || '')
     .split(',')
@@ -27,26 +23,35 @@ export const authOptions: NextAuthOptions = {
     : [],
   session: { strategy: 'jwt' },
   pages: {
-    signIn: '/admin/login',
-    error: '/admin/login',
+    // Client portal login (admin login stays at /admin/login)
+    signIn: '/client-dashboard/login',
+    error:  '/client-dashboard/login',
   },
   callbacks: {
-    async signIn({ user }) {
-      if (!user.email) return false;
-      const allowed = getAdminEmails();
-      if (allowed.length === 0) {
-        // Fail closed: if nobody has been allow-listed yet, nobody gets in \u2014
-        // rather than silently letting the first Google account through.
-        console.warn('[admin auth] ADMIN_EMAILS is empty \u2014 denying all sign-ins.');
-        return false;
-      }
-      return allowed.includes(user.email.toLowerCase());
+    // Allow ALL Google sign-ins (both admins and clients)
+    async signIn() {
+      return true;
     },
-    async jwt({ token }) {
+    async jwt({ token, user }) {
+      if (user?.email) {
+        const admins = getAdminEmails();
+        token.isAdmin = admins.includes(user.email.toLowerCase());
+        token.role = token.isAdmin ? 'admin' : 'client';
+      }
       return token;
     },
-    async session({ session }) {
+    async session({ session, token }) {
+      if (session.user) {
+        (session.user as any).id = token.sub;
+        (session.user as any).isAdmin = token.isAdmin ?? false;
+        (session.user as any).role = token.role ?? 'client';
+      }
       return session;
     },
   },
 };
+
+// Helper to check if a session belongs to an admin
+export function isAdmin(session: any): boolean {
+  return session?.user?.isAdmin === true;
+}

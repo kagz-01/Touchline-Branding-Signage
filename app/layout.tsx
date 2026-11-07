@@ -14,6 +14,8 @@ import { ClientBrandUpdater } from '@/components/ClientBrandUpdater';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
+import AuthProvider from '@/components/AuthProvider';
+import { AnimationEngine } from '@/components/AnimationEngine';
 
 // Self-hosted fonts — no Google Fonts dependency, works offline
 const anton = localFont({
@@ -235,7 +237,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <ThemeProvider>
         <ClientBrandUpdater />
-        {brand ? <BrandProvider brand={brand}>{body}</BrandProvider> : body}
+        <AnimationEngine />
+        <AuthProvider>{brand ? <BrandProvider brand={brand}>{body}</BrandProvider> : body}</AuthProvider>
       </ThemeProvider>
     </html>
   );

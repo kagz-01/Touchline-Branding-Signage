@@ -901,3 +901,226 @@ body {
   transform: scale(1.1);
   box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
 }
+
+/* ==========================================================================
+   HIGH-TECH INTERACTIVE & GLASSMORPHIC ANIMATIONS (HCI-First & GPU Optimized)
+   ========================================================================== */
+
+/* 1. Enhanced Interactive Glassmorphism */
+.glass-interactive {
+  position: relative;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(255, 255, 255, 0.05) inset;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.glass-interactive:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 20px 40px -12px color-mix(in srgb, var(--accent) 22%, transparent),
+              0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* Dynamic Radial Mouse Glare */
+.glass-interactive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    color-mix(in srgb, var(--accent) 18%, transparent) 0%,
+    transparent 80%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.glass-interactive:hover::before {
+  opacity: 1;
+}
+
+/* 2. Magnetic High-Tech Button Physics */
+.btn-magnetic {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-magnetic:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+.btn-magnetic:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* 3. High-Tech Shimmer Glow Sweep */
+@keyframes high-tech-sweep {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  100% { transform: translateX(250%) skewX(-20deg); }
+}
+
+.glow-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 25%, transparent),
+    transparent
+  );
+  transform: translateX(-150%) skewX(-20deg);
+  pointer-events: none;
+}
+
+.glow-sweep:hover::after {
+  animation: high-tech-sweep 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 4. Ambient High-Tech Floating Parallax */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
+}
+
+.animate-float {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+/* 5. Mobile Responsive Touch Physics & Active States */
+@media (max-width: 768px) {
+  /* Prevent jarring tilts on touch devices, provide tactile feedback instead */
+  .tilt-card:active,
+  .glass-interactive:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* 6. Respect Reduced Motion for Accessibility & HCI */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up,
+  .reveal-left,
+  .reveal-scale,
+  .tilt-card,
+  .animate-float,
+  .glass-interactive {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ==========================================================================
+   FLUID RESPONSIVE SYSTEM (Mobile-First Dynamic Spacing, Typography & Viewports)
+   ========================================================================== */
+
+:root {
+  /* Dynamic Fluid Spacing Scale (Scales smoothly from 320px phone to 1440px desktop) */
+  --fluid-gap: clamp(1rem, 2vw + 0.5rem, 2.5rem);
+  --fluid-p-section: clamp(3rem, 6vw + 1rem, 7rem);
+  --fluid-p-card: clamp(1rem, 2.5vw + 0.5rem, 2.25rem);
+  --fluid-radius: clamp(12px, 2vw, 24px);
+
+  /* Fluid Typography Scale */
+  --fluid-h1: clamp(2.25rem, 5vw + 1rem, 4.75rem);
+  --fluid-h2: clamp(1.75rem, 3.5vw + 0.75rem, 3.25rem);
+  --fluid-h3: clamp(1.35rem, 2vw + 0.5rem, 2.25rem);
+  --fluid-body: clamp(0.9375rem, 0.4vw + 0.85rem, 1.125rem);
+}
+
+/* Fluid Heading Utility Overrides */
+.font-display.text-4xl,
+.font-display.text-5xl,
+.font-display.text-6xl,
+.font-display.text-7xl {
+  font-size: var(--fluid-h1) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.02em !important;
+}
+
+h2.font-display,
+.text-3xl.font-display {
+  font-size: var(--fluid-h2) !important;
+  line-height: 1.1 !important;
+}
+
+/* Fluid Section Padding */
+.section-py {
+  padding-top: var(--fluid-p-section) !important;
+  padding-bottom: var(--fluid-p-section) !important;
+}
+
+/* Fluid Card Padding */
+.card-theme,
+.card-surface,
+.glass-interactive {
+  padding: var(--fluid-p-card);
+  border-radius: var(--fluid-radius);
+}
+
+/* Universal Mobile Ergonomic Controls & Touch Targets */
+@media (max-width: 640px) {
+  /* Tap Target Compliance (HCI / WCAG 2.1 AAA - minimum 44px) */
+  button,
+  .btn-primary,
+  .btn-secondary,
+  .btn-grad,
+  a.btn-primary,
+  a.btn-secondary {
+    min-height: 44px;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  /* Prevent awkward horizontal word breaks on small viewports */
+  h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  /* Full-width container safety on mobile screens (prevents edge pinching) */
+  .max-w-content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Seamless responsive grids on narrow screens */
+  .grid.grid-cols-2:not(.keep-cols),
+  .grid.grid-cols-3,
+  .grid.grid-cols-4 {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+/* Smooth Horizontal Scroll Strips for Mobile (Filters, Tabs, Badges) */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
