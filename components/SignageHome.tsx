@@ -341,50 +341,50 @@ export function SignageHome() {
       {/* ── 2. STICKY QUICK WAYFINDER ─────────────────────────────── */}
       <nav
         aria-label="Signage Section Navigation"
-        className="sticky top-16 z-30 bg-[var(--bg)]/90 backdrop-blur-md border-b border-[var(--border)] py-3 px-6 overflow-x-auto"
+        className="sticky top-[57px] sm:top-[61px] z-30 bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border)] py-2 px-4 sm:px-6 overflow-x-auto scrollbar-none"
       >
-        <div className="max-w-content mx-auto flex items-center justify-start md:justify-center gap-2 text-xs font-mono whitespace-nowrap">
+        <div className="max-w-content mx-auto flex items-center justify-start md:justify-center gap-1.5 p-1 rounded-full bg-[var(--surface)] border border-[var(--border)] w-fit text-xs whitespace-nowrap shadow-xs">
           <a
             href="#sign-systems"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            01. Core Systems
+            Core Systems
           </a>
           <a
             href="#fast-quote"
-            className="px-3 py-1.5 rounded-full bg-[#0070f3]/10 text-[#0070f3] font-semibold border border-[#0070f3]/20 hover:bg-[#0070f3]/20 transition-colors"
+            className="px-3 py-1 rounded-full bg-[#0070f3]/10 text-[#0070f3] font-semibold border border-[#0070f3]/20 hover:bg-[#0070f3]/20 transition-colors"
           >
-            02. Live Fast Quote
+            Live Fast Quote
           </a>
           <a
             href="#viewing-distance"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            03. Viewing Distance Calc
+            Viewing Distance Calc
           </a>
           <a
             href="#illumination"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            04. Illumination Guide
+            Illumination Guide
           </a>
           <a
             href="#vehicle-wraps"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            05. Fleet Wraps
+            Fleet Wraps
           </a>
           <a
             href="#climate-zones"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            06. Climate Zones
+            Climate Zones
           </a>
           <a
             href="#compliance"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            07. OSHA & KenHA
+            OSHA & KenHA
           </a>
         </div>
       </nav>

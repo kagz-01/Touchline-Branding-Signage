@@ -21,51 +21,69 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
   const hostBrand = resolveBrandFromHost(host);
   const effectiveBrand = brand || (hostBrand !== 'hub' ? hostBrand : null);
 
-  /* ── 1. HUB HEADER ────────────────────────── */
+  /* ── 1. HUB HEADER (Unified Entry Point) ────────────────────── */
   if (!effectiveBrand) {
     const brandingUrl = getCrossBrandUrl('branding', host);
     const signageUrl  = getCrossBrandUrl('signage',  host);
 
     return (
-      <header className="glass-nav sticky top-0 z-50">
-        <div className="max-w-content mx-auto px-6 py-3.5 sm:py-4 flex items-center justify-between">
-          <Link href="/" data-brand="hub" className="group flex items-center">
-            <div className="flex items-center px-3.5 py-1.5 rounded-xl bg-[#0b0e14] border border-white/10 group-hover:border-[#c8960c]/50 transition-all duration-300 shadow-sm">
+      <header className="glass-nav sticky top-0 z-50 transition-all duration-300">
+        <div className="max-w-content mx-auto px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-4">
+          {/* Logo Badge */}
+          <Link href="/" data-brand="hub" className="group flex items-center shrink-0">
+            <div className="flex items-center px-3 py-1.5 rounded-xl bg-[var(--surface)] border border-[var(--border)] group-hover:border-[var(--accent)]/50 transition-all duration-300 shadow-sm">
               <Logo brand="hub" className="h-6 sm:h-7 md:h-8 w-auto" />
             </div>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-6">
-            <a href={brandingUrl} className="group flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[#c8960c] transition-colors">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c8960c] group-hover:scale-125 transition-transform" />
+          {/* Desktop Nav: Clean Pill Cluster */}
+          <nav className="hidden lg:flex items-center gap-1.5 p-1 rounded-full bg-[var(--surface)]/80 border border-[var(--border)] shadow-sm backdrop-blur-md">
+            <a
+              href={brandingUrl}
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[#c8960c] hover:bg-[var(--bg-soft)] transition-all"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c8960c]" />
               Branding
             </a>
-            <a href={signageUrl} className="group flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[#0070f3] transition-colors">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3] group-hover:scale-125 transition-transform" />
+            <a
+              href={signageUrl}
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[#0070f3] hover:bg-[var(--bg-soft)] transition-all"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3]" />
               Signage
             </a>
-            <span className="w-px h-4 bg-[var(--border)]" />
-            <ThemeToggle />
-            <Link href="/book" className="btn-primary text-xs font-semibold py-2.5 px-5">
-              Get a Quote <span>→</span>
-            </Link>
-            {/* Auth - client component handles session */}
-            <HeaderAuthButton />
           </nav>
 
-          {/* Mobile */}
-          <div className="flex lg:hidden items-center gap-2.5">
+          {/* Right Action Cluster */}
+          <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle />
-            <Link href="/book" className="btn-primary text-xs font-semibold py-2 px-3.5">Quote</Link>
+            <span className="w-px h-4 bg-[var(--border)]" />
+            <HeaderAuthButton />
+            <Link
+              href="/book"
+              className="btn-primary text-xs font-semibold py-2 px-4 rounded-xl shadow-sm hover:shadow transition-all"
+            >
+              Get a Quote <span>→</span>
+            </Link>
+          </div>
+
+          {/* Mobile Right Controls */}
+          <div className="flex lg:hidden items-center gap-2">
+            <ThemeToggle />
             <HeaderAuthButton mobile />
+            <Link
+              href="/book"
+              className="btn-primary text-xs font-semibold py-1.5 px-3 rounded-lg"
+            >
+              Quote
+            </Link>
           </div>
         </div>
       </header>
     );
   }
 
-  /* ── 2. BRAND HEADER (Branding / Signage) ─── */
+  /* ── 2. SPECIALISM HEADER (Branding / Signage) ───────────────── */
   const brandId       = typeof effectiveBrand === 'string' ? effectiveBrand : effectiveBrand.id;
   const isBranding    = brandId === 'branding';
   const otherBrandId  = isBranding ? 'signage' : 'branding';
@@ -73,19 +91,17 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
   const otherHref     = getCrossBrandUrl(otherBrandId, host);
   const hubHref       = getCrossBrandUrl('hub', host);
 
-  const logoStyle = isBranding
-    ? 'bg-[#120e08] border-amber-500/25 group-hover:border-amber-500/60 shadow-amber-950/20'
-    : 'bg-[#060e18] border-blue-500/25 group-hover:border-blue-500/60 shadow-blue-950/20';
-
   return (
-    <header className="glass-nav sticky top-0 z-50">
-      <div className="max-w-content mx-auto px-6 py-3.5 sm:py-4 flex items-center justify-between">
-        <Link href="/" className="group flex items-center flex-shrink-0">
-          <div className={`flex items-center px-3 sm:px-3.5 py-1.5 rounded-xl border transition-all duration-300 shadow-sm ${logoStyle}`}>
+    <header className="glass-nav sticky top-0 z-50 transition-all duration-300">
+      <div className="max-w-content mx-auto px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-4">
+        {/* Division Logo */}
+        <Link href="/" className="group flex items-center shrink-0">
+          <div className="flex items-center px-3 py-1.5 rounded-xl bg-[var(--surface)] border border-[var(--border)] group-hover:border-[var(--accent)]/50 transition-all duration-300 shadow-sm">
             <Logo brand={brandId} className="h-6 sm:h-7 md:h-8 w-auto" />
           </div>
         </Link>
 
+        {/* Center / Desktop Nav */}
         <SpecialismNav
           brandId={brandId}
           otherBrand={otherBrandId}
@@ -94,9 +110,16 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
           hubHref={hubHref}
         />
 
-        <div className="flex lg:hidden items-center gap-2.5">
+        {/* Mobile Right Controls */}
+        <div className="flex lg:hidden items-center gap-2">
           <ThemeToggle />
-          <Link href="/book" className="btn-primary text-xs font-semibold py-2 px-3.5">Quote</Link>
+          <HeaderAuthButton mobile />
+          <Link
+            href="/book"
+            className="btn-primary text-xs font-semibold py-1.5 px-3 rounded-lg"
+          >
+            Quote
+          </Link>
         </div>
       </div>
     </header>

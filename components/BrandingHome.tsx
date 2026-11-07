@@ -224,34 +224,33 @@ export function BrandingHome() {
         </div>
       </section>
 
-      {/* ── 2. QUICK TOOLBAR WAYFINDER (HCI Ergonomics) ───────────── */}
-      <section className="bg-[var(--bg-soft)] border-b border-[var(--border)] py-4 sticky top-[73px] z-30 glass backdrop-blur-md">
-        <div className="max-w-content mx-auto px-6 overflow-x-auto scrollbar-none">
-          <div className="flex items-center justify-between min-w-max gap-6 text-xs font-mono">
-            <span className="text-[var(--text-muted)] uppercase tracking-widest text-[10px]">Jump to Section:</span>
-            <div className="flex items-center gap-3">
-              <a href="#services" className="hover:text-[var(--accent)] transition-colors px-2 py-1 rounded">
-                01. Services
+      {/* ── 2. QUICK TOOLBAR WAYFINDER (Modern Pill Rail) ───────── */}
+      <section className="bg-[var(--bg)]/90 border-b border-[var(--border)] py-2.5 sticky top-[57px] sm:top-[61px] z-30 backdrop-blur-xl">
+        <div className="max-w-content mx-auto px-4 sm:px-6 overflow-x-auto scrollbar-none">
+          <div className="flex items-center justify-between min-w-max gap-4 text-xs">
+            <div className="flex items-center gap-1.5 p-1 rounded-full bg-[var(--surface)] border border-[var(--border)] shadow-xs">
+              <a href="#services" className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium">
+                Services
               </a>
-              <span className="text-[var(--border)]">•</span>
-              <a href="#methods" className="hover:text-[var(--accent)] transition-colors px-2 py-1 rounded">
-                02. Print Methods
+              <a href="#methods" className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium">
+                Print Methods
               </a>
-              <span className="text-[var(--border)]">•</span>
-              <a href="#roi-calculator" className="hover:text-[var(--accent)] transition-colors px-2 py-1 rounded">
-                03. ROI Calculator
+              <a href="#roi-calculator" className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium">
+                ROI Calculator
               </a>
-              <span className="text-[var(--border)]">•</span>
-              <a href="#tender-checker" className="hover:text-[var(--accent)] transition-colors px-2 py-1 rounded">
-                04. Tender Checker
+              <a href="#tender-checker" className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium">
+                Tender Checker
               </a>
-              <span className="text-[var(--border)]">•</span>
-              <a href="#climate-zones" className="hover:text-[var(--accent)] transition-colors px-2 py-1 rounded">
-                05. Climate Zones
+              <a href="#climate-zones" className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium">
+                Climate Zones
               </a>
             </div>
-            <Link href="/book?brand=branding" className="text-[#c8960c] font-semibold hover:underline">
-              Instant Quote ↗
+            <Link
+              href="/book?brand=branding"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[var(--accent)] hover:bg-[var(--accent)]/10 transition-colors"
+            >
+              <span>Instant Quote</span>
+              <span className="text-[10px]">↗</span>
             </Link>
           </div>
         </div>

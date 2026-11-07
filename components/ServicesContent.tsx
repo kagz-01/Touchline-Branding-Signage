@@ -77,50 +77,50 @@ export function ServicesContent({ brand }: { brand: BrandConfig }) {
       {/* ── 2. STICKY WAYFINDER NAV ──────────────────────────────── */}
       <nav
         aria-label="Branding Services Navigation"
-        className="sticky top-16 z-30 bg-[var(--bg)]/90 backdrop-blur-md border-b border-[var(--border)] py-3 px-6 overflow-x-auto"
+        className="sticky top-[57px] sm:top-[61px] z-30 bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border)] py-2 px-4 sm:px-6 overflow-x-auto scrollbar-none"
       >
-        <div className="max-w-content mx-auto flex items-center justify-start md:justify-center gap-2 text-xs font-mono whitespace-nowrap">
+        <div className="max-w-content mx-auto flex items-center justify-start md:justify-center gap-1.5 p-1 rounded-full bg-[var(--surface)] border border-[var(--border)] w-fit text-xs whitespace-nowrap shadow-xs">
           <a
             href="#capabilities"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            01. Capabilities Grid
+            Capabilities
           </a>
           <a
             href="#fabric-inspector"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            02. Fabric & GSM Lab
+            Fabric & GSM Lab
           </a>
           <a
             href="#bulk-calculator"
-            className="px-3 py-1.5 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] font-semibold border border-[var(--accent)]/20 hover:bg-[var(--accent)]/20 transition-colors"
+            className="px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] font-semibold border border-[var(--accent)]/20 hover:bg-[var(--accent)]/20 transition-colors"
           >
-            03. Bulk Price Matrix
+            Bulk Price Matrix
           </a>
           <a
             href="#color-fidelity"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            04. Color Fidelity Advisor
+            Color Advisor
           </a>
           <a
             href="#turnaround-scheduler"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            05. Delivery Scheduler
+            Delivery Scheduler
           </a>
           <a
             href="#methods-guide"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            06. Print Methods
+            Print Methods
           </a>
           <a
             href="#industry-guides"
-            className="px-3 py-1.5 rounded-full hover:bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
           >
-            07. Sector Guides
+            Sector Guides
           </a>
         </div>
       </nav>
