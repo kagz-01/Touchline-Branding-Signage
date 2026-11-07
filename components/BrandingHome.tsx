@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { getBrand } from '@/config/brands';
 import {
@@ -128,94 +129,129 @@ export function BrandingHome() {
 
   return (
     <div className="relative">
-      {/* ── 1. HERO SECTION ───────────────────────────────────────── */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden pt-12 pb-20 border-b border-[var(--border)]">
-        {/* Warm Gold Background Ambiance */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="parallax-slow absolute top-1/4 -right-32 w-[600px] h-[600px] rounded-full bg-[#c8960c] opacity-[0.08] blur-[160px]" data-speed="0.14" />
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage:
-                'repeating-linear-gradient(0deg, var(--text) 0px, var(--text) 1px, transparent 1px, transparent 50px), repeating-linear-gradient(90deg, var(--text) 0px, var(--text) 1px, transparent 1px, transparent 50px)',
-            }}
-          />
+      {/* ── 1. HIGH-TECH BRANDING HERO (Wordings on Left Area · Pure UI / No Fake Photo Background) ── */}
+      {/* Engineered to occupy ~6/8 of the screen (~75-80vh) with NO vertical scrolling on desktop */}
+      <section className="relative min-h-[calc(100vh-65px)] lg:h-[calc(100vh-65px)] lg:max-h-[800px] xl:max-h-[840px] flex items-center overflow-hidden py-6 sm:py-10 border-b border-[var(--border)] bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
+        {/* Ambient High-Tech Atmosphere (Warm Amber Radial Lights & Engineering Mesh) */}
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+          <div className="absolute -top-32 -left-32 w-[550px] h-[550px] bg-gradient-to-br from-[#c8960c]/15 via-[#d4a017]/5 to-transparent rounded-full blur-3xl opacity-80 dark:opacity-40" />
+          <div className="absolute top-1/2 -right-32 -translate-y-1/2 w-[500px] h-[500px] bg-[#c8960c]/10 dark:bg-[#c8960c]/15 rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(rgba(200,150,12,0.08)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_60%,transparent_100%)]" />
         </div>
 
-        <div className="relative z-10 max-w-content mx-auto px-6 w-full">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-7">
+        <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* ── LEFT AREA: VALUE PROPOSITION (As requested: "branding left area") ── */}
+            <div className="lg:col-span-7 flex flex-col items-start text-left">
               <Reveal>
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-950/30 border border-amber-800/30 mb-6">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 mb-3 sm:mb-4 shadow-xs backdrop-blur-md">
                   <span className="w-2 h-2 rounded-full bg-[#c8960c] animate-pulse" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#d4a820]">
+                  <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-[#c8960c] font-semibold">
                     Touchline Branding // Division 01
                   </span>
                 </div>
 
-                <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight text-[var(--text)] mb-6">
+                <h1 className="font-display text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.6rem] leading-[0.98] tracking-tight text-[var(--text)] mb-3 text-balance">
                   PUT YOUR BRAND <br />
-                  IN THEIR <span className="text-[#c8960c]">HANDS.</span>
+                  IN THEIR <span className="bg-gradient-to-r from-[#c8960c] via-[#d4a017] to-[#e6af2e] bg-clip-text text-transparent">HANDS.</span>
                 </h1>
               </Reveal>
 
               <Reveal delay={120}>
-                <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed mb-8 max-w-xl font-normal">
+                <p className="text-xs sm:text-base text-[var(--text-muted)] leading-relaxed mb-4 sm:mb-6 max-w-xl font-normal text-balance">
                   From executive embroidered staff uniforms and corporate gift kits to tender-scale apparel rollouts across Kenya — we source, brand, inspect, and deliver with zero middlemen.
                 </p>
               </Reveal>
 
               <Reveal delay={200}>
-                <div className="flex flex-wrap gap-4 mb-10">
-                  <Link href="/book?brand=branding" className="btn-primary shadow-lg shadow-[#c8960c]/15 px-7 py-3.5 text-sm">
+                <div className="flex flex-wrap gap-3 mb-6 sm:mb-8">
+                  <Link
+                    href="/book?brand=branding"
+                    className="btn-primary btn-magnetic shadow-md shadow-[#c8960c]/25 px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold rounded-xl"
+                  >
                     Request Branding Quote <span>→</span>
                   </Link>
-                  <a href="#methods" className="btn-secondary glass-subtle px-6 py-3.5 text-sm">
+                  <a
+                    href="#methods"
+                    className="px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium bg-[var(--surface)] hover:bg-[var(--bg-soft)] text-[var(--text)] border border-[var(--border)] shadow-xs transition-all"
+                  >
                     Compare Print Methods
                   </a>
                 </div>
               </Reveal>
 
-              {/* Trust badges */}
+              {/* Verified Production Proof */}
               <Reveal delay={280}>
-                <div className="grid grid-cols-3 gap-4 pt-6 border-t border-[var(--border)] max-w-lg">
+                <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-4 sm:pt-5 border-t border-[var(--border)] w-full max-w-md">
                   <div>
-                    <span className="font-display text-xl sm:text-2xl text-[var(--accent)] block">500+</span>
-                    <span className="text-xs text-[var(--text-muted)] font-mono">Items Sourced</span>
+                    <span className="font-display text-2xl sm:text-3xl text-[#c8960c] block">500+</span>
+                    <span className="text-[10px] sm:text-xs text-[var(--text-muted)] font-mono">Items Sourced</span>
                   </div>
                   <div>
-                    <span className="font-display text-xl sm:text-2xl text-[var(--accent)] block">4-Day</span>
-                    <span className="text-xs text-[var(--text-muted)] font-mono">Avg Turnaround</span>
+                    <span className="font-display text-2xl sm:text-3xl text-[#c8960c] block">4-Day</span>
+                    <span className="text-[10px] sm:text-xs text-[var(--text-muted)] font-mono">Avg Turnaround</span>
                   </div>
                   <div>
-                    <span className="font-display text-xl sm:text-2xl text-[var(--accent)] block">47 Counties</span>
-                    <span className="text-xs text-[var(--text-muted)] font-mono">Kenya-Wide Supply</span>
+                    <span className="font-display text-2xl sm:text-3xl text-[#c8960c] block">47 Counties</span>
+                    <span className="text-[10px] sm:text-xs text-[var(--text-muted)] font-mono">Kenya-Wide Supply</span>
                   </div>
                 </div>
               </Reveal>
             </div>
 
-            {/* Right Visual Image Showcase */}
-            <div className="lg:col-span-5">
-              <Reveal delay={200} direction="right">
-                <div className="relative">
-                  <ProjectPhoto
-                    src="/images/branding/hero-merch.jpg"
-                    alt="Touchline Premium Branded Apparel & Merch"
-                    division="branding"
-                    badge="Production Quality"
-                    aspect="aspect-[4/3] sm:aspect-square"
-                    className="shadow-2xl"
-                  />
-                  {/* Floating TouchDesk Operations Badge */}
-                  <div className="absolute -bottom-4 -left-4 glass rounded-[var(--radius-md)] p-4 border border-amber-900/30 shadow-xl max-w-[220px] animate-float glass-interactive">
-                    <span className="font-mono text-[9px] uppercase tracking-widest text-[#c8960c] block mb-1">
-                      Operations Engine
+            {/* ── RIGHT AREA: HIGH-TECH LIVE MERCHANDISE SPEC CARD ── */}
+            <div className="lg:col-span-5 w-full">
+              <Reveal delay={240}>
+                <div className="relative rounded-2xl bg-gradient-to-br from-amber-500/[0.04] via-[var(--surface)] to-[var(--surface)] border border-amber-500/30 p-5 sm:p-6 shadow-xl backdrop-blur-md overflow-hidden">
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                  {/* Header / Division Tag */}
+                  <div className="flex items-center justify-between pb-4 border-b border-[var(--border)] mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#c8960c] animate-ping" />
+                      <span className="font-mono text-xs uppercase tracking-wider font-semibold text-[var(--text)]">
+                        Production Lab Spec
+                      </span>
+                    </div>
+                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-[#c8960c] border border-amber-500/20">
+                      Nairobi Factory
                     </span>
-                    <p className="text-xs font-semibold text-[var(--text)]">
-                      TouchDesk Proofing &amp; Biometric Handover
-                    </p>
+                  </div>
+
+                  {/* Active Spec Matrix */}
+                  <div className="space-y-3 mb-5">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
+                      <span className="text-xs font-medium text-[var(--text-muted)]">Category</span>
+                      <span className="text-xs font-semibold text-[var(--text)]">Heavyweight Pique Polo (240 GSM)</span>
+                    </div>
+
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
+                      <span className="text-xs font-medium text-[var(--text-muted)]">Branding Tech</span>
+                      <span className="text-xs font-semibold text-[#c8960c]">12-Needle Tajima Computerized Embroidery</span>
+                    </div>
+
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
+                      <span className="text-xs font-medium text-[var(--text-muted)]">Stitch Density</span>
+                      <span className="text-xs font-mono font-semibold text-[var(--text)]">9,400 stitches / crest</span>
+                    </div>
+
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
+                      <span className="text-xs font-medium text-[var(--text-muted)]">Lead Time</span>
+                      <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">3-4 Working Days</span>
+                    </div>
+                  </div>
+
+                  {/* Quick Action Footer */}
+                  <div className="flex items-center justify-between pt-3 border-t border-[var(--border)]">
+                    <span className="text-[11px] font-mono text-[var(--text-muted)]">
+                      Min Batch: 10 Units
+                    </span>
+                    <Link
+                      href="/book?brand=branding"
+                      className="font-mono text-xs font-semibold text-[#c8960c] hover:underline flex items-center gap-1"
+                    >
+                      Configure This Item <span>→</span>
+                    </Link>
                   </div>
                 </div>
               </Reveal>
@@ -287,30 +323,21 @@ export function BrandingHome() {
                         aspect="aspect-[16/9]"
                       />
                     </div>
-
-                    <h3 className="font-display text-2xl text-[var(--text)] mb-2">{domain.name}</h3>
-                    <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-6 font-normal">
-                      {domain.description}
-                    </p>
-
-                    <ul className="grid sm:grid-cols-2 gap-2 text-xs font-mono text-[var(--text-muted)] mb-6">
+                    <h3 className="font-display text-2xl text-[var(--text)] mb-3">{domain.name}</h3>
+                    <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-6">{domain.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-6">
                       {domain.specs.map((spec) => (
-                        <li key={spec} className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#c8960c]" />
+                        <span key={spec} className="text-xs font-mono px-2.5 py-1 rounded bg-[var(--bg-soft)] text-[var(--text)] border border-[var(--border)]">
                           {spec}
-                        </li>
+                        </span>
                       ))}
-                    </ul>
+                    </div>
                   </div>
-
                   <div className="pt-4 border-t border-[var(--border)] flex items-center justify-between">
-                    <Link
-                      href={`/book?brand=branding&service=${encodeURIComponent(domain.name)}`}
-                      className="text-xs font-display uppercase tracking-wider text-[var(--accent)] hover:underline flex items-center gap-1.5"
-                    >
+                    <Link href={domain.href} className="text-sm font-semibold text-[var(--accent)] hover:underline flex items-center gap-1">
                       Configure &amp; Quote <span>→</span>
                     </Link>
-                    <span className="font-mono text-[10px] text-[var(--text-muted)]">Verified Production</span>
+                    <span className="text-xs font-mono text-[var(--text-muted)]">Verified Production</span>
                   </div>
                 </div>
               </Reveal>
@@ -319,29 +346,37 @@ export function BrandingHome() {
         </div>
       </section>
 
-      {/* ── 4. HOW IT WORKS ───────────────────────────────────────── */}
+      {/* ── 4. PRODUCTION PIPELINE STEPS ──────────────────────────── */}
       <section className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)]">
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
-                // The Operational Protocol
+                // Industrial Production Standard
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl text-[var(--text)]">
-                From Raw Cotton to <span className="grad-text">Verified Delivery</span>
+              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-4">
+                How We Manufacture
               </h2>
+              <p className="text-sm sm:text-base text-[var(--text-muted)]">
+                From raw textile inspection to the TouchDesk delivery note sign-off.
+              </p>
             </div>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {BRANDING_STEPS.map((step, i) => (
-              <Reveal key={step.num} delay={i * 100}>
-                <div className="card-surface p-6 rounded-[var(--radius-md)] border border-[var(--border)] h-full">
-                  <div className="w-12 h-12 rounded-full bg-amber-950/30 border border-amber-800/40 text-[#c8960c] flex items-center justify-center font-mono font-bold text-sm mb-4">
-                    {step.num}
+              <Reveal key={step.num} delay={i * 80}>
+                <div className="card-surface p-6 sm:p-8 rounded-[var(--radius-lg)] border border-[var(--border)] h-full flex flex-col justify-between">
+                  <div>
+                    <span className="font-display text-4xl text-[var(--accent)]/30 block mb-4">
+                      {step.num}
+                    </span>
+                    <h3 className="font-display text-xl text-[var(--text)] mb-3">{step.title}</h3>
+                    <p className="text-sm text-[var(--text-muted)] leading-relaxed">{step.desc}</p>
                   </div>
-                  <h3 className="font-display text-lg mb-2 text-[var(--text)]">{step.title}</h3>
-                  <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">{step.desc}</p>
+                  <div className="pt-6 mt-6 border-t border-[var(--border)]">
+                    <span className="text-[11px] font-mono text-[var(--accent)]">Step {step.num} of 04</span>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -349,33 +384,33 @@ export function BrandingHome() {
         </div>
       </section>
 
-      {/* ── 5. INTERACTIVE PRINTING METHODS CONSOLE (HCI UX) ──────── */}
+      {/* ── 5. PRINT & EMBROIDERY METHODS COMPARISON ──────────────── */}
       <section id="methods" className="section-py bg-[var(--bg)] border-b border-[var(--border)] scroll-section">
         <div className="max-w-content mx-auto px-6">
           <Reveal>
-            <div className="text-center max-w-2xl mx-auto mb-12">
+            <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
-                // Technical Decision Matrix
+                // Technical Guide
               </span>
-              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-3">
-                Select Your <span className="grad-text">Branding Method</span>
+              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-4">
+                Select Your Method
               </h2>
-              <p className="text-sm text-[var(--text-muted)]">
-                Compare durability, volume thresholds, and turnaround before submitting your production brief.
+              <p className="text-sm sm:text-base text-[var(--text-muted)]">
+                Direct comparison of durability, minimum orders, turnaround, and best use cases for Kenya&apos;s commercial market.
               </p>
             </div>
           </Reveal>
 
-          {/* Interactive Method Tabs */}
+          {/* Method selector tabs */}
           <div className="flex flex-wrap justify-center gap-2 mb-10">
-            {COMPARISON_DATA.map((item, i) => (
+            {COMPARISON_DATA.map((item, idx) => (
               <button
                 key={item.method}
-                onClick={() => setActiveComparison(i)}
-                className={`px-5 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all duration-300 ${
-                  activeComparison === i
-                    ? 'bg-[#c8960c] text-white shadow-lg font-bold scale-105'
-                    : 'bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] border border-[var(--border)]'
+                onClick={() => setActiveComparison(idx)}
+                className={`px-4 py-2 rounded-full text-xs font-mono tracking-wider uppercase transition-all ${
+                  activeComparison === idx
+                    ? 'bg-[var(--accent)] text-[var(--accent-ink)] font-bold shadow-md'
+                    : 'bg-[var(--surface)] text-[var(--text-muted)] border border-[var(--border)] hover:border-[var(--accent)]'
                 }`}
               >
                 {item.method}
@@ -383,81 +418,48 @@ export function BrandingHome() {
             ))}
           </div>
 
-          {/* Active Method Console Card */}
-          <div className="card-surface rounded-[var(--radius-lg)] p-8 sm:p-12 border border-amber-900/30 max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-[var(--border)]">
+          {/* Active method display card */}
+          <div className="card-surface rounded-[var(--radius-lg)] p-8 sm:p-12 border border-[var(--border)] max-w-4xl mx-auto">
+            <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-[var(--border)] gap-4">
               <div>
-                <span className="text-xs font-mono uppercase tracking-widest text-[#c8960c] block mb-1">
-                  Technique Profile
+                <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)]">
+                  Selected Production Method
                 </span>
-                <h3 className="font-display text-3xl text-[var(--text)]">
+                <h3 className="font-display text-3xl text-[var(--text)] mt-1">
                   {COMPARISON_DATA[activeComparison].method}
                 </h3>
               </div>
-              <Link
-                href={`/book?brand=branding&service=${encodeURIComponent(COMPARISON_DATA[activeComparison].method)}`}
-                className="btn-primary text-xs px-5 py-2.5 whitespace-nowrap self-start sm:self-auto"
-              >
-                Quote this Method <span>→</span>
-              </Link>
+              <span className="font-mono text-xs text-[var(--text-muted)] bg-[var(--bg-soft)] px-3 py-1.5 rounded-full border border-[var(--border)]">
+                {COMPARISON_DATA[activeComparison].minQty}
+              </span>
             </div>
 
-            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-8 bg-[var(--bg-soft)] p-4 rounded-[var(--radius-sm)] border border-[var(--border)]">
-              <span className="font-semibold text-[var(--text)] font-mono text-xs block mb-1">Process Mechanics:</span>
+            <p className="text-base text-[var(--text)] leading-relaxed mb-8">
               {COMPARISON_DATA[activeComparison].technique}
             </p>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              <div className="p-4 rounded-[var(--radius-sm)] bg-[var(--bg)] border border-[var(--border)]">
-                <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">
-                  Best Suited For
-                </span>
-                <span className="text-sm font-medium text-[var(--text)] leading-snug block">
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="p-4 rounded-xl bg-[var(--bg)] border border-[var(--border)]">
+                <span className="text-xs font-mono text-[var(--text-muted)] block mb-1">BEST APPLICATION</span>
+                <span className="text-sm font-semibold text-[var(--text)]">
                   {COMPARISON_DATA[activeComparison].bestFor}
                 </span>
               </div>
-
-              <div className="p-4 rounded-[var(--radius-sm)] bg-[var(--bg)] border border-[var(--border)]">
-                <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">
-                  Durability Rating
-                </span>
-                <span className="text-sm font-medium text-amber-400 block">
+              <div className="p-4 rounded-xl bg-[var(--bg)] border border-[var(--border)]">
+                <span className="text-xs font-mono text-[var(--text-muted)] block mb-1">WASH DURABILITY</span>
+                <span className="text-sm font-semibold text-[var(--text)]">
                   {COMPARISON_DATA[activeComparison].durability}
                 </span>
               </div>
-
-              <div className="p-4 rounded-[var(--radius-sm)] bg-[var(--bg)] border border-[var(--border)]">
-                <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">
-                  Cost Structure
-                </span>
-                <span className="text-sm font-medium text-[var(--text)] block">
-                  {COMPARISON_DATA[activeComparison].cost}
-                </span>
-              </div>
-
-              <div className="p-4 rounded-[var(--radius-sm)] bg-[var(--bg)] border border-[var(--border)]">
-                <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">
-                  Turnaround Timeline
-                </span>
-                <span className="text-sm font-medium text-[var(--text)] block">
+              <div className="p-4 rounded-xl bg-[var(--bg)] border border-[var(--border)]">
+                <span className="text-xs font-mono text-[var(--text-muted)] block mb-1">TYPICAL TURNAROUND</span>
+                <span className="text-sm font-semibold text-[var(--text)]">
                   {COMPARISON_DATA[activeComparison].turnaround}
                 </span>
               </div>
-
-              <div className="p-4 rounded-[var(--radius-sm)] bg-[var(--bg)] border border-[var(--border)]">
-                <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">
-                  Minimum Order (MOQ)
-                </span>
-                <span className="text-sm font-medium text-[var(--text)] block">
-                  {COMPARISON_DATA[activeComparison].minQty}
-                </span>
-              </div>
-
-              <div className="p-4 rounded-[var(--radius-sm)] bg-[var(--bg)] border border-[var(--border)]">
-                <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">
-                  Color Flexibility
-                </span>
-                <span className="text-sm font-medium text-[var(--text)] block">
+              <div className="p-4 rounded-xl bg-[var(--bg)] border border-[var(--border)]">
+                <span className="text-xs font-mono text-[var(--text-muted)] block mb-1">COLOR PALETTE</span>
+                <span className="text-sm font-semibold text-[var(--text)]">
                   {COMPARISON_DATA[activeComparison].colorLimit}
                 </span>
               </div>
@@ -466,185 +468,46 @@ export function BrandingHome() {
         </div>
       </section>
 
-      {/* ── 6. FAST-TRACK ESTIMATOR (TouchDesk Embedded) ─────────── */}
-      <section className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)]">
+      {/* ── 6. INTERACTIVE TOOLS: ROI & TENDER ─────────────────────── */}
+      <section id="roi-calculator" className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)] scroll-section">
         <div className="max-w-content mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <FastQuoteWidget />
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <BrandingROICalculator />
+            </div>
+            <div id="tender-checker">
+              <TenderComplianceChecker />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── 7. ROI CALCULATOR ─────────────────────────────────────── */}
-      <section id="roi-calculator" className="section-py bg-[var(--bg)] border-b border-[var(--border)] scroll-section">
-        <div className="max-w-content mx-auto px-6">
-          <Reveal>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
-                // Physical Media Economics
-              </span>
-              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-3">
-                Cost Per Impression <span className="grad-text">Calculator</span>
-              </h2>
-              <p className="text-sm text-[var(--text-muted)]">
-                Branded merchandise costs up to 90% less per impression over its lifespan compared to digital ads.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <BrandingROICalculator />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── 8. TENDER COMPLIANCE CHECKER ──────────────────────────── */}
-      <section id="tender-checker" className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)] scroll-section">
-        <div className="max-w-content mx-auto px-6">
-          <Reveal>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
-                // Government &amp; Institutional Tenders
-              </span>
-              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-3">
-                Tender Compliance <span className="grad-text">Audit Checklist</span>
-              </h2>
-              <p className="text-sm text-[var(--text-muted)]">
-                Verify if your technical documentation and specs meet Kenya Public Procurement (PPRA) and County criteria.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <TenderComplianceChecker />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── 9. KENYA CLIMATE ZONE RECOMMENDATIONS ─────────────────── */}
+      {/* ── 7. KENYA CLIMATE ZONE SELECTOR ────────────────────────── */}
       <section id="climate-zones" className="section-py bg-[var(--bg)] border-b border-[var(--border)] scroll-section">
         <div className="max-w-content mx-auto px-6">
-          <Reveal>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
-                // Location &amp; Environment Intelligence
-              </span>
-              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-3">
-                Climate-Smart <span className="grad-text">Fabric Selection</span>
-              </h2>
-              <p className="text-sm text-[var(--text-muted)]">
-                Kenya’s climate ranges from coastal humidity to highland cold. Select materials that withstand your specific operating conditions.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <ZoneDetector />
-          </Reveal>
+          <ZoneDetector />
         </div>
       </section>
 
-      {/* ── 10. HOT PRODUCTS & MARKET DEMAND ──────────────────────── */}
+      {/* ── 8. FAST QUOTE WIDGET ──────────────────────────────────── */}
       <section className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)]">
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-12">
               <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
-                // Kenyan Procurement Intelligence
+                // Instant Quotation
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl text-[var(--text)] mb-3">
-                Trending Corporate Products in Kenya
+              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-4">
+                FastQuote Estimator
               </h2>
-              <p className="text-xs sm:text-sm text-[var(--text-muted)]">
-                Aggregate order volume across {MARKET_DATA.kenya.totalSuppliers} verified suppliers nationwide.
+              <p className="text-sm sm:text-base text-[var(--text-muted)]">
+                Calculate real volume pricing for branded apparel and promotional merchandise.
               </p>
             </div>
           </Reveal>
-
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {HOT_PRODUCTS_KE.map((product, i) => (
-              <Reveal key={product.name} delay={i * 50}>
-                <div className="card-surface rounded-[var(--radius-md)] p-4 text-center h-full border border-[var(--border)] hover:border-[#c8960c]/40 transition-colors">
-                  <span className="font-mono text-[10px] text-[#c8960c] uppercase tracking-widest block mb-1">
-                    Rank #{product.rank}
-                  </span>
-                  <h4 className="font-display text-sm text-[var(--text)] mb-1">{product.name}</h4>
-                  <span className="font-mono text-[11px] text-[var(--accent)] block mb-2 font-semibold">
-                    {product.priceRange}
-                  </span>
-                  <p className="text-[10px] text-[var(--text-muted)] leading-tight">{product.reason}</p>
-                </div>
-              </Reveal>
-            ))}
+          <div className="max-w-3xl mx-auto">
+            <FastQuoteWidget initialBrand="branding" />
           </div>
-        </div>
-      </section>
-
-      {/* ── 11. CROSS-SELL TO SIGNAGE DIVISION ────────────────────── */}
-      <section className="section-py bg-gradient-to-r from-[#0b131f] to-[#060b12] text-white border-b border-blue-900/30">
-        <div className="max-w-content mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <div className="max-w-xl">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2">
-                Need Architectural Signage Too?
-              </span>
-              <h3 className="font-display text-3xl sm:text-4xl text-blue-50 mb-3">
-                Touchline Signage &amp; Structural Fabrication
-              </h3>
-              <p className="text-sm text-blue-200/70 leading-relaxed font-normal">
-                Opening a branch or rebranding a fleet? Combine your uniforms with 3D illuminated letters, high-output LED lightboxes, and commercial vehicle wraps under one invoice.
-              </p>
-            </div>
-
-            <a
-              href="https://signage.touchlineltd.co.ke/"
-              className="btn-primary text-xs px-6 py-3 whitespace-nowrap self-start md:self-auto shadow-lg"
-              style={{ background: '#0070f3', borderColor: '#0070f3' }}
-            >
-              Explore Signage Division <span>→</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 12. FINAL HIGH-CONVERSION CTA ─────────────────────────── */}
-      <section className="section-py bg-gradient-to-b from-[var(--bg)] to-[var(--bg-soft)]">
-        <div className="max-w-content mx-auto px-6 text-center">
-          <Reveal>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--bg-soft)] border border-[var(--border)] mb-6">
-              <span className="w-2 h-2 rounded-full bg-amber-500" />
-              <span className="font-mono text-[11px] uppercase tracking-widest text-[var(--text-muted)]">
-                TouchDesk Instant Quote Intake
-              </span>
-            </div>
-
-            <h2 className="font-display text-4xl sm:text-6xl text-[var(--text)] mb-6 max-w-3xl mx-auto leading-tight">
-              Ready to Put Your Brand <br />
-              <span className="text-[#c8960c]">In Their Hands?</span>
-            </h2>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <p className="text-base sm:text-lg text-[var(--text-muted)] max-w-xl mx-auto mb-10 leading-relaxed font-normal">
-              Whether you need 50 corporate polos, a complete executive gift batch, or a tender supply run — submit your specifications and receive an estimate directly from our desk team.
-            </p>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/book?brand=branding" className="btn-primary shadow-xl shadow-[#c8960c]/20 px-8 py-3.5 text-sm">
-                Get a Comprehensive Quote <span>→</span>
-              </Link>
-              <a
-                href="https://wa.me/254722668696?text=Hi%20Touchline%20Branding%2C%20I%20would%20like%20to%20request%20a%20quotation%20for%20branded%20merchandise."
-                target="_blank"
-                rel="noreferrer"
-                className="btn-secondary glass-subtle px-7 py-3.5 text-sm flex items-center gap-2"
-              >
-                <span>💬</span> WhatsApp Branding Desk
-              </a>
-            </div>
-          </Reveal>
         </div>
       </section>
     </div>

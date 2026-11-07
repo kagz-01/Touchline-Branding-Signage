@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { getBrand } from '@/config/brands';
@@ -212,36 +213,87 @@ export function SignageHome() {
 
   return (
     <div className="relative">
-      {/* ── 1. CINEMATIC INDUSTRIAL HERO ─────────────────────────── */}
-      <section className="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden grad-hero-subtle border-b border-[var(--border)]">
-        {/* Glow ambient background (Precision Blue #0070f3) */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="parallax-slow absolute top-0 right-1/4 w-[700px] h-[700px] rounded-full bg-[#0070f3] opacity-[0.04] blur-[160px]" data-speed="0.1" />
-          <div className="parallax-slow absolute -bottom-20 left-10 w-[500px] h-[500px] rounded-full bg-[#00a8ff] opacity-[0.03] blur-[140px]" data-speed="-0.06" />
-          <div
-            className="absolute inset-0 opacity-[0.02]"
-            style={{
-              backgroundImage:
-                'repeating-linear-gradient(0deg, var(--border) 0px, var(--border) 1px, transparent 1px, transparent 48px), repeating-linear-gradient(90deg, var(--border) 0px, var(--border) 1px, transparent 1px, transparent 48px)',
-            }}
-          />
+      {/* ── 1. HIGH-TECH SIGNAGE HERO (Wordings on Right Side · Pure UI / No Fake Photo Background) ── */}
+      {/* Engineered to occupy ~6/8 of the screen (~75-80vh) with NO vertical scrolling on desktop */}
+      <section className="relative min-h-[calc(100vh-65px)] lg:h-[calc(100vh-65px)] lg:max-h-[800px] xl:max-h-[840px] flex items-center overflow-hidden py-6 sm:py-10 border-b border-[var(--border)] bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
+        {/* Ambient High-Tech Atmosphere (Steel Blue Radial Lights & Precision Grid) */}
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+          <div className="absolute -top-32 -right-32 w-[550px] h-[550px] bg-gradient-to-bl from-[#0070f3]/15 via-[#0ea5e9]/5 to-transparent rounded-full blur-3xl opacity-80 dark:opacity-40" />
+          <div className="absolute top-1/2 -left-32 -translate-y-1/2 w-[500px] h-[500px] bg-[#0070f3]/10 dark:bg-[#0070f3]/15 rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(rgba(0,112,243,0.08)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_60%,transparent_100%)]" />
         </div>
 
-        <div className="relative z-10 max-w-content mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            {/* Left Column: Value Proposition */}
-            <div className="lg:col-span-7">
-              <Reveal>
-                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0070f3]/10 border border-[#0070f3]/25 mb-6">
-                  <span className="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse" />
-                  <span className="font-mono text-[11px] font-semibold text-[#0070f3] tracking-widest uppercase">
-                    Touchline Signage Division · Nairobi Workshop
-                  </span>
+        <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* ── LEFT AREA: HIGH-TECH 3D ARCHITECTURAL SIGN SIMULATOR CARD ── */}
+            <div className="lg:col-span-5 w-full order-2 lg:order-1">
+              <Reveal delay={240}>
+                <div className="relative rounded-2xl bg-gradient-to-br from-blue-500/[0.04] via-[var(--surface)] to-[var(--surface)] border border-blue-500/30 p-5 sm:p-6 shadow-xl backdrop-blur-md overflow-hidden">
+                  <div className="absolute top-0 left-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                  {/* Header / Division Tag */}
+                  <div className="flex items-center justify-between pb-4 border-b border-[var(--border)] mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#0070f3] animate-ping" />
+                      <span className="font-mono text-xs uppercase tracking-wider font-semibold text-[var(--text)]">
+                        Fabrication Lab Spec
+                      </span>
+                    </div>
+                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-blue-500/10 text-[#0070f3] border border-blue-500/20 font-semibold">
+                      CNC Fiber Laser Active
+                    </span>
+                  </div>
+
+                  {/* Active Spec Matrix */}
+                  <div className="space-y-3 mb-5">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
+                      <span className="text-xs font-medium text-[var(--text-muted)]">Sign System</span>
+                      <span className="text-xs font-semibold text-[var(--text)]">3D Illuminated Channel Letters</span>
+                    </div>
+
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
+                      <span className="text-xs font-medium text-[var(--text-muted)]">Illumination Tech</span>
+                      <span className="text-xs font-semibold text-[#0070f3]">Samsung IP67 SMD LEDs (6,500K Pure White)</span>
+                    </div>
+
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
+                      <span className="text-xs font-medium text-[var(--text-muted)]">Chassis Material</span>
+                      <span className="text-xs font-mono font-semibold text-[var(--text)]">0.8mm Stainless Return + 3mm Cast Acrylic</span>
+                    </div>
+
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
+                      <span className="text-xs font-medium text-[var(--text-muted)]">Weather Rating</span>
+                      <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">IP67 Waterproof · Tropicalized</span>
+                    </div>
+                  </div>
+
+                  {/* Quick Action Footer */}
+                  <div className="flex items-center justify-between pt-3 border-t border-[var(--border)]">
+                    <span className="text-[11px] font-mono text-[var(--text-muted)]">
+                      KenHA & OSHA Compliant
+                    </span>
+                    <a
+                      href="#fast-quote"
+                      className="font-mono text-xs font-semibold text-[#0070f3] hover:underline flex items-center gap-1"
+                    >
+                      Configure Dimensions <span>→</span>
+                    </a>
+                  </div>
                 </div>
               </Reveal>
+            </div>
 
-              <Reveal delay={80}>
-                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.02] mb-6 text-[var(--text)] tracking-tight">
+            {/* ── RIGHT AREA: VALUE PROPOSITION (As requested: "signage right side") ── */}
+            <div className="lg:col-span-7 flex flex-col items-start lg:items-start text-left order-1 lg:order-2">
+              <Reveal>
+                <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 mb-3 sm:mb-4 shadow-xs backdrop-blur-md">
+                  <span className="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse" />
+                  <span className="font-mono text-[10px] sm:text-[11px] font-semibold text-[#0070f3] tracking-widest uppercase">
+                    Touchline Signage // Division 02
+                  </span>
+                </div>
+
+                <h1 className="font-display text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.6rem] leading-[0.98] mb-3 text-[var(--text)] tracking-tight text-balance">
                   Signs that speak <br />
                   <span className="bg-gradient-to-r from-[#0070f3] via-[#0ea5e9] to-[#38bdf8] bg-clip-text text-transparent">
                     before you say a word.
@@ -249,87 +301,55 @@ export function SignageHome() {
                 </h1>
               </Reveal>
 
-              <Reveal delay={160}>
-                <p className="text-lg md:text-xl text-[var(--text-muted)] leading-relaxed mb-8 max-w-2xl">
-                  From high-rise 3D illuminated channel letters in Nairobi&apos;s CBD to highway pylon signs and corporate vehicle fleet wraps across Kenya. Fabricated in-house, engineered to KenHA & OSHA standards, and connected directly to TouchDesk for instant dispatch.
+              <Reveal delay={120}>
+                <p className="text-xs sm:text-base text-[var(--text-muted)] leading-relaxed mb-4 sm:mb-6 max-w-xl text-balance">
+                  From high-rise 3D illuminated channel letters in Nairobi&apos;s CBD to highway pylon signs and corporate vehicle fleet wraps across Kenya. Fabricated in-house, engineered to KenHA & OSHA standards.
                 </p>
               </Reveal>
 
-              <Reveal delay={240}>
-                <div className="flex flex-wrap items-center gap-4 mb-10">
-                  <a href="#fast-quote" className="btn-primary glow-accent px-7 py-3.5 text-base font-semibold">
+              <Reveal delay={200}>
+                <div className="flex flex-wrap items-center gap-3 mb-6 sm:mb-8">
+                  <a
+                    href="#fast-quote"
+                    className="btn-primary btn-magnetic glow-accent px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold rounded-xl"
+                  >
                     Instant Quote Configurator <span>→</span>
                   </a>
-                  <a href="#sign-systems" className="btn-secondary glass-subtle px-6 py-3.5 text-base">
+                  <a
+                    href="#sign-systems"
+                    className="px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium bg-[var(--surface)] hover:bg-[var(--bg-soft)] text-[var(--text)] border border-[var(--border)] shadow-xs transition-all"
+                  >
                     Explore Sign Systems
                   </a>
                 </div>
               </Reveal>
 
               {/* Verified Trust Metrics */}
-              <Reveal delay={320}>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-[var(--border)]">
+              <Reveal delay={280}>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4 sm:pt-5 border-t border-[var(--border)] w-full max-w-lg">
                   <div>
                     <div className="font-display text-2xl lg:text-3xl font-bold text-[var(--text)]">500+</div>
-                    <div className="font-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
-                      Installed Kenya
+                    <div className="font-mono text-[10px] sm:text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
+                      Sites Installed
                     </div>
                   </div>
                   <div>
                     <div className="font-display text-2xl lg:text-3xl font-bold text-[#0070f3]">100%</div>
-                    <div className="font-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
+                    <div className="font-mono text-[10px] sm:text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
                       In-House Fab
                     </div>
                   </div>
                   <div>
                     <div className="font-display text-2xl lg:text-3xl font-bold text-[var(--text)]">IP67</div>
-                    <div className="font-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
-                      LED Weatherproof
+                    <div className="font-mono text-[10px] sm:text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
+                      Weatherproof
                     </div>
                   </div>
                   <div>
                     <div className="font-display text-2xl lg:text-3xl font-bold text-[#0070f3]">3-5 Yrs</div>
-                    <div className="font-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
-                      UV Warranty
+                    <div className="font-mono text-[10px] sm:text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
+                      Warranty
                     </div>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* Right Column: Hero Visual Feature */}
-            <div className="lg:col-span-5">
-              <Reveal delay={200} direction="right">
-                <div className="relative">
-                  <div className="relative rounded-[var(--radius-lg)] p-2 bg-gradient-to-b from-[#0070f3]/30 via-[var(--border)] to-transparent">
-                    <ProjectPhoto
-                      src="/images/signage/hero-signage.jpg"
-                      alt="Touchline 3D Illuminated Channel Letters Architectural Facade"
-                      division="signage"
-                      badge="3D Illuminated Facade · Nairobi HQ"
-                      aspect="aspect-[4/3] md:aspect-[1/1]"
-                      className="shadow-2xl"
-                    />
-                  </div>
-
-                  {/* Telemetry Float Cards */}
-                  <div className="absolute -bottom-6 -left-6 glass border border-[var(--border)] rounded-[var(--radius-md)] p-4 shadow-xl hidden sm:block max-w-[220px]">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-                      <span className="font-mono text-[10px] text-emerald-500 font-semibold uppercase tracking-wider">
-                        Live Fabrication
-                      </span>
-                    </div>
-                    <p className="font-display text-xs text-[var(--text)]">
-                      CNC Automated Channel Bending & Samsung SMD Array
-                    </p>
-                  </div>
-
-                  <div className="absolute -top-4 -right-4 glass border border-[#0070f3]/30 rounded-[var(--radius-md)] px-4 py-2.5 shadow-lg hidden sm:block">
-                    <span className="font-mono text-[10px] text-[#0070f3] uppercase tracking-widest block font-bold">
-                      TOUCHDESK DISPATCH
-                    </span>
-                    <span className="text-xs text-[var(--text)] font-medium">Real-time status tracking</span>
                   </div>
                 </div>
               </Reveal>
@@ -389,445 +409,55 @@ export function SignageHome() {
         </div>
       </nav>
 
-      {/* ── 3. PROBLEM & COGNITIVE CONTRAST ───────────────────────── */}
-      <section className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)]">
-        <div className="max-w-content mx-auto px-6">
-          <div className="max-w-3xl">
-            <Reveal>
-              <div className="font-mono text-xs uppercase tracking-widest text-[#0070f3] mb-3 font-semibold">
-                The Cost of Inferior Signage
-              </div>
-              <h2 className="font-display text-3xl md:text-5xl leading-tight mb-6 text-[var(--text)]">
-                Bad signage costs you customers{' '}
-                <span className="bg-gradient-to-r from-[#0070f3] to-[#0ea5e9] bg-clip-text text-transparent">
-                  you will never even meet.
-                </span>
-              </h2>
-            </Reveal>
-            <Reveal delay={100}>
-              <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-6">
-                A faded acrylic face after 12 months, flickering LED modules during peak evening hours, or a non-compliant roadside pylon that gets flagged by county inspectors doesn&apos;t just damage your aesthetics — it signals unreliability to high-value clientele.
-              </p>
-              <div className="grid sm:grid-cols-2 gap-4 pt-4">
-                <div className="flex items-start gap-3 p-4 rounded-lg bg-[var(--bg)] border border-[var(--border)]">
-                  <span className="text-red-500 font-bold text-lg">✕</span>
-                  <div className="text-sm">
-                    <strong className="block text-[var(--text)]">Generic Subcontractors</strong>
-                    <span className="text-[var(--text-muted)]">
-                      Unsealed Chinese LEDs, calendered vinyl that shrinks, zero wind engineering.
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-4 rounded-lg bg-[var(--bg)] border border-[#0070f3]/30">
-                  <span className="text-[#0070f3] font-bold text-lg">✓</span>
-                  <div className="text-sm">
-                    <strong className="block text-[var(--text)]">Touchline In-House Standard</strong>
-                    <span className="text-[var(--text-muted)]">
-                      Samsung IP67 LEDs, Mean Well drivers, Cast acrylic, and KenHA structural compliance.
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 4. FOUR CORE SIGN SYSTEMS ──────────────────────────────── */}
-      <section id="sign-systems" className="section-py bg-[var(--bg)] scroll-section border-b border-[var(--border)]">
+      {/* ── 3. SIGN SYSTEMS SHOWCASE ──────────────────────────────── */}
+      <section id="sign-systems" className="section-py bg-[var(--bg)] border-b border-[var(--border)] scroll-section">
         <div className="max-w-content mx-auto px-6">
           <Reveal>
-            <div className="text-center mb-16">
+            <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2 font-semibold">
-                Physical Engineering & Architecture
+                // Commercial Fabrication Systems
               </span>
-              <h2 className="font-display text-3xl md:text-5xl text-[var(--text)] mb-4">
-                Four ways to <span className="text-[#0070f3]">command your landscape</span>
+              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-4">
+                Engineered Signage Systems
               </h2>
-              <p className="text-lead max-w-2xl mx-auto">
-                Every sign is modeled, fabricated, and wired inside our Industrial Area workshop. No outsourced fabrication, no guesswork.
+              <p className="text-sm sm:text-base text-[var(--text-muted)]">
+                Every system is fabricated in our Nairobi facility with structural calculations, wind-load ratings, and nationwide installation.
               </p>
             </div>
           </Reveal>
 
-          <div className="space-y-12">
-            {SIGN_SYSTEMS.map((system, idx) => {
-              const isEven = idx % 2 === 0;
-              return (
-                <div
-                  key={system.id}
-                  className="card-theme rounded-[var(--radius-lg)] p-6 md:p-10 border border-[var(--border)] hover:border-[#0070f3]/40 transition-all duration-300"
-                >
-                  <div className={`grid lg:grid-cols-12 gap-8 items-center ${isEven ? '' : 'lg:grid-flow-dense'}`}>
-                    {/* Visual Card with ProjectPhoto */}
-                    <div className={`lg:col-span-6 ${isEven ? '' : 'lg:col-start-7'}`}>
+          <div className="grid md:grid-cols-2 gap-8">
+            {SIGN_SYSTEMS.map((sys, idx) => (
+              <Reveal key={sys.id} delay={idx * 100}>
+                <div className="card-surface rounded-[var(--radius-lg)] p-6 sm:p-8 border border-[var(--border)] hover:border-[#0070f3]/40 transition-all flex flex-col justify-between h-full">
+                  <div>
+                    <div className="mb-6">
                       <ProjectPhoto
-                        src={system.photoSrc}
-                        alt={system.title}
+                        src={sys.photoSrc}
+                        alt={sys.title}
                         division="signage"
-                        badge={system.badge}
-                        aspect="aspect-[16/10]"
-                        className="shadow-xl"
+                        badge={sys.badge}
+                        aspect="aspect-[16/9]"
                       />
                     </div>
-
-                    {/* Content & Specs */}
-                    <div className={`lg:col-span-6 ${isEven ? '' : 'lg:col-start-1'}`}>
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0070f3]/10 text-[#0070f3] font-mono text-[11px] uppercase tracking-wider mb-3">
-                        {system.subtitle}
-                      </div>
-                      <h3 className="font-display text-2xl md:text-3xl text-[var(--text)] mb-4">{system.title}</h3>
-                      <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed mb-6">
-                        {system.description}
-                      </p>
-
-                      {/* Technical Specs List */}
-                      <div className="grid grid-cols-2 gap-3 mb-6 p-4 rounded-lg bg-[var(--bg-soft)] border border-[var(--border)]">
-                        {system.specs.map((spec) => (
-                          <div key={spec.label} className="text-xs">
-                            <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase block">
-                              {spec.label}
-                            </span>
-                            <span className="font-medium text-[var(--text)]">{spec.value}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Applications Chips */}
-                      <div className="flex flex-wrap items-center gap-2 mb-6">
-                        <span className="text-xs text-[var(--text-muted)] font-mono">Best For:</span>
-                        {system.applications.map((app) => (
-                          <span
-                            key={app}
-                            className="text-[11px] font-mono px-2.5 py-1 rounded bg-[var(--bg-soft)] text-[var(--text)] border border-[var(--border)]"
-                          >
-                            {app}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="flex items-center gap-4">
-                        <Link
-                          href={`/book?brand=signage&service=${encodeURIComponent(system.title)}`}
-                          className="btn-primary text-sm font-semibold"
-                        >
-                          Request Spec & Site Visit <span>→</span>
-                        </Link>
-                        <a href="#fast-quote" className="btn-ghost text-xs text-[var(--text-muted)] hover:text-[#0070f3]">
-                          Calculate Price
-                        </a>
-                      </div>
+                    <span className="font-mono text-xs text-[#0070f3] block mb-1">{sys.subtitle}</span>
+                    <h3 className="font-display text-2xl text-[var(--text)] mb-3">{sys.title}</h3>
+                    <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-6">{sys.description}</p>
+                    <div className="grid grid-cols-2 gap-2 mb-6">
+                      {sys.specs.map((spec) => (
+                        <div key={spec.label} className="p-2.5 rounded bg-[var(--bg-soft)] border border-[var(--border)]">
+                          <span className="text-[10px] font-mono text-[var(--text-muted)] block uppercase">{spec.label}</span>
+                          <span className="text-xs font-semibold text-[var(--text)]">{spec.value}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 5. LIVE FAST QUOTE WIDGET (DIRECT TO TOUCHDESK) ──────── */}
-      <section id="fast-quote" className="section-py bg-[var(--bg-soft)] scroll-section border-b border-[var(--border)]">
-        <div className="max-w-content mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-12">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2 font-semibold">
-                Direct TouchDesk Integration
-              </span>
-              <h2 className="font-display text-3xl md:text-5xl text-[var(--text)] mb-4">
-                Calculate & dispatch your <span className="text-[#0070f3]">signage estimate</span>
-              </h2>
-              <p className="text-lead max-w-xl mx-auto">
-                Select your signage type, specify dimensions or units, and submit directly to our Nairobi estimation desk for immediate job creation.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <FastQuoteWidget initialBrand="signage" />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── 6. VIEWING DISTANCE & LETTER HEIGHT CALCULATOR ──────── */}
-      <section id="viewing-distance" className="section-py bg-[var(--bg)] scroll-section border-b border-[var(--border)]">
-        <div className="max-w-content mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-12">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2 font-semibold">
-                HCI & Legibility Science
-              </span>
-              <h2 className="font-display text-3xl md:text-5xl text-[var(--text)] mb-4">
-                What size sign <span className="text-[#0070f3]">does your location need?</span>
-              </h2>
-              <p className="text-lead max-w-2xl mx-auto">
-                Letters that are too small go completely unnoticed at 60 km/h; letters that are oversized inflate structural steel and permit costs. Use our interactive calculator to find your exact ratio.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <SignageViewingCalculator />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── 7. ILLUMINATION TECHNOLOGY GUIDE ─────────────────────── */}
-      <section id="illumination" className="section-py bg-[var(--bg-soft)] scroll-section border-b border-[var(--border)]">
-        <div className="max-w-content mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-12">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2 font-semibold">
-                Day & Night Visibility
-              </span>
-              <h2 className="font-display text-3xl md:text-5xl text-[var(--text)] mb-4">
-                Front-Lit, Halo, or Neon? <span className="text-[#0070f3]">Which lighting works best?</span>
-              </h2>
-              <p className="text-lead max-w-2xl mx-auto">
-                Compare LED projection dynamics, beam dispersion angles, and power draw across different facade architectures.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <IlluminationGuide />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── 8. VEHICLE & FLEET BRANDING MATRIX ───────────────────── */}
-      <section id="vehicle-wraps" className="section-py bg-[var(--bg)] scroll-section border-b border-[var(--border)]">
-        <div className="max-w-content mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-16">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2 font-semibold">
-                Transit Advertising ROI
-              </span>
-              <h2 className="font-display text-3xl md:text-5xl text-[var(--text)] mb-4">
-                Vehicle branding that <span className="text-[#0070f3]">multiplies your reach</span>
-              </h2>
-              <p className="text-lead max-w-2xl mx-auto">
-                A branded commercial vehicle generates 35,000 to 100,000+ impressions daily on Kenyan roads. That delivers an average advertising cost of under KES 0.08 per impression over a 3-year lifespan.
-              </p>
-            </div>
-          </Reveal>
-
-          {/* Vehicle type selector tabs */}
-          <Reveal>
-            <div className="flex flex-wrap justify-center gap-2 mb-10">
-              {VEHICLE_COMPARISON.map((item, i) => (
-                <button
-                  key={item.type}
-                  onClick={() => setActiveVehicle(i)}
-                  className={`px-4 py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-200 ${
-                    activeVehicle === i
-                      ? 'bg-[#0070f3] text-white shadow-lg shadow-[#0070f3]/25 font-semibold'
-                      : 'bg-[var(--bg-soft)] text-[var(--text-muted)] hover:text-[var(--text)] border border-[var(--border)]'
-                  }`}
-                >
-                  {item.type}
-                </button>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* Vehicle Detail Card */}
-          <Reveal>
-            <div className="card-theme rounded-[var(--radius-lg)] p-8 md:p-12 max-w-4xl mx-auto border border-[var(--border)] shadow-xl">
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-6 border-b border-[var(--border)]">
-                <div>
-                  <span className="font-mono text-xs text-[#0070f3] uppercase tracking-widest block font-bold mb-1">
-                    FLEET SPECIFICATION
-                  </span>
-                  <h3 className="font-display text-2xl md:text-3xl text-[var(--text)]">
-                    {VEHICLE_COMPARISON[activeVehicle].type}
-                  </h3>
-                </div>
-                <div className="text-right">
-                  <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider block">
-                    Surface Area
-                  </span>
-                  <span className="font-mono text-sm font-bold text-[var(--text)]">
-                    {VEHICLE_COMPARISON[activeVehicle].coverage}
-                  </span>
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div className="p-4 rounded-lg bg-[var(--bg-soft)] border border-[var(--border)]">
-                  <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">
-                    Full Wrap Estimate
-                  </span>
-                  <span className="text-base font-bold text-[#0070f3] block">
-                    {VEHICLE_COMPARISON[activeVehicle].fullWrap}
-                  </span>
-                  <span className="text-[10px] text-[var(--text-muted)]">Includes Cast UV laminate</span>
-                </div>
-
-                <div className="p-4 rounded-lg bg-[var(--bg-soft)] border border-[var(--border)]">
-                  <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">
-                    Half / Spot Wrap
-                  </span>
-                  <span className="text-base font-bold text-[var(--text)] block">
-                    {VEHICLE_COMPARISON[activeVehicle].halfWrap}
-                  </span>
-                  <span className="text-[10px] text-[var(--text-muted)]">Sides + Rear Doors</span>
-                </div>
-
-                <div className="p-4 rounded-lg bg-[var(--bg-soft)] border border-[var(--border)]">
-                  <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">
-                    Daily Reach
-                  </span>
-                  <span className="text-base font-bold text-emerald-500 block">
-                    {VEHICLE_COMPARISON[activeVehicle].impressions}
-                  </span>
-                  <span className="text-[10px] text-[var(--text-muted)]">Urban + Highway routes</span>
-                </div>
-
-                <div className="p-4 rounded-lg bg-[var(--bg-soft)] border border-[var(--border)]">
-                  <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest block mb-1">
-                    Outdoor Lifespan
-                  </span>
-                  <span className="text-base font-bold text-[var(--text)] block">
-                    {VEHICLE_COMPARISON[activeVehicle].lifespan}
-                  </span>
-                  <span className="text-[10px] text-[var(--text-muted)]">No peeling or shrinkage</span>
-                </div>
-              </div>
-
-              <div className="p-4 rounded-lg bg-[var(--bg-soft)] border border-[var(--border)] mb-8">
-                <span className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-wider block mb-1">
-                  Optimal Deployment:
-                </span>
-                <p className="text-sm text-[var(--text)]">{VEHICLE_COMPARISON[activeVehicle].bestFor}</p>
-              </div>
-
-              <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[var(--border)]">
-                <div className="flex items-center gap-3 text-xs text-[var(--text-muted)]">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span>3M / Avery Dennison Certified Vinyl · Knifeless Tape Technology</span>
-                </div>
-                <Link
-                  href={`/book?brand=signage&service=${encodeURIComponent(
-                    VEHICLE_COMPARISON[activeVehicle].type + ' Vehicle Wrap'
-                  )}`}
-                  className="btn-primary text-sm font-semibold"
-                >
-                  Book Fleet Assessment <span>→</span>
-                </Link>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── 9. KENYA CLIMATE ZONE DURABILITY ENGINE ──────────────── */}
-      <section id="climate-zones" className="section-py bg-[var(--bg-soft)] scroll-section border-b border-[var(--border)]">
-        <div className="max-w-content mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-12">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2 font-semibold">
-                Regional Environmental Engineering
-              </span>
-              <h2 className="font-display text-3xl md:text-5xl text-[var(--text)] mb-4">
-                Engineered for Kenya&apos;s <span className="text-[#0070f3]">microclimates</span>
-              </h2>
-              <p className="text-lead max-w-2xl mx-auto">
-                A sign mounted in Mombasa faces intense marine salt spray; one in Lodwar faces 42°C UV baking; one in Limuru faces frost and dense mist. Enter your county or town to see our recommended material stack.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <SignageZoneDetector />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── 10. OSHA 2007 & KENHA COMPLIANCE ───────────────────────── */}
-      <section id="compliance" className="section-py bg-[var(--bg)] scroll-section border-b border-[var(--border)]">
-        <div className="max-w-content mx-auto px-6">
-          <div className="card-theme rounded-[var(--radius-lg)] p-8 md:p-12 max-w-4xl mx-auto border border-[var(--border)]">
-            <Reveal>
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <div>
-                  <span className="font-mono text-xs text-[#0070f3] uppercase tracking-widest font-bold block mb-1">
-                    LEGAL & REGULATORY PROTOCOLS
-                  </span>
-                  <h2 className="font-display text-2xl md:text-4xl text-[var(--text)]">
-                    OSHA 2007, DOSH & KenHA Compliance
-                  </h2>
-                </div>
-                <div className="flex gap-2">
-                  <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-xs font-mono font-semibold">
-                    DOSH Approved
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-[#0070f3]/10 text-[#0070f3] text-xs font-mono font-semibold">
-                    ISO 7010
-                  </span>
-                </div>
-              </div>
-
-              <p className="text-[var(--text-muted)] leading-relaxed mb-8">
-                Kenya&apos;s Occupational Safety and Health Act (OSHA 2007) requires specific photoluminescent emergency exits, fire equipment markers, and mandatory hazard signage in all industrial and commercial workspaces. We engineer compliant architectural signage packages that pass DOSH safety audits without delay.
-              </p>
-
-              <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                {WAYFINDING_STANDARDS.osha2007.keyRequirements.map((req) => (
-                  <div key={req} className="flex items-start gap-2.5 text-sm text-[var(--text-muted)]">
-                    <span className="text-[#0070f3] font-bold mt-0.5">✓</span>
-                    <span>{req}</span>
+                  <div className="pt-4 border-t border-[var(--border)] flex items-center justify-between">
+                    <Link href={`/services#${sys.id}`} className="text-sm font-semibold text-[#0070f3] hover:underline flex items-center gap-1">
+                      Technical Specs <span>→</span>
+                    </Link>
+                    <span className="text-xs font-mono text-[var(--text-muted)]">DOSH Certified</span>
                   </div>
-                ))}
-              </div>
-
-              <div className="pt-6 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-4">
-                <div className="text-xs text-[var(--text-muted)]">
-                  Need billboard or gantry clearance with the Kenya National Highways Authority? We prepare engineering CAD drawings.
-                </div>
-                <Link
-                  href="/book?brand=signage&service=OSHA%20Safety%20%26%20Compliance%20Signage"
-                  className="btn-secondary text-xs font-mono uppercase tracking-wider"
-                >
-                  Request Compliance Audit <span>→</span>
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 11. HOT SIGNAGE IN KENYA 2026 ─────────────────────────── */}
-      <section className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)]">
-        <div className="max-w-content mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-16">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2 font-semibold">
-                Market Intelligence
-              </span>
-              <h2 className="font-display text-3xl md:text-4xl text-[var(--text)] mb-4">
-                Top requested signage in <span className="text-[#0070f3]">Kenya 2026</span>
-              </h2>
-              <p className="text-lead max-w-xl mx-auto">
-                Real-time demand metrics based on active RFQs across {MARKET_DATA.kenya.totalSuppliers} national fabricators.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {HOT_PRODUCTS_KE.map((product, i) => (
-              <Reveal key={product.name} delay={i * 60}>
-                <div className="card-theme rounded-[var(--radius-md)] p-5 text-center h-full border border-[var(--border)] flex flex-col justify-between">
-                  <div>
-                    <span className="font-mono text-[10px] text-[#0070f3] uppercase tracking-widest font-bold block mb-2">
-                      RANK #{product.rank}
-                    </span>
-                    <h4 className="font-display text-sm font-semibold text-[var(--text)] mb-2">{product.name}</h4>
-                    <span className="font-mono text-[11px] text-[var(--text)] bg-[var(--bg-soft)] px-2 py-0.5 rounded block mb-3">
-                      {product.priceRange}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-[var(--text-muted)] leading-snug">{product.reason}</p>
                 </div>
               </Reveal>
             ))}
@@ -835,42 +465,37 @@ export function SignageHome() {
         </div>
       </section>
 
-      {/* ── 12. 4-PHASE PRECISION FABRICATION PROCESS ─────────────── */}
-      <section className="section-py bg-[var(--bg)] border-b border-[var(--border)]">
+      {/* ── 4. PRODUCTION PIPELINE STEPS ──────────────────────────── */}
+      <section className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)]">
         <div className="max-w-content mx-auto px-6">
           <Reveal>
-            <div className="text-center mb-16">
+            <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2 font-semibold">
-                Quality Assurance Protocol
+                // Engineering &amp; Installation Pipeline
               </span>
-              <h2 className="font-display text-3xl md:text-5xl text-[var(--text)] mb-4">
-                From site laser survey to <span className="text-[#0070f3]">certified install</span>
+              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-4">
+                How We Fabricate &amp; Install
               </h2>
-              <p className="text-lead max-w-xl mx-auto">
-                Zero shortcuts. Every weld, wire splice, and anchor point is verified before sign-off.
+              <p className="text-sm sm:text-base text-[var(--text-muted)]">
+                From laser site measurements to structural rigging by certified DOSH technicians.
               </p>
             </div>
           </Reveal>
 
-          <div className="relative grid md:grid-cols-4 gap-8">
-            <div
-              className="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-[#0070f3]/40 to-transparent"
-              aria-hidden="true"
-            />
-
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {SIGNAGE_STEPS.map((step, i) => (
-              <Reveal key={step.num} delay={i * 100}>
-                <div className="relative text-center">
-                  <div className="relative z-10 mx-auto mb-6 w-16 h-16 rounded-full bg-[var(--surface)] border-2 border-[#0070f3] flex items-center justify-center shadow-lg shadow-[#0070f3]/10">
-                    <span className="font-mono text-base font-bold text-[#0070f3]">{step.num}</span>
+              <Reveal key={step.num} delay={i * 80}>
+                <div className="card-surface p-6 sm:p-8 rounded-[var(--radius-lg)] border border-[var(--border)] h-full flex flex-col justify-between">
+                  <div>
+                    <span className="font-display text-4xl text-[#0070f3]/30 block mb-4">
+                      {step.num}
+                    </span>
+                    <h3 className="font-display text-xl text-[var(--text)] mb-3">{step.title}</h3>
+                    <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">{step.desc}</p>
                   </div>
-                  <h3 className="font-display text-lg mb-2 text-[var(--text)] font-semibold">{step.title}</h3>
-                  <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-3 max-w-[240px] mx-auto">
-                    {step.desc}
-                  </p>
-                  <span className="inline-block font-mono text-[10px] text-[#0070f3] bg-[#0070f3]/10 px-2.5 py-0.5 rounded-full">
-                    {step.tech}
-                  </span>
+                  <div className="pt-4 border-t border-[var(--border)]">
+                    <span className="text-[11px] font-mono text-[#0070f3] block">{step.tech}</span>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -878,80 +503,130 @@ export function SignageHome() {
         </div>
       </section>
 
-      {/* ── 13. CLIENT PROOF & CORPORATE TESTIMONIALS ─────────────── */}
-      <section className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)]">
+      {/* ── 5. VEHICLE FLEET BRANDING COMPARISON ───────────────────── */}
+      <section id="vehicle-wraps" className="section-py bg-[var(--bg)] border-b border-[var(--border)] scroll-section">
         <div className="max-w-content mx-auto px-6">
           <Reveal>
-            <div className="text-center mb-16">
+            <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2 font-semibold">
-                Corporate Endorsements
+                // Transit Advertising
               </span>
-              <h2 className="font-display text-3xl md:text-5xl text-[var(--text)] mb-4">
-                Trusted by <span className="text-[#0070f3]">facility & project managers</span>
+              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-4">
+                Vehicle Fleet Wraps
               </h2>
-              <p className="text-lead max-w-xl mx-auto">
-                Read how enterprises and commercial property managers rely on our signage engineering.
+              <p className="text-sm sm:text-base text-[var(--text-muted)]">
+                High-durability cast vinyl wraps engineered for Kenya&apos;s highways, sun, and fleet washing schedules.
               </p>
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {TESTIMONIALS.map((t, i) => (
-              <Reveal key={t.name} delay={i * 120}>
-                <blockquote className="card-surface rounded-[var(--radius-lg)] p-8 h-full flex flex-col border border-[var(--border)] shadow-md">
-                  <p className="font-editorial italic text-base md:text-lg text-[var(--text)] leading-relaxed mb-6 flex-1">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <div className="flex items-center gap-3 pt-4 border-t border-[var(--border)]">
-                    <div className="w-8 h-0.5 bg-[#0070f3]" />
-                    <div>
-                      <p className="text-sm font-semibold text-[var(--text)]">{t.name}</p>
-                      <p className="text-xs text-[var(--text-muted)]">{t.role}</p>
-                    </div>
-                  </div>
-                </blockquote>
-              </Reveal>
+          {/* Vehicle selector tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
+            {VEHICLE_COMPARISON.map((v, idx) => (
+              <button
+                key={v.type}
+                onClick={() => setActiveVehicle(idx)}
+                className={`px-4 py-2 rounded-full text-xs font-mono tracking-wider uppercase transition-all ${
+                  activeVehicle === idx
+                    ? 'bg-[#0070f3] text-white font-bold shadow-md'
+                    : 'bg-[var(--surface)] text-[var(--text-muted)] border border-[var(--border)] hover:border-[#0070f3]'
+                }`}
+              >
+                {v.type}
+              </button>
             ))}
+          </div>
+
+          {/* Active vehicle card */}
+          <div className="card-surface rounded-[var(--radius-lg)] p-8 sm:p-12 border border-[var(--border)] max-w-4xl mx-auto">
+            <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-[var(--border)] gap-4">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3]">
+                  Vehicle Category
+                </span>
+                <h3 className="font-display text-3xl text-[var(--text)] mt-1">
+                  {VEHICLE_COMPARISON[activeVehicle].type}
+                </h3>
+              </div>
+              <span className="font-mono text-xs text-[var(--text-muted)] bg-[var(--bg-soft)] px-3 py-1.5 rounded-full border border-[var(--border)]">
+                {VEHICLE_COMPARISON[activeVehicle].coverage}
+              </span>
+            </div>
+
+            <p className="text-base text-[var(--text)] leading-relaxed mb-8">
+              {VEHICLE_COMPARISON[activeVehicle].bestFor}
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="p-4 rounded-xl bg-[var(--bg)] border border-[var(--border)]">
+                <span className="text-xs font-mono text-[var(--text-muted)] block mb-1">FULL WRAP ESTIMATE</span>
+                <span className="text-base font-bold text-[#0070f3]">
+                  {VEHICLE_COMPARISON[activeVehicle].fullWrap}
+                </span>
+              </div>
+              <div className="p-4 rounded-xl bg-[var(--bg)] border border-[var(--border)]">
+                <span className="text-xs font-mono text-[var(--text-muted)] block mb-1">HALF WRAP / SPOT</span>
+                <span className="text-base font-bold text-[var(--text)]">
+                  {VEHICLE_COMPARISON[activeVehicle].halfWrap}
+                </span>
+              </div>
+              <div className="p-4 rounded-xl bg-[var(--bg)] border border-[var(--border)]">
+                <span className="text-xs font-mono text-[var(--text-muted)] block mb-1">DAILY IMPRESSIONS</span>
+                <span className="text-base font-semibold text-[var(--text)]">
+                  {VEHICLE_COMPARISON[activeVehicle].impressions}
+                </span>
+              </div>
+              <div className="p-4 rounded-xl bg-[var(--bg)] border border-[var(--border)]">
+                <span className="text-xs font-mono text-[var(--text-muted)] block mb-1">UV LIFESPAN</span>
+                <span className="text-base font-semibold text-[var(--text)]">
+                  {VEHICLE_COMPARISON[activeVehicle].lifespan}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── 14. CONVERSION & TOUCHDESK DISPATCH CTA ───────────────── */}
-      <section className="section-py-lg bg-gradient-to-b from-[var(--bg)] to-[var(--bg-soft)]">
-        <div className="max-w-content mx-auto px-6 text-center">
+      {/* ── 6. VIEWING DISTANCE CALCULATOR ────────────────────────── */}
+      <section id="viewing-distance" className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)] scroll-section">
+        <div className="max-w-content mx-auto px-6">
+          <SignageViewingCalculator />
+        </div>
+      </section>
+
+      {/* ── 7. ILLUMINATION GUIDE ─────────────────────────────────── */}
+      <section id="illumination" className="section-py bg-[var(--bg)] border-b border-[var(--border)] scroll-section">
+        <div className="max-w-content mx-auto px-6">
+          <IlluminationGuide />
+        </div>
+      </section>
+
+      {/* ── 8. CLIMATE ZONES ──────────────────────────────────────── */}
+      <section id="climate-zones" className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)] scroll-section">
+        <div className="max-w-content mx-auto px-6">
+          <SignageZoneDetector />
+        </div>
+      </section>
+
+      {/* ── 9. FAST QUOTE WIDGET ──────────────────────────────────── */}
+      <section id="fast-quote" className="section-py bg-[var(--bg)] border-b border-[var(--border)] scroll-section">
+        <div className="max-w-content mx-auto px-6">
           <Reveal>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0070f3]/10 text-[#0070f3] font-mono text-xs uppercase tracking-widest mb-6">
-              Ready for Rapid Production
-            </div>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl text-[var(--text)] mb-6 max-w-3xl mx-auto tracking-tight">
-              Ready to make your brand <br />
-              <span className="bg-gradient-to-r from-[#0070f3] via-[#0ea5e9] to-[#38bdf8] bg-clip-text text-transparent">
-                impossible to miss?
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2 font-semibold">
+                // Instant Quotation
               </span>
-            </h2>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <p className="text-lg text-[var(--text-muted)] max-w-2xl mx-auto mb-10 leading-relaxed">
-              Submit your project specs directly into TouchDesk for instant site survey scheduling, 3D CAD modeling, and factory direct pricing.
-            </p>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/book?brand=signage" className="btn-primary glow-accent px-8 py-4 text-base font-semibold">
-                Book Site Survey & Quote <span>→</span>
-              </Link>
-              <a
-                href="https://wa.me/254722668696?text=Hi%20Touchline%2C%20I%20need%20a%20signage%20quote%20for%20my%20building%2Ffleet"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary glass-subtle px-7 py-4 text-base font-semibold"
-              >
-                WhatsApp Desk (+254 722 668 696)
-              </a>
+              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-4">
+                FastQuote Estimator
+              </h2>
+              <p className="text-sm sm:text-base text-[var(--text-muted)]">
+                Configure dimensional signage, lightboxes, and vehicle fleet branding with instant budget estimations.
+              </p>
             </div>
           </Reveal>
+          <div className="max-w-3xl mx-auto">
+            <FastQuoteWidget initialBrand="signage" />
+          </div>
         </div>
       </section>
     </div>

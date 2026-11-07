@@ -63,13 +63,8 @@ export const viewport: Viewport = {
   themeColor: '#17141f'
 };
 
-export async function generateMetadata({ searchParams }: { searchParams?: { brand?: string } }): Promise<Metadata> {
-  let brandId = getBrandFromHeaders();
-
-  if (brandId === 'hub' && searchParams?.brand) {
-    const param = searchParams.brand;
-    if (param === 'branding' || param === 'signage') brandId = param;
-  }
+export async function generateMetadata(): Promise<Metadata> {
+  const brandId = getBrandFromHeaders();
 
   if (brandId === 'hub') {
     const description =
