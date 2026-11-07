@@ -4,48 +4,76 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 
 type Theme = 'light' | 'dark';
 
-const ThemeContext = createContext<{
+interface ThemeContextType {
   theme: Theme;
   toggle: () => void;
-}>({ theme: 'light', toggle: () => {} });
+  setTheme: (theme: Theme) => void;
+}
+
+const ThemeContext = createContext<ThemeContextType>({
+  theme: 'light',
+  toggle: () => {},
+  setTheme: () => {},
+});
 
 export function useTheme() {
   return useContext(ThemeContext);
 }
 
-function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'light';
-  const stored = localStorage.getItem('touchline-theme');
-  if (stored === 'dark' || stored === 'light') return stored;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
-
 function applyTheme(theme: Theme) {
+  if (typeof document === 'undefined') return;
   const html = document.documentElement;
+
   if (theme === 'dark') {
     html.classList.add('dark');
+    html.setAttribute('data-theme', 'dark');
+    html.style.colorScheme = 'dark';
   } else {
     html.classList.remove('dark');
+    html.setAttribute('data-theme', 'light');
+    html.style.colorScheme = 'light';
   }
-  localStorage.setItem('touchline-theme', theme);
+
+  try {
+    localStorage.setItem('touchline-theme', theme);
+  } catch (e) {
+    // ignore local storage errors in privacy mode
+  }
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [theme, setThemeState] = useState<Theme>('light');
 
   useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
+    try {
+      const stored = localStorage.getItem('touchline-theme');
+      const isDark =
+        stored === 'dark' ||
+        (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches) ||
+        document.documentElement.classList.contains('dark');
+      const initial: Theme = isDark ? 'dark' : 'light';
+      setThemeState(initial);
+      applyTheme(initial);
+    } catch (e) {
+      applyTheme('light');
+    }
+  }, []);
 
   const toggle = () => {
-    setTheme((prev) => {
-      const next = prev === 'light' ? 'dark' : 'light';
+    setThemeState((prev) => {
+      const next: Theme = prev === 'light' ? 'dark' : 'light';
+      applyTheme(next);
       return next;
     });
   };
 
+  const setTheme = (mode: Theme) => {
+    setThemeState(mode);
+    applyTheme(mode);
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, toggle }}>
+    <ThemeContext.Provider value={{ theme, toggle, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );

@@ -9,7 +9,7 @@ function resolveBrandFromHost(host: string): BrandId {
   return 'hub';
 }
 
-/** Server-side brand resolution: host → cookie → default hub */
+/** Server-side brand resolution: brand header → pathname → host → cookie → default hub */
 export function getBrandFromHeaders(): BrandId {
   const h = headers();
 
@@ -19,16 +19,24 @@ export function getBrandFromHeaders(): BrandId {
     return headerBrand;
   }
 
-  // 2. Resolve from hostname (check both host and x-forwarded-host for Vercel)
+  // 2. Check x-pathname (set by middleware)
+  const pathname = h.get('x-pathname') || '';
+  if (pathname.startsWith('/branding')) return 'branding';
+  if (pathname.startsWith('/signage')) return 'signage';
+
+  // 3. Resolve from hostname (check both host and x-forwarded-host for Vercel)
   const host = h.get('x-forwarded-host') || h.get('host') || '';
   let brand = resolveBrandFromHost(host);
 
-  // 3. Cookie fallback for shared routes on hub
+  // 4. Cookie fallback for shared routes on hub
   if (brand === 'hub') {
-    const cookieStore = cookies();
-    const brandCookie = cookieStore.get('tb-brand')?.value;
-    if (brandCookie === 'branding' || brandCookie === 'signage') {
-      brand = brandCookie;
+    const isDev = host.includes('localhost') || host.includes('127.0.0.1');
+    if (!isDev) {
+      const cookieStore = cookies();
+      const brandCookie = cookieStore.get('tb-brand')?.value;
+      if (brandCookie === 'branding' || brandCookie === 'signage') {
+        brand = brandCookie;
+      }
     }
   }
 

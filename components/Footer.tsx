@@ -54,7 +54,9 @@ export async function Footer({ brand }: { brand: BrandConfig | null }) {
       <div className="max-w-content mx-auto px-6 py-16 grid gap-10 md:grid-cols-4">
         {/* Brand */}
         <div className="md:col-span-1 flex flex-col gap-4">
-          <Logo brand={effectiveBrand?.id ?? 'hub'} className="text-lg" />
+          <div className="inline-flex self-start items-center px-3.5 py-1.5 rounded-xl bg-[#0b0e14] border border-white/10 shadow-sm">
+            <Logo brand={effectiveBrand?.id ?? 'hub'} className="h-6 sm:h-7 w-auto" />
+          </div>
           <p className="text-sm text-[var(--text-muted)] leading-relaxed">
             {effectiveBrand
               ? effectiveBrand.tagline

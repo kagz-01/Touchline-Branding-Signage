@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import { BrandingHome } from '@/components/BrandingHome';
 
-export default function BrandingRedirectPage() {
-  redirect('/?brand=branding');
+export default function BrandingPage() {
+  return <BrandingHome />;
 }

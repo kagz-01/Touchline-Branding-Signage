@@ -10,17 +10,17 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 const brands = [
   {
     name: "icon",
-    logo: path.join(LOGOS_DIR, "T-logo-dark.png"),
+    logo: path.join(LOGOS_DIR, "touchline-dark.png"),
     bg: "#0d0c0a",
   },
   {
     name: "branding",
-    logo: path.join(LOGOS_DIR, "Tb-logo-dark.png"),
+    logo: path.join(LOGOS_DIR, "branding-dark.png"),
     bg: "#1a1510",
   },
   {
     name: "signage",
-    logo: path.join(LOGOS_DIR, "Ts-logo-dark.png"),
+    logo: path.join(LOGOS_DIR, "signage-dark.png"),
     bg: "#141415",
   },
 ];

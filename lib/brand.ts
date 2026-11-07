@@ -50,7 +50,7 @@ export function getBrandBaseUrl(targetBrand: BrandId, currentHost?: string): str
   const isDev = !currentHost || currentHost.includes('localhost') || currentHost.includes('127.0.0.1');
 
   if (isDev) {
-    return targetBrand === 'hub' ? '/' : `/?brand=${targetBrand}`;
+    return targetBrand === 'hub' ? '/' : `/${targetBrand}`;
   }
 
   const domain = getBrandDomains()[targetBrand];

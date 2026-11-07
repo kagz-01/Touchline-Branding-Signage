@@ -13,7 +13,7 @@ export function CrossSellBanner({ brand }: { brand: BrandConfig }) {
       <a href={targetHref} className="block relative py-12 md:py-16 max-w-content mx-auto px-6">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="flex items-center gap-6">
-            <Logo brand={targetBrand} className="text-2xl text-[var(--accent)] group-hover:text-[var(--bg)] transition-colors duration-700 hidden md:block" />
+            <Logo brand={targetBrand} className="h-8 md:h-10 w-auto hidden md:block" />
             <div className="max-w-2xl">
               <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wide group-hover:text-[var(--bg)] transition-colors duration-700 mb-2">
                 {brand.crossSell.headline}

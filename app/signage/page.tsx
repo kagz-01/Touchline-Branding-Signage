@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import { SignageHome } from '@/components/SignageHome';
 
-export default function SignageRedirectPage() {
-  redirect('/?brand=signage');
+export default function SignagePage() {
+  return <SignageHome />;
 }

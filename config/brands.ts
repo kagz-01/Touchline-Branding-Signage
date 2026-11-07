@@ -115,10 +115,42 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
       }
     ],
     portfolio: [
-      { title: 'County Government Branding Tender', category: 'Tender fulfilment', blurb: '4,000 branded items across 6 product lines, sourced and delivered against a hard tender deadline.', volume: '4,000 Units', deadline: '14 Days', materials: 'Fabric, Ceramic, Paper' },
-      { title: 'Staff Uniform Rollout', category: 'Apparel', blurb: 'Embroidered workwear for a 120-person field team, reordered quarterly.', volume: '360 Units', deadline: '5 Days', materials: 'Cotton, Polyester Blend' },
-      { title: 'Conference Delegate Kits', category: 'Bags & drinkware', blurb: 'Branded bags, notebooks and flasks for a three-day industry conference.', volume: '500 Kits', deadline: '10 Days', materials: 'Canvas, Stainless Steel' },
-      { title: 'Product Launch Giveaways', category: 'Promo items', blurb: 'Limited-run branded merchandise timed to a retail launch week.', volume: '1,200 Units', deadline: '7 Days', materials: 'Mixed Media' }
+      {
+        title: 'County Government Branding Tender',
+        category: 'Tender fulfilment',
+        blurb: '4,000 branded items across 6 product lines, sourced and delivered against a hard tender deadline.',
+        volume: '4,000 Units',
+        deadline: '14 Days',
+        materials: 'Fabric, Ceramic, Paper',
+        image_url: '/images/branding/tender-rollout.jpg',
+      },
+      {
+        title: 'Staff Uniform Rollout',
+        category: 'Apparel',
+        blurb: 'Embroidered workwear for a 120-person field team, reordered quarterly.',
+        volume: '360 Units',
+        deadline: '5 Days',
+        materials: 'Cotton, Polyester Blend',
+        image_url: '/images/branding/apparel-embroidery.jpg',
+      },
+      {
+        title: 'Conference Delegate Kits',
+        category: 'Bags & drinkware',
+        blurb: 'Branded bags, notebooks and flasks for a three-day industry conference.',
+        volume: '500 Kits',
+        deadline: '10 Days',
+        materials: 'Canvas, Stainless Steel',
+        image_url: '/images/branding/corporate-gifts.jpg',
+      },
+      {
+        title: 'Product Launch Giveaways',
+        category: 'Promo items',
+        blurb: 'Limited-run branded merchandise timed to a retail launch week.',
+        volume: '1,200 Units',
+        deadline: '7 Days',
+        materials: 'Mixed Media',
+        image_url: '/images/branding/hero-merch.jpg',
+      },
     ],
     testimonials: [
       { quote: 'They handled everything from sourcing to delivery ahead of a tight tender deadline. We never had to chase a single vendor ourselves.', name: 'James Mwangi', role: 'Procurement Lead, County Government' },
@@ -209,10 +241,42 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
       }
     ],
     portfolio: [
-      { title: 'Retail Fascia Rollout', category: 'Multi-site', blurb: 'Illuminated fascia signage fabricated and installed across 9 branches in matching spec.', volume: '9 Sites', deadline: '21 Days', materials: 'Aluminium Composite, LED' },
-      { title: 'Corporate Reception Signage', category: 'Acrylic & 3D lettering', blurb: 'Dimensional lettering and wayfinding for a new head-office reception.', volume: '1 Office', deadline: '3 Days', materials: 'Cut Acrylic' },
-      { title: 'Fleet Vehicle Wrap', category: 'Vehicle branding', blurb: 'Full-wrap branding for a 14-vehicle delivery fleet, colour-matched to brand guidelines.', volume: '14 Vehicles', deadline: '7 Days', materials: 'Cast Vinyl' },
-      { title: 'Event LED Installation', category: 'LED signage', blurb: 'Temporary LED signage and stage branding for a multi-day public event.', volume: '1 Stage', deadline: '48 Hours', materials: 'LED Modules, Steel Frame' }
+      {
+        title: 'Retail Fascia Rollout',
+        category: 'Multi-site',
+        blurb: 'Illuminated fascia signage fabricated and installed across 9 branches in matching spec.',
+        volume: '9 Sites',
+        deadline: '21 Days',
+        materials: 'Aluminium Composite, LED',
+        image_url: '/images/signage/led-lightbox.jpg',
+      },
+      {
+        title: 'Corporate Reception Signage',
+        category: 'Acrylic & 3D lettering',
+        blurb: 'Dimensional lettering and wayfinding for a new head-office reception.',
+        volume: '1 Office',
+        deadline: '3 Days',
+        materials: 'Cut Acrylic',
+        image_url: '/images/signage/3d-channel-letters.jpg',
+      },
+      {
+        title: 'Fleet Vehicle Wrap',
+        category: 'Vehicle branding',
+        blurb: 'Full-wrap branding for a 14-vehicle delivery fleet, colour-matched to brand guidelines.',
+        volume: '14 Vehicles',
+        deadline: '7 Days',
+        materials: 'Cast Vinyl',
+        image_url: '/images/signage/vehicle-wrap.jpg',
+      },
+      {
+        title: 'Event LED Installation',
+        category: 'LED signage',
+        blurb: 'Temporary LED signage and stage branding for a multi-day public event.',
+        volume: '1 Stage',
+        deadline: '48 Hours',
+        materials: 'LED Modules, Steel Frame',
+        image_url: '/images/signage/hero-signage.jpg',
+      },
     ],
     testimonials: [
       { quote: 'The fascia signs across all our branches finally look like one company. Installation was tidy and on schedule at every site.', name: 'Peter Odhiambo', role: 'Facilities Manager, Retail Chain' },

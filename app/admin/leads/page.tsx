@@ -235,26 +235,23 @@ export default function AdminLeadsPage() {
                       </select>
 
                       {lead.converted_task_id ? (
-                        inventoryBaseUrl ? (
-                          <a
-                            href={`${inventoryBaseUrl.replace(/\/$/, "")}/tasks/${lead.converted_task_id}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-xs text-[var(--accent)] hover:underline"
-                          >
-                            View task →
-                          </a>
-                        ) : (
-                          <span className="text-xs text-emerald-500">Task created</span>
-                        )
-                      ) : (
-                        <button
-                          onClick={() => convertToTask(lead.id)}
-                          disabled={converting === lead.id}
-                          className="text-xs border border-[var(--border)] px-3 py-1.5 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors disabled:opacity-50 rounded-[var(--radius-sm)]"
+                        <a
+                          href={`https://desk.touchlineltd.co.ke/quotes/${lead.converted_task_id}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-xs text-[var(--accent)] hover:underline inline-flex items-center gap-1 font-mono"
                         >
-                          {converting === lead.id ? "Converting..." : "Convert to task"}
-                        </button>
+                          View Quote in TouchDesk ↗
+                        </a>
+                      ) : (
+                        <a
+                          href="https://desk.touchlineltd.co.ke/requests"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-xs border border-[var(--border)] px-3 py-1.5 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors rounded-[var(--radius-sm)] inline-flex items-center gap-1.5"
+                        >
+                          Open in TouchDesk ↗
+                        </a>
                       )}
                     </div>
                   </div>

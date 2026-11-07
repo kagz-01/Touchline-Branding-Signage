@@ -2,13 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root,
+html,
+[data-theme='light'] {
   --radius-sm: 4px;
   --radius-md: 12px;
   --radius-lg: 20px;
   --font-body: var(--font-inter);
   --font-mono: var(--font-jetbrains);
   --font-editorial: var(--font-playfair);
+
+  /* Fallback Light Mode */
+  --bg:          #faf9f6;
+  --bg-soft:     #f2f0ea;
+  --surface:     #ffffff;
+  --text:        #0d0b08;
+  --text-muted:  #5c5347;
+  --accent:      #c8960c;
+  --accent-warm: #d4a017;
+  --accent-ink:  #ffffff;
+  --accent2:     #0070f3;
+  --border:      rgba(0, 0, 0, 0.08);
+  --shadow:      rgba(0, 0, 0, 0.05);
+}
+
+.dark,
+[data-theme='dark'] {
+  /* Fallback Dark Mode */
+  --bg:          #09090b;
+  --bg-soft:     #121215;
+  --surface:     #18181b;
+  --text:        #fafafa;
+  --text-muted:  #a1a1aa;
+  --accent:      #d4a820;
+  --accent-warm: #0070f3;
+  --accent-ink:  #09090b;
+  --accent2:     #0070f3;
+  --border:      rgba(255, 255, 255, 0.12);
+  --shadow:      rgba(0, 0, 0, 0.45);
 }
 
 html {
@@ -21,20 +52,23 @@ html {
 }
 
 /* ---------------------------------------------------------------------- */
-/* Touchline Branding — Rich Gold & Amber                                  */
-/* Premium, warm, creative — merchandise & craft                           */
+/* Touchline Branding — Rich Gold & Amber (Light Mode)                    */
+/* Deep espresso dark text on warm ivory cream ground                     */
 /* ---------------------------------------------------------------------- */
-[data-brand='branding'] {
+[data-brand='branding'],
+html[data-brand='branding'],
+[data-theme='light'][data-brand='branding'],
+[data-theme='light'] [data-brand='branding'] {
   --bg:          #faf8f3;
   --bg-soft:     #f5f0e5;
   --surface:     #ffffff;
   --text:        #1a1408;
-  --text-muted:  #6b5a3a;
+  --text-muted:  #5f5035;
   --accent:      #c8960c;
   --accent-warm: #d4a820;
   --accent-ink:  #ffffff;
   --accent2:     #8b6914;
-  --border:      rgba(200, 150, 12, 0.12);
+  --border:      rgba(200, 150, 12, 0.16);
   --shadow:      rgba(26, 20, 8, 0.06);
   --font-display: var(--font-anton);
   /* Gradients */
@@ -50,77 +84,91 @@ html {
 }
 
 /* ---------------------------------------------------------------------- */
-/* Touchline Signage — Strong Blue & Steel                                 */
-/* Precise, industrial, modern — fabrication & LED                         */
+/* Touchline Signage — Strong Blue & Steel (Light Mode)                   */
+/* Deep navy text on crisp clean slate-white ground                       */
 /* ---------------------------------------------------------------------- */
-[data-brand='signage'] {
+[data-brand='signage'],
+html[data-brand='signage'],
+[data-theme='light'][data-brand='signage'],
+[data-theme='light'] [data-brand='signage'] {
   --bg:          #f4f7fa;
   --bg-soft:     #e8eef5;
   --surface:     #ffffff;
   --text:        #0a1628;
-  --text-muted:  #4a6078;
-  --accent:      #1a7ab5;
-  --accent-warm: #2088c8;
+  --text-muted:  #3b5168;
+  --accent:      #0070f3;
+  --accent-warm: #0ea5e9;
   --accent-ink:  #ffffff;
-  --accent2:     #0d5a8a;
-  --border:      rgba(26, 122, 181, 0.12);
+  --accent2:     #0284c7;
+  --border:      rgba(0, 112, 243, 0.16);
   --shadow:      rgba(10, 22, 40, 0.06);
   --font-display: var(--font-grotesk);
   /* Gradients */
-  --grad-hero-from:  #1a7ab5;
-  --grad-hero-via:   #2088c8;
-  --grad-hero-to:    #40b0e0;
-  --grad-section:    linear-gradient(135deg, #1a7ab5, #2088c8);
-  --grad-text-from:  #1a7ab5;
-  --grad-text-to:    #40b0e0;
-  --grad-subtle:     linear-gradient(135deg, rgba(26,122,181,0.06), rgba(64,176,224,0.03));
-  --grad-card:       linear-gradient(160deg, rgba(26,122,181,0.04), transparent);
-  --grad-glow:       rgba(26, 122, 181, 0.15);
+  --grad-hero-from:  #0070f3;
+  --grad-hero-via:   #0ea5e9;
+  --grad-hero-to:    #38bdf8;
+  --grad-section:    linear-gradient(135deg, #0070f3, #0ea5e9);
+  --grad-text-from:  #0070f3;
+  --grad-text-to:    #38bdf8;
+  --grad-subtle:     linear-gradient(135deg, rgba(0,112,243,0.06), rgba(14,165,233,0.03));
+  --grad-card:       linear-gradient(160deg, rgba(0,112,243,0.04), transparent);
+  --grad-glow:       rgba(0, 112, 243, 0.15);
 }
 
 /* ---------------------------------------------------------------------- */
-/* Hub — Gold & Blue Blend (unifying parent brand)                         */
+/* Hub — Gold & Blue Blend (Light Mode)                                   */
+/* Deep rich black text on pristine off-white ground                      */
 /* ---------------------------------------------------------------------- */
-[data-brand='hub'] {
+[data-brand='hub'],
+html[data-brand='hub'],
+[data-theme='light'][data-brand='hub'],
+[data-theme='light'] [data-brand='hub'] {
   --bg:          #faf9f6;
   --bg-soft:     #f2f0ea;
   --surface:     #ffffff;
   --text:        #0d0b08;
-  --text-muted:  #5c5347;
-  --accent:      #b8860b;
+  --text-muted:  #4f473c;
+  --accent:      #c8960c;
   --accent-warm: #d4a017;
   --accent-ink:  #ffffff;
-  --accent2:     #1a7ab5;
-  --border:      rgba(184, 134, 11, 0.10);
+  --accent2:     #0070f3;
+  --border:      rgba(200, 150, 12, 0.14);
   --shadow:      rgba(13, 11, 8, 0.05);
   --font-display: var(--font-grotesk);
   /* Gradients — blends gold + blue */
-  --grad-hero-from:  #b8860b;
-  --grad-hero-via:   #1a7ab5;
+  --grad-hero-from:  #c8960c;
+  --grad-hero-via:   #0070f3;
   --grad-hero-to:    #d4a017;
-  --grad-section:    linear-gradient(135deg, #b8860b, #1a7ab5);
-  --grad-text-from:  #b8860b;
-  --grad-text-to:    #1a7ab5;
-  --grad-subtle:     linear-gradient(135deg, rgba(184,134,11,0.05), rgba(26,122,181,0.04));
-  --grad-card:       linear-gradient(160deg, rgba(184,134,11,0.04), rgba(26,122,181,0.03));
-  --grad-glow:       rgba(184, 134, 11, 0.12);
+  --grad-section:    linear-gradient(135deg, #c8960c, #0070f3);
+  --grad-text-from:  #c8960c;
+  --grad-text-to:    #0070f3;
+  --grad-subtle:     linear-gradient(135deg, rgba(200,150,12,0.05), rgba(0,112,243,0.04));
+  --grad-card:       linear-gradient(160deg, rgba(200,150,12,0.04), rgba(0,112,243,0.03));
+  --grad-glow:       rgba(200, 150, 12, 0.12);
 }
 
 /* ---------------------------------------------------------------------- */
 /* Dark Mode — Distinct per brand                                          */
+/* Deep pitch dark backgrounds, crisp light luminous text                */
 /* ---------------------------------------------------------------------- */
-.dark [data-brand='branding'] {
-  --bg:          #12100a;
-  --bg-soft:     #1a1710;
-  --surface:     #201c14;
-  --text:        #f5f0e5;
-  --text-muted:  #b8a878;
+html.dark[data-brand='branding'],
+html.dark [data-brand='branding'],
+.dark[data-brand='branding'],
+.dark [data-brand='branding'],
+[data-brand='branding'].dark,
+[data-theme='dark'][data-brand='branding'],
+[data-theme='dark'] [data-brand='branding'] {
+  --bg:          #0c0a06;
+  --bg-soft:     #15120a;
+  --surface:     #1c1810;
+  --text:        #f8f6f0;
+  --text-muted:  #c4b595;
   --accent:      #d4a820;
   --accent-warm: #e8bc30;
-  --accent-ink:  #1a1408;
+  --accent-ink:  #0c0a06;
   --accent2:     #c8960c;
-  --border:      rgba(212, 168, 32, 0.15);
-  --shadow:      rgba(0, 0, 0, 0.3);
+  --border:      rgba(212, 168, 32, 0.18);
+  --shadow:      rgba(0, 0, 0, 0.45);
   --grad-hero-from:  #d4a820;
   --grad-hero-via:   #c8960c;
   --grad-hero-to:    #8b6914;
@@ -132,62 +180,77 @@ html {
   --grad-glow:       rgba(212, 168, 32, 0.2);
 }
 
-.dark [data-brand='signage'] {
-  --bg:          #0a0f14;
-  --bg-soft:     #101820;
-  --surface:     #162028;
-  --text:        #e8eef5;
-  --text-muted:  #7090a8;
-  --accent:      #2088c8;
-  --accent-warm: #30a0e0;
-  --accent-ink:  #0a1628;
-  --accent2:     #1a7ab5;
-  --border:      rgba(32, 136, 200, 0.15);
-  --shadow:      rgba(0, 0, 0, 0.3);
-  --grad-hero-from:  #2088c8;
-  --grad-hero-via:   #1a7ab5;
-  --grad-hero-to:    #0d5a8a;
-  --grad-section:    linear-gradient(135deg, #2088c8, #0d5a8a);
-  --grad-text-from:  #2088c8;
-  --grad-text-to:    #40b0e0;
-  --grad-subtle:     linear-gradient(135deg, rgba(32,136,200,0.08), rgba(26,122,181,0.04));
-  --grad-card:       linear-gradient(160deg, rgba(32,136,200,0.06), transparent);
-  --grad-glow:       rgba(32, 136, 200, 0.2);
+html.dark[data-brand='signage'],
+html.dark [data-brand='signage'],
+.dark[data-brand='signage'],
+.dark [data-brand='signage'],
+[data-brand='signage'].dark,
+[data-theme='dark'][data-brand='signage'],
+[data-theme='dark'] [data-brand='signage'] {
+  --bg:          #050a12;
+  --bg-soft:     #0b1320;
+  --surface:     #121c2b;
+  --text:        #f0f6fc;
+  --text-muted:  #8ba2b8;
+  --accent:      #0070f3;
+  --accent-warm: #38bdf8;
+  --accent-ink:  #ffffff;
+  --accent2:     #0284c7;
+  --border:      rgba(0, 112, 243, 0.22);
+  --shadow:      rgba(0, 0, 0, 0.5);
+  --grad-hero-from:  #0070f3;
+  --grad-hero-via:   #0ea5e9;
+  --grad-hero-to:    #0369a1;
+  --grad-section:    linear-gradient(135deg, #0070f3, #0369a1);
+  --grad-text-from:  #0070f3;
+  --grad-text-to:    #38bdf8;
+  --grad-subtle:     linear-gradient(135deg, rgba(0,112,243,0.08), rgba(14,165,233,0.04));
+  --grad-card:       linear-gradient(160deg, rgba(0,112,243,0.06), transparent);
+  --grad-glow:       rgba(0, 112, 243, 0.25);
 }
 
-.dark [data-brand='hub'] {
-  --bg:          #0e0d0a;
-  --bg-soft:     #161410;
-  --surface:     #1e1b16;
-  --text:        #f2f0ea;
-  --text-muted:  #9a9080;
+html.dark[data-brand='hub'],
+html.dark [data-brand='hub'],
+.dark[data-brand='hub'],
+.dark [data-brand='hub'],
+[data-brand='hub'].dark,
+[data-theme='dark'][data-brand='hub'],
+[data-theme='dark'] [data-brand='hub'] {
+  --bg:          #09090b;
+  --bg-soft:     #121215;
+  --surface:     #18181b;
+  --text:        #fafafa;
+  --text-muted:  #a1a1aa;
   --accent:      #d4a017;
-  --accent-warm: #b8860b;
-  --accent-ink:  #0d0b08;
-  --accent2:     #2088c8;
-  --border:      rgba(212, 160, 23, 0.12);
-  --shadow:      rgba(0, 0, 0, 0.3);
+  --accent-warm: #0070f3;
+  --accent-ink:  #09090b;
+  --accent2:     #0070f3;
+  --border:      rgba(255, 255, 255, 0.12);
+  --shadow:      rgba(0, 0, 0, 0.45);
   --grad-hero-from:  #d4a017;
-  --grad-hero-via:   #2088c8;
+  --grad-hero-via:   #0070f3;
   --grad-hero-to:    #b8860b;
-  --grad-section:    linear-gradient(135deg, #d4a017, #2088c8);
+  --grad-section:    linear-gradient(135deg, #d4a017, #0070f3);
   --grad-text-from:  #d4a017;
-  --grad-text-to:    #2088c8;
-  --grad-subtle:     linear-gradient(135deg, rgba(212,160,23,0.06), rgba(32,136,200,0.05));
-  --grad-card:       linear-gradient(160deg, rgba(212,160,23,0.05), rgba(32,136,200,0.04));
+  --grad-text-to:    #0070f3;
+  --grad-subtle:     linear-gradient(135deg, rgba(212,160,23,0.06), rgba(0,112,243,0.05));
+  --grad-card:       linear-gradient(160deg, rgba(212,160,23,0.05), rgba(0,112,243,0.04));
   --grad-glow:       rgba(212, 160, 23, 0.15);
 }
 
 html {
   scroll-behavior: smooth;
   background-color: var(--bg);
+  color: var(--text);
+  color-scheme: light dark;
 }
 
 body {
-  background-color: transparent;
+  background-color: var(--bg);
   color: var(--text);
   overflow-x: hidden;
   line-height: 1.6;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* ---------------------------------------------------------------------- */

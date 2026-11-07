@@ -5,11 +5,13 @@ import nodemailer from 'nodemailer';
 
 // ── Zod schema — single source of truth for validation ──────────────────────
 const LeadSchema = z.object({
-  brand: z.enum(['branding', 'signage']),
+  brand: z.enum(['branding', 'signage', 'hub']),
   fullName: z.string().min(2, 'Name must be at least 2 characters').max(100),
+  companyName: z.string().max(100).optional(),
   phone: z.string().regex(/^\+?[0-9()\-\s]{7,20}$/, 'Please enter a valid phone number'),
   email: z.string().email('Please enter a valid email address').optional().or(z.literal('')),
   service: z.string().max(100).optional(),
+  quantity: z.string().max(100).optional(),
   preferredDate: z.string().optional(),
   location: z.string().max(200).optional(),
   message: z.string().max(2000).optional(),
@@ -101,7 +103,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // 6. Store in Supabase (if configured)
+  // 6. Store directly in TouchDesk (`requests` table in Supabase)
   const supabase = getSupabaseAdmin();
   if (!supabase) {
     // Supabase not configured yet — log and return success so dev flow is testable
@@ -112,28 +114,94 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, stored: false });
   }
 
-  const { error } = await supabase.from('leads').insert({
-    brand: body.brand,
-    full_name: body.fullName.trim(),
+  // Resolve active TouchDesk company id
+  let companyId = '95a364bb-e3d2-40c0-8e23-91211320a848';
+  try {
+    const { data: comp } = await supabase.from('companies').select('id').limit(1);
+    if (comp && comp[0]?.id) companyId = comp[0].id;
+  } catch {
+    // Keep fallback
+  }
+
+  // Determine division
+  let division: 'branding' | 'signage' = 'branding';
+  if (body.brand === 'signage') {
+    division = 'signage';
+  } else if (body.brand === 'branding') {
+    division = 'branding';
+  } else {
+    // If submitted on the Hub, inspect service keywords to assign division
+    const lowerService = (body.service || '').toLowerCase();
+    if (
+      lowerService.includes('sign') ||
+      lowerService.includes('led') ||
+      lowerService.includes('wrap') ||
+      lowerService.includes('acrylic') ||
+      lowerService.includes('pylon') ||
+      lowerService.includes('neon')
+    ) {
+      division = 'signage';
+    } else {
+      division = 'branding';
+    }
+  }
+
+  const requestId = crypto.randomUUID();
+  const productLabel = body.service
+    ? `${body.service}${body.quantity ? ` · ${body.quantity}` : ''}`
+    : 'General Quotation Request';
+
+  const messageParts = [
+    body.message?.trim(),
+    body.location ? `Delivery/Site Location: ${body.location.trim()}` : null,
+    body.brand === 'hub' ? 'Submitted via: Touchline Hub (touchlineltd.co.ke)' : null,
+  ].filter(Boolean);
+
+  const { error: requestError } = await supabase.from('requests').insert({
+    id: requestId,
+    company_id: companyId,
+    source: 'website',
+    contact_name: body.fullName.trim(),
+    company_name: body.companyName?.trim() || body.fullName.trim(),
     phone: body.phone.trim(),
-    email: body.email?.trim() || null,
-    service: body.service || null,
-    preferred_date: body.preferredDate || null,
-    location: body.location || null,
-    message: body.message || null,
+    email: body.email?.trim() || '',
+    product: productLabel,
+    quantity: body.quantity || '',
+    deadline: body.preferredDate || '',
+    message: messageParts.join('\n\n'),
+    division,
+    status: 'new',
   });
 
-  if (error) {
-    console.error('[leads] Supabase insert failed:', error.message);
+  if (requestError) {
+    console.error('[leads] TouchDesk requests insert failed:', requestError.message);
     return NextResponse.json(
       { error: 'Could not save your request. Please try again.' },
       { status: 500 }
     );
   }
 
+  // Attempt sync to legacy leads table if present
+  try {
+    await supabase.from('leads').insert({
+      id: requestId,
+      brand: division,
+      full_name: body.fullName.trim(),
+      phone: body.phone.trim(),
+      email: body.email?.trim() || null,
+      service: body.service || null,
+      preferred_date: body.preferredDate || null,
+      location: body.location || null,
+      message: messageParts.join('\n\n') || null,
+      status: 'new',
+    });
+  } catch {
+    // Non-fatal if legacy leads table is absent
+  }
+
   // 7. Send email notification (non-blocking — don't fail the response if email fails)
   sendLeadEmail(body).catch((err) => console.error('[leads] Email failed:', err));
 
   recentSubmissions.set(ip, Date.now());
-  return NextResponse.json({ ok: true, stored: true });
+  return NextResponse.json({ ok: true, stored: true, id: requestId });
 }

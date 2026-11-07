@@ -22,34 +22,49 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
   const hostBrand = resolveBrandFromHost(host);
   const effectiveBrand = brand || (hostBrand !== 'hub' ? hostBrand : null);
 
-  /* ── HUB HEADER ─────────────────────────────────────────────── */
+  /* ── 1. HUB HEADER (Unified Entry Point) ────────────────────── */
   if (!effectiveBrand) {
     const brandingUrl = getCrossBrandUrl('branding', host);
     const signageUrl = getCrossBrandUrl('signage', host);
 
     return (
       <header className="glass-nav sticky top-0 z-50">
-        <div className="max-w-content mx-auto px-6 py-5 flex items-center justify-between">
-          <Link href="/" data-brand="hub">
-            <Logo brand="hub" className="text-2xl md:text-3xl" />
+        <div className="max-w-content mx-auto px-6 py-3.5 sm:py-4 flex items-center justify-between">
+          {/* Logo Placeholder Emblem Container */}
+          <Link href="/" data-brand="hub" className="group flex items-center">
+            <div className="flex items-center px-3.5 py-1.5 rounded-xl bg-[#0b0e14] border border-white/10 group-hover:border-[#c8960c]/50 transition-all duration-300 shadow-sm">
+              <Logo brand="hub" className="h-6 sm:h-7 md:h-8 w-auto" />
+            </div>
           </Link>
+
+          {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-6">
-            <a href={brandingUrl} className="text-overline hover:text-[var(--accent)] transition-colors">
-              Branding
+            <a
+              href={brandingUrl}
+              className="group flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[#c8960c] transition-colors"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c8960c] group-hover:scale-125 transition-transform" />
+              <span>Branding</span>
             </a>
-            <a href={signageUrl} className="text-overline hover:text-[var(--accent)] transition-colors">
-              Signage
+            <a
+              href={signageUrl}
+              className="group flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[#0070f3] transition-colors"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3] group-hover:scale-125 transition-transform" />
+              <span>Signage</span>
             </a>
             <span className="w-px h-4 bg-[var(--border)]" />
             <ThemeToggle />
-            <Link href="/book" className="btn-primary text-sm py-2 px-4">
-              Get a Quote
+            <Link href="/book" className="btn-primary text-xs font-semibold py-2.5 px-5">
+              Get a Quote <span>→</span>
             </Link>
           </nav>
-          <div className="flex lg:hidden items-center gap-3">
+
+          {/* Mobile Right Controls */}
+          <div className="flex lg:hidden items-center gap-2.5">
             <ThemeToggle />
-            <Link href="/book" className="btn-primary text-sm py-2 px-4">
-              Get a Quote
+            <Link href="/book" className="btn-primary text-xs font-semibold py-2 px-3.5">
+              Quote
             </Link>
           </div>
         </div>
@@ -57,22 +72,32 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
     );
   }
 
-  /* ── SPECIALISM HEADER (Branding / Signage) ──────────────────── */
+  /* ── 2. SPECIALISM HEADER (Branding / Signage) ───────────────── */
   const brandId = typeof effectiveBrand === 'string' ? effectiveBrand : effectiveBrand.id;
-  const otherBrandId = brandId === 'branding' ? 'signage' : 'branding';
-  const otherLabel = brandId === 'branding' ? 'Signage' : 'Branding';
+  const isBranding = brandId === 'branding';
+  const otherBrandId = isBranding ? 'signage' : 'branding';
+  const otherLabel = isBranding ? 'Signage' : 'Branding';
   const otherHref = getCrossBrandUrl(otherBrandId, host);
   const hubHref = getCrossBrandUrl('hub', host);
 
+  // Styling for the logo emblem placeholder based on division
+  const logoPlaceholderStyle = isBranding
+    ? 'bg-[#120e08] border-amber-500/25 group-hover:border-amber-500/60 shadow-amber-950/20'
+    : 'bg-[#060e18] border-blue-500/25 group-hover:border-blue-500/60 shadow-blue-950/20';
+
   return (
     <header className="glass-nav sticky top-0 z-50">
-      <div className="max-w-content mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex-shrink-0">
-          <Logo brand={brandId} className="text-xl md:text-2xl" />
+      <div className="max-w-content mx-auto px-6 py-3.5 sm:py-4 flex items-center justify-between">
+        {/* Division Logo Placeholder Badge */}
+        <Link href="/" className="group flex items-center flex-shrink-0">
+          <div
+            className={`flex items-center px-3 sm:px-3.5 py-1.5 rounded-xl border transition-all duration-300 shadow-sm ${logoPlaceholderStyle}`}
+          >
+            <Logo brand={brandId} className="h-6 sm:h-7 md:h-8 w-auto" />
+          </div>
         </Link>
 
-        {/* Desktop nav with active states */}
+        {/* Desktop Nav with active route pills */}
         <SpecialismNav
           brandId={brandId}
           otherBrand={otherBrandId}
@@ -81,10 +106,10 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
           hubHref={hubHref}
         />
 
-        {/* Mobile menu button */}
-        <div className="flex lg:hidden items-center gap-3">
+        {/* Mobile Header Actions */}
+        <div className="flex lg:hidden items-center gap-2.5">
           <ThemeToggle />
-          <Link href="/book" className="btn-primary text-sm py-2 px-4">
+          <Link href="/book" className="btn-primary text-xs font-semibold py-2 px-3.5">
             Quote
           </Link>
         </div>

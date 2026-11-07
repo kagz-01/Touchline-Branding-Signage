@@ -11,6 +11,7 @@ export function BeforeAfterSlider({
   alt: string 
 }) {
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [hasError, setHasError] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
@@ -25,6 +26,21 @@ export function BeforeAfterSlider({
     setSliderPosition(percent);
   };
 
+  if (hasError) {
+    return (
+      <div className="relative w-full h-full min-h-[300px] rounded-lg bg-[var(--bg-soft)] border border-[var(--border)] p-6 flex flex-col items-center justify-center text-center">
+        <div className="w-12 h-12 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center mb-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 3v18" />
+          </svg>
+        </div>
+        <p className="font-display text-sm text-[var(--text)] mb-1">{alt}</p>
+        <span className="font-mono text-xs text-[var(--text-muted)]">Before / After Case Study Visual</span>
+      </div>
+    );
+  }
+
   return (
     <div 
       ref={containerRef}
@@ -37,9 +53,21 @@ export function BeforeAfterSlider({
     >
       <div className="absolute inset-0 w-full h-full">
         {beforeImage ? (
-          <img src={beforeImage} alt={`Before ${alt}`} className="w-full h-full object-cover" draggable={false} />
+          <img 
+            src={beforeImage} 
+            alt={`Before ${alt}`} 
+            className="w-full h-full object-cover" 
+            draggable={false} 
+            onError={() => setHasError(true)}
+          />
         ) : (
-          <img src={afterImage} alt={`Before ${alt}`} className="w-full h-full object-cover grayscale brightness-50" draggable={false} />
+          <img 
+            src={afterImage} 
+            alt={`Before ${alt}`} 
+            className="w-full h-full object-cover grayscale brightness-50" 
+            draggable={false} 
+            onError={() => setHasError(true)}
+          />
         )}
       </div>
 
@@ -47,7 +75,13 @@ export function BeforeAfterSlider({
         className="absolute inset-0 w-full h-full border-r border-[var(--accent)] shadow-[2px_0_15px_rgba(0,0,0,0.8)]"
         style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
       >
-        <img src={afterImage} alt={`After ${alt}`} className="w-full h-full object-cover" draggable={false} />
+        <img 
+          src={afterImage} 
+          alt={`After ${alt}`} 
+          className="w-full h-full object-cover" 
+          draggable={false} 
+          onError={() => setHasError(true)}
+        />
       </div>
 
       <div 

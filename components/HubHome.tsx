@@ -5,63 +5,55 @@ import { useEffect, useRef, useState } from 'react';
 import { Logo } from './Logo';
 import { Reveal } from './Reveal';
 import { HowItWorks } from './HowItWorks';
+import { ProjectPhoto } from './ProjectPhoto';
+import { FastQuoteWidget } from './FastQuoteWidget';
 
 function getBrandUrl(brandId: 'branding' | 'signage'): string {
-  if (typeof window === 'undefined') return `/?brand=${brandId}`;
+  if (typeof window === 'undefined') return `/${brandId}`;
   const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-  if (isDev) return `/?brand=${brandId}`;
+  if (isDev) return `/${brandId}`;
   return `https://${brandId}.touchlineltd.co.ke/`;
 }
 
 /* ------------------------------------------------------------------ */
-/* Data                                                                */
+/* Trust Stats & Testimonials                                          */
 /* ------------------------------------------------------------------ */
 
-const BRANDS_DATA = [
-  {
-    id: 'branding' as const,
-    label: 'Touchline Branding',
-    kicker: 'The merchandise people carry',
-    desc: 'Apparel, bags, drinkware, promo items — sourced, branded and delivered. From single orders to tender-scale rollouts.',
-    services: ['Screen Printing & Embroidery', 'Promotional Products', 'Tender-Scale Sourcing'],
-    href: '/branding',
-    stat: '500+ items sourced',
-  },
-  {
-    id: 'signage' as const,
-    label: 'Touchline Signage',
-    kicker: 'The signs people see',
-    desc: 'Signboards, vehicle wraps, wayfinding, LED installations — designed, fabricated and installed across Kenya.',
-    services: ['Illuminated & LED Signs', 'Vehicle Wraps & Graphics', 'Monument & Wayfinding'],
-    href: '/signage',
-    stat: '200+ sites installed',
-  },
+const TRUST_STATS = [
+  { value: 500, suffix: '+', label: 'Commercial Projects Delivered across Kenya' },
+  { value: 47, suffix: '/47', label: 'Kenyan Counties Served Nationwide' },
+  { value: 98, suffix: '%', label: 'On-Time Delivery & Installation Rate' },
+  { value: 10, suffix: 'K+', label: 'Branded Apparel & Promotional Units' },
 ];
 
-const TRUST_STATS = [
-  { value: 500, suffix: '+', label: 'Projects delivered across Kenya' },
-  { value: 98, suffix: '%', label: 'On-time delivery rate' },
-  { value: 10, suffix: 'K+', label: 'Items sourced and branded' },
+const CLIENT_SECTORS = [
+  { name: 'Corporate & Banking', desc: 'HQ architectural signs, executive merchandise, board gift sets' },
+  { name: 'Government & Tenders', desc: '100% tax compliant, tender-scale uniforms, bulk supply rollouts' },
+  { name: 'Retail & Hospitality', desc: 'Chain storefront fascias, staff aprons/polos, illuminated lightboxes' },
+  { name: 'Logistics & Fleet', desc: 'High-durability cast vinyl vehicle wraps, warehouse wayfinding' },
 ];
 
 const TESTIMONIALS = [
   {
-    quote: 'They handled everything from sourcing to delivery ahead of a tight tender deadline. We never had to chase a single vendor ourselves.',
+    quote:
+      'Touchline handled our entire 12-branch signage rebranding across Kenya and our corporate staff uniforms in one go. We never had to chase separate vendors.',
     name: 'James Mwangi',
-    role: 'Procurement Lead, County Government',
-    brand: 'branding' as const,
+    role: 'Procurement Director, Financial Services Group',
+    division: 'branding' as const,
   },
   {
-    quote: 'The fascia signs across all our branches finally look like one company. Installation was tidy and on schedule at every site.',
+    quote:
+      'The 3D illuminated letters on our Mombasa and Nairobi locations look flawless after two years of weather. Precision fabrication that commands respect.',
     name: 'Peter Odhiambo',
-    role: 'Facilities Manager, Retail Chain',
-    brand: 'signage' as const,
+    role: 'Head of Facilities, Retail Chain',
+    division: 'signage' as const,
   },
   {
-    quote: 'Consistent quality across every reorder, which matters when your staff wear the brand every single day.',
+    quote:
+      'Met a tight county tender delivery deadline with zero defects on 2,500 branded garments. Everything was counted, inspected, and certified.',
     name: 'Amina Hassan',
-    role: 'Operations Manager, Logistics Company',
-    brand: 'branding' as const,
+    role: 'Supply Chain Manager, Regional NGO',
+    division: 'branding' as const,
   },
 ];
 
@@ -105,232 +97,495 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
 }
 
 /* ------------------------------------------------------------------ */
-/* HubHome                                                             */
+/* Main HubHome Component                                              */
 /* ------------------------------------------------------------------ */
 
 export function HubHome() {
   return (
     <div className="relative">
-      {/* ── 1. HERO ──────────────────────────────────────────────── */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background — split: left warm, right visual */}
-        <div className="absolute inset-0" aria-hidden="true">
-          {/* Left side warm gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg)] via-[var(--bg)] to-transparent z-10 w-full md:w-1/2" />
-          {/* Right side — branded visual area */}
-          <div className="absolute inset-0 hidden md:block">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1a1408] via-[#2a2010] to-[#0d0b08]" />
-            {/* Gold accent glow */}
-            <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-[var(--accent)] opacity-[0.08] blur-[120px]" />
-            <div className="absolute bottom-1/4 right-1/3 w-[300px] h-[300px] rounded-full bg-[var(--accent2)] opacity-[0.06] blur-[100px]" />
-            {/* Decorative grid lines */}
-            <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'repeating-linear-gradient(0deg, rgba(200,150,12,0.3) 0px, rgba(200,150,12,0.3) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, rgba(200,150,12,0.3) 0px, rgba(200,150,12,0.3) 1px, transparent 1px, transparent 60px)' }} />
-            {/* Touchline branding overlay */}
-            <div className="absolute bottom-12 right-12 opacity-[0.12]">
-              <Logo brand="hub" className="text-[120px] leading-none" />
-            </div>
-            {/* Tagline overlay */}
-            <div className="absolute bottom-20 right-32 text-right">
-              <p className="font-mono text-xs tracking-[0.4em] text-[var(--accent)] opacity-40 uppercase">Brands · Signs · Impact</p>
-            </div>
-          </div>
+      {/* ── 1. SPLIT CINEMATIC HERO (The Dual Gateway) ──────────────── */}
+      <section className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden pt-12 pb-16 border-b border-[var(--border)]">
+        {/* Subtle Ambient Background Gradients */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] rounded-full bg-[#c8960c] opacity-[0.07] blur-[150px]" />
+          <div className="absolute top-1/3 -right-32 w-[600px] h-[600px] rounded-full bg-[#0070f3] opacity-[0.06] blur-[150px]" />
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage:
+                'repeating-linear-gradient(0deg, var(--text) 0px, var(--text) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, var(--text) 0px, var(--text) 1px, transparent 1px, transparent 60px)',
+            }}
+          />
         </div>
 
+        {/* Top Header Banner & Mission Statement */}
+        <div className="relative z-20 max-w-content mx-auto px-6 w-full text-center mb-10">
+          <Reveal>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--bg-soft)] border border-[var(--border)] mb-6 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--text-muted)]">
+                Touchline Group · East Africa
+              </span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight text-[var(--text)] max-w-4xl mx-auto mb-6">
+              YOUR BRAND, <br className="hidden sm:inline" />
+              BUILT <span className="grad-text">VISIBLE</span> &amp; <span className="text-[var(--accent)]">PHYSICAL.</span>
+            </h1>
+          </Reveal>
+
+          <Reveal delay={180}>
+            <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mx-auto mb-8 font-normal">
+              Two specialized production divisions under one roof. From tender-scale apparel and promotional merchandise to 3D architectural signage and nationwide installations.
+            </p>
+          </Reveal>
+
+          <Reveal delay={240}>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Link href="/book" className="btn-primary shadow-lg shadow-[var(--accent)]/10 px-6 py-3">
+                Request TouchDesk Quote <span>→</span>
+              </Link>
+              <a
+                href="https://wa.me/254722668696?text=Hi%20Touchline%2C%20I%20would%20like%20to%20discuss%20a%20branding%20or%20signage%20project."
+                target="_blank"
+                rel="noreferrer"
+                className="btn-secondary glass-subtle px-6 py-3 flex items-center gap-2"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                WhatsApp Desk Hotline
+              </a>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Interactive Dual-Wing Gateway */}
         <div className="relative z-20 max-w-content mx-auto px-6 w-full">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left — text content */}
-            <div className="py-16">
-              <Reveal>
-                <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] mb-6 text-[var(--text)]">
-                  Your Brand,
-                  <br />
-                  Built <span className="grad-text">Visible.</span>
-                </h1>
-              </Reveal>
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+            {/* ── LEFT WING: TOUCHLINE BRANDING ──────────────── */}
+            <Reveal delay={280}>
+              <a
+                href={getBrandUrl('branding')}
+                className="group relative flex flex-col justify-between p-8 sm:p-10 rounded-[var(--radius-lg)] bg-gradient-to-b from-[#18140b] to-[#0e0c08] border border-amber-900/30 hover:border-[#c8960c]/60 transition-all duration-500 shadow-xl overflow-hidden min-h-[380px]"
+              >
+                <div className="absolute -top-24 -left-24 w-64 h-64 rounded-full bg-[#c8960c]/15 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
 
-              <Reveal delay={160}>
-                <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-8 max-w-lg">
-                  From merchandise that travels with people, to signage that stands in place — Touchline
-                  makes sure your name is seen, worn, and remembered.
-                </p>
-              </Reveal>
-
-              <Reveal delay={240}>
-                <div className="flex flex-wrap gap-4 mb-12">
-                  <a href="#what-we-offer" className="btn-grad">
-                    See What We Do <span>→</span>
-                  </a>
-                  <Link href="/book" className="btn-secondary">
-                    Get a Quote
-                  </Link>
-                </div>
-              </Reveal>
-
-              {/* Trust signals */}
-              <Reveal delay={320}>
-                <div className="flex flex-wrap gap-8">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
-                        <path d="M9 12l2 2 4-4" />
-                        <circle cx="12" cy="12" r="10" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[var(--text)]">Premium</p>
-                      <p className="text-xs text-[var(--text-muted)]">Quality</p>
-                    </div>
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#c8960c] bg-[#c8960c]/10 px-2.5 py-1 rounded border border-[#c8960c]/20">
+                      Division 01 // Apparel &amp; Merch
+                    </span>
+                    <span className="font-mono text-xs text-amber-200/50">
+                      branding.touchlineltd.co.ke ↗
+                    </span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12 6 12 12 16 14" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[var(--text)]">On-Time</p>
-                      <p className="text-xs text-[var(--text-muted)]">Delivery</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[var(--text)]">Trusted</p>
-                      <p className="text-xs text-[var(--text-muted)]">by Leading Brands</p>
-                    </div>
+
+                  <Logo brand="branding" className="h-8 sm:h-9 w-auto mb-4" />
+
+                  <h3 className="font-display text-2xl sm:text-3xl text-amber-50 mb-3 group-hover:text-[#d4a820] transition-colors">
+                    The Merchandise People Carry.
+                  </h3>
+
+                  <p className="text-sm text-amber-100/70 leading-relaxed mb-6 max-w-md">
+                    Screen printing, direct-to-film (DTF), embroidery, executive corporate gifting, and high-volume tender fulfillment across Kenya.
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {['Screen Print & DTF', 'Tactile Embroidery', 'Corporate Kits', 'Tender Sourcing'].map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[11px] font-mono px-2.5 py-1 rounded bg-amber-950/40 text-amber-200/80 border border-amber-800/30"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              </Reveal>
-            </div>
 
-            {/* Right — visual spacer for the image area */}
-            <div className="hidden md:block" />
+                <div className="relative z-10 pt-6 border-t border-amber-900/30 flex items-center justify-between">
+                  <span className="font-display text-sm uppercase tracking-wider text-[#d4a820] flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
+                    Explore Branding Platform <span>→</span>
+                  </span>
+                  <span className="font-mono text-xs text-amber-300/60">
+                    500+ Items Sourced
+                  </span>
+                </div>
+              </a>
+            </Reveal>
+
+            {/* ── RIGHT WING: TOUCHLINE SIGNAGE ──────────────── */}
+            <Reveal delay={340}>
+              <a
+                href={getBrandUrl('signage')}
+                className="group relative flex flex-col justify-between p-8 sm:p-10 rounded-[var(--radius-lg)] bg-gradient-to-b from-[#0b131f] to-[#060b12] border border-blue-900/30 hover:border-[#0070f3]/60 transition-all duration-500 shadow-xl overflow-hidden min-h-[380px]"
+              >
+                <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-[#0070f3]/15 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#0070f3] bg-[#0070f3]/10 px-2.5 py-1 rounded border border-[#0070f3]/20">
+                      Division 02 // Architectural &amp; Signs
+                    </span>
+                    <span className="font-mono text-xs text-blue-200/50">
+                      signage.touchlineltd.co.ke ↗
+                    </span>
+                  </div>
+
+                  <Logo brand="signage" className="h-8 sm:h-9 w-auto mb-4" />
+
+                  <h3 className="font-display text-2xl sm:text-3xl text-blue-50 mb-3 group-hover:text-[#38bdf8] transition-colors">
+                    The Signs People See.
+                  </h3>
+
+                  <p className="text-sm text-blue-100/70 leading-relaxed mb-6 max-w-md">
+                    3D fabricated acrylic &amp; stainless channel letters, high-output LED lightboxes, vehicle fleet wraps, and architectural monuments.
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {['3D Fabricated Letters', 'LED Lightboxes', 'Vehicle Fleet Wraps', 'Site Installations'].map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[11px] font-mono px-2.5 py-1 rounded bg-blue-950/40 text-blue-200/80 border border-blue-800/30"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="relative z-10 pt-6 border-t border-blue-900/30 flex items-center justify-between">
+                  <span className="font-display text-sm uppercase tracking-wider text-[#38bdf8] flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
+                    Explore Signage Platform <span>→</span>
+                  </span>
+                  <span className="font-mono text-xs text-blue-300/60">
+                    200+ Sites Fabricated
+                  </span>
+                </div>
+              </a>
+            </Reveal>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+        {/* Bottom Explorer Indicator */}
+        <div className="relative z-20 text-center mt-12">
           <Reveal delay={400}>
-            <div className="flex flex-col items-center gap-2 text-[var(--text-muted)]">
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em]">Scroll to explore</span>
+            <a
+              href="#the-two-pillars"
+              className="inline-flex flex-col items-center gap-2 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors"
+            >
+              <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
+                Scroll to explore full capabilities
+              </span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 animate-bounce">
                 <path d="M12 5v14M19 12l-7 7-7-7" />
               </svg>
-            </div>
+            </a>
           </Reveal>
         </div>
       </section>
 
-      {/* ── 2. PROBLEM ───────────────────────────────────────────── */}
-      <section className="section-py bg-[var(--bg)]">
+      {/* ── 2. PHILOSOPHY: THE PHYSICAL REALITY ───────────────────── */}
+      <section className="section-py bg-[var(--bg)] border-b border-[var(--border)]">
         <div className="max-w-content mx-auto px-6">
-          <div className="max-w-3xl">
-            <Reveal>
-              <h2 className="font-display text-3xl md:text-5xl leading-tight mb-6 text-[var(--text)]">
-                Most brands have a logo.
-                <br />
-                Few have a <span className="grad-text">presence.</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={100}>
-              <p className="text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl">
-                Your brand lives in pitch decks and Instagram grids. But the real world runs on
-                t-shirts that get worn, mugs that get used, signs that get seen every morning.
-                That&apos;s where we come in.
-              </p>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 3. WHAT WE OFFER ─────────────────────────────────────── */}
-      <section id="what-we-offer" className="section-py bg-[var(--bg-soft)] scroll-section">
-        <div className="max-w-content mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-16">
-              <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
-                Two ways we bring your brand to life
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {BRANDS_DATA.map((b, i) => (
-              <Reveal key={b.id} delay={i * 120}>
-                <a
-                  href={getBrandUrl(b.id)}
-                  className="card-theme group p-10 relative overflow-hidden block rounded-[var(--radius-lg)] h-full"
-                >
-                  {/* Brand accent stripe */}
-                  <div
-                    className="absolute top-0 left-0 w-1 h-full transition-all duration-500 group-hover:w-2"
-                    style={{
-                      background: b.id === 'branding' ? 'var(--accent)' : 'var(--accent)',
-                    }}
-                  />
-
-                  {/* Watermark logo */}
-                  <div className="absolute top-0 right-0 p-6 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-500">
-                    <Logo brand={b.id} className="text-7xl" />
-                  </div>
-
-                  <div className="relative z-10 pl-4">
-                    <Logo brand={b.id} className="text-2xl mb-4" />
-
-                    <p className="font-mono text-xs text-[var(--accent)] uppercase tracking-widest mb-3">
-                      {b.kicker}
-                    </p>
-
-                    <p className="text-[var(--text-muted)] mb-8 leading-relaxed">
-                      {b.desc}
-                    </p>
-
-                    {/* Service examples */}
-                    <ul className="space-y-2 mb-8">
-                      {b.services.map((s) => (
-                        <li key={s} className="flex items-center gap-2 text-sm text-[var(--text-muted)]">
-                          <span className="w-1 h-1 rounded-full bg-[var(--accent)]" />
-                          {s}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center gap-2 font-display text-sm uppercase tracking-wide text-[var(--accent)] group-hover:gap-3 transition-all duration-300">
-                        Explore {b.id} <span>→</span>
-                      </span>
-                      <span className="font-mono text-xs text-[var(--text-muted)]">
-                        {b.stat}
-                      </span>
-                    </div>
-                  </div>
-                </a>
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-3">
+                  // The Touchline Thesis
+                </span>
+                <h2 className="font-display text-3xl sm:text-5xl leading-tight text-[var(--text)] mb-6">
+                  Most brands have a logo in a deck.
+                  <br />
+                  Few command a <span className="grad-text">real presence.</span>
+                </h2>
               </Reveal>
-            ))}
+              <Reveal delay={120}>
+                <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed mb-6 font-normal">
+                  Digital ads vanish after a single scroll. But the tangible world is defined by what people actually touch, wear, and see every day: the executive uniform your team wears on site, the precision 3D signage on your building, and the fleet vehicles driving across the city.
+                </p>
+                <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+                  Touchline exists to turn your graphic guidelines into physical assets built with industrial permanence, certified materials, and meticulous finishing.
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="lg:col-span-5 grid sm:grid-cols-2 gap-4">
+              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)]">
+                <span className="font-mono text-xs text-[var(--accent)] block mb-2 font-semibold">01 / MERCHANDISE</span>
+                <h4 className="font-display text-xl text-[var(--text)] mb-2">Carried &amp; Worn</h4>
+                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+                  Apparel, bags, drinkware, and VIP sets that represent your standard in client hands.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)]">
+                <span className="font-mono text-xs text-[#0070f3] block mb-2 font-semibold">02 / STRUCTURES</span>
+                <h4 className="font-display text-xl text-[var(--text)] mb-2">Built &amp; Seen</h4>
+                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+                  3D signs, illuminated pylons, and architectural wayfinding that anchor your locations.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] sm:col-span-2">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="font-mono text-xs uppercase tracking-wider text-[var(--text)] font-semibold">
+                    TouchDesk Operations Engine
+                  </span>
+                </div>
+                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+                  Every order is tracked through TouchDesk — from digital stitch file approvals and CNC routing proofs to delivery notes with biometric signatures and verified field handover.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── 4. HOW IT WORKS ──────────────────────────────────────── */}
-      <HowItWorks />
-
-      {/* ── 5. PROOF ─────────────────────────────────────────────── */}
-      <section className="section-py bg-[var(--bg)]">
+      {/* ── 3. THE TWO PILLARS (Visual Showcase with Image Slots) ─── */}
+      <section id="the-two-pillars" className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)] scroll-section">
         <div className="max-w-content mx-auto px-6">
-          {/* Animated counters */}
           <Reveal>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 mb-20 py-8 border-y border-[var(--border)] grad-section-alt">
-              {TRUST_STATS.map((item, i) => (
-                <div key={item.label} className="flex items-center gap-3">
-                  <span className="font-display text-2xl md:text-3xl text-[var(--accent)]">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
+                  // Operational Capabilities
+                </span>
+                <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)]">
+                  The Two Operational Pillars
+                </h2>
+              </div>
+              <p className="text-sm text-[var(--text-muted)] max-w-md">
+                Dive directly into either dedicated platform for full technical service specifications, materials catalogues, and division pricing.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Pillar 1: Touchline Branding */}
+            <div className="flex flex-col justify-between p-8 sm:p-10 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-amber-900/20 shadow-lg">
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-xs text-[#c8960c] uppercase tracking-widest font-semibold">
+                    Division 01 // Touchline Branding
+                  </span>
+                  <a
+                    href={getBrandUrl('branding')}
+                    className="text-xs font-mono text-[#c8960c] hover:underline"
+                  >
+                    branding.touchlineltd.co.ke ↗
+                  </a>
+                </div>
+
+                <h3 className="font-display text-2xl sm:text-3xl text-[var(--text)] mb-3">
+                  Apparel, Textiles &amp; Promotional Sourcing
+                </h3>
+
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-6">
+                  Industrial-grade screen printing, precision embroidery, high-detail DTF, and tender-scale promotional procurement for corporations and institutions.
+                </p>
+
+                {/* Project Photo Slots (Ready for user images in /images/branding/) */}
+                <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                  <ProjectPhoto
+                    src="/images/branding/apparel-embroidery.jpg"
+                    alt="Corporate Apparel & Embroidery"
+                    division="branding"
+                    badge="Apparel & Textiles"
+                  />
+                  <ProjectPhoto
+                    src="/images/branding/corporate-gifts.jpg"
+                    alt="Executive Merch & Gifting"
+                    division="branding"
+                    badge="Corporate Merch"
+                  />
+                </div>
+
+                <ul className="grid sm:grid-cols-2 gap-2 text-xs font-mono text-[var(--text-muted)] mb-8">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#c8960c]" />
+                    Screen Printing (1 to 6 Colors)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#c8960c]" />
+                    Direct-to-Film (Full Color DTF)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#c8960c]" />
+                    Computerized 3D Puff Embroidery
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#c8960c]" />
+                    Tender-Scale County/NGO Sourcing
+                  </li>
+                </ul>
+              </div>
+
+              <div className="pt-6 border-t border-[var(--border)] flex items-center justify-between">
+                <a
+                  href={getBrandUrl('branding')}
+                  className="btn-primary text-xs px-5 py-2.5 flex items-center gap-2 shadow"
+                >
+                  Enter Branding Platform <span>→</span>
+                </a>
+                <span className="font-mono text-xs text-[var(--text-muted)]">500+ Items Sourced</span>
+              </div>
+            </div>
+
+            {/* Pillar 2: Touchline Signage */}
+            <div className="flex flex-col justify-between p-8 sm:p-10 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-blue-900/20 shadow-lg">
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-xs text-[#0070f3] uppercase tracking-widest font-semibold">
+                    Division 02 // Touchline Signage
+                  </span>
+                  <a
+                    href={getBrandUrl('signage')}
+                    className="text-xs font-mono text-[#0070f3] hover:underline"
+                  >
+                    signage.touchlineltd.co.ke ↗
+                  </a>
+                </div>
+
+                <h3 className="font-display text-2xl sm:text-3xl text-[var(--text)] mb-3">
+                  Architectural Signage, LED &amp; Fleet Graphics
+                </h3>
+
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-6">
+                  Heavy-duty 3D fabricated lettering, high-output LED lightboxes, roadside pylons, and certified commercial vehicle fleet wraps.
+                </p>
+
+                {/* Project Photo Slots (Ready for user images in /images/signage/) */}
+                <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                  <ProjectPhoto
+                    src="/images/signage/3d-channel-letters.jpg"
+                    alt="3D Fabricated Channel Letters"
+                    division="signage"
+                    badge="3D Fabrication"
+                  />
+                  <ProjectPhoto
+                    src="/images/signage/vehicle-wrap.jpg"
+                    alt="Commercial Vehicle Fleet Wraps"
+                    division="signage"
+                    badge="Fleet Graphics"
+                  />
+                </div>
+
+                <ul className="grid sm:grid-cols-2 gap-2 text-xs font-mono text-[var(--text-muted)] mb-8">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3]" />
+                    3D Stainless Steel &amp; Acrylic Letters
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3]" />
+                    Outdoor High-Lumen LED Lightboxes
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3]" />
+                    Commercial Cast Vinyl Fleet Wraps
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3]" />
+                    Nationwide Structural Installation
+                  </li>
+                </ul>
+              </div>
+
+              <div className="pt-6 border-t border-[var(--border)] flex items-center justify-between">
+                <a
+                  href={getBrandUrl('signage')}
+                  className="btn-primary text-xs px-5 py-2.5 flex items-center gap-2 shadow"
+                  style={{ background: '#0070f3', borderColor: '#0070f3' }}
+                >
+                  Enter Signage Platform <span>→</span>
+                </a>
+                <span className="font-mono text-xs text-[var(--text-muted)]">200+ Sites Installed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. THE UNIFIED ADVANTAGE (Why One House Matters) ──────── */}
+      <section className="section-py bg-[var(--bg)] border-b border-[var(--border)]">
+        <div className="max-w-content mx-auto px-6">
+          <Reveal>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
+                // Single-Source Reliability
+              </span>
+              <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-6">
+                One Contract. One Delivery Schedule. <br />
+                <span className="grad-text">Zero Vendor Chaos.</span>
+              </h2>
+              <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+                When you launch a new retail site, bank branch, or commercial rollout, you normally juggle multiple vendors: a tailor for uniforms, a printer for promo items, a fabricator for outdoor signs, and a designer in between. Touchline unifies the entire execution.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="card-surface p-8 rounded-[var(--radius-md)] border border-[var(--border)]">
+              <div className="w-10 h-10 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center font-mono font-bold mb-4">
+                01
+              </div>
+              <h4 className="font-display text-xl text-[var(--text)] mb-3">Unified Brand Accuracy</h4>
+              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                Your Pantone and brand codes stay exact across completely different media — matching precisely from embroidered cotton shirts to vinyl decals and illuminated outdoor acrylics.
+              </p>
+            </div>
+
+            <div className="card-surface p-8 rounded-[var(--radius-md)] border border-[var(--border)]">
+              <div className="w-10 h-10 rounded-full bg-[#0070f3]/10 text-[#0070f3] flex items-center justify-center font-mono font-bold mb-4">
+                02
+              </div>
+              <h4 className="font-display text-xl text-[var(--text)] mb-3">Single Project Manager</h4>
+              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                You work with one dedicated Touchline account director who oversees both apparel lines and signage structural engineers, giving you consolidated updates and one milestone calendar.
+              </p>
+            </div>
+
+            <div className="card-surface p-8 rounded-[var(--radius-md)] border border-[var(--border)]">
+              <div className="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono font-bold mb-4">
+                03
+              </div>
+              <h4 className="font-display text-xl text-[var(--text)] mb-3">Consolidated Billing &amp; Tax</h4>
+              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                One verified KRA tax invoice, clear procurement documentation, and full compliance for corporate audits, institutional procurement, and public tenders.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 5. FAST-TRACK ESTIMATOR & TOUCHDESK INTAKE ────────────── */}
+      <section className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)]">
+        <div className="max-w-content mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <FastQuoteWidget />
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. HOW IT WORKS ──────────────────────────────────────── */}
+      <HowItWorks
+        headline="From Initial Brief to Verified Delivery"
+        kicker="THE TOUCHLINE PROCESS"
+      />
+
+      {/* ── 7. NATIONWIDE PROOF & CLIENT SECTORS ─────────────────── */}
+      <section className="section-py bg-[var(--bg)] border-b border-[var(--border)]">
+        <div className="max-w-content mx-auto px-6">
+          {/* Animated Metrics Strip */}
+          <Reveal>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-8 rounded-[var(--radius-lg)] bg-[var(--bg-soft)] border border-[var(--border)] mb-20">
+              {TRUST_STATS.map((item) => (
+                <div key={item.label} className="text-center sm:text-left">
+                  <span className="font-display text-3xl sm:text-4xl text-[var(--accent)] block mb-1">
                     <AnimatedCounter target={item.value} suffix={item.suffix} />
                   </span>
-                  <span className="text-sm text-[var(--text-muted)] max-w-[140px] leading-tight">
+                  <span className="text-xs text-[var(--text-muted)] leading-tight block">
                     {item.label}
                   </span>
                 </div>
@@ -338,28 +593,41 @@ export function HubHome() {
             </div>
           </Reveal>
 
-          {/* Testimonials */}
+          {/* Client Sectors */}
           <Reveal>
             <div className="text-center mb-12">
-              <h2 className="font-display text-3xl md:text-4xl text-[var(--text)]">
-                Trusted across industries
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
+                // Commercial Provenance
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl text-[var(--text)]">
+                Trusted Across Kenyan Sectors
               </h2>
             </div>
           </Reveal>
 
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+            {CLIENT_SECTORS.map((sector) => (
+              <div
+                key={sector.name}
+                className="p-6 rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)]"
+              >
+                <h4 className="font-display text-lg text-[var(--text)] mb-2">{sector.name}</h4>
+                <p className="text-xs text-[var(--text-muted)] leading-relaxed">{sector.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Testimonials */}
           <div className="grid md:grid-cols-3 gap-8">
             {TESTIMONIALS.map((t, i) => (
               <Reveal key={t.name} delay={i * 100}>
-                <blockquote className="card-surface rounded-[var(--radius-md)] p-8 h-full flex flex-col">
-                  <p className="font-editorial italic text-lg text-[var(--text)] leading-relaxed mb-6 flex-1">
+                <blockquote className="card-surface rounded-[var(--radius-md)] p-8 h-full flex flex-col justify-between">
+                  <p className="font-editorial italic text-base sm:text-lg text-[var(--text)] leading-relaxed mb-6">
                     &ldquo;{t.quote}&rdquo;
                   </p>
-                  <div className="flex items-center gap-3 pt-4 border-t border-[var(--border)]">
-                    <div className="w-8 h-px bg-[var(--accent)]" />
-                    <div>
-                      <p className="text-sm font-semibold text-[var(--text)]">{t.name}</p>
-                      <p className="text-xs text-[var(--text-muted)]">{t.role}</p>
-                    </div>
+                  <div className="pt-4 border-t border-[var(--border)]">
+                    <p className="text-sm font-semibold text-[var(--text)]">{t.name}</p>
+                    <p className="text-xs text-[var(--text-muted)]">{t.role}</p>
                   </div>
                 </blockquote>
               </Reveal>
@@ -368,27 +636,40 @@ export function HubHome() {
         </div>
       </section>
 
-      {/* ── 6. CTA ───────────────────────────────────────────────── */}
-      <section className="section-py bg-[var(--bg-soft)] border-t border-[var(--border)]">
+      {/* ── 8. FINAL HIGH-CONVERSION CTA ──────────────────────────── */}
+      <section className="section-py bg-gradient-to-b from-[var(--bg-soft)] to-[var(--bg)]">
         <div className="max-w-content mx-auto px-6 text-center">
           <Reveal>
-            <h2 className="font-display text-4xl md:text-5xl text-[var(--text)] mb-6">
-              Ready to make your brand <span className="grad-text">physical?</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--bg)] border border-[var(--border)] mb-6">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="font-mono text-[11px] uppercase tracking-widest text-[var(--text-muted)]">
+                TouchDesk Live Dispatch
+              </span>
+            </div>
+
+            <h2 className="font-display text-4xl sm:text-6xl text-[var(--text)] mb-6 max-w-3xl mx-auto leading-tight">
+              Ready to Make Your Brand <span className="grad-text">Physical?</span>
             </h2>
           </Reveal>
+
           <Reveal delay={80}>
-            <p className="text-lg text-[var(--text-muted)] max-w-xl mx-auto mb-10">
-              Tell us what you need. We&apos;ll handle the sourcing, the branding, and the
-              delivery — so you can focus on running your business.
+            <p className="text-base sm:text-lg text-[var(--text-muted)] max-w-xl mx-auto mb-10 leading-relaxed font-normal">
+              Whether you need 100 branded corporate polos, a complete fleet vehicle wrap, or architectural storefront signage — start your brief with us today.
             </p>
           </Reveal>
+
           <Reveal delay={160}>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/book" className="btn-primary glow-accent">
-                Get a Quote <span>→</span>
+              <Link href="/book" className="btn-primary shadow-xl shadow-[var(--accent)]/15 px-8 py-3.5 text-sm">
+                Get a Comprehensive Quote <span>→</span>
               </Link>
-              <a href="tel:+254722668696" className="btn-secondary glass-subtle">
-                Call Us
+              <a
+                href="https://wa.me/254722668696?text=Hi%20Touchline%2C%20I%20would%20like%20to%20speak%20to%20your%20team%20regarding%20a%20project."
+                target="_blank"
+                rel="noreferrer"
+                className="btn-secondary glass-subtle px-7 py-3.5 text-sm flex items-center gap-2"
+              >
+                <span>💬</span> WhatsApp Desk Hotline
               </a>
             </div>
           </Reveal>

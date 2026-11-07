@@ -19,12 +19,28 @@ export async function GET(req: NextRequest) {
   const brand = searchParams.get("brand");
   const status = searchParams.get("status");
 
-  let query = supabase.from("leads").select("*").order("created_at", { ascending: false });
-  if (brand === "branding" || brand === "signage") query = query.eq("brand", brand);
-  if (status) query = query.eq("status", status);
+  let query = supabase.from("requests").select("*").order("created_at", { ascending: false });
+  if (brand === "branding" || brand === "signage") query = query.eq("division", brand);
+  if (status) query = query.eq("status", status === "converted" ? "quoted" : status);
 
   const { data, error } = await query;
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  return NextResponse.json(data);
+  const mapped = (data || []).map((r: any) => ({
+    id: r.id,
+    created_at: r.created_at,
+    brand: r.division || "branding",
+    full_name: r.contact_name || r.company_name || "Enquiry",
+    company_name: r.company_name || null,
+    phone: r.phone || "",
+    email: r.email || null,
+    service: r.product || null,
+    preferred_date: r.deadline || null,
+    location: null,
+    message: r.message || null,
+    status: r.status === "quoted" ? "converted" : r.status,
+    converted_task_id: r.quote_id || null,
+  }));
+
+  return NextResponse.json(mapped);
 }

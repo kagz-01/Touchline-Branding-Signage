@@ -19,9 +19,11 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     return NextResponse.json({ error: "Supabase isn't configured yet." }, { status: 503 });
   }
 
+  const dbStatus = body.status === "converted" ? "quoted" : body.status;
+
   const { data, error } = await supabase
-    .from("leads")
-    .update({ status: body.status })
+    .from("requests")
+    .update({ status: dbStatus })
     .eq("id", params.id)
     .select()
     .single();

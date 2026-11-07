@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import type { BrandConfig } from '@/config/brands';
+import { BRANDS } from '@/config/brands';
 
 type Step = 1 | 2 | 3;
 type Status = 'idle' | 'submitting' | 'sent' | 'error';
@@ -26,6 +27,10 @@ export function BookingForm({ brand }: { brand: BrandConfig }) {
   const searchParams = useSearchParams();
   const preselectedService = searchParams.get('service') || '';
 
+  const initialDivision = (brand.id === 'signage' ? 'signage' : 'branding') as 'branding' | 'signage';
+  const [division, setDivision] = useState<'branding' | 'signage'>(initialDivision);
+  const activeBrand = BRANDS[division] || brand;
+
   const [step, setStep] = useState<Step>(1);
   const [status, setStatus] = useState<Status>('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -35,6 +40,7 @@ export function BookingForm({ brand }: { brand: BrandConfig }) {
 
   const [formData, setFormData] = useState({
     fullName: '',
+    companyName: '',
     phone: '',
     email: '',
     service: preselectedService,
@@ -86,7 +92,7 @@ export function BookingForm({ brand }: { brand: BrandConfig }) {
     setErrorMsg('');
 
     const payload = {
-      brand: brand.id,
+      brand: division,
       ...formData,
       website: '',
       renderedAt: renderedAt.current,
@@ -112,7 +118,7 @@ export function BookingForm({ brand }: { brand: BrandConfig }) {
   }
 
   if (status === 'sent') {
-    return <SuccessState brand={brand} formData={formData} />;
+    return <SuccessState brand={activeBrand} formData={formData} />;
   }
 
   return (
@@ -157,7 +163,15 @@ export function BookingForm({ brand }: { brand: BrandConfig }) {
         <div className="glass rounded-[var(--radius-lg)] p-8 md:p-10 min-h-[340px]">
           <div className={`animate-${direction === 'forward' ? 'fade-in-up' : 'fade-in'}`}>
             {step === 1 && <StepOne formData={formData} updateField={updateField} />}
-            {step === 2 && <StepTwo formData={formData} updateField={updateField} brand={brand} />}
+            {step === 2 && (
+              <StepTwo
+                formData={formData}
+                updateField={updateField}
+                brand={activeBrand}
+                division={division}
+                setDivision={setDivision}
+              />
+            )}
             {step === 3 && <StepThree formData={formData} updateField={updateField} />}
           </div>
         </div>
@@ -316,25 +330,89 @@ function StepOne({ formData, updateField }: { formData: Record<string, string>; 
         />
       </div>
 
-      <Field
-        label="Email address"
-        name="email"
-        type="email"
-        placeholder="jane@company.co.ke (optional)"
-        value={formData.email}
-        onChange={(v) => updateField('email', v)}
-      />
+      <div className="grid md:grid-cols-2 gap-8">
+        <Field
+          label="Email address"
+          name="email"
+          type="email"
+          placeholder="jane@company.co.ke (optional)"
+          value={formData.email}
+          onChange={(v) => updateField('email', v)}
+        />
+        <Field
+          label="Company / Organisation"
+          name="companyName"
+          placeholder="e.g. Safari Enterprises (optional)"
+          value={formData.companyName}
+          onChange={(v) => updateField('companyName', v)}
+        />
+      </div>
     </div>
   );
 }
 
-function StepTwo({ formData, updateField, brand }: { formData: Record<string, string>; updateField: (f: string, v: string) => void; brand: BrandConfig }) {
+function StepTwo({
+  formData,
+  updateField,
+  brand,
+  division,
+  setDivision,
+}: {
+  formData: Record<string, string>;
+  updateField: (f: string, v: string) => void;
+  brand: BrandConfig;
+  division: 'branding' | 'signage';
+  setDivision: (d: 'branding' | 'signage') => void;
+}) {
   return (
     <div className="space-y-8">
       <div>
         <span className="text-mono-label text-[9px] block mb-2">Step 2 of 3</span>
         <h3 className="font-display text-2xl text-[var(--text)] mb-1">The project</h3>
-        <p className="text-sm text-[var(--text-muted)]">What do you need us to do?</p>
+        <p className="text-sm text-[var(--text-muted)]">Select your division and required service</p>
+      </div>
+
+      {/* Division Selector Tabs */}
+      <div>
+        <span className="text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] block mb-2.5">
+          Choose Specialism Division
+        </span>
+        <div className="inline-flex p-1 rounded-xl bg-[var(--bg-soft)] border border-[var(--border)] gap-1 w-full sm:w-auto">
+          <button
+            type="button"
+            onClick={() => {
+              if (division !== 'branding') {
+                setDivision('branding');
+                updateField('service', '');
+              }
+            }}
+            className={`flex-1 sm:flex-initial px-4 py-2.5 rounded-lg text-xs transition-all flex items-center justify-center gap-2 ${
+              division === 'branding'
+                ? 'bg-[#c8960c] text-white shadow-md font-semibold'
+                : 'text-[var(--text-muted)] hover:text-[var(--text)]'
+            }`}
+          >
+            <span className="w-2 h-2 rounded-full bg-amber-200" />
+            Touchline Branding (Apparel & Merch)
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              if (division !== 'signage') {
+                setDivision('signage');
+                updateField('service', '');
+              }
+            }}
+            className={`flex-1 sm:flex-initial px-4 py-2.5 rounded-lg text-xs transition-all flex items-center justify-center gap-2 ${
+              division === 'signage'
+                ? 'bg-[#0070f3] text-white shadow-md font-semibold'
+                : 'text-[var(--text-muted)] hover:text-[var(--text)]'
+            }`}
+          >
+            <span className="w-2 h-2 rounded-full bg-cyan-200" />
+            Touchline Signage (Signs & Fabrication)
+          </button>
+        </div>
       </div>
 
       <label className="flex flex-col gap-3 group">
@@ -348,7 +426,7 @@ function StepTwo({ formData, updateField, brand }: { formData: Record<string, st
           onChange={(e) => updateField('service', e.target.value)}
           className="appearance-none bg-transparent border-b border-[var(--border)] pb-3 text-[var(--text)] focus:border-[var(--accent)] focus:outline-none transition-colors rounded-none"
         >
-          <option value="" className="bg-[var(--bg)]">Select a service</option>
+          <option value="" className="bg-[var(--bg)]">Select a {division} service</option>
           {brand.serviceCategories.map((cat) => (
             <optgroup key={cat.name} label={cat.name}>
               {cat.services.map((s) => (
@@ -548,10 +626,10 @@ function SuccessState({ brand, formData }: { brand: BrandConfig; formData: Recor
       </div>
 
       {/* Reference number */}
-      <div className="glass-subtle rounded-[var(--radius-md)] p-4 inline-flex items-center gap-3 mb-8">
-        <span className="text-mono-label text-[9px]">Reference</span>
-        <span className="font-mono text-sm text-[var(--text)]">
-          TL-{brand.id.toUpperCase().slice(0, 2)}-{Date.now().toString(36).toUpperCase()}
+      <div className="glass-subtle rounded-[var(--radius-md)] p-4 inline-flex flex-col sm:flex-row items-center gap-3 mb-8">
+        <span className="text-mono-label text-[9px] uppercase tracking-wider text-[var(--accent)]">TouchDesk Reference</span>
+        <span className="font-mono text-sm font-semibold text-[var(--text)]">
+          TD-{brand.id === 'signage' ? 'TSG' : 'TBR'}-{Date.now().toString(36).toUpperCase()}
         </span>
       </div>
 

@@ -4,12 +4,18 @@ import { redirect } from 'next/navigation';
 import { ServicesContent } from '@/components/ServicesContent';
 import { SignageContent } from '@/components/SignageContent';
 
-export default function ServicesPage() {
-  const brandId = getBrandFromHeaders();
-  if (brandId === 'hub') redirect('/');
-  const brand = getBrand(brandId);
+export default function ServicesPage({ searchParams }: { searchParams?: { brand?: string } }) {
+  const brandFromHeader = getBrandFromHeaders();
+  const requestedBrand = searchParams?.brand;
+  
+  const effectiveBrandId: 'branding' | 'signage' =
+    requestedBrand === 'signage' || brandFromHeader === 'signage'
+      ? 'signage'
+      : 'branding';
 
-  if (brandId === 'signage') {
+  const brand = getBrand(effectiveBrandId);
+
+  if (effectiveBrandId === 'signage') {
     return <SignageContent brand={brand} />;
   }
 

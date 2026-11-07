@@ -17,10 +17,17 @@ function BookingFormWrapper({ brand }: { brand: ReturnType<typeof getBrand> }) {
   );
 }
 
-export default function BookPage() {
-  const brandId = getBrandFromHeaders();
-  if (brandId === 'hub') redirect('/');
-  const brand = getBrand(brandId);
+export default function BookPage({ searchParams }: { searchParams?: { brand?: string } }) {
+  const brandFromHeader = getBrandFromHeaders();
+  const requestedBrand = searchParams?.brand;
+  
+  // Resolve effective brand: prioritize query param, then header, defaulting to 'branding' on hub
+  const effectiveBrandId: 'branding' | 'signage' =
+    requestedBrand === 'signage' || brandFromHeader === 'signage'
+      ? 'signage'
+      : 'branding';
+
+  const brand = getBrand(effectiveBrandId);
 
   return (
     <section className="relative min-h-screen overflow-hidden">
