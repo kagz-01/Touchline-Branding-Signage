@@ -129,14 +129,20 @@ export function BrandingHome() {
 
   return (
     <div className="relative">
-      {/* ── 1. HIGH-TECH BRANDING HERO (Wordings on Left Area · Pure UI / No Fake Photo Background) ── */}
+      {/* ── 1. HIGH-TECH BRANDING HERO (Wordings on Left Area · Blueprint Engineering Grid) ── */}
       {/* Engineered to occupy ~6/8 of the screen (~75-80vh) with NO vertical scrolling on desktop */}
-      <section className="relative min-h-[calc(100vh-65px)] lg:h-[calc(100vh-65px)] lg:max-h-[800px] xl:max-h-[840px] flex items-center overflow-hidden py-6 sm:py-10 border-b border-[var(--border)] bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
-        {/* Ambient High-Tech Atmosphere (Warm Amber Radial Lights & Engineering Mesh) */}
-        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-          <div className="absolute -top-32 -left-32 w-[550px] h-[550px] bg-gradient-to-br from-[#c8960c]/15 via-[#d4a017]/5 to-transparent rounded-full blur-3xl opacity-80 dark:opacity-40" />
-          <div className="absolute top-1/2 -right-32 -translate-y-1/2 w-[500px] h-[500px] bg-[#c8960c]/10 dark:bg-[#c8960c]/15 rounded-full blur-3xl" />
-          <div className="absolute inset-0 bg-[radial-gradient(rgba(200,150,12,0.08)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_60%,transparent_100%)]" />
+      <section className="relative min-h-[82vh] lg:h-[calc(100vh-65px)] lg:max-h-[760px] flex items-center overflow-hidden py-6 sm:py-8 border-b border-white/10 bg-[#090b0e] text-white">
+        {/* Subtle Ambient Blueprint Grid & Warm Amber Glow */}
+        <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
+          <div className="absolute top-1/4 -left-28 w-[500px] h-[500px] rounded-full bg-[#c8960c] opacity-[0.12] blur-[140px]" />
+          <div
+            className="absolute inset-0 opacity-[0.05]"
+            style={{
+              backgroundImage:
+                'repeating-linear-gradient(0deg, #ffffff 0px, #ffffff 1px, transparent 1px, transparent 44px), repeating-linear-gradient(90deg, #ffffff 0px, #ffffff 1px, transparent 1px, transparent 44px)',
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#090b0e]/30 to-[#090b0e]" />
         </div>
 
         <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full">
@@ -144,21 +150,21 @@ export function BrandingHome() {
             {/* ── LEFT AREA: VALUE PROPOSITION (As requested: "branding left area") ── */}
             <div className="lg:col-span-7 flex flex-col items-start text-left">
               <Reveal>
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 mb-3 sm:mb-4 shadow-xs backdrop-blur-md">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 mb-3 sm:mb-4 shadow-xs backdrop-blur-md">
                   <span className="w-2 h-2 rounded-full bg-[#c8960c] animate-pulse" />
-                  <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-[#c8960c] font-semibold">
+                  <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-[#d4a017] font-semibold">
                     Touchline Branding // Division 01
                   </span>
                 </div>
 
-                <h1 className="font-display text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.6rem] leading-[0.98] tracking-tight text-[var(--text)] mb-3 text-balance">
+                <h1 className="font-display text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.6rem] leading-[0.98] tracking-tight text-white mb-3 text-balance">
                   PUT YOUR BRAND <br />
                   IN THEIR <span className="bg-gradient-to-r from-[#c8960c] via-[#d4a017] to-[#e6af2e] bg-clip-text text-transparent">HANDS.</span>
                 </h1>
               </Reveal>
 
               <Reveal delay={120}>
-                <p className="text-xs sm:text-base text-[var(--text-muted)] leading-relaxed mb-4 sm:mb-6 max-w-xl font-normal text-balance">
+                <p className="text-xs sm:text-base text-neutral-300 leading-relaxed mb-4 sm:mb-6 max-w-xl font-normal text-balance">
                   From executive embroidered staff uniforms and corporate gift kits to tender-scale apparel rollouts across Kenya — we source, brand, inspect, and deliver with zero middlemen.
                 </p>
               </Reveal>
@@ -173,7 +179,7 @@ export function BrandingHome() {
                   </Link>
                   <a
                     href="#methods"
-                    className="px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium bg-[var(--surface)] hover:bg-[var(--bg-soft)] text-[var(--text)] border border-[var(--border)] shadow-xs transition-all"
+                    className="px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium bg-white/5 hover:bg-white/10 text-white border border-white/15 backdrop-blur-md transition-all"
                   >
                     Compare Print Methods
                   </a>
@@ -182,18 +188,18 @@ export function BrandingHome() {
 
               {/* Verified Production Proof */}
               <Reveal delay={280}>
-                <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-4 sm:pt-5 border-t border-[var(--border)] w-full max-w-md">
+                <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-4 sm:pt-5 border-t border-white/10 w-full max-w-md">
                   <div>
-                    <span className="font-display text-2xl sm:text-3xl text-[#c8960c] block">500+</span>
-                    <span className="text-[10px] sm:text-xs text-[var(--text-muted)] font-mono">Items Sourced</span>
+                    <span className="font-display text-2xl sm:text-3xl text-[#d4a017] block">500+</span>
+                    <span className="text-[10px] sm:text-xs text-neutral-400 font-mono">Items Sourced</span>
                   </div>
                   <div>
-                    <span className="font-display text-2xl sm:text-3xl text-[#c8960c] block">4-Day</span>
-                    <span className="text-[10px] sm:text-xs text-[var(--text-muted)] font-mono">Avg Turnaround</span>
+                    <span className="font-display text-2xl sm:text-3xl text-[#d4a017] block">4-Day</span>
+                    <span className="text-[10px] sm:text-xs text-neutral-400 font-mono">Avg Turnaround</span>
                   </div>
                   <div>
-                    <span className="font-display text-2xl sm:text-3xl text-[#c8960c] block">47 Counties</span>
-                    <span className="text-[10px] sm:text-xs text-[var(--text-muted)] font-mono">Kenya-Wide Supply</span>
+                    <span className="font-display text-2xl sm:text-3xl text-[#d4a017] block">47 Counties</span>
+                    <span className="text-[10px] sm:text-xs text-neutral-400 font-mono">Kenya-Wide Supply</span>
                   </div>
                 </div>
               </Reveal>
@@ -202,53 +208,53 @@ export function BrandingHome() {
             {/* ── RIGHT AREA: HIGH-TECH LIVE MERCHANDISE SPEC CARD ── */}
             <div className="lg:col-span-5 w-full">
               <Reveal delay={240}>
-                <div className="relative rounded-2xl bg-gradient-to-br from-amber-500/[0.04] via-[var(--surface)] to-[var(--surface)] border border-amber-500/30 p-5 sm:p-6 shadow-xl backdrop-blur-md overflow-hidden">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#1a150a]/95 via-[#100e07]/95 to-[#080703]/98 border border-amber-500/30 p-5 sm:p-6 shadow-2xl backdrop-blur-md overflow-hidden">
                   <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
                   {/* Header / Division Tag */}
-                  <div className="flex items-center justify-between pb-4 border-b border-[var(--border)] mb-4">
+                  <div className="flex items-center justify-between pb-3.5 border-b border-amber-900/30 mb-4">
                     <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#c8960c] animate-ping" />
-                      <span className="font-mono text-xs uppercase tracking-wider font-semibold text-[var(--text)]">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#d4a017] animate-ping" />
+                      <span className="font-mono text-xs uppercase tracking-wider font-semibold text-white">
                         Production Lab Spec
                       </span>
                     </div>
-                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-[#c8960c] border border-amber-500/20">
+                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-500/15 text-[#d4a017] border border-amber-500/25">
                       Nairobi Factory
                     </span>
                   </div>
 
                   {/* Active Spec Matrix */}
-                  <div className="space-y-3 mb-5">
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
-                      <span className="text-xs font-medium text-[var(--text-muted)]">Category</span>
-                      <span className="text-xs font-semibold text-[var(--text)]">Heavyweight Pique Polo (240 GSM)</span>
+                  <div className="space-y-2.5 mb-4">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                      <span className="text-xs font-medium text-neutral-400">Category</span>
+                      <span className="text-xs font-semibold text-white">Heavyweight Pique Polo (240 GSM)</span>
                     </div>
 
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
-                      <span className="text-xs font-medium text-[var(--text-muted)]">Branding Tech</span>
-                      <span className="text-xs font-semibold text-[#c8960c]">12-Needle Tajima Computerized Embroidery</span>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                      <span className="text-xs font-medium text-neutral-400">Branding Tech</span>
+                      <span className="text-xs font-semibold text-[#d4a017]">12-Needle Tajima Embroidery</span>
                     </div>
 
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
-                      <span className="text-xs font-medium text-[var(--text-muted)]">Stitch Density</span>
-                      <span className="text-xs font-mono font-semibold text-[var(--text)]">9,400 stitches / crest</span>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                      <span className="text-xs font-medium text-neutral-400">Stitch Density</span>
+                      <span className="text-xs font-mono font-semibold text-white">9,400 stitches / crest</span>
                     </div>
 
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
-                      <span className="text-xs font-medium text-[var(--text-muted)]">Lead Time</span>
-                      <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">3-4 Working Days</span>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                      <span className="text-xs font-medium text-neutral-400">Lead Time</span>
+                      <span className="text-xs font-semibold text-emerald-400">3-4 Working Days</span>
                     </div>
                   </div>
 
                   {/* Quick Action Footer */}
-                  <div className="flex items-center justify-between pt-3 border-t border-[var(--border)]">
-                    <span className="text-[11px] font-mono text-[var(--text-muted)]">
+                  <div className="flex items-center justify-between pt-3 border-t border-amber-900/30">
+                    <span className="text-[11px] font-mono text-neutral-400">
                       Min Batch: 10 Units
                     </span>
                     <Link
                       href="/book?brand=branding"
-                      className="font-mono text-xs font-semibold text-[#c8960c] hover:underline flex items-center gap-1"
+                      className="font-mono text-xs font-semibold text-[#d4a017] hover:underline flex items-center gap-1"
                     >
                       Configure This Item <span>→</span>
                     </Link>

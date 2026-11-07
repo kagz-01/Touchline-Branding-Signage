@@ -213,14 +213,20 @@ export function SignageHome() {
 
   return (
     <div className="relative">
-      {/* ── 1. HIGH-TECH SIGNAGE HERO (Wordings on Right Side · Pure UI / No Fake Photo Background) ── */}
+      {/* ── 1. HIGH-TECH SIGNAGE HERO (Wordings on Right Side · Blueprint Engineering Grid) ── */}
       {/* Engineered to occupy ~6/8 of the screen (~75-80vh) with NO vertical scrolling on desktop */}
-      <section className="relative min-h-[calc(100vh-65px)] lg:h-[calc(100vh-65px)] lg:max-h-[800px] xl:max-h-[840px] flex items-center overflow-hidden py-6 sm:py-10 border-b border-[var(--border)] bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
-        {/* Ambient High-Tech Atmosphere (Steel Blue Radial Lights & Precision Grid) */}
-        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-          <div className="absolute -top-32 -right-32 w-[550px] h-[550px] bg-gradient-to-bl from-[#0070f3]/15 via-[#0ea5e9]/5 to-transparent rounded-full blur-3xl opacity-80 dark:opacity-40" />
-          <div className="absolute top-1/2 -left-32 -translate-y-1/2 w-[500px] h-[500px] bg-[#0070f3]/10 dark:bg-[#0070f3]/15 rounded-full blur-3xl" />
-          <div className="absolute inset-0 bg-[radial-gradient(rgba(0,112,243,0.08)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_60%,transparent_100%)]" />
+      <section className="relative min-h-[82vh] lg:h-[calc(100vh-65px)] lg:max-h-[760px] flex items-center overflow-hidden py-6 sm:py-8 border-b border-white/10 bg-[#090b0e] text-white">
+        {/* Subtle Ambient Blueprint Grid & Electric Blue Glow */}
+        <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
+          <div className="absolute top-1/4 -right-28 w-[500px] h-[500px] rounded-full bg-[#0070f3] opacity-[0.12] blur-[140px]" />
+          <div
+            className="absolute inset-0 opacity-[0.05]"
+            style={{
+              backgroundImage:
+                'repeating-linear-gradient(0deg, #ffffff 0px, #ffffff 1px, transparent 1px, transparent 44px), repeating-linear-gradient(90deg, #ffffff 0px, #ffffff 1px, transparent 1px, transparent 44px)',
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#090b0e]/30 to-[#090b0e]" />
         </div>
 
         <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full">
@@ -228,53 +234,53 @@ export function SignageHome() {
             {/* ── LEFT AREA: HIGH-TECH 3D ARCHITECTURAL SIGN SIMULATOR CARD ── */}
             <div className="lg:col-span-5 w-full order-2 lg:order-1">
               <Reveal delay={240}>
-                <div className="relative rounded-2xl bg-gradient-to-br from-blue-500/[0.04] via-[var(--surface)] to-[var(--surface)] border border-blue-500/30 p-5 sm:p-6 shadow-xl backdrop-blur-md overflow-hidden">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#0a1626]/95 via-[#060e1a]/95 to-[#040810]/98 border border-blue-500/30 p-5 sm:p-6 shadow-2xl backdrop-blur-md overflow-hidden">
                   <div className="absolute top-0 left-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
                   {/* Header / Division Tag */}
-                  <div className="flex items-center justify-between pb-4 border-b border-[var(--border)] mb-4">
+                  <div className="flex items-center justify-between pb-3.5 border-b border-blue-900/30 mb-4">
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-[#0070f3] animate-ping" />
-                      <span className="font-mono text-xs uppercase tracking-wider font-semibold text-[var(--text)]">
+                      <span className="font-mono text-xs uppercase tracking-wider font-semibold text-white">
                         Fabrication Lab Spec
                       </span>
                     </div>
-                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-blue-500/10 text-[#0070f3] border border-blue-500/20 font-semibold">
+                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-blue-500/15 text-[#38bdf8] border border-blue-500/25 font-semibold">
                       CNC Fiber Laser Active
                     </span>
                   </div>
 
                   {/* Active Spec Matrix */}
-                  <div className="space-y-3 mb-5">
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
-                      <span className="text-xs font-medium text-[var(--text-muted)]">Sign System</span>
-                      <span className="text-xs font-semibold text-[var(--text)]">3D Illuminated Channel Letters</span>
+                  <div className="space-y-2.5 mb-4">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                      <span className="text-xs font-medium text-neutral-400">Sign System</span>
+                      <span className="text-xs font-semibold text-white">3D Illuminated Channel Letters</span>
                     </div>
 
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
-                      <span className="text-xs font-medium text-[var(--text-muted)]">Illumination Tech</span>
-                      <span className="text-xs font-semibold text-[#0070f3]">Samsung IP67 SMD LEDs (6,500K Pure White)</span>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                      <span className="text-xs font-medium text-neutral-400">Illumination Tech</span>
+                      <span className="text-xs font-semibold text-[#38bdf8]">Samsung IP67 SMD LEDs (6,500K)</span>
                     </div>
 
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
-                      <span className="text-xs font-medium text-[var(--text-muted)]">Chassis Material</span>
-                      <span className="text-xs font-mono font-semibold text-[var(--text)]">0.8mm Stainless Return + 3mm Cast Acrylic</span>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                      <span className="text-xs font-medium text-neutral-400">Chassis Material</span>
+                      <span className="text-xs font-mono font-semibold text-white">0.8mm Stainless + 3mm Cast Acrylic</span>
                     </div>
 
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-soft)]/70 border border-[var(--border)]">
-                      <span className="text-xs font-medium text-[var(--text-muted)]">Weather Rating</span>
-                      <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">IP67 Waterproof · Tropicalized</span>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                      <span className="text-xs font-medium text-neutral-400">Weather Rating</span>
+                      <span className="text-xs font-semibold text-emerald-400">IP67 Waterproof · Tropicalized</span>
                     </div>
                   </div>
 
                   {/* Quick Action Footer */}
-                  <div className="flex items-center justify-between pt-3 border-t border-[var(--border)]">
-                    <span className="text-[11px] font-mono text-[var(--text-muted)]">
+                  <div className="flex items-center justify-between pt-3 border-t border-blue-900/30">
+                    <span className="text-[11px] font-mono text-neutral-400">
                       KenHA & OSHA Compliant
                     </span>
                     <a
                       href="#fast-quote"
-                      className="font-mono text-xs font-semibold text-[#0070f3] hover:underline flex items-center gap-1"
+                      className="font-mono text-xs font-semibold text-[#38bdf8] hover:underline flex items-center gap-1"
                     >
                       Configure Dimensions <span>→</span>
                     </a>
@@ -286,14 +292,14 @@ export function SignageHome() {
             {/* ── RIGHT AREA: VALUE PROPOSITION (As requested: "signage right side") ── */}
             <div className="lg:col-span-7 flex flex-col items-start lg:items-start text-left order-1 lg:order-2">
               <Reveal>
-                <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 mb-3 sm:mb-4 shadow-xs backdrop-blur-md">
+                <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 mb-3 sm:mb-4 shadow-xs backdrop-blur-md">
                   <span className="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse" />
-                  <span className="font-mono text-[10px] sm:text-[11px] font-semibold text-[#0070f3] tracking-widest uppercase">
+                  <span className="font-mono text-[10px] sm:text-[11px] font-semibold text-[#38bdf8] tracking-widest uppercase">
                     Touchline Signage // Division 02
                   </span>
                 </div>
 
-                <h1 className="font-display text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.6rem] leading-[0.98] mb-3 text-[var(--text)] tracking-tight text-balance">
+                <h1 className="font-display text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.6rem] leading-[0.98] mb-3 text-white tracking-tight text-balance">
                   Signs that speak <br />
                   <span className="bg-gradient-to-r from-[#0070f3] via-[#0ea5e9] to-[#38bdf8] bg-clip-text text-transparent">
                     before you say a word.
@@ -302,7 +308,7 @@ export function SignageHome() {
               </Reveal>
 
               <Reveal delay={120}>
-                <p className="text-xs sm:text-base text-[var(--text-muted)] leading-relaxed mb-4 sm:mb-6 max-w-xl text-balance">
+                <p className="text-xs sm:text-base text-neutral-300 leading-relaxed mb-4 sm:mb-6 max-w-xl text-balance">
                   From high-rise 3D illuminated channel letters in Nairobi&apos;s CBD to highway pylon signs and corporate vehicle fleet wraps across Kenya. Fabricated in-house, engineered to KenHA & OSHA standards.
                 </p>
               </Reveal>
@@ -317,7 +323,7 @@ export function SignageHome() {
                   </a>
                   <a
                     href="#sign-systems"
-                    className="px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium bg-[var(--surface)] hover:bg-[var(--bg-soft)] text-[var(--text)] border border-[var(--border)] shadow-xs transition-all"
+                    className="px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium bg-white/5 hover:bg-white/10 text-white border border-white/15 backdrop-blur-md transition-all"
                   >
                     Explore Sign Systems
                   </a>
@@ -326,28 +332,28 @@ export function SignageHome() {
 
               {/* Verified Trust Metrics */}
               <Reveal delay={280}>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4 sm:pt-5 border-t border-[var(--border)] w-full max-w-lg">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4 sm:pt-5 border-t border-white/10 w-full max-w-lg">
                   <div>
-                    <div className="font-display text-2xl lg:text-3xl font-bold text-[var(--text)]">500+</div>
-                    <div className="font-mono text-[10px] sm:text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
+                    <div className="font-display text-2xl lg:text-3xl font-bold text-white">500+</div>
+                    <div className="font-mono text-[10px] sm:text-[11px] text-neutral-400 uppercase tracking-wider">
                       Sites Installed
                     </div>
                   </div>
                   <div>
-                    <div className="font-display text-2xl lg:text-3xl font-bold text-[#0070f3]">100%</div>
-                    <div className="font-mono text-[10px] sm:text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
+                    <div className="font-display text-2xl lg:text-3xl font-bold text-[#38bdf8]">100%</div>
+                    <div className="font-mono text-[10px] sm:text-[11px] text-neutral-400 uppercase tracking-wider">
                       In-House Fab
                     </div>
                   </div>
                   <div>
-                    <div className="font-display text-2xl lg:text-3xl font-bold text-[var(--text)]">IP67</div>
-                    <div className="font-mono text-[10px] sm:text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
+                    <div className="font-display text-2xl lg:text-3xl font-bold text-white">IP67</div>
+                    <div className="font-mono text-[10px] sm:text-[11px] text-neutral-400 uppercase tracking-wider">
                       Weatherproof
                     </div>
                   </div>
                   <div>
-                    <div className="font-display text-2xl lg:text-3xl font-bold text-[#0070f3]">3-5 Yrs</div>
-                    <div className="font-mono text-[10px] sm:text-[11px] text-[var(--text-muted)] uppercase tracking-wider">
+                    <div className="font-display text-2xl lg:text-3xl font-bold text-[#38bdf8]">3-5 Yrs</div>
+                    <div className="font-mono text-[10px] sm:text-[11px] text-neutral-400 uppercase tracking-wider">
                       Warranty
                     </div>
                   </div>
