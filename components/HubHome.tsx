@@ -114,23 +114,16 @@ export function HubHome() {
             alt="Touchline Executive Workspace"
             fill
             priority
-            quality={90}
-            className="object-cover object-center opacity-40 mix-blend-luminosity scale-105 filter contrast-125"
+            quality={95}
+            className="object-cover object-center brightness-90 contrast-110"
           />
-          {/* Atmospheric Brand Overlays: Dark Gradient & Subtle Vignette */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#090b0e]/95 via-[#090b0e]/80 to-[#090b0e]/90" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#090b0e]/60 via-transparent to-[#090b0e]" />
+          {/* Atmospheric Brand Overlays: Clean Subtle Vignette, No Grid Mesh */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#090b0e]/90 via-[#090b0e]/65 to-[#090b0e]/85" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#090b0e] via-transparent to-[#090b0e]/60" />
 
-          {/* Ambient Glows */}
-          <div className="absolute top-1/4 -left-28 w-[550px] h-[550px] rounded-full bg-[#c8960c] opacity-[0.14] blur-[150px]" />
-          <div className="absolute top-1/3 -right-28 w-[550px] h-[550px] rounded-full bg-[#0070f3] opacity-[0.12] blur-[150px]" />
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage:
-                'repeating-linear-gradient(0deg, #ffffff 0px, #ffffff 1px, transparent 1px, transparent 44px), repeating-linear-gradient(90deg, #ffffff 0px, #ffffff 1px, transparent 1px, transparent 44px)',
-            }}
-          />
+          {/* Soft Brand Glows */}
+          <div className="absolute top-1/4 -left-28 w-[450px] h-[450px] rounded-full bg-[#c8960c] opacity-[0.10] blur-[140px]" />
+          <div className="absolute top-1/3 -right-28 w-[450px] h-[450px] rounded-full bg-[#0070f3] opacity-[0.10] blur-[140px]" />
         </div>
 
         <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full">
@@ -179,42 +172,20 @@ export function HubHome() {
                 </div>
               </Reveal>
 
-              {/* ── THE PROMINENT HUB-HERO VISUAL SHOWCASE STAGE ── */}
+              {/* ── METRICS & ECOSYSTEM TRUST STRIP ── */}
               <Reveal delay={240}>
-                <div className="relative aspect-[16/9.5] w-full rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-neutral-950 group">
-                  <Image
-                    src="/images/heroes/hub-hero.webp"
-                    alt="Touchline Integrated Physical Brand Ecosystem"
-                    fill
-                    priority
-                    className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
-                  />
-                  {/* Subtle Scrim */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/20 pointer-events-none" />
-
-                  {/* Top Floating Glass Badge */}
-                  <div className="absolute top-3.5 left-3.5 z-10">
-                    <div className="backdrop-blur-md bg-black/60 border border-white/20 text-white font-mono text-[9px] sm:text-[10px] tracking-wider uppercase px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-2 shadow-lg">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Physical Brand Ecosystem · Kenya</span>
-                    </div>
+                <div className="grid grid-cols-3 gap-3 pt-4 border-t border-white/10 max-w-lg">
+                  <div className="p-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
+                    <span className="block font-mono text-lg sm:text-xl font-bold text-[#c8960c]">500+</span>
+                    <span className="text-[10px] text-neutral-300 font-medium leading-tight block">Commercial Projects</span>
                   </div>
-
-                  {/* Bottom Docked Frosted Information Bar */}
-                  <div className="absolute bottom-3 left-3 right-3 z-10">
-                    <div className="backdrop-blur-md bg-black/75 border border-white/15 rounded-xl p-2.5 sm:p-3 flex items-center justify-between gap-3 shadow-xl">
-                      <div>
-                        <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-wider text-[#d4a820] font-semibold block">
-                          Single-Source Execution
-                        </span>
-                        <p className="font-display text-[11px] sm:text-xs text-white font-medium">
-                          Zero Subcontracting · 47 Counties Verified
-                        </p>
-                      </div>
-                      <div className="px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-white font-mono text-[9px] sm:text-[10px] shrink-0 font-semibold">
-                        4 In-House Hubs
-                      </div>
-                    </div>
+                  <div className="p-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
+                    <span className="block font-mono text-lg sm:text-xl font-bold text-[#0070f3]">47 / 47</span>
+                    <span className="text-[10px] text-neutral-300 font-medium leading-tight block">Counties Delivered</span>
+                  </div>
+                  <div className="p-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
+                    <span className="block font-mono text-lg sm:text-xl font-bold text-emerald-400">100%</span>
+                    <span className="text-[10px] text-neutral-300 font-medium leading-tight block">In-House Quality</span>
                   </div>
                 </div>
               </Reveal>
