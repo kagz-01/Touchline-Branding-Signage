@@ -6,17 +6,6 @@ import type { BrandId } from '@/lib/brand';
 import { ThemeToggle } from './ThemeToggle';
 import { HeaderAuthButton } from './HeaderAuthButton';
 
-type NavTab = {
-  href: string;
-  label: string;
-};
-
-const NAV_ITEMS: NavTab[] = [
-  { href: '/', label: 'Overview' },
-  { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Work' },
-];
-
 export function SpecialismNav({
   brandId,
   otherBrand,
@@ -32,30 +21,53 @@ export function SpecialismNav({
 }) {
   const pathname = usePathname();
 
+  // Dynamic Navigation Items with Brand Context
+  const isBranding = brandId === 'branding';
+  const isSignage = brandId === 'signage';
+
+  const overviewHref = isBranding ? '/branding' : isSignage ? '/signage' : '/';
+  const servicesHref = isBranding ? '/services?brand=branding' : isSignage ? '/services?brand=signage' : '/services';
+  const workHref = isBranding ? '/portfolio?brand=branding' : isSignage ? '/portfolio?brand=signage' : '/portfolio';
+  const quoteHref = isBranding ? '/book?brand=branding' : isSignage ? '/book?brand=signage' : '/book';
+
+  const navItems = [
+    {
+      href: overviewHref,
+      label: 'Overview',
+      isActive: pathname === overviewHref || (pathname === '/' && overviewHref === '/'),
+    },
+    {
+      href: servicesHref,
+      label: 'Services',
+      isActive: pathname?.startsWith('/services'),
+    },
+    {
+      href: workHref,
+      label: 'Work',
+      isActive: pathname?.startsWith('/portfolio'),
+    },
+  ];
+
   return (
     <div className="hidden lg:flex items-center gap-4">
       {/* Center Nav Pill */}
       <nav className="flex items-center gap-1 p-1 rounded-full bg-[var(--surface)]/90 border border-[var(--border)] shadow-sm backdrop-blur-md">
-        {NAV_ITEMS.map((tab) => {
-          const isActive = pathname === tab.href;
-
-          return (
-            <Link
-              key={tab.href}
-              href={tab.href}
-              className={`relative px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-200 ${
-                isActive
-                  ? 'text-[var(--accent)] bg-[var(--accent)]/10 font-semibold shadow-xs'
-                  : 'text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)]'
-              }`}
-            >
-              {tab.label}
-              {isActive && (
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-3 h-0.5 bg-[var(--accent)] rounded-full" />
-              )}
-            </Link>
-          );
-        })}
+        {navItems.map((tab) => (
+          <Link
+            key={tab.label}
+            href={tab.href}
+            className={`relative px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-200 ${
+              tab.isActive
+                ? 'text-[var(--accent)] bg-[var(--accent)]/10 font-semibold shadow-xs'
+                : 'text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)]'
+            }`}
+          >
+            {tab.label}
+            {tab.isActive && (
+              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-3 h-0.5 bg-[var(--accent)] rounded-full" />
+            )}
+          </Link>
+        ))}
 
         <span className="w-px h-3.5 bg-[var(--border)] mx-1" />
 
@@ -84,7 +96,7 @@ export function SpecialismNav({
         <ThemeToggle />
         <HeaderAuthButton />
         <Link
-          href="/book"
+          href={quoteHref}
           className="btn-primary text-xs font-semibold py-2 px-4 rounded-xl shadow-sm hover:shadow transition-all"
         >
           Get Quote <span>→</span>

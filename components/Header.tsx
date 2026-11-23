@@ -25,6 +25,7 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
   if (!effectiveBrand) {
     const brandingUrl = getCrossBrandUrl('branding', host);
     const signageUrl  = getCrossBrandUrl('signage',  host);
+    const awardsUrl   = 'https://awards.touchlineltd.co.ke';
 
     return (
       <header className="glass-nav sticky top-0 z-50 transition-all duration-300">
@@ -51,6 +52,24 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3]" />
               Signage
+            </a>
+            <a
+              href="https://touchgiftshop.co.ke"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[#9B1B5A] hover:bg-[var(--bg-soft)] transition-all"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9B1B5A]" />
+              Gift Shop ↗
+            </a>
+            <a
+              href={awardsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[#9B2345] hover:bg-[var(--bg-soft)] transition-all"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9B2345]" />
+              Awards ↗
             </a>
           </nav>
 
@@ -95,7 +114,7 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
     <header className="glass-nav sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-content mx-auto px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-4">
         {/* Division Logo */}
-        <Link href="/" className="group flex items-center shrink-0">
+        <Link href={isBranding ? '/branding' : '/signage'} className="group flex items-center shrink-0">
           <div className="flex items-center px-3 py-1.5 rounded-xl bg-[var(--surface)] border border-[var(--border)] group-hover:border-[var(--accent)]/50 transition-all duration-300 shadow-sm">
             <Logo brand={brandId} className="h-6 sm:h-7 md:h-8 w-auto" />
           </div>
@@ -115,7 +134,7 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
           <ThemeToggle />
           <HeaderAuthButton mobile />
           <Link
-            href="/book"
+            href={isBranding ? '/book?brand=branding' : '/book?brand=signage'}
             className="btn-primary text-xs font-semibold py-1.5 px-3 rounded-lg"
           >
             Quote

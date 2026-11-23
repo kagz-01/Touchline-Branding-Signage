@@ -6,7 +6,7 @@ import Image from 'next/image';
 interface ProjectPhotoProps {
   src: string;
   alt: string;
-  division: 'branding' | 'signage' | 'hub';
+  division: 'branding' | 'signage' | 'hub' | 'awards';
   badge?: string;
   aspect?: string;
   className?: string;
@@ -23,11 +23,14 @@ export function ProjectPhoto({
   const [error, setError] = useState(false);
 
   const isBranding = division === 'branding';
-  const accentColor = isBranding ? '#c8960c' : '#0070f3';
-  const ambientBg = isBranding
+  const isAwards = division === 'awards';
+  const accentColor = isAwards ? '#eab308' : isBranding ? '#c8960c' : '#0070f3';
+  const ambientBg = isAwards
+    ? 'from-[#1c1608] via-[#120f04] to-[#0a0802]'
+    : isBranding
     ? 'from-[#1c160c] via-[#120f09] to-[#0a0805]'
     : 'from-[#0e1824] via-[#091018] to-[#04080e]';
-  const borderTone = isBranding ? 'border-amber-900/30' : 'border-blue-900/30';
+  const borderTone = isAwards ? 'border-yellow-900/30' : isBranding ? 'border-amber-900/30' : 'border-blue-900/30';
 
   return (
     <div

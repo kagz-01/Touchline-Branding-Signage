@@ -18,6 +18,66 @@ import { Reveal } from './Reveal';
 import { ProjectPhoto } from './ProjectPhoto';
 import { FastQuoteWidget } from './FastQuoteWidget';
 import { SignageZoneDetector } from './SignageZoneDetector';
+import { DivisionHeroShowcase, HeroSlide } from './DivisionHeroShowcase';
+
+const SIGNAGE_HERO_SLIDES: HeroSlide[] = [
+  {
+    image: '/images/signage/3d-channel-letters.webp',
+    title: '3D Illuminated Channel Letters',
+    category: 'Commercial Facade Architecture',
+    badge: 'Flagship Commercial',
+    specs: '0.8-1.2mm SS304 Returns · 3mm Diffusing Acrylic Face',
+    floatingChipTop: { text: 'IP67 Samsung SMD LEDs (6,500K)' },
+    floatingCardBottom: {
+      tag: 'CNC FIBER LASER CUTTING',
+      headline: 'Architectural Channel Letters',
+      detail: 'KenHA & County Structural Permit Approved',
+    },
+    statPill: '50,000h Lifespan',
+  },
+  {
+    image: '/images/signage/architectural-fabric-lightbox.webp',
+    title: 'Architectural Fabric & LED Lightbox',
+    category: 'Storefront & Interior Fascia',
+    badge: 'Tension Fabric (SEG)',
+    specs: 'Heavy Anodized Extrusion · Uniform Edge-to-Edge Backlight',
+    floatingChipTop: { text: 'Silicone Edge Tension Graphic' },
+    floatingCardBottom: {
+      tag: 'SEAMLESS LUMINANCE',
+      headline: 'Ultra-Slim LED Lightbox Fascia',
+      detail: 'Quick-Access Modular Front Face System',
+    },
+    statPill: 'Zero Hotspots',
+  },
+  {
+    image: '/images/signage/highway-monolith-pylon.webp',
+    title: 'Highway Pylon & Monolith Totem',
+    category: 'Structural Landmark',
+    badge: 'High-Rise Highway',
+    specs: 'Galvanized Structural Steel Chassis · 4mm ACP Cladding',
+    floatingChipTop: { text: '120 km/h Gust Certified' },
+    floatingCardBottom: {
+      tag: 'STRUCTURAL STEEL CHASSIS',
+      headline: 'Freestanding Entry Monolith',
+      detail: 'Visible from 250+ Meters Road Approach',
+    },
+    statPill: 'Engineered Base',
+  },
+  {
+    image: '/images/signage/3d-acrylic-facade.webp',
+    title: 'Commercial Fleet & Vehicle Wraps',
+    category: 'Transit Media at Scale',
+    badge: 'Logistics Fleet',
+    specs: 'Premium Cast PVC with Micro Air-Release · UV Overlaminate',
+    floatingChipTop: { text: '3-5 Year Kenya UV Warranty' },
+    floatingCardBottom: {
+      tag: '100% KNIFELESS TAPE',
+      headline: 'Commercial Fleet Rebrand',
+      detail: 'Zero OEM Clearcoat or Paint Damage',
+    },
+    statPill: 'Clean Removal',
+  },
+];
 
 const SignageViewingCalculator = dynamic(
   () => import('./SignageViewingCalculator').then((m) => m.SignageViewingCalculator),
@@ -68,7 +128,7 @@ const SIGN_SYSTEMS: SignSystemCategory[] = [
     subtitle: 'High-Impact Brand Identity',
     description:
       'Individually fabricated 3D letters with stainless steel or aluminum returns and acrylic faces. Powered by high-efficiency IP67 Samsung LED modules for brilliant, uniform illumination day and night.',
-    photoSrc: '/images/signage/3d-channel-letters.jpg',
+    photoSrc: '/images/signage/3d-channel-letters.webp',
     specs: [
       { label: 'Face Material', value: '3mm Cast Acrylic (Diffusing)' },
       { label: 'Returns / Housing', value: '0.8-1.2mm SS304 or Powdered AL' },
@@ -84,7 +144,7 @@ const SIGN_SYSTEMS: SignSystemCategory[] = [
     subtitle: 'Modern Clean Geometry',
     description:
       'Engineered aluminum sign cabinets featuring edge-lit or backlit LED arrays with vibrant tension fabric or UV-stable poly fronts. Precision-cut and sealed against dust, rain, and insects.',
-    photoSrc: '/images/signage/led-lightbox.jpg',
+    photoSrc: '/images/signage/architectural-fabric-lightbox.webp',
     specs: [
       { label: 'Frame Extrusion', value: 'Heavy-Gauge Anodized Aluminum' },
       { label: 'Face Options', value: 'Polycarbonate / Acrylic / Tension Fabric' },
@@ -94,20 +154,20 @@ const SIGN_SYSTEMS: SignSystemCategory[] = [
     applications: ['Shopping Mall Storefronts', 'Drive-Thrus', 'Airport Terminals', 'Office Parks'],
   },
   {
-    id: 'fleet-wraps',
-    title: 'Commercial Fleet & Vehicle Wraps',
-    badge: 'High-ROI Transit Media',
-    subtitle: 'Mobile Advertising at Scale',
+    id: 'storefront-facades',
+    title: 'Architectural Storefronts & 3D Acrylic Facades',
+    badge: 'Flagship Retail & Corporate',
+    subtitle: 'High-Impact Street Visibility',
     description:
-      'Full vehicle wraps, half-wraps, and spot branding using premium cast vinyl with optically clear UV laminate. Engineered to resist Kenyan sun, dust, and highway abrasion without paint damage.',
-    photoSrc: '/images/signage/vehicle-wrap.jpg',
+      'Engineered architectural building facades combining fire-rated aluminum composite panel cladding, precision-fabricated 3D acrylic lettering, and waterproof perimeter LED wash.',
+    photoSrc: '/images/signage/3d-acrylic-facade.webp',
     specs: [
-      { label: 'Vinyl Grade', value: 'Cast PVC with Micro Air-Release' },
-      { label: 'Protective Film', value: 'Cast UV Gloss/Matte Overlaminate' },
-      { label: 'Daily Visibility', value: '30,000 to 100,000+ Impressions/Day' },
-      { label: 'Removal Guarantee', value: 'Clean removal without residue' },
+      { label: 'Cladding Material', value: 'Fire-Retardant 4mm PVDF Aluminum Composite' },
+      { label: 'Letter Construction', value: 'Fabricated Cast Acrylic with Mirror Finish' },
+      { label: 'Waterproofing', value: 'Internal silicone seal & drainage channels' },
+      { label: 'Installation', value: 'Concealed substructure with zero visible bolts' },
     ],
-    applications: ['Logistics Fleets', 'Corporate Sales Cars', 'Distribution Lorries', 'Executive Shuttles'],
+    applications: ['Corporate Flagships', 'Banking Halls', 'Automotive Showrooms', 'Retail Boutiques'],
   },
   {
     id: 'pylons-monuments',
@@ -116,7 +176,7 @@ const SIGN_SYSTEMS: SignSystemCategory[] = [
     subtitle: 'Visible from 150+ Meters',
     description:
       'Freestanding multi-tenant pylon signs and corporate entry monuments anchored with reinforced concrete footings. Engineered to KenHA clearance standards and coastal/rift valley wind gust specifications.',
-    photoSrc: '/images/signage/pylon-monument.jpg',
+    photoSrc: '/images/signage/highway-monolith-pylon.webp',
     specs: [
       { label: 'Chassis Structure', value: 'Hot-Dip Galvanized Structural Steel' },
       { label: 'Cladding Material', value: 'Aluminum Composite Panel (ACP) 4mm' },
@@ -231,66 +291,20 @@ export function SignageHome() {
 
         <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* ── LEFT AREA: HIGH-TECH 3D ARCHITECTURAL SIGN SIMULATOR CARD ── */}
-            <div className="lg:col-span-5 w-full order-2 lg:order-1">
+            {/* ── LEFT AREA: AUTO-CYCLING REAL SIGNAGE STAGE WITH FLOATING CHIPS ── */}
+            <div className="lg:col-span-6 w-full order-2 lg:order-1">
               <Reveal delay={240}>
-                <div className="relative rounded-2xl bg-gradient-to-br from-[#0a1626]/95 via-[#060e1a]/95 to-[#040810]/98 border border-blue-500/30 p-5 sm:p-6 shadow-2xl backdrop-blur-md overflow-hidden">
-                  <div className="absolute top-0 left-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-
-                  {/* Header / Division Tag */}
-                  <div className="flex items-center justify-between pb-3.5 border-b border-blue-900/30 mb-4">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#0070f3] animate-ping" />
-                      <span className="font-mono text-xs uppercase tracking-wider font-semibold text-white">
-                        Fabrication Lab Spec
-                      </span>
-                    </div>
-                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-blue-500/15 text-[#38bdf8] border border-blue-500/25 font-semibold">
-                      CNC Fiber Laser Active
-                    </span>
-                  </div>
-
-                  {/* Active Spec Matrix */}
-                  <div className="space-y-2.5 mb-4">
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
-                      <span className="text-xs font-medium text-neutral-400">Sign System</span>
-                      <span className="text-xs font-semibold text-white">3D Illuminated Channel Letters</span>
-                    </div>
-
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
-                      <span className="text-xs font-medium text-neutral-400">Illumination Tech</span>
-                      <span className="text-xs font-semibold text-[#38bdf8]">Samsung IP67 SMD LEDs (6,500K)</span>
-                    </div>
-
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
-                      <span className="text-xs font-medium text-neutral-400">Chassis Material</span>
-                      <span className="text-xs font-mono font-semibold text-white">0.8mm Stainless + 3mm Cast Acrylic</span>
-                    </div>
-
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
-                      <span className="text-xs font-medium text-neutral-400">Weather Rating</span>
-                      <span className="text-xs font-semibold text-emerald-400">IP67 Waterproof · Tropicalized</span>
-                    </div>
-                  </div>
-
-                  {/* Quick Action Footer */}
-                  <div className="flex items-center justify-between pt-3 border-t border-blue-900/30">
-                    <span className="text-[11px] font-mono text-neutral-400">
-                      KenHA & OSHA Compliant
-                    </span>
-                    <a
-                      href="#fast-quote"
-                      className="font-mono text-xs font-semibold text-[#38bdf8] hover:underline flex items-center gap-1"
-                    >
-                      Configure Dimensions <span>→</span>
-                    </a>
-                  </div>
-                </div>
+                <DivisionHeroShowcase
+                  division="signage"
+                  accentColor="#0070f3"
+                  glowColor="#38bdf8"
+                  slides={SIGNAGE_HERO_SLIDES}
+                />
               </Reveal>
             </div>
 
-            {/* ── RIGHT AREA: VALUE PROPOSITION (As requested: "signage right side") ── */}
-            <div className="lg:col-span-7 flex flex-col items-start lg:items-start text-left order-1 lg:order-2">
+            {/* ── RIGHT AREA: VALUE PROPOSITION (As requested: "signage right text") ── */}
+            <div className="lg:col-span-6 flex flex-col items-start lg:items-start text-left order-1 lg:order-2">
               <Reveal>
                 <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 mb-3 sm:mb-4 shadow-xs backdrop-blur-md">
                   <span className="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse" />
@@ -415,64 +429,108 @@ export function SignageHome() {
         </div>
       </nav>
 
-      {/* ── 3. SIGN SYSTEMS SHOWCASE ──────────────────────────────── */}
+      {/* ── 3. SIGN SYSTEMS & REAL WORKS GATEWAY ──────────────── */}
       <section id="sign-systems" className="section-py bg-[var(--bg)] border-b border-[var(--border)] scroll-section">
         <div className="max-w-content mx-auto px-6">
           <Reveal>
-            <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="font-mono text-xs uppercase tracking-widest text-[#0070f3] block mb-2 font-semibold">
-                // Commercial Fabrication Systems
+                // Architectural Sign Systems
               </span>
               <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-4">
-                Engineered Signage Systems
+                Engineered Signage Standards
               </h2>
-              <p className="text-sm sm:text-base text-[var(--text-muted)]">
-                Every system is fabricated in our Nairobi facility with structural calculations, wind-load ratings, and nationwide installation.
+              <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+                Fabricated in our Nairobi workshop with CNC fiber lasers, automated channel bending, and structural KenHA &amp; DOSH safety compliance.
               </p>
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {SIGN_SYSTEMS.map((sys, idx) => (
-              <Reveal key={sys.id} delay={idx * 100}>
-                <div className="card-surface rounded-[var(--radius-lg)] p-6 sm:p-8 border border-[var(--border)] hover:border-[#0070f3]/40 transition-all flex flex-col justify-between h-full">
+          {/* 4 Flagship Systems Grid */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {SIGN_SYSTEMS.map((system, i) => (
+              <Reveal key={system.id} delay={i * 80}>
+                <div className="card-surface rounded-[var(--radius-lg)] p-6 sm:p-8 border border-[var(--border)] hover:border-[#0070f3]/40 transition-all flex flex-col justify-between h-full shadow-xs">
                   <div>
-                    <div className="mb-6">
-                      <ProjectPhoto
-                        src={sys.photoSrc}
-                        alt={sys.title}
-                        division="signage"
-                        badge={sys.badge}
-                        aspect="aspect-[16/9]"
+                    <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-black/40 mb-6 border border-white/10">
+                      <Image
+                        src={system.photoSrc}
+                        alt={system.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 550px"
                       />
+                      <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-black/80 text-white backdrop-blur-xs">
+                        {system.badge}
+                      </div>
                     </div>
-                    <span className="font-mono text-xs text-[#0070f3] block mb-1">{sys.subtitle}</span>
-                    <h3 className="font-display text-2xl text-[var(--text)] mb-3">{sys.title}</h3>
-                    <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-6">{sys.description}</p>
-                    <div className="grid grid-cols-2 gap-2 mb-6">
-                      {sys.specs.map((spec) => (
-                        <div key={spec.label} className="p-2.5 rounded bg-[var(--bg-soft)] border border-[var(--border)]">
-                          <span className="text-[10px] font-mono text-[var(--text-muted)] block uppercase">{spec.label}</span>
-                          <span className="text-xs font-semibold text-[var(--text)]">{spec.value}</span>
+                    <h3 className="font-display text-2xl text-[var(--text)] mb-3">{system.title}</h3>
+                    <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-6">{system.description}</p>
+                    
+                    {/* Technical Specs */}
+                    <div className="grid grid-cols-2 gap-2 mb-6 text-xs font-mono">
+                      {system.specs.map((sp) => (
+                        <div key={sp.label} className="p-2 rounded bg-[var(--bg-soft)] border border-[var(--border)]">
+                          <span className="text-[10px] text-[var(--text-muted)] block uppercase">{sp.label}</span>
+                          <span className="font-medium text-[var(--text)] text-[11px] truncate block">{sp.value}</span>
                         </div>
                       ))}
                     </div>
                   </div>
+
                   <div className="pt-4 border-t border-[var(--border)] flex items-center justify-between">
-                    <Link href={`/services#${sys.id}`} className="text-sm font-semibold text-[#0070f3] hover:underline flex items-center gap-1">
-                      Technical Specs <span>→</span>
+                    <Link
+                      href="/portfolio?brand=signage"
+                      className="text-sm font-semibold text-[#0070f3] hover:underline flex items-center gap-1"
+                    >
+                      View in Work Tab <span>→</span>
                     </Link>
-                    <span className="text-xs font-mono text-[var(--text-muted)]">DOSH Certified</span>
+                    <span className="text-xs font-mono text-[var(--text-muted)]">KenHA &amp; DOSH Approved</span>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
+
+          {/* ── High-Impact Gateway to Work Tab & Catalog PDF ───────────── */}
+          <Reveal delay={200}>
+            <div className="p-8 rounded-2xl bg-gradient-to-r from-neutral-900 via-neutral-900 to-neutral-800 text-white border border-[#0070f3]/30 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0070f3]/20 text-[#38bdf8] font-mono text-xs uppercase tracking-widest font-semibold mb-3">
+                  83 Verified Signage Systems in Work Tab
+                </div>
+                <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
+                  Explore Full Signage Catalog &amp; Installed Sites
+                </h3>
+                <p className="text-sm text-neutral-300 max-w-2xl leading-relaxed">
+                  Browse all 83 architectural systems: 3D channel letters, freestanding highway monoliths, SEG lightboxes, neon, and campus directional totems inside the dedicated Work tab.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <Link
+                  href="/portfolio?brand=signage"
+                  className="px-6 py-3 rounded-xl bg-[#0070f3] hover:bg-[#0070f3]/90 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2"
+                >
+                  <span>Explore Catalog in Work Tab</span>
+                  <span>→</span>
+                </Link>
+                <Link
+                  href="/catalog/signage/pdf"
+                  target="_blank"
+                  className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-sm border border-white/20 transition-all flex items-center gap-2"
+                >
+                  <span>Download Architectural PDF</span>
+                  <span>↗</span>
+                </Link>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ── 4. PRODUCTION PIPELINE STEPS ──────────────────────────── */}
-      <section className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)]">
+      <section id="pipeline" className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)] scroll-section">
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-16">

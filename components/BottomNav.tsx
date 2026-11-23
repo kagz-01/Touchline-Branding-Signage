@@ -43,11 +43,19 @@ export function BottomNav({ brand }: { brand: BrandConfig | null }) {
   // Show BottomNav across the whole public platform (Hub, Branding, Signage), hiding only on admin or dashboard pages
   if (pathname?.startsWith('/admin') || pathname?.startsWith('/client-dashboard')) return null;
 
+  const isBranding = brand?.id === 'branding' || pathname?.startsWith('/branding');
+  const isSignage = brand?.id === 'signage' || pathname?.startsWith('/signage');
+
+  const homeHref = isBranding ? '/branding' : isSignage ? '/signage' : '/';
+  const servicesHref = isBranding ? '/services?brand=branding' : isSignage ? '/services?brand=signage' : '/services';
+  const workHref = isBranding ? '/portfolio?brand=branding' : isSignage ? '/portfolio?brand=signage' : '/portfolio';
+  const quoteHref = isBranding ? '/book?brand=branding' : isSignage ? '/book?brand=signage' : '/book';
+
   const items = [
-    { href: '/', label: 'Home', Icon: HomeIcon },
-    { href: '/services', label: 'Services', Icon: ServicesIcon },
-    { href: '/portfolio', label: 'Work', Icon: PortfolioIcon },
-    { href: '/book', label: 'Quote', Icon: QuoteIcon },
+    { href: homeHref, label: 'Home', Icon: HomeIcon, active: pathname === homeHref || (pathname === '/' && homeHref === '/') },
+    { href: servicesHref, label: 'Services', Icon: ServicesIcon, active: pathname?.startsWith('/services') },
+    { href: workHref, label: 'Work', Icon: PortfolioIcon, active: pathname?.startsWith('/portfolio') },
+    { href: quoteHref, label: 'Quote', Icon: QuoteIcon, active: pathname?.startsWith('/book') },
   ];
 
   return (
@@ -62,10 +70,10 @@ export function BottomNav({ brand }: { brand: BrandConfig | null }) {
       {/* Safe area padding for notched devices */}
       <div className="grid grid-cols-4 pb-safe">
         {items.map((item) => {
-          const active = pathname === item.href;
+          const active = item.active;
           return (
             <Link
-              key={item.href}
+              key={item.label}
               href={item.href}
               className={`relative py-3 flex flex-col items-center gap-1 text-[10px] font-medium tracking-wide uppercase transition-all duration-200 active:scale-95 ${
                 active ? 'text-[var(--accent)]' : 'text-[var(--text-muted)]'

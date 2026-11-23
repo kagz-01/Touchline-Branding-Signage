@@ -49,7 +49,7 @@ const TENDER_CATEGORIES = [
 
 export function TenderComplianceChecker() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
-  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>('Documentation');
 
   const toggleItem = (id: string) => {
     setCheckedItems((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -67,116 +67,179 @@ export function TenderComplianceChecker() {
   const complianceScore = Math.round((checkedRequired / totalRequired) * 100);
 
   return (
-    <div className="space-y-8">
-      {/* Compliance Score */}
-      <div className="glass rounded-[var(--radius-lg)] p-8">
-        <h3 className="font-display text-xl mb-4 text-[var(--text)]">Tender Compliance Checker</h3>
-        <p className="text-sm text-[var(--text-muted)] mb-6">
-          Check if your tender meets county and government requirements. Ticked items = ready.
-        </p>
+    <div className="space-y-6">
+      {/* Compliance Score Card */}
+      <div className="card-surface rounded-2xl p-6 sm:p-8 border border-[var(--border)] shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-[var(--border)]">
+          <div>
+            <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text)]">
+              Tender &amp; Statutory Compliance Evaluator
+            </h3>
+            <p className="text-xs sm:text-sm text-[var(--text-muted)] mt-1">
+              Verify your documentation and sample specs against Kenyan County &amp; PPRA statutory requirements.
+            </p>
+          </div>
+          <span className="font-mono text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold w-fit">
+            PPRA Audit Protocol
+          </span>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <div className="text-center">
-            <span className="font-display text-4xl text-[var(--accent)] block">{complianceScore}%</span>
-            <span className="text-xs text-[var(--text-muted)]">Required Items</span>
+        {/* 3 Metric Pills */}
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6">
+          <div className="card-surface p-4 rounded-xl border border-[var(--border)] text-center shadow-xs">
+            <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider block mb-1">
+              Readiness Score
+            </span>
+            <span className="font-display text-2xl sm:text-4xl font-bold text-[var(--accent)] block">
+              {complianceScore}%
+            </span>
+            <span className="text-[10px] font-mono text-[var(--text-muted)]">Mandatory Audit</span>
           </div>
-          <div className="text-center">
-            <span className="font-display text-4xl text-[var(--accent)] block">{checkedRequired}/{totalRequired}</span>
-            <span className="text-xs text-[var(--text-muted)]">Required Ticked</span>
+
+          <div className="card-surface p-4 rounded-xl border border-[var(--border)] text-center shadow-xs">
+            <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider block mb-1">
+              Required Items
+            </span>
+            <span className="font-display text-2xl sm:text-4xl font-bold text-[var(--text)] block">
+              {checkedRequired}/{totalRequired}
+            </span>
+            <span className="text-[10px] font-mono text-[var(--text-muted)]">Ticked Ready</span>
           </div>
-          <div className="text-center">
-            <span className="font-display text-4xl text-[var(--accent)] block">{checkedOptional}/{totalOptional}</span>
-            <span className="text-xs text-[var(--text-muted)]">Optional Ticked</span>
+
+          <div className="card-surface p-4 rounded-xl border border-[var(--border)] text-center shadow-xs">
+            <span className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider block mb-1">
+              Optional Add-ons
+            </span>
+            <span className="font-display text-2xl sm:text-4xl font-bold text-[var(--text-muted)] block">
+              {checkedOptional}/{totalOptional}
+            </span>
+            <span className="text-[10px] font-mono text-[var(--text-muted)]">Bonus Points</span>
           </div>
         </div>
 
         {/* Progress Bar */}
-        <div className="h-3 bg-[var(--bg-soft)] rounded-full overflow-hidden">
-          <div
-            className={`h-full rounded-full transition-all duration-500 ${
-              complianceScore === 100 ? 'bg-green-500' : complianceScore >= 70 ? 'bg-[var(--accent)]' : 'bg-yellow-500'
-            }`}
-            style={{ width: `${complianceScore}%` }}
-          />
+        <div className="space-y-2">
+          <div className="h-2.5 bg-[var(--bg-soft)] rounded-full overflow-hidden border border-[var(--border)]">
+            <div
+              className={`h-full rounded-full transition-all duration-500 ${
+                complianceScore === 100
+                  ? 'bg-emerald-500'
+                  : complianceScore >= 60
+                  ? 'bg-[var(--accent)]'
+                  : 'bg-amber-500'
+              }`}
+              style={{ width: `${complianceScore}%` }}
+            />
+          </div>
+          <div className="flex items-center justify-between text-[11px] font-mono text-[var(--text-muted)]">
+            <span>
+              {complianceScore === 100
+                ? '✅ All mandatory items satisfied'
+                : `${totalRequired - checkedRequired} mandatory statutory items remaining`}
+            </span>
+            <span className="font-bold text-[var(--accent)]">{complianceScore}% Certified</span>
+          </div>
         </div>
-        <p className="text-xs text-[var(--text-muted)] mt-2 text-center">
-          {complianceScore === 100
-            ? 'All required items ready — you can submit with confidence!'
-            : `${totalRequired - checkedRequired} required items remaining`}
-        </p>
       </div>
 
-      {/* Category Checklists */}
-      {TENDER_CATEGORIES.map((category) => (
-        <Reveal key={category.name}>
-          <div className="glass rounded-[var(--radius-lg)] overflow-hidden">
-            <button
-              onClick={() => setExpandedCategory(expandedCategory === category.name ? null : category.name)}
-              className="w-full flex items-center justify-between p-6 text-left"
-            >
-              <div>
-                <h4 className="font-display text-lg text-[var(--text)]">{category.name}</h4>
-                <span className="text-xs text-[var(--text-muted)]">
-                  {category.items.filter((item) => checkedItems[item.id]).length}/{category.items.length} completed
-                </span>
-              </div>
-              <svg
-                className={`w-5 h-5 text-[var(--text-muted)] transition-transform duration-300 ${
-                  expandedCategory === category.name ? 'rotate-180' : ''
-                }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+      {/* Category Checklists (Accordion cards) */}
+      <div className="space-y-3">
+        {TENDER_CATEGORIES.map((category) => {
+          const isExpanded = expandedCategory === category.name;
+          const completedCount = category.items.filter((item) => checkedItems[item.id]).length;
 
-            {expandedCategory === category.name && (
-              <div className="px-6 pb-6 space-y-3">
-                {category.items.map((item) => (
-                  <label
-                    key={item.id}
-                    className="flex items-start gap-3 cursor-pointer group"
+          return (
+            <div
+              key={category.name}
+              className="card-surface rounded-xl border border-[var(--border)] overflow-hidden shadow-xs transition-all"
+            >
+              <button
+                onClick={() => setExpandedCategory(isExpanded ? null : category.name)}
+                className="w-full flex items-center justify-between p-4 sm:p-5 text-left hover:bg-[var(--bg-soft)] transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`w-2.5 h-2.5 rounded-full ${completedCount === category.items.length ? 'bg-emerald-500' : 'bg-[var(--accent)]'}`} />
+                  <div>
+                    <h4 className="font-display text-base font-bold text-[var(--text)]">{category.name}</h4>
+                    <span className="text-[11px] font-mono text-[var(--text-muted)]">
+                      {completedCount} of {category.items.length} verified
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-[var(--bg-soft)] border border-[var(--border)] text-[var(--text)]">
+                    {Math.round((completedCount / category.items.length) * 100)}%
+                  </span>
+                  <svg
+                    className={`w-4 h-4 text-[var(--text-muted)] transition-transform duration-300 ${
+                      isExpanded ? 'rotate-180' : ''
+                    }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
-                    <input
-                      type="checkbox"
-                      checked={checkedItems[item.id] || false}
-                      onChange={() => toggleItem(item.id)}
-                      className="mt-1 w-4 h-4 accent-[var(--accent)]"
-                    />
-                    <div className="flex-1">
-                      <span className={`text-sm ${checkedItems[item.id] ? 'line-through text-[var(--text-muted)]' : 'text-[var(--text)]'}`}>
-                        {item.label}
-                      </span>
-                      {item.required && (
-                        <span className="ml-2 px-1.5 py-0.5 rounded text-[9px] font-mono uppercase bg-red-500/20 text-red-400">
-                          Required
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </button>
+
+              {isExpanded && (
+                <div className="px-5 pb-5 pt-2 border-t border-[var(--border)] bg-[var(--surface)] space-y-2.5">
+                  {category.items.map((item) => (
+                    <label
+                      key={item.id}
+                      className="flex items-center justify-between gap-3 p-3 rounded-lg bg-[var(--bg-soft)] hover:bg-[var(--border)]/30 cursor-pointer border border-[var(--border)] transition-colors"
+                    >
+                      <div className="flex items-center gap-3">
+                        <input
+                          type="checkbox"
+                          checked={checkedItems[item.id] || false}
+                          onChange={() => toggleItem(item.id)}
+                          className="w-4 h-4 rounded border-[var(--border)] accent-[var(--accent)] cursor-pointer"
+                        />
+                        <span
+                          className={`text-xs sm:text-sm font-medium ${
+                            checkedItems[item.id] ? 'line-through text-[var(--text-muted)]' : 'text-[var(--text)]'
+                          }`}
+                        >
+                          {item.label}
+                        </span>
+                      </div>
+                      {item.required ? (
+                        <span className="px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 shrink-0">
+                          Mandatory
+                        </span>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded text-[9px] font-mono text-[var(--text-muted)] uppercase shrink-0">
+                          Optional
                         </span>
                       )}
-                    </div>
-                  </label>
-                ))}
-              </div>
-            )}
-          </div>
-        </Reveal>
-      ))}
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
 
-      {/* CTA */}
-      <Reveal>
-        <div className="glass rounded-[var(--radius-lg)] p-8 text-center">
-          <h4 className="font-display text-lg text-[var(--text)] mb-4">
-            Need help with your tender?
-          </h4>
-          <p className="text-sm text-[var(--text-muted)] mb-6">
-            We handle tender documentation, PP samples, and compliance for county and corporate tenders.
-          </p>
-          <Link href="/book?service=Tender+Compliance" className="btn-primary text-sm">
-            Get Tender Support <span>→</span>
-          </Link>
-        </div>
-      </Reveal>
+      {/* CTA Box */}
+      <div className="card-surface rounded-2xl p-6 sm:p-8 border border-[var(--border)] text-center shadow-xs">
+        <h4 className="font-display text-lg font-bold text-[var(--text)] mb-2">
+          Need Pre-Production Samples &amp; Official Tender Dossiers?
+        </h4>
+        <p className="text-xs sm:text-sm text-[var(--text-muted)] mb-5 max-w-xl mx-auto leading-relaxed">
+          Touchline delivers sealed strike-off garment samples, verified substrate spec sheets, and KRA ETR itemized quotations for procurement evaluation committees.
+        </p>
+        <Link
+          href="/book?brand=branding&service=Tender+Compliance"
+          className="btn-primary text-xs font-semibold py-2.5 px-6 inline-flex items-center gap-2"
+        >
+          <span>Request Official Tender Sample Pack</span>
+          <span>→</span>
+        </Link>
+      </div>
     </div>
   );
 }

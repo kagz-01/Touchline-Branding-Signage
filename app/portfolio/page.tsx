@@ -34,7 +34,7 @@ export default async function PortfolioPage({ searchParams }: { searchParams?: {
         </div>
       </div>
 
-      <PortfolioGallery brand={brand} items={items} />
+      <PortfolioGallery brand={brand} items={items} initialDivision={requestedBrand as any} />
       <Testimonials brand={brand} />
       <CTASection brand={brand} />
     </>

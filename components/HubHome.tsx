@@ -8,6 +8,7 @@ import { Reveal } from './Reveal';
 import { HowItWorks } from './HowItWorks';
 import { ProjectPhoto } from './ProjectPhoto';
 import { FastQuoteWidget } from './FastQuoteWidget';
+import { EcosystemInteractiveShowcase } from './EcosystemInteractiveShowcase';
 
 function getBrandUrl(brandId: 'branding' | 'signage'): string {
   if (typeof window === 'undefined') return `/${brandId}`;
@@ -104,12 +105,12 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
 export function HubHome() {
   return (
     <div className="relative">
-      {/* ── 1. SPLIT CINEMATIC HERO (The Dual Gateway — Compact & Perfectly Scaled) ── */}
-      <section className="relative min-h-[82vh] lg:h-[calc(100vh-65px)] lg:max-h-[760px] flex flex-col justify-between overflow-hidden pt-6 sm:pt-8 pb-6 sm:pb-8 border-b border-white/10 bg-[#090b0e] text-white">
+      {/* ── 1. SPLIT CINEMATIC HERO (Asymmetrical Power Split: Hero Stage + 2x2 Quad Gateway) ── */}
+      <section className="relative min-h-[90vh] lg:min-h-[calc(100vh-65px)] flex items-center overflow-hidden py-10 sm:py-14 border-b border-white/10 bg-[#090b0e] text-white">
         {/* Subtle Ambient Background Gradients & Precision Blueprint Grid */}
         <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
-          <div className="absolute top-1/4 -left-28 w-[500px] h-[500px] rounded-full bg-[#c8960c] opacity-[0.10] blur-[140px]" />
-          <div className="absolute top-1/3 -right-28 w-[500px] h-[500px] rounded-full bg-[#0070f3] opacity-[0.09] blur-[140px]" />
+          <div className="absolute top-1/4 -left-28 w-[550px] h-[550px] rounded-full bg-[#c8960c] opacity-[0.10] blur-[150px]" />
+          <div className="absolute top-1/3 -right-28 w-[550px] h-[550px] rounded-full bg-[#0070f3] opacity-[0.09] blur-[150px]" />
           <div
             className="absolute inset-0 opacity-[0.05]"
             style={{
@@ -117,161 +118,380 @@ export function HubHome() {
                 'repeating-linear-gradient(0deg, #ffffff 0px, #ffffff 1px, transparent 1px, transparent 44px), repeating-linear-gradient(90deg, #ffffff 0px, #ffffff 1px, transparent 1px, transparent 44px)',
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#090b0e]/30 to-[#090b0e]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#090b0e]/40 to-[#090b0e]" />
         </div>
 
-        {/* ── Top Header Banner & Mission Statement ──────────────── */}
-        <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full text-center">
-          <Reveal>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-3 sm:mb-4 shadow-sm backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-[#c8960c] animate-pulse" />
-              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-neutral-300">
-                Touchline Group · East Africa
-              </span>
+        <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-10 items-center">
+            {/* ── LEFT COLUMN: Headline, Value Prop & Prominent hub-hero Stage ── */}
+            <div className="lg:col-span-6 flex flex-col justify-center space-y-4 sm:space-y-5">
+              <Reveal>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 shadow-sm backdrop-blur-md">
+                  <span className="w-2 h-2 rounded-full bg-[#c8960c] animate-pulse" />
+                  <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-neutral-300">
+                    Touchline Group · East Africa
+                  </span>
+                </div>
+              </Reveal>
+
+              <Reveal delay={60}>
+                <h1 className="font-display text-3xl sm:text-4xl xl:text-[2.85rem] leading-[1.02] tracking-tight text-white text-balance">
+                  YOUR BRAND, <br className="hidden sm:inline" />
+                  BUILT <span className="bg-gradient-to-r from-[#0070f3] via-[#0ea5e9] to-[#38bdf8] bg-clip-text text-transparent">VISIBLE</span> &amp; <span className="text-[#c8960c]">PHYSICAL.</span>
+                </h1>
+              </Reveal>
+
+              <Reveal delay={120}>
+                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal text-balance">
+                  The unified physical brand ecosystem across Kenya. Commercial apparel, architectural signage, curated executive gifts, and bespoke awards — engineered and delivered under direct factory oversight.
+                </p>
+              </Reveal>
+
+              <Reveal delay={180}>
+                <div className="flex flex-wrap items-center gap-3 pt-0.5">
+                  <Link
+                    href="/book"
+                    className="btn-primary shadow-lg shadow-[#c8960c]/20 px-5 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl"
+                  >
+                    Request TouchDesk Quote <span>→</span>
+                  </Link>
+                  <a
+                    href="https://wa.me/254722668696?text=Hi%20Touchline%2C%20I%20would%20like%20to%20discuss%20a%20branding%20or%20signage%20project."
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-white/5 hover:bg-white/10 text-white border border-white/15 backdrop-blur-md transition-all flex items-center gap-2"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    WhatsApp Desk Hotline
+                  </a>
+                </div>
+              </Reveal>
+
+              {/* ── THE PROMINENT HUB-HERO VISUAL SHOWCASE STAGE ── */}
+              <Reveal delay={240}>
+                <div className="relative aspect-[16/9.5] w-full rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-neutral-950 group">
+                  <Image
+                    src="/images/heroes/hub-hero.webp"
+                    alt="Touchline Integrated Physical Brand Ecosystem"
+                    fill
+                    priority
+                    className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
+                  />
+                  {/* Subtle Scrim */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/20 pointer-events-none" />
+
+                  {/* Top Floating Glass Badge */}
+                  <div className="absolute top-3.5 left-3.5 z-10">
+                    <div className="backdrop-blur-md bg-black/60 border border-white/20 text-white font-mono text-[9px] sm:text-[10px] tracking-wider uppercase px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-2 shadow-lg">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>Physical Brand Ecosystem · Kenya</span>
+                    </div>
+                  </div>
+
+                  {/* Bottom Docked Frosted Information Bar */}
+                  <div className="absolute bottom-3 left-3 right-3 z-10">
+                    <div className="backdrop-blur-md bg-black/75 border border-white/15 rounded-xl p-2.5 sm:p-3 flex items-center justify-between gap-3 shadow-xl">
+                      <div>
+                        <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-wider text-[#d4a820] font-semibold block">
+                          Single-Source Execution
+                        </span>
+                        <p className="font-display text-[11px] sm:text-xs text-white font-medium">
+                          Zero Subcontracting · 47 Counties Verified
+                        </p>
+                      </div>
+                      <div className="px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-white font-mono text-[9px] sm:text-[10px] shrink-0 font-semibold">
+                        4 In-House Hubs
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
             </div>
-          </Reveal>
 
-          <Reveal delay={80}>
-            <h1 className="font-display text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.6rem] leading-[0.98] tracking-tight text-white max-w-4xl mx-auto mb-2.5 sm:mb-3 text-balance">
-              YOUR BRAND, <br className="hidden sm:inline" />
-              BUILT <span className="bg-gradient-to-r from-[#0070f3] via-[#0ea5e9] to-[#38bdf8] bg-clip-text text-transparent">VISIBLE</span> &amp; <span className="text-[#c8960c]">PHYSICAL.</span>
-            </h1>
-          </Reveal>
+            {/* ── RIGHT COLUMN: Interactive 2x2 Quad-Gateway Stack ── */}
+            <div className="lg:col-span-6 flex flex-col justify-center">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 xl:gap-4 items-stretch">
+                {/* ── DIVISION 01: TOUCHLINE BRANDING ──────────────── */}
+                <Reveal delay={220}>
+                  <a
+                    href={getBrandUrl('branding')}
+                    className="group relative flex flex-col justify-between p-4 sm:p-4.5 rounded-2xl bg-gradient-to-b from-[#18140b] to-[#0e0c08] border border-amber-900/40 hover:border-[#c8960c]/80 transition-all duration-300 shadow-xl overflow-hidden min-h-[240px] sm:min-h-[255px] h-full"
+                  >
+                    <div className="absolute -top-16 -left-16 w-36 h-36 rounded-full bg-[#c8960c]/15 blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
 
-          <Reveal delay={160}>
-            <p className="text-xs sm:text-sm lg:text-[15px] text-neutral-300 leading-relaxed max-w-2xl mx-auto mb-4 sm:mb-5 font-normal text-balance">
-              Two specialized production divisions under one roof. From tender-scale apparel and promotional merchandise to 3D architectural signage and nationwide installations.
-            </p>
-          </Reveal>
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#c8960c] bg-[#c8960c]/10 px-2 py-0.5 rounded border border-[#c8960c]/20 font-semibold">
+                          Div 01 // Apparel &amp; Merch
+                        </span>
+                        <span className="font-mono text-[9px] text-amber-200/50 group-hover:text-amber-200 transition-colors">
+                          branding.touchlineltd.co.ke ↗
+                        </span>
+                      </div>
 
-          <Reveal delay={220}>
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-2">
-              <Link
-                href="/book"
-                className="btn-primary shadow-lg shadow-[#c8960c]/20 px-5 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl"
-              >
-                Request TouchDesk Quote <span>→</span>
-              </Link>
-              <a
-                href="https://wa.me/254722668696?text=Hi%20Touchline%2C%20I%20would%20like%20to%20discuss%20a%20branding%20or%20signage%20project."
-                target="_blank"
-                rel="noreferrer"
-                className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-white/5 hover:bg-white/10 text-white border border-white/15 backdrop-blur-md transition-all flex items-center gap-2"
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                WhatsApp Desk Hotline
-              </a>
+                      <div className="flex items-center justify-between mb-2">
+                        <Logo brand="branding" className="h-5 sm:h-6 w-auto" forceLight />
+                        <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-amber-500/25 bg-black/40 shrink-0">
+                          <Image
+                            src="/images/branding/apparel-executive-polo.webp"
+                            alt="Touchline Executive Polo"
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                        </div>
+                      </div>
+
+                      <h3 className="font-display text-sm sm:text-base text-amber-50 mb-1 group-hover:text-[#d4a820] transition-colors leading-snug">
+                        The Merchandise People Carry.
+                      </h3>
+
+                      <p className="text-[11px] text-amber-100/70 leading-relaxed mb-2 line-clamp-2">
+                        Screen printing, DTF, embroidery, corporate uniforms, and tender fulfillment across Kenya.
+                      </p>
+
+                      <div className="flex flex-wrap gap-1 mb-2">
+                        {['Screen & DTF', 'Embroidery', 'Staff Uniforms'].map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[8px] font-mono px-1.5 py-0.5 rounded bg-amber-950/40 text-amber-200/80 border border-amber-800/30"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="relative z-10 pt-2 border-t border-amber-900/30 flex items-center justify-between">
+                      <span className="font-display text-[10px] uppercase tracking-wider text-[#d4a820] flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Explore Branding <span>→</span>
+                      </span>
+                      <span className="font-mono text-[9px] text-amber-300/60">
+                        500+ Items
+                      </span>
+                    </div>
+                  </a>
+                </Reveal>
+
+                {/* ── DIVISION 02: TOUCHLINE SIGNAGE ──────────────── */}
+                <Reveal delay={260}>
+                  <a
+                    href={getBrandUrl('signage')}
+                    className="group relative flex flex-col justify-between p-4 sm:p-4.5 rounded-2xl bg-gradient-to-b from-[#0b131f] to-[#060b12] border border-blue-900/40 hover:border-[#0070f3]/80 transition-all duration-300 shadow-xl overflow-hidden min-h-[240px] sm:min-h-[255px] h-full"
+                  >
+                    <div className="absolute -top-16 -right-16 w-36 h-36 rounded-full bg-[#0070f3]/15 blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
+
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#0070f3] bg-[#0070f3]/10 px-2 py-0.5 rounded border border-[#0070f3]/20 font-semibold">
+                          Div 02 // Architectural Signs
+                        </span>
+                        <span className="font-mono text-[9px] text-blue-200/50 group-hover:text-blue-200 transition-colors">
+                          signage.touchlineltd.co.ke ↗
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between mb-2">
+                        <Logo brand="signage" className="h-5 sm:h-6 w-auto" forceLight />
+                        <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-blue-500/25 bg-black/40 shrink-0">
+                          <Image
+                            src="/images/signage/3d-channel-letters.webp"
+                            alt="Touchline 3D Channel Letters"
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                        </div>
+                      </div>
+
+                      <h3 className="font-display text-sm sm:text-base text-blue-50 mb-1 group-hover:text-[#38bdf8] transition-colors leading-snug">
+                        The Signs People See.
+                      </h3>
+
+                      <p className="text-[11px] text-blue-100/70 leading-relaxed mb-2 line-clamp-2">
+                        3D channel letters, LED lightboxes, vehicle fleet wraps, and architectural monuments.
+                      </p>
+
+                      <div className="flex flex-wrap gap-1 mb-2">
+                        {['3D Letters', 'LED Lightboxes', 'Fleet Wraps'].map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[8px] font-mono px-1.5 py-0.5 rounded bg-blue-950/40 text-blue-200/80 border border-blue-800/30"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="relative z-10 pt-2 border-t border-blue-900/30 flex items-center justify-between">
+                      <span className="font-display text-[10px] uppercase tracking-wider text-[#38bdf8] flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Explore Signage <span>→</span>
+                      </span>
+                      <span className="font-mono text-[9px] text-blue-300/60">
+                        200+ Sites
+                      </span>
+                    </div>
+                  </a>
+                </Reveal>
+
+                {/* ── DIVISION 03: TOUCHGIFTSHOP (SISTER COMPANY) ─── */}
+                <Reveal delay={300}>
+                  <a
+                    href="https://touchgiftshop.co.ke"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex flex-col justify-between p-4 sm:p-4.5 rounded-2xl bg-gradient-to-b from-[#200d17] to-[#10060b] border border-[#9B1B5A]/40 hover:border-[#9B1B5A]/85 transition-all duration-300 shadow-xl overflow-hidden min-h-[240px] sm:min-h-[255px] h-full"
+                  >
+                    <div className="absolute -top-16 -left-16 w-36 h-36 rounded-full bg-[#9B1B5A]/15 blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
+
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#f472b6] bg-[#9B1B5A]/15 px-2 py-0.5 rounded border border-[#9B1B5A]/30 font-semibold">
+                          Div 03 // Corporate Gifts
+                        </span>
+                        <span className="font-mono text-[9px] text-pink-200/50 group-hover:text-pink-200 transition-colors">
+                          touchgiftshop.co.ke ↗
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded bg-[#9B1B5A]/25 border border-[#9B1B5A]/40 flex items-center justify-center text-[#f472b6]">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
+                              <polyline points="20 12 20 22 4 22 4 12" />
+                              <rect x="2" y="7" width="20" height="5" />
+                              <line x1="12" y1="22" x2="12" y2="7" />
+                              <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+                              <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+                            </svg>
+                          </div>
+                          <span className="font-display font-bold text-xs sm:text-sm tracking-wider uppercase text-white">
+                            TOUCH<span className="text-[#f472b6]">GIFTSHOP</span>
+                          </span>
+                        </div>
+                        <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-[#9B1B5A]/30 bg-black/40 shrink-0">
+                          <Image
+                            src="/images/giftshop/giftshop-luxury-trio-box.webp"
+                            alt="TouchGiftShop Presentation Box"
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                        </div>
+                      </div>
+
+                      <h3 className="font-display text-sm sm:text-base text-pink-50 mb-1 group-hover:text-[#f472b6] transition-colors leading-snug">
+                        Elevate the Art of Gifting.
+                      </h3>
+
+                      <p className="text-[11px] text-pink-100/70 leading-relaxed mb-2 line-clamp-2">
+                        Kenya&apos;s premium gifting engine: Pool a Gift™ group funds, Build a Hamper studio, photo proof &amp; same-day Nairobi delivery.
+                      </p>
+
+                      <div className="flex flex-wrap gap-1 mb-2">
+                        {['Pool a Gift™', 'Build a Hamper', 'Photo-Proof'].map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[8px] font-mono px-1.5 py-0.5 rounded bg-pink-950/40 text-pink-200/80 border border-[#9B1B5A]/30"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="relative z-10 pt-2 border-t border-[#9B1B5A]/30 flex items-center justify-between">
+                      <span className="font-display text-[10px] uppercase tracking-wider text-[#f472b6] flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Launch Gift Lab <span>→</span>
+                      </span>
+                      <span className="font-mono text-[9px] text-pink-300/60">
+                        Park Towers · Same-Day
+                      </span>
+                    </div>
+                  </a>
+                </Reveal>
+
+                {/* ── DIVISION 04: TOUCHLINE AWARDS (STOREFRONT) ──── */}
+                <Reveal delay={340}>
+                  <a
+                    href="https://awards.touchlineltd.co.ke"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex flex-col justify-between p-4 sm:p-4.5 rounded-2xl bg-gradient-to-b from-[#240b15] to-[#12050b] border border-[#801435]/40 hover:border-[#9B2345]/85 transition-all duration-300 shadow-xl overflow-hidden min-h-[240px] sm:min-h-[255px] h-full"
+                  >
+                    <div className="absolute -top-16 -right-16 w-36 h-36 rounded-full bg-[#9B2345]/15 blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
+
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#fca5a5] bg-[#801435]/20 px-2 py-0.5 rounded border border-[#801435]/30 font-semibold">
+                          Div 04 // Trophies &amp; Awards
+                        </span>
+                        <span className="font-mono text-[9px] text-rose-200/50 group-hover:text-rose-200 transition-colors">
+                          awards.touchlineltd.co.ke ↗
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded bg-[#801435]/30 border border-[#801435]/50 flex items-center justify-center text-[#fca5a5]">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
+                              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+                              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                              <path d="M4 22h16" />
+                              <path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34" />
+                              <path d="M6 4h12a2 2 0 0 1 2 2v3a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6V6a2 2 0 0 1 2-2z" />
+                            </svg>
+                          </div>
+                          <span className="font-display font-bold text-xs sm:text-sm tracking-wider uppercase text-white">
+                            TOUCH<span className="text-[#fca5a5]">AWARDS</span>
+                          </span>
+                        </div>
+                        <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-[#801435]/30 bg-black/40 shrink-0">
+                          <Image
+                            src="/images/awards/prismara-crystal-pillar.webp"
+                            alt="Touchline Optical Crystal Trophy"
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                        </div>
+                      </div>
+
+                      <h3 className="font-display text-sm sm:text-base text-rose-50 mb-1 group-hover:text-[#fca5a5] transition-colors leading-snug">
+                        The Awards People Cherish.
+                      </h3>
+
+                      <p className="text-[11px] text-rose-100/70 leading-relaxed mb-2 line-clamp-2 italic">
+                        &ldquo;Recognition worth remembering. Tuzo zinazostahili kukumbukwa.&rdquo;
+                      </p>
+
+                      <div className="flex flex-wrap gap-1 mb-2">
+                        {['Optical Crystal', 'Laser Plaques', 'Stocked Blanks'].map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[8px] font-mono px-1.5 py-0.5 rounded bg-rose-950/40 text-rose-200/80 border border-[#801435]/30"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="relative z-10 pt-2 border-t border-[#801435]/30 flex items-center justify-between">
+                      <span className="font-display text-[10px] uppercase tracking-wider text-[#fca5a5] flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Explore Awards <span>→</span>
+                      </span>
+                      <span className="font-mono text-[9px] text-rose-300/60">
+                        Bespoke Crafted
+                      </span>
+                    </div>
+                  </a>
+                </Reveal>
+              </div>
             </div>
-          </Reveal>
-        </div>
-
-        {/* ── Interactive Dual-Wing Gateway (Compact & Perfectly Proportioned) ── */}
-        <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full pt-2">
-          <div className="grid md:grid-cols-2 gap-4 lg:gap-6 items-stretch">
-            {/* ── LEFT WING: TOUCHLINE BRANDING ──────────────── */}
-            <Reveal delay={260}>
-              <a
-                href={getBrandUrl('branding')}
-                className="group relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-[#18140b] to-[#0e0c08] border border-amber-900/30 hover:border-[#c8960c]/70 transition-all duration-300 shadow-xl overflow-hidden min-h-[260px] sm:min-h-[280px]"
-              >
-                <div className="absolute -top-20 -left-20 w-48 h-48 rounded-full bg-[#c8960c]/15 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
-
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#c8960c] bg-[#c8960c]/10 px-2 py-0.5 rounded border border-[#c8960c]/20 font-semibold">
-                      Division 01 // Apparel &amp; Merch
-                    </span>
-                    <span className="font-mono text-[10px] text-amber-200/50 group-hover:text-amber-200 transition-colors">
-                      branding.touchlineltd.co.ke ↗
-                    </span>
-                  </div>
-
-                  <Logo brand="branding" className="h-6 sm:h-7 w-auto mb-2.5" forceLight />
-
-                  <h3 className="font-display text-lg sm:text-xl text-amber-50 mb-1.5 group-hover:text-[#d4a820] transition-colors leading-snug">
-                    The Merchandise People Carry.
-                  </h3>
-
-                  <p className="text-xs text-amber-100/70 leading-relaxed mb-3 line-clamp-2 max-w-md">
-                    Screen printing, direct-to-film (DTF), embroidery, executive corporate gifting, and high-volume tender fulfillment across Kenya.
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {['Screen Print & DTF', 'Tactile Embroidery', 'Corporate Kits', 'Tender Sourcing'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/40 text-amber-200/80 border border-amber-800/30"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="relative z-10 pt-3 border-t border-amber-900/30 flex items-center justify-between">
-                  <span className="font-display text-xs uppercase tracking-wider text-[#d4a820] flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-                    Explore Branding Platform <span>→</span>
-                  </span>
-                  <span className="font-mono text-[10px] text-amber-300/60">
-                    500+ Items Sourced
-                  </span>
-                </div>
-              </a>
-            </Reveal>
-
-            {/* ── RIGHT WING: TOUCHLINE SIGNAGE ──────────────── */}
-            <Reveal delay={320}>
-              <a
-                href={getBrandUrl('signage')}
-                className="group relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-[#0b131f] to-[#060b12] border border-blue-900/30 hover:border-[#0070f3]/70 transition-all duration-300 shadow-xl overflow-hidden min-h-[260px] sm:min-h-[280px]"
-              >
-                <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-[#0070f3]/15 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
-
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#0070f3] bg-[#0070f3]/10 px-2 py-0.5 rounded border border-[#0070f3]/20 font-semibold">
-                      Division 02 // Architectural &amp; Signs
-                    </span>
-                    <span className="font-mono text-[10px] text-blue-200/50 group-hover:text-blue-200 transition-colors">
-                      signage.touchlineltd.co.ke ↗
-                    </span>
-                  </div>
-
-                  <Logo brand="signage" className="h-6 sm:h-7 w-auto mb-2.5" forceLight />
-
-                  <h3 className="font-display text-lg sm:text-xl text-blue-50 mb-1.5 group-hover:text-[#38bdf8] transition-colors leading-snug">
-                    The Signs People See.
-                  </h3>
-
-                  <p className="text-xs text-blue-100/70 leading-relaxed mb-3 line-clamp-2 max-w-md">
-                    3D fabricated acrylic &amp; stainless channel letters, high-output LED lightboxes, vehicle fleet wraps, and architectural monuments.
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {['3D Fabricated Letters', 'LED Lightboxes', 'Vehicle Fleet Wraps', 'Site Installations'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-950/40 text-blue-200/80 border border-blue-800/30"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="relative z-10 pt-3 border-t border-blue-900/30 flex items-center justify-between">
-                  <span className="font-display text-xs uppercase tracking-wider text-[#38bdf8] flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-                    Explore Signage Platform <span>→</span>
-                  </span>
-                  <span className="font-mono text-[10px] text-blue-300/60">
-                    200+ Sites Fabricated
-                  </span>
-                </div>
-              </a>
-            </Reveal>
           </div>
         </div>
       </section>
+
+      {/* ── 2. INTERACTIVE MULTI-DIVISION COCKPIT & PHOTOGRAPHIC SHOWCASE ── */}
+      <EcosystemInteractiveShowcase />
 
       {/* ── 2. PHILOSOPHY: THE PHYSICAL REALITY ───────────────────── */}
       <section className="section-py bg-[var(--bg)] border-b border-[var(--border)]">
@@ -298,24 +518,40 @@ export function HubHome() {
               </Reveal>
             </div>
 
-            <div className="lg:col-span-5 grid sm:grid-cols-2 gap-4">
-              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
-                <span className="font-mono text-xs text-[var(--accent)] block mb-2 font-semibold">01 / MERCHANDISE</span>
-                <h4 className="font-display text-xl text-[var(--text)] mb-2">Carried &amp; Worn</h4>
+            <div className="lg:col-span-5 grid sm:grid-cols-2 gap-3.5">
+              <div className="p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
+                <span className="font-mono text-xs text-[#c8960c] block mb-1.5 font-semibold">01 / MERCHANDISE</span>
+                <h4 className="font-display text-lg text-[var(--text)] mb-1.5">Carried &amp; Worn</h4>
                 <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-                  Apparel, bags, drinkware, and VIP sets that represent your standard in client hands.
+                  Apparel, staff uniforms, drinkware, and tender kits that put your brand directly in client hands.
                 </p>
               </div>
 
-              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
-                <span className="font-mono text-xs text-[#0070f3] block mb-2 font-semibold">02 / STRUCTURES</span>
-                <h4 className="font-display text-xl text-[var(--text)] mb-2">Built &amp; Seen</h4>
+              <div className="p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
+                <span className="font-mono text-xs text-[#0070f3] block mb-1.5 font-semibold">02 / STRUCTURES</span>
+                <h4 className="font-display text-lg text-[var(--text)] mb-1.5">Built &amp; Seen</h4>
                 <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-                  3D signs, illuminated pylons, and architectural wayfinding that anchor your locations.
+                  3D letters, illuminated pylons, and architectural wayfinding that anchor your physical locations.
                 </p>
               </div>
 
-              <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] sm:col-span-2 tilt-card glass-interactive">
+              <div className="p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
+                <span className="font-mono text-xs text-[#9B1B5A] block mb-1.5 font-semibold">03 / CORPORATE GIFTS</span>
+                <h4 className="font-display text-lg text-[var(--text)] mb-1.5">Remembered &amp; Valued</h4>
+                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+                  Curated hampers, VIP executive onboarding kits, and premium lifestyle items via TouchGiftShop.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
+                <span className="font-mono text-xs text-[#9B2345] block mb-1.5 font-semibold">04 / RECOGNITION</span>
+                <h4 className="font-display text-lg text-[var(--text)] mb-1.5">Honoured &amp; Cherished</h4>
+                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+                  Custom optical crystal trophies, engraved wooden plaques, and commemorative medals via Touchline Awards.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] sm:col-span-2 tilt-card glass-interactive">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="font-mono text-xs uppercase tracking-wider text-[var(--text)] font-semibold">
@@ -372,7 +608,7 @@ export function HubHome() {
 
                   <div className="mb-8 rounded-[var(--radius-md)] overflow-hidden border border-[var(--border)]">
                     <ProjectPhoto
-                      src="/images/branding/hero-merch.jpg"
+                      src="/images/branding/branding-hero.webp"
                       alt="Touchline Branded Corporate Merchandise"
                       division="branding"
                       badge="Textile Production"
@@ -422,7 +658,7 @@ export function HubHome() {
 
                   <div className="mb-8 rounded-[var(--radius-md)] overflow-hidden border border-[var(--border)]">
                     <ProjectPhoto
-                      src="/images/signage/hero-signage.jpg"
+                      src="/images/signage/signage-hero.webp"
                       alt="Touchline 3D Illuminated Channel Letters Architectural Facade"
                       division="signage"
                       badge="Nairobi Fabrication Workshop"
@@ -450,6 +686,193 @@ export function HubHome() {
                 </a>
               </div>
             </Reveal>
+          </div>
+
+          {/* ── Group Sister Brands: TouchGiftShop & Touchline Awards ──── */}
+          <div className="mt-12 pt-10 border-t border-[var(--border)]">
+            <Reveal delay={100}>
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-1">
+                    // Group Sister Brands
+                  </span>
+                  <h3 className="font-display text-xl sm:text-2xl text-[var(--text)]">
+                    Specialized Retail &amp; Recognition Platforms
+                  </h3>
+                </div>
+                <span className="hidden sm:inline-block font-mono text-xs text-[var(--text-muted)]">
+                  Under Touchline Group
+                </span>
+              </div>
+              <div className="grid md:grid-cols-2 gap-5">
+                <a
+                  href="https://touchgiftshop.co.ke"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-5 sm:p-6 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] hover:border-[#9B1B5A]/60 transition-all flex flex-col sm:flex-row items-start gap-4 group shadow-sm hover:shadow-md"
+                >
+                  <div className="relative w-full sm:w-28 h-28 rounded-xl overflow-hidden bg-black/40 border border-[#9B1B5A]/30 shrink-0">
+                    <Image
+                      src="/images/giftshop/giftshop-luxury-trio-box.webp"
+                      alt="TouchGiftShop Curated Executive Hampers"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-[#9B1B5A] bg-[#9B1B5A]/10 px-2 py-0.5 rounded font-semibold border border-[#9B1B5A]/20">
+                        Curated Gifting Platform // Superpowers
+                      </span>
+                      <span className="text-xs text-[var(--text-muted)] group-hover:text-[#9B1B5A] transition-colors">↗</span>
+                    </div>
+                    <h4 className="font-display text-lg text-[var(--text)] mb-1 group-hover:text-[#9B1B5A] transition-colors">
+                      TouchGiftShop · touchgiftshop.co.ke
+                    </h4>
+                    <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-2">
+                      Kenya&apos;s premium gifting engine with signature superpowers: <strong>Pool a Gift™</strong> (collective group contributions for farewells &amp; celebrations), <strong>Build a Hamper</strong> (modular bespoke curation), <strong>WhatsApp Recipient-Choice</strong> delivery confirmation, and <strong>Photo-Proof</strong> sent before dispatch.
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mb-2.5">
+                      {['Pool a Gift™', 'Build a Hamper', 'Recipient-Choice', 'Photo-Proof Before Dispatch', 'Park Towers, Utalii St.'].map((sp) => (
+                        <span key={sp} className="font-mono text-[9px] px-2 py-0.5 rounded bg-[#9B1B5A]/10 text-[#9B1B5A] border border-[#9B1B5A]/25 font-semibold">
+                          {sp}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 font-mono text-[10px] text-[#9B1B5A] font-semibold">
+                      Same-Day Nairobi Delivery (Order by 6 PM) + Physical Store at Park Towers <span>✓</span>
+                    </span>
+                  </div>
+                </a>
+
+                <a
+                  href="https://awards.touchlineltd.co.ke"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-5 sm:p-6 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] hover:border-[#801435]/60 transition-all flex flex-col sm:flex-row items-start gap-4 group shadow-sm hover:shadow-md"
+                >
+                  <div className="relative w-full sm:w-28 h-28 rounded-xl overflow-hidden bg-black/40 border border-[#801435]/30 shrink-0">
+                    <Image
+                      src="/images/awards/prismara-crystal-pillar.webp"
+                      alt="Touchline Awards Optical Crystal Trophies"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-[#9B2345] bg-[#801435]/15 px-2 py-0.5 rounded font-semibold border border-[#801435]/30">
+                        Trophies &amp; Recognition // Subdomain
+                      </span>
+                      <span className="text-xs text-[var(--text-muted)] group-hover:text-[#9B2345] transition-colors">↗</span>
+                    </div>
+                    <h4 className="font-display text-lg text-[var(--text)] mb-1 group-hover:text-[#9B2345] transition-colors">
+                      Touchline Awards Nairobi
+                    </h4>
+                    <p className="text-xs text-[var(--text-muted)] leading-relaxed italic mb-1.5">
+                      &ldquo;Recognition worth remembering. Tuzo zinazostahili kukumbukwa.&rdquo;
+                    </p>
+                    <p className="text-[11px] text-[var(--text-muted)] leading-relaxed mb-2">
+                      Proof before we cut · Stocked blanks ship next working day in Nairobi · Optical crystal, trophies &amp; plaques.
+                    </p>
+                    <span className="inline-flex items-center gap-1.5 font-mono text-[10px] text-[#9B2345] font-semibold">
+                      Direct Hotline: +254 183 172 111 <span>✓</span>
+                    </span>
+                  </div>
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. HOW TOUCHLINE WORKS (Operational Pipeline) ─────────── */}
+      <HowItWorks />
+
+      {/* ── 4.5 THE SINGLE-SOURCE PROCUREMENT ADVANTAGE (Enterprise HCI) ─ */}
+      <section className="section-py bg-[var(--bg-soft)] border-b border-[var(--border)] relative overflow-hidden">
+        <div className="max-w-content mx-auto px-6">
+          <Reveal>
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2 font-semibold">
+                  // Enterprise HCI &amp; Procurement Architecture
+                </span>
+                <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)]">
+                  The Single-Source Advantage: 4 Divisions. One Master Partner.
+                </h2>
+              </div>
+              <p className="text-sm text-[var(--text-muted)] max-w-md leading-relaxed">
+                Why Kenya&apos;s leading banking, retail, and government procurement directors consolidate their entire physical brand operations under Touchline Group.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              {
+                num: '01',
+                title: 'One Master Agreement',
+                subtitle: 'Zero Vendor Fragmentation',
+                desc: 'Consolidate staff uniforms, architectural signage, executive hampers, and annual awards under a single verified framework contract.',
+                color: '#c8960c',
+              },
+              {
+                num: '02',
+                title: 'Exact Color & Material Match',
+                subtitle: 'Flawless Brand Integrity',
+                desc: 'Your Pantone standards, vector geometry, and finish codes match perfectly across embroidered pique cotton, 3D acrylic signs, and crystal trophies.',
+                color: '#0070f3',
+              },
+              {
+                num: '03',
+                title: '100% Tax Compliant (KRA ETR)',
+                subtitle: 'Statutory Peace of Mind',
+                desc: 'Every milestone delivery is backed by KRA ETR electronic tax invoices, certificates of origin, and formal batch inspection certificates.',
+                color: '#9B1B5A',
+              },
+              {
+                num: '04',
+                title: 'Synchronized 47 Counties',
+                subtitle: 'Direct Site & Branch Handover',
+                desc: 'Unified logistics network executing staggered branch rollouts from Mombasa to Turkana with digital dispatch sign-offs via TouchDesk.',
+                color: '#9B2345',
+              },
+            ].map((adv) => (
+              <div
+                key={adv.num}
+                className="p-6 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] hover:border-white/20 transition-all flex flex-col justify-between h-full shadow-sm"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span
+                      className="font-mono text-xs font-bold tracking-wider"
+                      style={{ color: adv.color }}
+                    >
+                      PILLAR // {adv.num}
+                    </span>
+                    <span
+                      className="w-2.5 h-2.5 rounded-full"
+                      style={{ backgroundColor: adv.color }}
+                    />
+                  </div>
+                  <h4 className="font-display text-lg text-[var(--text)] font-semibold mb-1">
+                    {adv.title}
+                  </h4>
+                  <div className="text-[11px] font-mono text-[var(--accent)] font-semibold mb-3">
+                    {adv.subtitle}
+                  </div>
+                  <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+                    {adv.desc}
+                  </p>
+                </div>
+                <div className="pt-4 mt-4 border-t border-[var(--border)]">
+                  <span className="text-[10px] font-mono text-emerald-500 font-semibold flex items-center gap-1">
+                    ✓ Verified Enterprise Standard
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import type { BrandConfig } from '@/config/brands';
 import {
   METHOD_GUIDES,
@@ -23,12 +24,12 @@ import { TurnaroundDeliveryScheduler } from './TurnaroundDeliveryScheduler';
 export function ServicesContent({ brand }: { brand: BrandConfig }) {
   return (
     <div className="relative">
-      {/* ── 1. SERVICES HERO ─────────────────────────────────────── */}
-      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden grad-hero-subtle border-b border-[var(--border)]">
+      {/* ── 1. SERVICES HERO (ASYMMETRICAL SPLIT STAGE) ─────────── */}
+      <section className="relative pt-20 pb-16 md:pt-28 md:pb-20 overflow-hidden grad-hero-subtle border-b border-[var(--border)]">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] rounded-full bg-[var(--accent)] opacity-[0.04] blur-[150px]" />
+          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] rounded-full bg-[var(--accent)] opacity-[0.05] blur-[150px]" />
           <div
-            className="absolute inset-0 opacity-[0.02]"
+            className="absolute inset-0 opacity-[0.03]"
             style={{
               backgroundImage:
                 'repeating-linear-gradient(0deg, var(--border) 0px, var(--border) 1px, transparent 1px, transparent 48px), repeating-linear-gradient(90deg, var(--border) 0px, var(--border) 1px, transparent 1px, transparent 48px)',
@@ -37,39 +38,136 @@ export function ServicesContent({ brand }: { brand: BrandConfig }) {
         </div>
 
         <div className="relative z-10 max-w-content mx-auto px-6">
-          <div className="max-w-3xl">
-            <Reveal>
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/25 mb-6">
-                <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
-                <span className="font-mono text-[11px] font-semibold text-[var(--accent)] tracking-widest uppercase">
-                  Manufacturing Capabilities & Services
-                </span>
-              </div>
-            </Reveal>
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            {/* Left Column: Heading, Subtext, Actions & Production Metrics */}
+            <div className="lg:col-span-7 space-y-6">
+              <Reveal>
+                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/25">
+                  <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
+                  <span className="font-mono text-[11px] font-semibold text-[var(--accent)] tracking-widest uppercase">
+                    Manufacturing Capabilities & Services
+                  </span>
+                </div>
+              </Reveal>
 
-            <Reveal delay={80}>
-              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-6 text-[var(--text)] tracking-tight">
-                Corporate apparel, workwear & merch{' '}
-                <span className="grad-text">engineered without compromise.</span>
-              </h1>
-            </Reveal>
+              <Reveal delay={80}>
+                <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.08] text-[var(--text)] tracking-tight font-bold">
+                  Corporate apparel, workwear & merch{' '}
+                  <span className="grad-text">engineered without compromise.</span>
+                </h1>
+              </Reveal>
 
-            <Reveal delay={160}>
-              <p className="text-lg md:text-xl text-[var(--text-muted)] leading-relaxed mb-8">
-                From precision Tajima embroidery on 240 GSM pique polos to industrial safety PPE and nationwide tender merchandise rollouts. Explore our technical capabilities, test fabrics in our lab specifier, and calculate bulk factory pricing.
-              </p>
-            </Reveal>
+              <Reveal delay={160}>
+                <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl">
+                  From precision Tajima embroidery on 240 GSM pique polos to industrial safety PPE and nationwide tender merchandise rollouts. Explore our technical capabilities, test fabrics in our lab specifier, and calculate bulk factory pricing.
+                </p>
+              </Reveal>
 
-            <Reveal delay={240}>
-              <div className="flex flex-wrap items-center gap-4">
-                <a href="#bulk-calculator" className="btn-primary glow-accent px-7 py-3.5 text-sm font-semibold">
-                  Calculate Bulk Pricing <span>→</span>
-                </a>
-                <a href="#capabilities" className="btn-secondary glass-subtle px-6 py-3.5 text-sm font-medium">
-                  Browse Capabilities
-                </a>
-              </div>
-            </Reveal>
+              <Reveal delay={220}>
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <a href="#bulk-calculator" className="btn-primary glow-accent px-6 py-3 text-sm font-semibold">
+                    Calculate Bulk Pricing <span>→</span>
+                  </a>
+                  <Link
+                    href="/catalog/branding/pdf"
+                    target="_blank"
+                    className="btn-secondary px-5 py-3 text-sm font-semibold flex items-center gap-2 border border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--bg-soft)] text-[var(--text)] transition-all shadow-xs"
+                  >
+                    <span>Download Spec PDF</span>
+                    <span className="text-xs text-[var(--accent)]">↓</span>
+                  </Link>
+                  <a href="#capabilities" className="btn-secondary glass-subtle px-5 py-3 text-sm font-medium">
+                    Browse Capabilities
+                  </a>
+                </div>
+              </Reveal>
+
+              {/* Manufacturing Metrics Strip */}
+              <Reveal delay={280}>
+                <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[var(--border)] max-w-xl">
+                  <div className="p-3 rounded-xl bg-[var(--surface)] border border-[var(--border)] shadow-xs">
+                    <span className="block font-mono text-lg sm:text-xl font-bold text-[var(--text)]">100K+</span>
+                    <span className="text-[11px] text-[var(--text-muted)] font-medium leading-tight block">Monthly Unit Throughput</span>
+                  </div>
+                  <div className="p-3 rounded-xl bg-[var(--surface)] border border-[var(--border)] shadow-xs">
+                    <span className="block font-mono text-lg sm:text-xl font-bold text-[var(--text)]">47 Counties</span>
+                    <span className="text-[11px] text-[var(--text-muted)] font-medium leading-tight block">Scheduled Drop Logistics</span>
+                  </div>
+                  <div className="p-3 rounded-xl bg-[var(--surface)] border border-[var(--border)] shadow-xs">
+                    <span className="block font-mono text-lg sm:text-xl font-bold text-[var(--text)]">KRA / DOSH</span>
+                    <span className="text-[11px] text-[var(--text-muted)] font-medium leading-tight block">Full Tender Compliant</span>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Right Column: Visual Technical Specimen Card */}
+            <div className="lg:col-span-5">
+              <Reveal delay={140}>
+                <div className="card-theme rounded-2xl border border-[var(--border)] overflow-hidden shadow-xl p-5 space-y-4 bg-[var(--surface)]">
+                  {/* Card Header Spec Tag */}
+                  <div className="flex items-center justify-between border-b border-[var(--border)] pb-3 text-xs">
+                    <span className="font-mono text-[11px] font-bold text-[var(--accent)] tracking-wider">
+                      SPEC-APP-001 // NAIROBI PLANT
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-mono text-[10px] font-semibold">
+                      Production Ready
+                    </span>
+                  </div>
+
+                  {/* High Res Product Specimen with Technical Badges */}
+                  <div className="relative rounded-xl overflow-hidden border border-[var(--border)] group">
+                    <Image
+                      src="/images/branding/apparel-executive-polo.webp"
+                      alt="Touchline Executive Corporate Polo Specimen"
+                      width={600}
+                      height={420}
+                      className="w-full h-64 sm:h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+
+                    {/* Floating Technical Badges */}
+                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] font-semibold">
+                      240 GSM Pique Knit
+                    </div>
+                    <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] font-semibold">
+                      Tajima 12-Needle Embroidery
+                    </div>
+                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-[var(--accent)] text-[var(--accent-ink)] font-mono text-[10px] font-bold">
+                      80+ Wash Endurance
+                    </div>
+                  </div>
+
+                  {/* Production Blueprint Specs Breakdown */}
+                  <div className="space-y-2 pt-1">
+                    <div className="flex items-center justify-between text-xs py-1 border-b border-[var(--border)]/60">
+                      <span className="text-[var(--text-muted)]">Stitch Density</span>
+                      <span className="font-mono font-semibold text-[var(--text)]">11,200 High-Def Stitches</span>
+                    </div>
+                    <div className="flex items-center justify-between text-xs py-1 border-b border-[var(--border)]/60">
+                      <span className="text-[var(--text-muted)]">Dye Chemistry</span>
+                      <span className="font-mono font-semibold text-[var(--text)]">Reactive Anti-Bleed Grade 4.5</span>
+                    </div>
+                    <div className="flex items-center justify-between text-xs py-1">
+                      <span className="text-[var(--text-muted)]">Turnaround Target</span>
+                      <span className="font-mono font-semibold text-[var(--accent)]">3-5 Days Milestone Batch</span>
+                    </div>
+                  </div>
+
+                  {/* Quick Action Footer */}
+                  <div className="pt-2">
+                    <a
+                      href="#fabric-inspector"
+                      className="w-full py-2.5 px-4 rounded-xl bg-[var(--bg-soft)] hover:bg-[var(--accent)]/15 border border-[var(--border)] hover:border-[var(--accent)]/30 text-xs font-semibold text-[var(--text)] flex items-center justify-between transition-colors"
+                    >
+                      <span>Test Fabric Density in Lab Specifier</span>
+                      <span>↓</span>
+                    </a>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
@@ -77,51 +175,59 @@ export function ServicesContent({ brand }: { brand: BrandConfig }) {
       {/* ── 2. STICKY WAYFINDER NAV ──────────────────────────────── */}
       <nav
         aria-label="Branding Services Navigation"
-        className="sticky top-[57px] sm:top-[61px] z-30 bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border)] py-2 px-4 sm:px-6 overflow-x-auto scrollbar-none"
+        className="sticky top-[57px] sm:top-[61px] z-30 bg-[var(--bg)]/95 backdrop-blur-xl border-b border-[var(--border)] py-2.5 px-4 sm:px-6 shadow-xs"
       >
-        <div className="max-w-content mx-auto flex items-center justify-start md:justify-center gap-1.5 p-1 rounded-full bg-[var(--surface)] border border-[var(--border)] w-fit text-xs whitespace-nowrap shadow-xs">
+        <div className="max-w-content mx-auto flex items-center justify-start md:justify-center gap-2 overflow-x-auto scrollbar-none py-0.5">
           <a
             href="#capabilities"
-            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
+            className="px-3.5 py-1.5 rounded-full text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text)] bg-[var(--surface)] hover:bg-[var(--bg-soft)] border border-[var(--border)] transition-all whitespace-nowrap shadow-xs"
           >
             Capabilities
           </a>
           <a
             href="#fabric-inspector"
-            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
+            className="px-3.5 py-1.5 rounded-full text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text)] bg-[var(--surface)] hover:bg-[var(--bg-soft)] border border-[var(--border)] transition-all whitespace-nowrap shadow-xs"
           >
             Fabric & GSM Lab
           </a>
           <a
             href="#bulk-calculator"
-            className="px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] font-semibold border border-[var(--accent)]/20 hover:bg-[var(--accent)]/20 transition-colors"
+            className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[var(--accent)] text-[var(--accent-ink)] hover:opacity-90 transition-all whitespace-nowrap shadow-xs"
           >
             Bulk Price Matrix
           </a>
           <a
             href="#color-fidelity"
-            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
+            className="px-3.5 py-1.5 rounded-full text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text)] bg-[var(--surface)] hover:bg-[var(--bg-soft)] border border-[var(--border)] transition-all whitespace-nowrap shadow-xs"
           >
             Color Advisor
           </a>
           <a
             href="#turnaround-scheduler"
-            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
+            className="px-3.5 py-1.5 rounded-full text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text)] bg-[var(--surface)] hover:bg-[var(--bg-soft)] border border-[var(--border)] transition-all whitespace-nowrap shadow-xs"
           >
             Delivery Scheduler
           </a>
           <a
             href="#methods-guide"
-            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
+            className="px-3.5 py-1.5 rounded-full text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text)] bg-[var(--surface)] hover:bg-[var(--bg-soft)] border border-[var(--border)] transition-all whitespace-nowrap shadow-xs"
           >
             Print Methods
           </a>
           <a
             href="#industry-guides"
-            className="px-3 py-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors font-medium"
+            className="px-3.5 py-1.5 rounded-full text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text)] bg-[var(--surface)] hover:bg-[var(--bg-soft)] border border-[var(--border)] transition-all whitespace-nowrap shadow-xs"
           >
             Sector Guides
           </a>
+          <Link
+            href="/catalog/branding/pdf"
+            target="_blank"
+            className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[var(--accent)] bg-[var(--accent)]/10 hover:bg-[var(--accent)]/20 border border-[var(--accent)]/30 transition-all whitespace-nowrap shadow-xs flex items-center gap-1"
+          >
+            <span>Full Catalog PDF</span>
+            <span className="text-[10px]">↗</span>
+          </Link>
         </div>
       </nav>
 
@@ -146,7 +252,7 @@ export function ServicesContent({ brand }: { brand: BrandConfig }) {
           <div className="grid md:grid-cols-2 gap-8 mb-16">
             <div className="card-theme rounded-[var(--radius-lg)] p-6 border border-[var(--border)] space-y-4">
               <ProjectPhoto
-                src="/images/branding/corporate-polos.jpg"
+                src="/images/branding/apparel-executive-polo.webp"
                 alt="Touchline Executive Corporate Polos and Uniforms"
                 division="branding"
                 badge="Apparel Division"
@@ -172,7 +278,7 @@ export function ServicesContent({ brand }: { brand: BrandConfig }) {
 
             <div className="card-theme rounded-[var(--radius-lg)] p-6 border border-[var(--border)] space-y-4">
               <ProjectPhoto
-                src="/images/branding/workwear-ppe.jpg"
+                src="/images/branding/apparel-heavyweight-tee.webp"
                 alt="Touchline Heavy Duty Safety Overalls and Reflective Vests"
                 division="branding"
                 badge="Safety & PPE Division"
@@ -198,7 +304,7 @@ export function ServicesContent({ brand }: { brand: BrandConfig }) {
 
             <div className="card-theme rounded-[var(--radius-lg)] p-6 border border-[var(--border)] space-y-4">
               <ProjectPhoto
-                src="/images/branding/executive-gifts.jpg"
+                src="/images/branding/gift-executive-vip-set.webp"
                 alt="Touchline Laser Engraved Stainless Drinkware and PU Notebooks"
                 division="branding"
                 badge="Executive Gifts"
@@ -224,7 +330,7 @@ export function ServicesContent({ brand }: { brand: BrandConfig }) {
 
             <div className="card-theme rounded-[var(--radius-lg)] p-6 border border-[var(--border)] space-y-4">
               <ProjectPhoto
-                src="/images/branding/promotional-merch.jpg"
+                src="/images/branding/merch-tote-bag.webp"
                 alt="Touchline Event Totes, Lanyards and Large Scale Promotional Merch"
                 division="branding"
                 badge="Tender & Events"

@@ -45,6 +45,7 @@ export async function Footer({ brand }: { brand: BrandConfig | null }) {
 
   const brandingUrl = getCrossBrandUrl('branding', host);
   const signageUrl = getCrossBrandUrl('signage', host);
+  const awardsUrl = 'https://awards.touchlineltd.co.ke';
 
   const whatsappNumber = effectiveBrand?.contactPhone.replace(/\D/g, '') || '254722668696';
   const whatsappMsg = encodeURIComponent(`Hi Touchline${effectiveBrand ? ` ${effectiveBrand.id === 'branding' ? 'Branding' : 'Signage'}` : ''}, I'd like to get a quote.`);
@@ -101,6 +102,7 @@ export async function Footer({ brand }: { brand: BrandConfig | null }) {
             <li><a href={brandingUrl} className="hover:text-[var(--accent)] transition-colors">Branding — Merchandise &amp; apparel</a></li>
             <li><a href={signageUrl} className="hover:text-[var(--accent)] transition-colors">Signage — Fabrication &amp; LED</a></li>
             <li><a href="https://touchgiftshop.co.ke" className="hover:text-[var(--accent)] transition-colors" target="_blank" rel="noopener noreferrer">TouchGiftShop — Sister company, corporate gifting</a></li>
+            <li><a href={awardsUrl} className="hover:text-[var(--accent)] transition-colors" target="_blank" rel="noopener noreferrer">Touchline Awards — Trophies &amp; crystal plaques</a></li>
           </ul>
         </div>
 

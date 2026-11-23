@@ -41,6 +41,14 @@ function getBrandDomains(): Record<BrandId, string> {
 }
 
 /**
+ * Sister brand external storefront URLs (standalone e-commerce systems).
+ */
+export function getSisterBrandUrl(brand: 'giftshop' | 'awards'): string {
+  if (brand === 'giftshop') return 'https://touchgiftshop.co.ke';
+  return process.env.AWARDS_DOMAIN ? `https://${process.env.AWARDS_DOMAIN}` : 'https://awards.touchlineltd.co.ke';
+}
+
+/**
  * Returns the absolute base URL for a brand.
  * In development (localhost), returns a relative path with ?brand= query param
  * so you don't need real subdomains set up.

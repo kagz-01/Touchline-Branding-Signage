@@ -122,7 +122,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
         volume: '4,000 Units',
         deadline: '14 Days',
         materials: 'Fabric, Ceramic, Paper',
-        image_url: '/images/branding/tender-rollout.jpg',
+        image_url: '/images/branding/apparel-staff-uniform.webp',
       },
       {
         title: 'Staff Uniform Rollout',
@@ -131,7 +131,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
         volume: '360 Units',
         deadline: '5 Days',
         materials: 'Cotton, Polyester Blend',
-        image_url: '/images/branding/apparel-embroidery.jpg',
+        image_url: '/images/branding/apparel-executive-polo.webp',
       },
       {
         title: 'Conference Delegate Kits',
@@ -140,7 +140,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
         volume: '500 Kits',
         deadline: '10 Days',
         materials: 'Canvas, Stainless Steel',
-        image_url: '/images/branding/corporate-gifts.jpg',
+        image_url: '/images/branding/gift-executive-vip-set.webp',
       },
       {
         title: 'Product Launch Giveaways',
@@ -149,7 +149,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
         volume: '1,200 Units',
         deadline: '7 Days',
         materials: 'Mixed Media',
-        image_url: '/images/branding/hero-merch.jpg',
+        image_url: '/images/branding/branding-hero.webp',
       },
     ],
     testimonials: [
@@ -248,7 +248,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
         volume: '9 Sites',
         deadline: '21 Days',
         materials: 'Aluminium Composite, LED',
-        image_url: '/images/signage/led-lightbox.jpg',
+        image_url: '/images/signage/architectural-fabric-lightbox.webp',
       },
       {
         title: 'Corporate Reception Signage',
@@ -257,16 +257,16 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
         volume: '1 Office',
         deadline: '3 Days',
         materials: 'Cut Acrylic',
-        image_url: '/images/signage/3d-channel-letters.jpg',
+        image_url: '/images/signage/3d-channel-letters.webp',
       },
       {
-        title: 'Fleet Vehicle Wrap',
-        category: 'Vehicle branding',
-        blurb: 'Full-wrap branding for a 14-vehicle delivery fleet, colour-matched to brand guidelines.',
-        volume: '14 Vehicles',
-        deadline: '7 Days',
-        materials: 'Cast Vinyl',
-        image_url: '/images/signage/vehicle-wrap.jpg',
+        title: 'Commercial Storefront & Facade Architecture',
+        category: 'Storefront Facades',
+        blurb: 'Engineered building facade with 3D acrylic letters and aluminum composite panel cladding.',
+        volume: '1 Flagship Site',
+        deadline: '10 Days',
+        materials: 'PVDF Aluminum Composite, Cast Acrylic',
+        image_url: '/images/signage/3d-acrylic-facade.webp',
       },
       {
         title: 'Event LED Installation',
@@ -275,7 +275,7 @@ export const BRANDS: Record<'branding' | 'signage', BrandConfig> = {
         volume: '1 Stage',
         deadline: '48 Hours',
         materials: 'LED Modules, Steel Frame',
-        image_url: '/images/signage/hero-signage.jpg',
+        image_url: '/images/signage/signage-hero.webp',
       },
     ],
     testimonials: [
