@@ -20,13 +20,17 @@ type Metrics = {
 
 export default function AdminDashboardPage() {
   const [leads, setLeads] = useState<Lead[]>([]);
+  const [catalogCount, setCatalogCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/admin/leads")
-      .then((r) => (r.ok ? r.json() : []))
-      .then((data) => {
-        setLeads(data);
+    Promise.all([
+      fetch("/api/admin/leads").then((r) => (r.ok ? r.json() : [])),
+      fetch("/api/admin/catalog").then((r) => (r.ok ? r.json() : [])),
+    ])
+      .then(([leadsData, catalogData]) => {
+        setLeads(leadsData);
+        setCatalogCount(Array.isArray(catalogData) ? catalogData.length : 0);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -42,10 +46,10 @@ export default function AdminDashboardPage() {
   const recentLeads = leads.slice(0, 5);
 
   const metricCards = [
-    { label: "Total Leads", value: metrics.total, color: "var(--text)" },
-    { label: "New", value: metrics.newLeads, color: "var(--accent)" },
-    { label: "Contacted", value: metrics.contacted, color: "#f59e0b" },
-    { label: "Converted", value: metrics.converted, color: "#10b981" },
+    { label: "Total RFQs & Leads", value: metrics.total, color: "var(--text)" },
+    { label: "New Unprocessed", value: metrics.newLeads, color: "var(--accent)" },
+    { label: "Converted to Desk", value: metrics.converted, color: "#10b981" },
+    { label: "Live Catalog Items", value: catalogCount ?? "—", color: "#0070f3" },
   ];
 
   return (
@@ -57,13 +61,37 @@ export default function AdminDashboardPage() {
       {/* Metrics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {metricCards.map((card) => (
-          <div key={card.label} className="card-surface p-5">
+          <div key={card.label} className="card-surface p-5 rounded-2xl border border-[var(--border)]">
             <span className="text-xs text-[var(--text-muted)] block mb-2">{card.label}</span>
-            <span className="font-display text-3xl" style={{ color: card.color }}>
+            <span className="font-display text-3xl font-bold" style={{ color: card.color }}>
               {loading ? "—" : card.value}
             </span>
           </div>
         ))}
+      </div>
+
+      {/* Quick Actions Bar */}
+      <div className="card-theme p-6 rounded-2xl border border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 className="font-display text-base font-bold text-[var(--text)]">Catalog &amp; Procurement Inventory</h3>
+          <p className="text-xs text-[var(--text-muted)] mt-0.5">
+            Manage your live products, upload high-res photography to Supabase bucket, and change pricing in real time.
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/admin/catalog"
+            className="btn-primary px-5 py-2.5 rounded-xl text-xs font-semibold shadow-xs"
+          >
+            Manage Catalog →
+          </Link>
+          <Link
+            href="/admin/leads"
+            className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-[var(--surface)] border border-[var(--border)] hover:bg-[var(--bg-soft)] text-[var(--text)] transition-colors"
+          >
+            Process RFQs →
+          </Link>
+        </div>
       </div>
 
       {/* Recent Leads */}
