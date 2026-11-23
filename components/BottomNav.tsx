@@ -45,14 +45,16 @@ export function BottomNav({ brand }: { brand: BrandConfig | null }) {
 
   const isBranding = brand?.id === 'branding' || pathname?.startsWith('/branding');
   const isSignage = brand?.id === 'signage' || pathname?.startsWith('/signage');
+  const isHub = !isBranding && !isSignage;
 
   const homeHref = isBranding ? '/branding' : isSignage ? '/signage' : '/';
+  const homeLabel = isHub ? 'Hub' : 'Home';
   const servicesHref = isBranding ? '/services?brand=branding' : isSignage ? '/services?brand=signage' : '/services';
   const workHref = isBranding ? '/portfolio?brand=branding' : isSignage ? '/portfolio?brand=signage' : '/portfolio';
   const quoteHref = isBranding ? '/book?brand=branding' : isSignage ? '/book?brand=signage' : '/book';
 
   const items = [
-    { href: homeHref, label: 'Home', Icon: HomeIcon, active: pathname === homeHref || (pathname === '/' && homeHref === '/') },
+    { href: homeHref, label: homeLabel, Icon: HomeIcon, active: pathname === homeHref || (pathname === '/' && homeHref === '/') },
     { href: servicesHref, label: 'Services', Icon: ServicesIcon, active: pathname?.startsWith('/services') },
     { href: workHref, label: 'Work', Icon: PortfolioIcon, active: pathname?.startsWith('/portfolio') },
     { href: quoteHref, label: 'Quote', Icon: QuoteIcon, active: pathname?.startsWith('/book') },

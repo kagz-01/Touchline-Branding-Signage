@@ -37,8 +37,16 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
             </div>
           </Link>
 
-          {/* Desktop Nav: Clean Pill Cluster */}
+          {/* Desktop Nav: Clean Pill Cluster with Active Hub Tab */}
           <nav className="hidden lg:flex items-center gap-1.5 p-1 rounded-full bg-[var(--surface)]/80 border border-[var(--border)] shadow-sm backdrop-blur-md">
+            <Link
+              href="/"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-[var(--accent)] bg-[var(--accent)]/10 font-bold border border-[var(--accent)]/20 shadow-xs transition-all"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+              Hub
+            </Link>
+            <span className="w-px h-3.5 bg-[var(--border)] mx-0.5" />
             <a
               href={brandingUrl}
               className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[#c8960c] hover:bg-[var(--bg-soft)] transition-all"
