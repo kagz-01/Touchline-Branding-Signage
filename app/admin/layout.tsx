@@ -29,7 +29,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               className="flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius-sm)] text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors"
             >
               <span className="w-4 h-4 border border-current rounded-sm flex items-center justify-center text-[8px]">◇</span>
-              Leads
+              Leads &amp; RFQs
+            </Link>
+            <Link
+              href="/admin/catalog"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius-sm)] text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-soft)] transition-colors"
+            >
+              <span className="w-4 h-4 border border-current rounded-sm flex items-center justify-center text-[8px]">▤</span>
+              Catalog Manager
             </Link>
           </nav>
 
@@ -60,6 +67,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <nav className="flex items-center gap-4">
               <Link href="/admin" className="text-sm text-[var(--text-muted)] hover:text-[var(--text)]">Dashboard</Link>
               <Link href="/admin/leads" className="text-sm text-[var(--text-muted)] hover:text-[var(--text)]">Leads</Link>
+              <Link href="/admin/catalog" className="text-sm text-[var(--text-muted)] hover:text-[var(--text)]">Catalog</Link>
             </nav>
           </div>
         )}
