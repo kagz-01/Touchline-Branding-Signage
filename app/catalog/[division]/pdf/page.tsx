@@ -3,18 +3,58 @@
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { SIGNAGE_CATALOG_ITEMS, SIGNAGE_CATALOG_CATEGORIES } from '@/config/signage-catalog';
 import { BRANDING_CATALOG_ITEMS, BRANDING_CATALOG_CATEGORIES } from '@/config/branding-catalog';
 import { AWARDS_CATALOG_ITEMS, AWARDS_CATALOG_CATEGORIES } from '@/config/awards-catalog';
+import type { CatalogItemDB, CatalogCategoryDB } from '@/lib/supabase';
 
 export default function DivisionCatalogPdfPage() {
   const params = useParams();
   const division = (params?.division as string)?.toLowerCase() || 'signage';
 
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [dbItems, setDbItems] = useState<CatalogItemDB[] | null>(null);
+  const [dbCategories, setDbCategories] = useState<CatalogCategoryDB[] | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetch(`/api/catalog?division=${division}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((json) => {
+        if (isMounted && json?.items?.length) {
+          setDbItems(json.items);
+          if (json?.categories?.length) {
+            setDbCategories(json.categories);
+          }
+        }
+      })
+      .catch(() => {});
+    return () => {
+      isMounted = false;
+    };
+  }, [division]);
 
   const meta = useMemo(() => {
+    // If live DB items are available for this division, prioritize them
+    const liveItems = dbItems && dbItems.length > 0 ? dbItems.map((item, idx) => ({
+      id: item.id,
+      sku: item.sku || item.id,
+      title: item.title,
+      category: item.category,
+      categorySlug: item.category_slug,
+      badge: item.badge || item.category,
+      image: item.image,
+      specs: item.specs || [],
+      turnaround: item.turnaround || '3 - 5 Days',
+      priceKes: item.price_kes || (item.division === 'signage' ? 18000 + (idx * 1500) % 45000 : 1500),
+    })) : null;
+
+    const liveCategories = dbCategories && dbCategories.length > 0 ? dbCategories.map(c => ({
+      slug: c.slug,
+      label: c.label,
+    })) : null;
+
     switch (division) {
       case 'branding':
         return {
@@ -25,8 +65,8 @@ export default function DivisionCatalogPdfPage() {
           bgHeader: 'bg-[#c8960c]',
           textColor: 'text-[#c8960c]',
           borderColor: 'border-[#c8960c]',
-          categories: BRANDING_CATALOG_CATEGORIES,
-          items: BRANDING_CATALOG_ITEMS.map((item) => ({
+          categories: liveCategories || BRANDING_CATALOG_CATEGORIES,
+          items: liveItems || BRANDING_CATALOG_ITEMS.map((item) => ({
             id: item.id,
             sku: item.sku,
             title: item.title,
@@ -48,8 +88,8 @@ export default function DivisionCatalogPdfPage() {
           bgHeader: 'bg-[#9B2345]',
           textColor: 'text-[#9B2345]',
           borderColor: 'border-[#9B2345]',
-          categories: AWARDS_CATALOG_CATEGORIES,
-          items: AWARDS_CATALOG_ITEMS.map((item) => ({
+          categories: liveCategories || AWARDS_CATALOG_CATEGORIES,
+          items: liveItems || AWARDS_CATALOG_ITEMS.map((item) => ({
             id: item.id,
             sku: item.sku,
             title: item.title,
@@ -72,8 +112,8 @@ export default function DivisionCatalogPdfPage() {
           bgHeader: 'bg-[#0070f3]',
           textColor: 'text-[#0070f3]',
           borderColor: 'border-[#0070f3]',
-          categories: SIGNAGE_CATALOG_CATEGORIES,
-          items: SIGNAGE_CATALOG_ITEMS.map((item, idx) => ({
+          categories: liveCategories || SIGNAGE_CATALOG_CATEGORIES,
+          items: liveItems || SIGNAGE_CATALOG_ITEMS.map((item, idx) => ({
             id: item.id,
             sku: item.id,
             title: item.title,
@@ -87,7 +127,7 @@ export default function DivisionCatalogPdfPage() {
           })),
         };
     }
-  }, [division]);
+  }, [division, dbItems, dbCategories]);
 
   const filteredItems = useMemo(() => {
     if (activeCategory === 'all') return meta.items;

@@ -14,6 +14,7 @@ import { FastQuoteWidget } from './FastQuoteWidget';
 import { SIGNAGE_CATALOG_ITEMS, SIGNAGE_CATALOG_CATEGORIES } from '@/config/signage-catalog';
 import { BRANDING_CATALOG_ITEMS, BRANDING_CATALOG_CATEGORIES } from '@/config/branding-catalog';
 import { AWARDS_CATALOG_ITEMS, AWARDS_CATALOG_CATEGORIES } from '@/config/awards-catalog';
+import type { CatalogItemDB } from '@/lib/supabase';
 
 export type PortfolioGalleryItem = PortfolioItem & {
   sector?: string;
@@ -630,6 +631,36 @@ export function PortfolioGallery({
     priceKes?: number;
   } | null>(null);
 
+  // Live Supabase Database state
+  const [dbItems, setDbItems] = useState<CatalogItemDB[] | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function loadDbCatalog() {
+      try {
+        const divisions = ['branding', 'signage', 'awards'];
+        const results = await Promise.all(
+          divisions.map((d) =>
+            fetch(`/api/catalog?division=${d}`)
+              .then((r) => (r.ok ? r.json() : null))
+              .then((json) => json?.items || [])
+              .catch(() => [])
+          )
+        );
+        const combined = results.flat();
+        if (isMounted && combined.length > 0) {
+          setDbItems(combined);
+        }
+      } catch (err) {
+        console.warn('Fallback to static catalog:', err);
+      }
+    }
+    loadDbCatalog();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   // 1. Featured Case Studies Filter
   const allProjects = EXTENDED_PORTFOLIO;
   const filteredProjects = allProjects.filter((item) => {
@@ -641,8 +672,25 @@ export function PortfolioGallery({
   });
   const visibleCaseStudies = limit ? filteredProjects.slice(0, limit) : filteredProjects;
 
-  // 2. Complete Catalog Archive (Unified 244 authentic items)
+  // 2. Complete Catalog Archive (Unified 244 authentic items from live Supabase DB with static fallback)
   const unifiedCatalogItems = useMemo(() => {
+    // If live DB items have loaded, use them directly
+    if (dbItems && dbItems.length > 0) {
+      return dbItems.map((item) => ({
+        id: item.id,
+        sku: item.sku || item.id,
+        title: item.title,
+        category: item.category,
+        categorySlug: item.category_slug,
+        badge: item.badge || item.category,
+        image: item.image,
+        specs: item.specs || [],
+        turnaround: item.turnaround || '3 - 5 Days',
+        division: item.division,
+        priceKes: item.price_kes || (item.division === 'signage' ? 18000 : 1500),
+      }));
+    }
+
     const list: Array<{
       id: string;
       sku: string;
