@@ -107,18 +107,30 @@ export function HubHome() {
     <div className="relative">
       {/* ── 1. SPLIT CINEMATIC HERO (Asymmetrical Power Split: Hero Stage + 2x2 Quad Gateway) ── */}
       <section className="relative min-h-[90vh] lg:min-h-[calc(100vh-65px)] flex items-center overflow-hidden py-10 sm:py-14 border-b border-white/10 bg-[#090b0e] text-white">
-        {/* Subtle Ambient Background Gradients & Precision Blueprint Grid */}
-        <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
-          <div className="absolute top-1/4 -left-28 w-[550px] h-[550px] rounded-full bg-[#c8960c] opacity-[0.10] blur-[150px]" />
-          <div className="absolute top-1/3 -right-28 w-[550px] h-[550px] rounded-full bg-[#0070f3] opacity-[0.09] blur-[150px]" />
+        {/* Full-Bleed Executive Background Image */}
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+          <Image
+            src="/images/heroes/hub-hero-bg.jpg"
+            alt="Touchline Executive Workspace"
+            fill
+            priority
+            quality={90}
+            className="object-cover object-center opacity-40 mix-blend-luminosity scale-105 filter contrast-125"
+          />
+          {/* Atmospheric Brand Overlays: Dark Gradient & Subtle Vignette */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#090b0e]/95 via-[#090b0e]/80 to-[#090b0e]/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#090b0e]/60 via-transparent to-[#090b0e]" />
+
+          {/* Ambient Glows */}
+          <div className="absolute top-1/4 -left-28 w-[550px] h-[550px] rounded-full bg-[#c8960c] opacity-[0.14] blur-[150px]" />
+          <div className="absolute top-1/3 -right-28 w-[550px] h-[550px] rounded-full bg-[#0070f3] opacity-[0.12] blur-[150px]" />
           <div
-            className="absolute inset-0 opacity-[0.05]"
+            className="absolute inset-0 opacity-[0.04]"
             style={{
               backgroundImage:
                 'repeating-linear-gradient(0deg, #ffffff 0px, #ffffff 1px, transparent 1px, transparent 44px), repeating-linear-gradient(90deg, #ffffff 0px, #ffffff 1px, transparent 1px, transparent 44px)',
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#090b0e]/40 to-[#090b0e]" />
         </div>
 
         <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full">
