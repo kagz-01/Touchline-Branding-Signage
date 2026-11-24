@@ -196,7 +196,7 @@ export function HubHome() {
                     <div className="relative z-10">
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#c8960c] bg-[#c8960c]/10 px-2 py-0.5 rounded border border-[#c8960c]/20 font-semibold">
-                          Div 01 // Apparel &amp; Merch
+                          Div 01 · Apparel &amp; Merch
                         </span>
                         <span className="font-mono text-[9px] text-amber-200/50 group-hover:text-amber-200 transition-colors">
                           branding.touchlineltd.co.ke ↗
@@ -257,7 +257,7 @@ export function HubHome() {
                     <div className="relative z-10">
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#0070f3] bg-[#0070f3]/10 px-2 py-0.5 rounded border border-[#0070f3]/20 font-semibold">
-                          Div 02 // Architectural Signs
+                          Div 02 · Architectural Signs
                         </span>
                         <span className="font-mono text-[9px] text-blue-200/50 group-hover:text-blue-200 transition-colors">
                           signage.touchlineltd.co.ke ↗
@@ -320,7 +320,7 @@ export function HubHome() {
                     <div className="relative z-10">
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#f472b6] bg-[#9B1B5A]/15 px-2 py-0.5 rounded border border-[#9B1B5A]/30 font-semibold">
-                          Div 03 // Corporate Gifts
+                          Div 03 · Corporate Gifts
                         </span>
                         <span className="font-mono text-[9px] text-pink-200/50 group-hover:text-pink-200 transition-colors">
                           touchgiftshop.co.ke ↗
@@ -381,7 +381,7 @@ export function HubHome() {
                     <div className="relative z-10">
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#fca5a5] bg-[#801435]/20 px-2 py-0.5 rounded border border-[#801435]/30 font-semibold">
-                          Div 04 // Trophies &amp; Awards
+                          Div 04 · Trophies &amp; Awards
                         </span>
                         <span className="font-mono text-[9px] text-rose-200/50 group-hover:text-rose-200 transition-colors">
                           awards.touchlineltd.co.ke ↗
@@ -445,9 +445,6 @@ export function HubHome() {
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7">
               <Reveal>
-                <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-3">
-                  // The Touchline Thesis
-                </span>
                 <h2 className="font-display text-3xl sm:text-5xl leading-tight text-[var(--text)] mb-6">
                   Most brands have a logo in a deck.
                   <br />
@@ -519,9 +516,6 @@ export function HubHome() {
           <Reveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
               <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
-                  // Operational Capabilities
-                </span>
                 <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)]">
                   The Two Operational Pillars
                 </h2>
@@ -639,9 +633,6 @@ export function HubHome() {
             <Reveal delay={100}>
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-1">
-                    // Group Sister Brands
-                  </span>
                   <h3 className="font-display text-xl sm:text-2xl text-[var(--text)]">
                     Specialized Retail &amp; Recognition Platforms
                   </h3>
@@ -731,9 +722,6 @@ export function HubHome() {
           <Reveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
               <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2 font-semibold">
-                  // Enterprise HCI &amp; Procurement Architecture
-                </span>
                 <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)]">
                   The Single-Source Advantage: 4 Divisions. One Master Partner.
                 </h2>
@@ -785,7 +773,7 @@ export function HubHome() {
                       className="font-mono text-xs font-bold tracking-wider"
                       style={{ color: adv.color }}
                     >
-                      PILLAR // {adv.num}
+                      Advantage {adv.num}
                     </span>
                     <span
                       className="w-2.5 h-2.5 rounded-full"
@@ -813,17 +801,11 @@ export function HubHome() {
         </div>
       </section>
 
-      {/* ── 4. HOW TOUCHLINE WORKS (Operational Pipeline) ─────────── */}
-      <HowItWorks />
-
       {/* ── 5. SECTOR EXPERTISE (Who We Serve) ─────────────────────── */}
       <section className="section-py bg-[var(--bg)] border-b border-[var(--border)]">
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
-                // Industry Reach
-              </span>
               <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-4">
                 Sectors That Trust Touchline
               </h2>
@@ -839,7 +821,7 @@ export function HubHome() {
                 <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] h-full flex flex-col justify-between">
                   <div>
                     <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-3">
-                      0{i + 1} // SECTOR
+                      Sector 0{i + 1}
                     </span>
                     <h4 className="font-display text-xl text-[var(--text)] mb-3">{sector.name}</h4>
                     <p className="text-xs text-[var(--text-muted)] leading-relaxed">{sector.desc}</p>
@@ -881,9 +863,6 @@ export function HubHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
-                // Client Field Feedback
-              </span>
               <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-4">
                 What Procurement &amp; Facilities Teams Say
               </h2>
@@ -921,9 +900,6 @@ export function HubHome() {
         <div className="max-w-content mx-auto px-6">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
-                // Instant Sizing &amp; Pricing
-              </span>
               <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)] mb-4">
                 FastQuote Estimator
               </h2>
@@ -947,9 +923,6 @@ export function HubHome() {
 
         <div className="relative z-10 max-w-content mx-auto px-6 text-center">
           <Reveal>
-            <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-4">
-              // Direct Workshop Connection
-            </span>
             <h2 className="font-display text-4xl sm:text-6xl text-[var(--text)] mb-6 max-w-3xl mx-auto leading-tight">
               Ready to manufacture your brand&apos;s physical presence?
             </h2>

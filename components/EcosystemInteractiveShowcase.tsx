@@ -33,7 +33,7 @@ const DIVISION_DATA: Record<
 > = {
   branding: {
     title: 'Touchline Branding',
-    subtitle: 'Division 01 // Apparel, Uniforms & Merchandise',
+    subtitle: 'Commercial Apparel, Uniforms & Merchandise',
     tagline: 'The merchandise people carry into the boardroom, worksite, and street.',
     domain: 'branding.touchlineltd.co.ke',
     url: '/branding',
@@ -86,7 +86,7 @@ const DIVISION_DATA: Record<
   },
   signage: {
     title: 'Touchline Signage',
-    subtitle: 'Division 02 // Architectural, Lightboxes & Fleet',
+    subtitle: 'Architectural Signs, 3D Letters & Lightboxes',
     tagline: 'The structural installations that command authority and guide customer traffic.',
     domain: 'signage.touchlineltd.co.ke',
     url: '/signage',
@@ -139,7 +139,7 @@ const DIVISION_DATA: Record<
   },
   giftshop: {
     title: 'TouchGiftShop',
-    subtitle: 'Division 03 // Curated Hampers, Gifting Superpowers & Retail',
+    subtitle: 'Curated Hampers & Executive Gifting',
     tagline: 'Kenya’s premium gift delivery platform: Pool a Gift™ group funds, Build a Hamper studio, and photo-proof dispatch.',
     domain: 'touchgiftshop.co.ke',
     url: 'https://touchgiftshop.co.ke',
@@ -159,7 +159,7 @@ const DIVISION_DATA: Record<
         image: '/images/giftshop/giftshop-celebration-hamper.webp',
         specs: ['Shared Contributor Link & Live Ledger', 'Automated M-Pesa Group Pooling', 'Surprise Digital QR Unwrapping Note'],
         turnaround: 'Same-Day Nairobi',
-        badge: 'Superpower // Pool a Gift™',
+        badge: 'Pool a Gift™',
       },
       {
         id: 'TGS-BOX',
@@ -168,7 +168,7 @@ const DIVISION_DATA: Record<
         image: '/images/giftshop/giftshop-luxury-trio-box.webp',
         specs: ['Bespoke Component Selection Studio', 'Handcrafted 1200 GSM Keepsake Box', 'Wax-Sealed Custom Card Note'],
         turnaround: '24 - 48h',
-        badge: 'Superpower // Build a Hamper',
+        badge: 'Build a Hamper',
       },
       {
         id: 'TGS-HMP',
@@ -192,7 +192,7 @@ const DIVISION_DATA: Record<
   },
   awards: {
     title: 'Touchline Awards Nairobi',
-    subtitle: 'Division 04 // Optical Crystal, Trophies & Plaques',
+    subtitle: 'Optical Crystal, Trophies & Recognition Plaques',
     tagline: 'Recognition worth remembering. Tuzo zinazostahili kukumbukwa.',
     domain: 'awards.touchlineltd.co.ke',
     url: 'https://awards.touchlineltd.co.ke',
@@ -289,9 +289,6 @@ export function EcosystemInteractiveShowcase() {
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2 font-semibold">
-                // Multi-Division Interactive Cockpit
-              </span>
               <h2 className="font-display text-3xl sm:text-5xl text-[var(--text)]">
                 Explore The Physical Brand Ecosystem
               </h2>
@@ -495,9 +492,6 @@ export function EcosystemInteractiveShowcase() {
         <div className="p-6 rounded-2xl bg-[var(--bg-soft)] border border-[var(--border)]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 pb-4 border-b border-[var(--border)] gap-2">
             <div>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--accent)] block font-semibold">
-                // Material Integrity Standards
-              </span>
               <h4 className="font-display text-lg text-[var(--text)]">
                 Industrial Substrates &amp; Tested Materials
               </h4>
