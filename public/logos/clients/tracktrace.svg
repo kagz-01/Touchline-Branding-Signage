@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 50" fill="none">
+  <!-- Track & Trace Logo: GPS Navigation Waypoint + Bold Logistics Lockup -->
+  <g transform="translate(4, 7)">
+    <circle cx="18" cy="18" r="16" fill="#FF6600" opacity="0.15"/>
+    <path d="M18 4C11.4 4 6 9.4 6 16C6 24 18 34 18 34S30 24 30 16C30 9.4 24.6 4 18 4ZM18 20C15.8 20 14 18.2 14 16C14 13.8 15.8 12 18 12C20.2 12 22 13.8 22 16C22 18.2 20.2 20 18 20Z" fill="#FF6600"/>
+  </g>
+  <text x="44" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="900" fill="currentColor" letter-spacing="0.5">TRACK &amp; TRACE</text>
+  <text x="45" y="38" font-family="system-ui, -apple-system, monospace" font-size="8.5" font-weight="600" fill="#FF6600" letter-spacing="2.5">SOLUTIONS LTD</text>
+</svg>

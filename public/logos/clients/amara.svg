@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" fill="none">
+  <!-- Amara Realty Logo: Architectural A-Monogram + Refined Serif/Sans Lockup -->
+  <g transform="translate(4, 5)">
+    <!-- Roofline Monogram -->
+    <path d="M20 2L38 38H28L20 20L12 38H2L20 2Z" fill="#D4AF37"/>
+    <path d="M20 12L28 30H12L20 12Z" fill="#1C1917"/>
+    <path d="M14 26H26" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <text x="50" y="27" font-family="system-ui, -apple-system, 'Playfair Display', serif" font-size="18" font-weight="700" fill="currentColor" letter-spacing="2">AMARA</text>
+  <text x="51" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" fill="#D4AF37" letter-spacing="3.5">REALTY</text>
+</svg>
