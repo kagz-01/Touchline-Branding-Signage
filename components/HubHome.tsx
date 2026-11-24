@@ -10,6 +10,7 @@ import { ProjectPhoto } from './ProjectPhoto';
 import { FastQuoteWidget } from './FastQuoteWidget';
 import { EcosystemInteractiveShowcase } from './EcosystemInteractiveShowcase';
 import { EcosystemHeroSlideshow } from './EcosystemHeroSlideshow';
+import { ClientTrustMarquee } from './ClientTrustMarquee';
 
 function getBrandUrl(brandId: 'branding' | 'signage'): string {
   if (typeof window === 'undefined') return `/${brandId}`;
@@ -435,6 +436,9 @@ export function HubHome() {
           </div>
         </div>
       </section>
+
+      {/* ── 1.5. TRUST SIGNALS: ENTERPRISE & PUBLIC SECTOR MARQUEE ── */}
+      <ClientTrustMarquee />
 
       {/* ── 2. INTERACTIVE MULTI-DIVISION COCKPIT & PHOTOGRAPHIC SHOWCASE ── */}
       <EcosystemInteractiveShowcase />
