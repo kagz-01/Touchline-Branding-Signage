@@ -328,20 +328,7 @@ export function HubHome() {
                       </div>
 
                       <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <div className="w-5 h-5 rounded bg-[#9B1B5A]/25 border border-[#9B1B5A]/40 flex items-center justify-center text-[#f472b6]">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
-                              <polyline points="20 12 20 22 4 22 4 12" />
-                              <rect x="2" y="7" width="20" height="5" />
-                              <line x1="12" y1="22" x2="12" y2="7" />
-                              <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
-                              <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
-                            </svg>
-                          </div>
-                          <span className="font-display font-bold text-xs sm:text-sm tracking-wider uppercase text-white">
-                            TOUCH<span className="text-[#f472b6]">GIFTSHOP</span>
-                          </span>
-                        </div>
+                        <Logo brand="giftshop" className="h-5 sm:h-6 w-auto" forceLight />
                         <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-[#9B1B5A]/30 bg-black/40 shrink-0">
                           <Image
                             src="/images/giftshop/giftshop-luxury-trio-box.webp"
@@ -350,9 +337,7 @@ export function HubHome() {
                             className="object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                         </div>
-                      </div>
-
-                      <h3 className="font-display text-sm sm:text-base text-pink-50 mb-1 group-hover:text-[#f472b6] transition-colors leading-snug">
+                      </div>                      <h3 className="font-display text-sm sm:text-base text-pink-50 mb-1 group-hover:text-[#f472b6] transition-colors leading-snug">
                         Elevate the Art of Gifting.
                       </h3>
 
@@ -404,20 +389,7 @@ export function HubHome() {
                       </div>
 
                       <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <div className="w-5 h-5 rounded bg-[#801435]/30 border border-[#801435]/50 flex items-center justify-center text-[#fca5a5]">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
-                              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-                              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-                              <path d="M4 22h16" />
-                              <path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34" />
-                              <path d="M6 4h12a2 2 0 0 1 2 2v3a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6V6a2 2 0 0 1 2-2z" />
-                            </svg>
-                          </div>
-                          <span className="font-display font-bold text-xs sm:text-sm tracking-wider uppercase text-white">
-                            TOUCH<span className="text-[#fca5a5]">AWARDS</span>
-                          </span>
-                        </div>
+                        <Logo brand="awards" className="h-5 sm:h-6 w-auto" forceLight />
                         <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-[#801435]/30 bg-black/40 shrink-0">
                           <Image
                             src="/images/awards/prismara-crystal-pillar.webp"
@@ -694,15 +666,10 @@ export function HubHome() {
                     />
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-[#9B1B5A] bg-[#9B1B5A]/10 px-2 py-0.5 rounded font-semibold border border-[#9B1B5A]/20">
-                        Curated Gifting Platform // Superpowers
-                      </span>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Logo brand="giftshop" className="h-7 sm:h-8 w-auto" />
                       <span className="text-xs text-[var(--text-muted)] group-hover:text-[#9B1B5A] transition-colors">↗</span>
                     </div>
-                    <h4 className="font-display text-lg text-[var(--text)] mb-1 group-hover:text-[#9B1B5A] transition-colors">
-                      TouchGiftShop · touchgiftshop.co.ke
-                    </h4>
                     <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-2">
                       Kenya&apos;s premium gifting engine with signature superpowers: <strong>Pool a Gift™</strong> (collective group contributions for farewells &amp; celebrations), <strong>Build a Hamper</strong> (modular bespoke curation), <strong>WhatsApp Recipient-Choice</strong> delivery confirmation, and <strong>Photo-Proof</strong> sent before dispatch.
                     </p>
@@ -734,15 +701,10 @@ export function HubHome() {
                     />
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-[#9B2345] bg-[#801435]/15 px-2 py-0.5 rounded font-semibold border border-[#801435]/30">
-                        Trophies &amp; Recognition // Subdomain
-                      </span>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Logo brand="awards" className="h-7 sm:h-8 w-auto" />
                       <span className="text-xs text-[var(--text-muted)] group-hover:text-[#9B2345] transition-colors">↗</span>
                     </div>
-                    <h4 className="font-display text-lg text-[var(--text)] mb-1 group-hover:text-[#9B2345] transition-colors">
-                      Touchline Awards Nairobi
-                    </h4>
                     <p className="text-xs text-[var(--text-muted)] leading-relaxed italic mb-1.5">
                       &ldquo;Recognition worth remembering. Tuzo zinazostahili kukumbukwa.&rdquo;
                     </p>

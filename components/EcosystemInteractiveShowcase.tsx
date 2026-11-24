@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Reveal } from './Reveal';
+import { Logo } from './Logo';
 
 type DivisionTab = 'branding' | 'signage' | 'giftshop' | 'awards';
 
@@ -372,9 +373,20 @@ export function EcosystemInteractiveShowcase() {
                   {current.domain}
                 </span>
               </div>
-              <h3 className="font-display text-2xl sm:text-3xl text-[var(--text)] mb-3">
-                {current.title}
-              </h3>
+              {/* Real logo for giftshop and awards; text title for branding/signage */}
+              {activeTab === 'giftshop' ? (
+                <div className="mb-3">
+                  <Logo brand="giftshop" className="h-10 sm:h-12 w-auto" />
+                </div>
+              ) : activeTab === 'awards' ? (
+                <div className="mb-3">
+                  <Logo brand="awards" className="h-8 sm:h-10 w-auto" />
+                </div>
+              ) : (
+                <h3 className="font-display text-2xl sm:text-3xl text-[var(--text)] mb-3">
+                  {current.title}
+                </h3>
+              )}
               <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-6 max-w-xl">
                 {current.tagline}
               </p>

@@ -7,11 +7,18 @@ import brandingLightInk from '@/public/Logos/branding-light.png';
 import brandingDarkInk from '@/public/Logos/branding-dark.png';
 import signageLightInk from '@/public/Logos/signage-light.png';
 import signageDarkInk from '@/public/Logos/signage-dark.png';
+import tgLightInk from '@/public/Logos/Tg-logo-light.png';
+import tgDarkInk from '@/public/Logos/Tg-logo-dark.png';
+import awardsLogo from '@/public/Logos/T-A-logo.png';
 
-const LOGO_MAP: Record<BrandId, { lightInk: any; darkInk: any; alt: string; width: number; height: number }> = {
+export type BrandLogoId = BrandId | 'giftshop' | 'awards';
+
+const LOGO_MAP: Record<BrandLogoId, { lightInk: any; darkInk: any; alt: string; width: number; height: number }> = {
   hub: { lightInk: hubLightInk, darkInk: hubDarkInk, alt: 'Touchline', width: 2059, height: 399 },
   branding: { lightInk: brandingLightInk, darkInk: brandingDarkInk, alt: 'Touchline Branding', width: 2068, height: 642 },
   signage: { lightInk: signageLightInk, darkInk: signageDarkInk, alt: 'Touchline Signage', width: 1181, height: 375 },
+  giftshop: { lightInk: tgLightInk, darkInk: tgDarkInk, alt: 'TouchGiftShop', width: 2065, height: 691 },
+  awards: { lightInk: awardsLogo, darkInk: awardsLogo, alt: 'Touchline Awards', width: 2689, height: 643 },
 };
 
 export function Logo({
@@ -19,7 +26,7 @@ export function Logo({
   className = 'h-7 sm:h-8 w-auto',
   forceLight = false,
 }: {
-  brand: BrandId;
+  brand: BrandLogoId;
   className?: string;
   forceLight?: boolean;
 }) {

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 
 export interface EcosystemSlideItem {
@@ -189,21 +189,6 @@ export function EcosystemHeroSlideshow() {
     };
   }, [buildDynamicSlides]);
 
-  // Reshuffle slides on user request
-  const handleShuffle = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (rawCatalog) {
-      const reshuffled = buildDynamicSlides(rawCatalog.signage, rawCatalog.branding, rawCatalog.awards);
-      setSlides(reshuffled);
-      setCurrentIdx(0);
-    } else {
-      setSlides(shuffleArray(slides));
-      setCurrentIdx(0);
-    }
-  };
-
-  // Automatic slide rotation
   useEffect(() => {
     if (isPaused || slides.length <= 1) return;
     const timer = setInterval(() => {
@@ -251,18 +236,6 @@ export function EcosystemHeroSlideshow() {
 
   const theme = getDivisionTheme(current.division, current.domainLabel);
 
-  const handlePrev = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentIdx((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  const handleNext = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentIdx((prev) => (prev + 1) % slides.length);
-  };
-
   return (
     <div
       onMouseEnter={() => setIsPaused(true)}
@@ -291,45 +264,13 @@ export function EcosystemHeroSlideshow() {
       {/* Cinematic Dark Gradient Scrim */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/35 pointer-events-none z-10" />
 
-      {/* Top Bar: Division Badge & Dynamic Controls */}
-      <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between">
+      {/* Top Bar: Clean Division Badge */}
+      <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between pointer-events-none">
         <div
-          className={`backdrop-blur-md border font-mono text-[9px] sm:text-[10px] tracking-wider uppercase px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-2 shadow-lg transition-colors duration-300 ${theme.pillBg}`}
+          className={`backdrop-blur-md border font-mono text-[9px] sm:text-[10px] tracking-wider uppercase px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-2 shadow-lg transition-colors duration-300 pointer-events-auto ${theme.pillBg}`}
         >
           <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${theme.accentDot}`} />
           <span>{current.badge}</span>
-        </div>
-
-        {/* Dynamic Controls: Prev, Shuffle, Slide Counter, Next */}
-        <div className="flex items-center gap-1.5 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20 text-white shadow-lg">
-          <button
-            type="button"
-            onClick={handlePrev}
-            className="w-5 h-5 flex items-center justify-center rounded-full hover:bg-white/20 text-neutral-300 hover:text-white transition-colors text-xs font-bold leading-none cursor-pointer"
-            aria-label="Previous slide"
-          >
-            ‹
-          </button>
-          <button
-            type="button"
-            onClick={handleShuffle}
-            title="Reshuffle live catalog"
-            className="w-5 h-5 flex items-center justify-center rounded-full hover:bg-white/20 text-neutral-300 hover:text-white transition-colors text-[11px] leading-none cursor-pointer"
-            aria-label="Reshuffle catalog"
-          >
-            ↻
-          </button>
-          <span className="font-mono text-[10px] text-white/90 px-1 font-semibold tracking-wider">
-            {currentIdx + 1} / {slides.length}
-          </span>
-          <button
-            type="button"
-            onClick={handleNext}
-            className="w-5 h-5 flex items-center justify-center rounded-full hover:bg-white/20 text-neutral-300 hover:text-white transition-colors text-xs font-bold leading-none cursor-pointer"
-            aria-label="Next slide"
-          >
-            ›
-          </button>
         </div>
       </div>
 
