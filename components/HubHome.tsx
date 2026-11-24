@@ -116,15 +116,18 @@ export function HubHome() {
             fill
             priority
             quality={95}
-            className="object-cover object-center opacity-70 brightness-95 contrast-105"
+            className="object-cover object-center opacity-90 brightness-105 contrast-[1.08] saturate-[1.05]"
           />
-          {/* Atmospheric Brand Overlays: Subtle Side Scrims for Perfect Text Legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#090b0e]/95 via-[#090b0e]/50 to-[#090b0e]/80" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#090b0e] via-transparent to-[#090b0e]/50" />
+          {/* Targeted Left Scrim: Gently deepens behind the left column text so copy is razor-sharp */}
+          <div className="absolute inset-y-0 left-0 w-full lg:w-7/12 bg-gradient-to-r from-[#090b0e]/85 via-[#090b0e]/40 to-transparent pointer-events-none" />
 
-          {/* Soft Brand Glows */}
-          <div className="absolute top-1/4 -left-28 w-[450px] h-[450px] rounded-full bg-[#c8960c] opacity-[0.08] blur-[140px]" />
-          <div className="absolute top-1/3 -right-28 w-[450px] h-[450px] rounded-full bg-[#0070f3] opacity-[0.08] blur-[140px]" />
+          {/* Subtle Top & Bottom Gradient to smoothly anchor nav and divider */}
+          <div className="absolute top-0 inset-x-0 h-20 bg-gradient-to-b from-[#090b0e]/60 to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-[#090b0e] via-[#090b0e]/40 to-transparent pointer-events-none" />
+
+          {/* Soft Brand Warmth */}
+          <div className="absolute top-1/4 -left-28 w-[450px] h-[450px] rounded-full bg-[#c8960c] opacity-[0.06] blur-[140px]" />
+          <div className="absolute top-1/3 -right-28 w-[450px] h-[450px] rounded-full bg-[#0070f3] opacity-[0.06] blur-[140px]" />
         </div>
 
         <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full">
@@ -141,14 +144,14 @@ export function HubHome() {
               </Reveal>
 
               <Reveal delay={60}>
-                <h1 className="font-display text-3xl sm:text-4xl xl:text-[2.85rem] leading-[1.02] tracking-tight text-white text-balance">
+                <h1 className="font-display text-3xl sm:text-4xl xl:text-[2.85rem] leading-[1.02] tracking-tight text-white text-balance drop-shadow-md">
                   YOUR BRAND, <br className="hidden sm:inline" />
                   BUILT <span className="bg-gradient-to-r from-[#0070f3] via-[#0ea5e9] to-[#38bdf8] bg-clip-text text-transparent">VISIBLE</span> &amp; <span className="text-[#c8960c]">PHYSICAL.</span>
                 </h1>
               </Reveal>
 
               <Reveal delay={120}>
-                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal text-balance">
+                <p className="text-xs sm:text-sm text-neutral-200 leading-relaxed font-normal text-balance drop-shadow-sm">
                   The unified physical brand ecosystem across Kenya. Commercial apparel, architectural signage, curated executive gifts, and bespoke awards — engineered and delivered under direct factory oversight.
                 </p>
               </Reveal>
