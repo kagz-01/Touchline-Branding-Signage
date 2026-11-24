@@ -9,6 +9,7 @@ import { HowItWorks } from './HowItWorks';
 import { ProjectPhoto } from './ProjectPhoto';
 import { FastQuoteWidget } from './FastQuoteWidget';
 import { EcosystemInteractiveShowcase } from './EcosystemInteractiveShowcase';
+import { EcosystemHeroSlideshow } from './EcosystemHeroSlideshow';
 
 function getBrandUrl(brandId: 'branding' | 'signage'): string {
   if (typeof window === 'undefined') return `/${brandId}`;
@@ -110,20 +111,20 @@ export function HubHome() {
         {/* Full-Bleed Executive Background Image */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
           <Image
-            src="/images/heroes/hub-hero-bg.jpg"
+            src="/images/heroes/hub-hero-bg.webp"
             alt="Touchline Executive Workspace"
             fill
             priority
             quality={95}
-            className="object-cover object-center brightness-90 contrast-110"
+            className="object-cover object-center opacity-70 brightness-95 contrast-105"
           />
-          {/* Atmospheric Brand Overlays: Clean Subtle Vignette, No Grid Mesh */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#090b0e]/90 via-[#090b0e]/65 to-[#090b0e]/85" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#090b0e] via-transparent to-[#090b0e]/60" />
+          {/* Atmospheric Brand Overlays: Subtle Side Scrims for Perfect Text Legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#090b0e]/95 via-[#090b0e]/50 to-[#090b0e]/80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#090b0e] via-transparent to-[#090b0e]/50" />
 
           {/* Soft Brand Glows */}
-          <div className="absolute top-1/4 -left-28 w-[450px] h-[450px] rounded-full bg-[#c8960c] opacity-[0.10] blur-[140px]" />
-          <div className="absolute top-1/3 -right-28 w-[450px] h-[450px] rounded-full bg-[#0070f3] opacity-[0.10] blur-[140px]" />
+          <div className="absolute top-1/4 -left-28 w-[450px] h-[450px] rounded-full bg-[#c8960c] opacity-[0.08] blur-[140px]" />
+          <div className="absolute top-1/3 -right-28 w-[450px] h-[450px] rounded-full bg-[#0070f3] opacity-[0.08] blur-[140px]" />
         </div>
 
         <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 w-full">
@@ -172,22 +173,9 @@ export function HubHome() {
                 </div>
               </Reveal>
 
-              {/* ── METRICS & ECOSYSTEM TRUST STRIP ── */}
+              {/* ── LIVE MULTI-DIVISION SLIDESHOW COMPONENT ── */}
               <Reveal delay={240}>
-                <div className="grid grid-cols-3 gap-3 pt-4 border-t border-white/10 max-w-lg">
-                  <div className="p-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
-                    <span className="block font-mono text-lg sm:text-xl font-bold text-[#c8960c]">500+</span>
-                    <span className="text-[10px] text-neutral-300 font-medium leading-tight block">Commercial Projects</span>
-                  </div>
-                  <div className="p-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
-                    <span className="block font-mono text-lg sm:text-xl font-bold text-[#0070f3]">47 / 47</span>
-                    <span className="text-[10px] text-neutral-300 font-medium leading-tight block">Counties Delivered</span>
-                  </div>
-                  <div className="p-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
-                    <span className="block font-mono text-lg sm:text-xl font-bold text-emerald-400">100%</span>
-                    <span className="text-[10px] text-neutral-300 font-medium leading-tight block">In-House Quality</span>
-                  </div>
-                </div>
+                <EcosystemHeroSlideshow />
               </Reveal>
             </div>
 
