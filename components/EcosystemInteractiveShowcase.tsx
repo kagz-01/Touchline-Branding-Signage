@@ -279,6 +279,7 @@ const MATERIALS_LAB = [
 export function EcosystemInteractiveShowcase() {
   const [activeTab, setActiveTab] = useState<DivisionTab>('branding');
   const [previewItem, setPreviewItem] = useState<ShowcaseItem | null>(null);
+  const [mobileLayout, setMobileLayout] = useState<'carousel' | 'grid'>('carousel');
 
   const current = DIVISION_DATA[activeTab];
 
@@ -425,25 +426,65 @@ export function EcosystemInteractiveShowcase() {
           </div>
         </div>
 
-        {/* ── Active Items Photographic Grid ──────────────────────── */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+        {/* ── Active Items Photographic Grid (Hybrid Swipe/Grid on Mobile) ── */}
+        <div className="flex sm:hidden items-center justify-between mb-3">
+          <span className="font-mono text-[10px] uppercase text-[var(--text-muted)] font-semibold">
+            {current.items.length} Manufactured Items
+          </span>
+          <div className="flex items-center gap-1 p-0.5 rounded-lg bg-[var(--surface)] border border-[var(--border)]">
+            <button
+              type="button"
+              onClick={() => setMobileLayout('carousel')}
+              className={`px-2.5 py-1 rounded text-[10px] font-mono uppercase tracking-wider transition-all ${
+                mobileLayout === 'carousel'
+                  ? 'bg-[var(--accent)]/15 text-[var(--accent)] font-bold shadow-xs'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text)]'
+              }`}
+            >
+              Swipe
+            </button>
+            <button
+              type="button"
+              onClick={() => setMobileLayout('grid')}
+              className={`px-2.5 py-1 rounded text-[10px] font-mono uppercase tracking-wider transition-all ${
+                mobileLayout === 'grid'
+                  ? 'bg-[var(--accent)]/15 text-[var(--accent)] font-bold shadow-xs'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text)]'
+              }`}
+            >
+              2-Col
+            </button>
+          </div>
+        </div>
+
+        <div
+          className={
+            mobileLayout === 'carousel'
+              ? 'flex sm:grid overflow-x-auto snap-x snap-mandatory scrollbar-none gap-3 sm:gap-5 pb-3 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid-cols-2 lg:grid-cols-4 mb-14'
+              : 'grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5 mb-14'
+          }
+        >
           {current.items.map((item) => (
             <div
               key={item.id}
               onClick={() => setPreviewItem(item)}
-              className="card-surface rounded-2xl border border-[var(--border)] hover:border-white/30 p-4.5 flex flex-col justify-between group cursor-pointer transition-all duration-300 hover:shadow-xl relative overflow-hidden"
+              className={`card-surface rounded-2xl border border-[var(--border)] hover:border-white/30 p-3 sm:p-4.5 flex flex-col justify-between group cursor-pointer transition-all duration-300 hover:shadow-xl relative overflow-hidden ${
+                mobileLayout === 'carousel'
+                  ? 'w-[75vw] max-w-[270px] shrink-0 snap-center sm:w-auto'
+                  : 'w-full'
+              }`}
             >
-              <div className="relative h-52 w-full rounded-xl overflow-hidden bg-black/5 dark:bg-black/30 border border-[var(--border)] mb-3.5 flex items-center justify-center p-2">
+              <div className="relative h-32 sm:h-52 w-full rounded-xl overflow-hidden bg-black/5 dark:bg-black/30 border border-[var(--border)] mb-2.5 sm:mb-3.5 flex items-center justify-center p-2">
                 <Image
                   src={item.image}
                   alt={item.name}
                   fill
                   className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[9px] font-mono text-white/90 border border-white/10">
+                <div className="absolute top-2 left-2 px-1.5 sm:px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[8px] sm:text-[9px] font-mono text-white/90 border border-white/10">
                   {item.id}
                 </div>
-                <div className="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[9px] font-mono text-emerald-400 border border-white/10">
+                <div className="absolute top-2 right-2 px-1.5 sm:px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[8px] sm:text-[9px] font-mono text-emerald-400 border border-white/10">
                   {item.turnaround}
                 </div>
               </div>
@@ -451,23 +492,23 @@ export function EcosystemInteractiveShowcase() {
               <div>
                 <div className="flex items-center justify-between mb-1">
                   <span
-                    className="font-mono text-[10px] uppercase font-semibold"
+                    className="font-mono text-[9px] sm:text-[10px] uppercase font-semibold truncate"
                     style={{ color: current.accentColor }}
                   >
                     {item.category}
                   </span>
-                  <span className="text-[10px] font-mono text-[var(--text-muted)]">
+                  <span className="text-[9px] sm:text-[10px] font-mono text-[var(--text-muted)] shrink-0">
                     {item.badge}
                   </span>
                 </div>
-                <h4 className="font-display text-base text-[var(--text)] mb-2 group-hover:text-[var(--accent)] transition-colors leading-snug line-clamp-1">
+                <h4 className="font-display text-xs sm:text-base text-[var(--text)] mb-1.5 sm:mb-2 group-hover:text-[var(--accent)] transition-colors leading-snug line-clamp-1">
                   {item.name}
                 </h4>
-                <div className="space-y-1 mb-3">
+                <div className="space-y-0.5 sm:space-y-1 mb-2.5 sm:mb-3">
                   {item.specs.slice(0, 2).map((s) => (
                     <div
                       key={s}
-                      className="text-[11px] text-[var(--text-muted)] flex items-center gap-1.5 truncate"
+                      className="text-[10px] sm:text-[11px] text-[var(--text-muted)] flex items-center gap-1 sm:gap-1.5 truncate"
                     >
                       <span className="text-emerald-500">✓</span>
                       <span>{s}</span>
@@ -476,8 +517,8 @@ export function EcosystemInteractiveShowcase() {
                 </div>
               </div>
 
-              <div className="pt-2.5 border-t border-[var(--border)] flex items-center justify-between">
-                <span className="text-[11px] font-semibold text-[var(--text)] flex items-center gap-1 group-hover:gap-2 transition-all">
+              <div className="pt-2 sm:pt-2.5 border-t border-[var(--border)] flex items-center justify-between">
+                <span className="text-[10px] sm:text-[11px] font-semibold text-[var(--text)] flex items-center gap-1 group-hover:gap-2 transition-all">
                   Inspect Spec <span>→</span>
                 </span>
                 <span className="text-[10px] font-mono text-[var(--text-muted)]">

@@ -6,6 +6,7 @@ import { Logo } from './Logo';
 import { ThemeToggle } from './ThemeToggle';
 import { SpecialismNav } from './SpecialismNav';
 import { HeaderAuthButton } from './HeaderAuthButton';
+import { MobileNavigation } from './MobileNavigation';
 
 function resolveBrandFromHost(host: string): 'branding' | 'signage' | 'hub' {
   if (!host) return 'hub';
@@ -94,17 +95,15 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
             </Link>
           </div>
 
-          {/* Mobile Right Controls */}
-          <div className="flex lg:hidden items-center gap-2">
-            <ThemeToggle />
-            <HeaderAuthButton mobile />
-            <Link
-              href="/book"
-              className="btn-primary text-xs font-semibold py-1.5 px-3 rounded-lg"
-            >
-              Quote
-            </Link>
-          </div>
+          {/* Mobile Right Controls & Drawer Trigger */}
+          <MobileNavigation
+            currentBrandId="hub"
+            host={host}
+            brandingUrl={brandingUrl}
+            signageUrl={signageUrl}
+            giftshopUrl="https://touchgiftshop.co.ke"
+            awardsUrl={awardsUrl}
+          />
         </div>
       </header>
     );
@@ -137,17 +136,15 @@ export async function Header({ brand }: { brand: BrandConfig | null }) {
           hubHref={hubHref}
         />
 
-        {/* Mobile Right Controls */}
-        <div className="flex lg:hidden items-center gap-2">
-          <ThemeToggle />
-          <HeaderAuthButton mobile />
-          <Link
-            href={isBranding ? '/book?brand=branding' : '/book?brand=signage'}
-            className="btn-primary text-xs font-semibold py-1.5 px-3 rounded-lg"
-          >
-            Quote
-          </Link>
-        </div>
+        {/* Mobile Right Controls & Drawer Trigger */}
+        <MobileNavigation
+          currentBrandId={brandId}
+          host={host}
+          brandingUrl={getCrossBrandUrl('branding', host)}
+          signageUrl={getCrossBrandUrl('signage', host)}
+          giftshopUrl="https://touchgiftshop.co.ke"
+          awardsUrl="https://awards.touchlineltd.co.ke"
+        />
       </div>
     </header>
   );

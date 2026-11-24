@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { getSupabaseAdmin } from "@/lib/supabase";
+import { invalidateCatalogCache } from "@/lib/db-catalog";
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -73,6 +74,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
+    invalidateCatalogCache(division);
     return NextResponse.json(data);
   } catch (err: any) {
     return NextResponse.json({ error: err.message || "Failed to save item" }, { status: 500 });

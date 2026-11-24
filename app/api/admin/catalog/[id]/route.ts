@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { getSupabaseAdmin } from "@/lib/supabase";
+import { invalidateCatalogCache } from "@/lib/db-catalog";
 
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
@@ -35,6 +36,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
       .single();
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    invalidateCatalogCache();
     return NextResponse.json(data);
   } catch (err: any) {
     return NextResponse.json({ error: err.message || "Failed to update item" }, { status: 500 });
@@ -51,5 +53,6 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   const { error } = await supabase.from("catalog_items").delete().eq("id", params.id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
+  invalidateCatalogCache();
   return NextResponse.json({ success: true, deletedId: params.id });
 }

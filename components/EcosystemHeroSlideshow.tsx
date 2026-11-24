@@ -89,9 +89,9 @@ const DEFAULT_SLIDES: EcosystemSlideItem[] = [
 
 export function EcosystemHeroSlideshow() {
   const [slides, setSlides] = useState<EcosystemSlideItem[]>(() => shuffleArray(DEFAULT_SLIDES));
-  const [rawCatalog, setRawCatalog] = useState<{ signage: any[]; branding: any[]; awards: any[] } | null>(null);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
 
   // Builds an interleaved, randomly shuffled dynamic list across all active database items
   const buildDynamicSlides = useCallback((signage: any[], branding: any[], awards: any[]): EcosystemSlideItem[] => {
@@ -155,23 +155,18 @@ export function EcosystemHeroSlideshow() {
     return dynamicList;
   }, []);
 
-  // Fetch dynamic items directly from database across all divisions
+  // Fetch dynamic items directly from database across all divisions (unified single call)
   useEffect(() => {
     let isMounted = true;
     async function loadDynamicCatalog() {
       try {
-        const [resBranding, resSignage, resAwards] = await Promise.all([
-          fetch('/api/catalog?division=branding').then((r) => (r.ok ? r.json() : null)),
-          fetch('/api/catalog?division=signage').then((r) => (r.ok ? r.json() : null)),
-          fetch('/api/catalog?division=awards').then((r) => (r.ok ? r.json() : null)),
-        ]);
+        const res = await fetch('/api/catalog?division=all').then((r) => (r.ok ? r.json() : null));
 
-        const signage = resSignage?.items || [];
-        const branding = resBranding?.items || [];
-        const awards = resAwards?.items || [];
+        const signage = res?.signage || [];
+        const branding = res?.branding || [];
+        const awards = res?.awards || [];
 
         if (isMounted) {
-          setRawCatalog({ signage, branding, awards });
           const randomized = buildDynamicSlides(signage, branding, awards);
           if (randomized.length >= 3) {
             setSlides(randomized);
@@ -236,11 +231,33 @@ export function EcosystemHeroSlideshow() {
 
   const theme = getDivisionTheme(current.division, current.domainLabel);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsPaused(true);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    setIsPaused(false);
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    if (diff > 40) {
+      // Swiped left -> next
+      setCurrentIdx((prev) => (prev + 1) % slides.length);
+    } else if (diff < -40) {
+      // Swiped right -> prev
+      setCurrentIdx((prev) => (prev - 1 + slides.length) % slides.length);
+    }
+    setTouchStart(null);
+  };
+
   return (
     <div
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="relative aspect-[16/10] sm:aspect-[16/9.5] w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-neutral-950/80 backdrop-blur-sm group select-none"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      className="relative aspect-[16/10] sm:aspect-[16/9.5] w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-neutral-950/80 backdrop-blur-sm group select-none cursor-grab active:cursor-grabbing"
     >
       {/* Background Slides with Cross-Fade */}
       {slides.map((slide, idx) => (

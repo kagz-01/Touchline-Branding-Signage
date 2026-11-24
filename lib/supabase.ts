@@ -1,4 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 export type CatalogItemDB = {
   id: string;
@@ -25,25 +26,37 @@ export type CatalogCategoryDB = {
   sort_order: number;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let cachedAdminClient: SupabaseClient<any, any, any> | null = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let cachedPublicClient: SupabaseClient<any, any, any> | null = null;
+
 /**
  * Server-side Supabase client using Service Role Key.
  * Bypasses RLS for admin queries, catalog seeding, and server-side fetching.
+ * Uses singleton caching to prevent connection pool exhaustion.
  */
-export function getSupabaseAdmin() {
+export function getSupabaseAdmin(): SupabaseClient<any, any, any> | null {
+  if (cachedAdminClient) return cachedAdminClient;
+
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
 
   if (!url || !key) return null;
 
-  return createClient(url, key, {
+  cachedAdminClient = createClient<any>(url, key, {
     auth: { persistSession: false },
   });
+
+  return cachedAdminClient;
 }
 
 /**
  * Public client using Anon / Publishable key for client-side queries with RLS.
  */
-export function getSupabasePublic() {
+export function getSupabasePublic(): SupabaseClient<any, any, any> | null {
+  if (cachedPublicClient) return cachedPublicClient;
+
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
   const key =
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
@@ -51,7 +64,9 @@ export function getSupabasePublic() {
 
   if (!url || !key) return null;
 
-  return createClient(url, key, {
+  cachedPublicClient = createClient<any>(url, key, {
     auth: { persistSession: false },
   });
+
+  return cachedPublicClient;
 }

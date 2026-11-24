@@ -184,7 +184,7 @@ export function HubHome() {
 
             {/* ── RIGHT COLUMN: Interactive 2x2 Quad-Gateway Stack ── */}
             <div className="lg:col-span-6 flex flex-col justify-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 xl:gap-4 items-stretch">
+              <div className="grid grid-cols-2 sm:grid-cols-2 gap-2.5 sm:gap-3.5 xl:gap-4 items-stretch">
                 {/* ── DIVISION 01: TOUCHLINE BRANDING ──────────────── */}
                 <Reveal delay={220}>
                   <a
@@ -461,47 +461,47 @@ export function HubHome() {
               </Reveal>
             </div>
 
-            <div className="lg:col-span-5 grid sm:grid-cols-2 gap-3.5">
-              <div className="p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
-                <span className="font-mono text-xs text-[#c8960c] block mb-1.5 font-semibold">01 / MERCHANDISE</span>
-                <h4 className="font-display text-lg text-[var(--text)] mb-1.5">Carried &amp; Worn</h4>
-                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+            <div className="lg:col-span-5 grid grid-cols-2 gap-2.5 sm:gap-3.5">
+              <div className="p-3.5 sm:p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
+                <span className="font-mono text-[10px] sm:text-xs text-[#c8960c] block mb-1 font-semibold">01 / MERCHANDISE</span>
+                <h4 className="font-display text-sm sm:text-lg text-[var(--text)] mb-1">Carried &amp; Worn</h4>
+                <p className="text-[11px] sm:text-xs text-[var(--text-muted)] leading-relaxed">
                   Apparel, staff uniforms, drinkware, and tender kits that put your brand directly in client hands.
                 </p>
               </div>
 
-              <div className="p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
-                <span className="font-mono text-xs text-[#0070f3] block mb-1.5 font-semibold">02 / STRUCTURES</span>
-                <h4 className="font-display text-lg text-[var(--text)] mb-1.5">Built &amp; Seen</h4>
-                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+              <div className="p-3.5 sm:p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
+                <span className="font-mono text-[10px] sm:text-xs text-[#0070f3] block mb-1 font-semibold">02 / STRUCTURES</span>
+                <h4 className="font-display text-sm sm:text-lg text-[var(--text)] mb-1">Built &amp; Seen</h4>
+                <p className="text-[11px] sm:text-xs text-[var(--text-muted)] leading-relaxed">
                   3D letters, illuminated pylons, and architectural wayfinding that anchor your physical locations.
                 </p>
               </div>
 
-              <div className="p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
-                <span className="font-mono text-xs text-[#9B1B5A] block mb-1.5 font-semibold">03 / CORPORATE GIFTS</span>
-                <h4 className="font-display text-lg text-[var(--text)] mb-1.5">Remembered &amp; Valued</h4>
-                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+              <div className="p-3.5 sm:p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
+                <span className="font-mono text-[10px] sm:text-xs text-[#9B1B5A] block mb-1 font-semibold">03 / CORPORATE GIFTS</span>
+                <h4 className="font-display text-sm sm:text-lg text-[var(--text)] mb-1">Remembered &amp; Valued</h4>
+                <p className="text-[11px] sm:text-xs text-[var(--text-muted)] leading-relaxed">
                   Curated hampers, VIP executive onboarding kits, and premium lifestyle items via TouchGiftShop.
                 </p>
               </div>
 
-              <div className="p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
-                <span className="font-mono text-xs text-[#9B2345] block mb-1.5 font-semibold">04 / RECOGNITION</span>
-                <h4 className="font-display text-lg text-[var(--text)] mb-1.5">Honoured &amp; Cherished</h4>
-                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+              <div className="p-3.5 sm:p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] tilt-card glass-interactive">
+                <span className="font-mono text-[10px] sm:text-xs text-[#9B2345] block mb-1 font-semibold">04 / RECOGNITION</span>
+                <h4 className="font-display text-sm sm:text-lg text-[var(--text)] mb-1">Honoured &amp; Cherished</h4>
+                <p className="text-[11px] sm:text-xs text-[var(--text-muted)] leading-relaxed">
                   Custom optical crystal trophies, engraved wooden plaques, and commemorative medals via Touchline Awards.
                 </p>
               </div>
 
-              <div className="p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] sm:col-span-2 tilt-card glass-interactive">
-                <div className="flex items-center gap-3 mb-2">
+              <div className="p-4 sm:p-5 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] col-span-2 tilt-card glass-interactive">
+                <div className="flex items-center gap-2.5 mb-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="font-mono text-xs uppercase tracking-wider text-[var(--text)] font-semibold">
+                  <span className="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[var(--text)] font-semibold">
                     TouchDesk Operations Engine
                   </span>
                 </div>
-                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+                <p className="text-[11px] sm:text-xs text-[var(--text-muted)] leading-relaxed">
                   Every order is tracked through TouchDesk — from digital stitch file approvals and CNC routing proofs to delivery notes with biometric signatures and verified field handover.
                 </p>
               </div>
@@ -732,7 +732,7 @@ export function HubHome() {
             </div>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {[
               {
                 num: '01',
@@ -765,7 +765,7 @@ export function HubHome() {
             ].map((adv) => (
               <div
                 key={adv.num}
-                className="p-6 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] hover:border-white/20 transition-all flex flex-col justify-between h-full shadow-sm"
+                className="p-3.5 sm:p-6 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] hover:border-white/20 transition-all flex flex-col justify-between h-full shadow-sm"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -815,10 +815,10 @@ export function HubHome() {
             </div>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {CLIENT_SECTORS.map((sector, i) => (
               <Reveal key={sector.name} delay={i * 80}>
-                <div className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] h-full flex flex-col justify-between">
+                <div className="p-3.5 sm:p-6 rounded-[var(--radius-md)] bg-[var(--bg-soft)] border border-[var(--border)] h-full flex flex-col justify-between">
                   <div>
                     <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-3">
                       Sector 0{i + 1}
